@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Smartphone, AlertTriangle, MessageCircle, Clock, Shield } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import takeoverImage from "@/assets/family_reunited.png";
 
 const PLATFORMS = [
   "YouTube",
@@ -21,7 +23,7 @@ const stats = [
   {
     icon: Smartphone,
     stat: "8 de cada 10",
-    text: "adolescentes usan redes sociales sin la compa\u00F1\u00EDa de un adulto.",
+    text: "adolescentes usan redes sociales sin la compañía de un adulto.",
   },
   {
     icon: AlertTriangle,
@@ -36,7 +38,7 @@ const stats = [
   {
     icon: Clock,
     stat: "> 3 horas",
-    text: "al d\u00EDa frente a pantallas en promedio.",
+    text: "al día frente a pantallas en promedio.",
   },
 ];
 
@@ -44,177 +46,163 @@ const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.25, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 40, scale: 0.9 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1
+  hidden: { opacity: 0, y: 14 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
 export default function ProblemSection() {
+  const introRef = useRef<HTMLDivElement | null>(null);
+  const takeoverActive = useInView(introRef, { amount: 0.65, once: false });
+
   return (
-    <section aria-labelledby="problem-heading" className="w-full">
-      {/* Intro empatica */}
-      <div className="min-h-[70vh] md:min-h-[80vh] bg-[#F5F7FA] flex flex-col items-center justify-center relative overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="w-full px-6 md:px-12 lg:px-24 py-16 md:py-24 z-10"
-        >
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ 
-                duration: 1, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.3,
-                type: "spring",
-                stiffness: 100 
-              }}
-            >
-              <Shield aria-hidden className="mx-auto mb-4 h-12 w-12 text-[#003A5D]" />
-            </motion.div>
-            <motion.h2
-              id="problem-heading"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
-              className="text-2xl md:text-[2.25rem] leading-tight font-bold text-[#003A5D]"
-            >
-              Como padres que somos, queremos compartirte lo que hemos aprendido sobre a qué están expuestos nuestros hijos en internet.
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.8 }}
-              className="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto"
-            >
-              El mundo digital abre puertas para aprender, jugar y convivir... pero también trae riesgos que a veces no vemos.
-            </motion.p>
-          </div>
-        </motion.div>
-
-        {/* Cinta animada de plataformas (branding del sitio) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 1.2 }}
-          className="absolute bottom-8 w-full overflow-hidden"
+    <section aria-labelledby="problem-heading" className="relative isolate w-full">
+      <motion.div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0 bg-[#003A5D] mix-blend-multiply"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: takeoverActive ? 0.25 : 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      />
+      <div className="relative z-10">
+        {/* Intro empática estilo takeover */}
+        <div
+          ref={introRef}
+          className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-[#F5F7FA] md:min-h-screen"
         >
           <motion.div
-            className="flex gap-4 md:gap-6"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" }}
+            initial={{ opacity: 0, y: 32, scale: 0.96 }}
+            animate={{
+              opacity: takeoverActive ? 1 : 0.75,
+              y: takeoverActive ? 0 : 16,
+              scale: takeoverActive ? 1 : 0.98,
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative z-10 w-full px-6 py-16 md:px-12 md:py-24 lg:px-24"
           >
-            {Array.from({ length: 2 }).map((_, loop) => (
-              <div key={loop} className="flex gap-4 md:gap-6 pr-6">
-                {PLATFORMS.map((label, i) => (
-                  <BrandPill
-                    key={`${loop}-${label}-${i}`}
-                    label={label}
-                    variant={i % 4 === 0 ? "primary" : i % 4 === 1 ? "accent" : i % 4 === 2 ? "muted" : "outline"}
-                  />
-                ))}
+            <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center md:gap-16">
+              <div className="max-w-xl text-center md:text-left">
+                <Shield aria-hidden className="mx-auto mb-4 h-12 w-12 text-[#003A5D] md:mx-0" />
+                <h2
+                  id="problem-heading"
+                  className="text-2xl font-bold leading-tight text-[#003A5D] md:text-[2.25rem]"
+                >
+                  Como padres que somos, queremos compartirte lo que hemos aprendido sobre a qué están expuestos nuestros hijos en internet.
+                </h2>
+                <p className="mt-4 text-base text-gray-700 md:text-lg">
+                  El mundo digital abre puertas para aprender, jugar y convivir… pero también trae riesgos que a veces no vemos.
+                </p>
               </div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Estadisticas */}
-      <div className="bg-white">
-        <div className="w-full px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-5xl mx-auto">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-          >
-            {stats.map(({ icon: Icon, stat, text }, i) => (
               <motion.div
-                key={i}
-                variants={item}
-                className="flex items-start gap-4 rounded-2xl p-5 shadow-sm border border-[#E6EEF5] bg-[#F5F7FA] hover:shadow-md transition"
+                initial={{ opacity: 0, x: 40, scale: 0.95 }}
+                animate={{
+                  opacity: takeoverActive ? 1 : 0,
+                  x: takeoverActive ? 0 : 40,
+                  scale: takeoverActive ? 1 : 0.95,
+                }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="w-full max-w-md"
               >
-                <Icon className="h-8 w-8 text-[#003A5D] shrink-0" aria-hidden />
-                <div>
-                  <p className="text-2xl md:text-3xl font-extrabold text-[#003A5D] leading-tight">{stat}</p>
-                  <p className="text-base md:text-lg text-[#003A5D] font-semibold">{text}</p>
+                <div className="overflow-hidden rounded-3xl border border-[#E6EEF5] bg-white/80 shadow-xl backdrop-blur">
+                  <img
+                    src={takeoverImage}
+                    alt="Familia conectada hablando sobre seguridad digital"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
               </motion.div>
-            ))}
+            </div>
           </motion.div>
-        </div>
-      </div>
 
-      {/* Cierre con CTA */}
-      <div className="bg-[#003A5D]">
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="w-full px-6 md:px-12 lg:px-24 py-16 md:py-24"
-        >
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <motion.h3 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}
-              className="text-2xl md:text-[2.25rem] leading-tight font-bold"
+          {/* Cinta animada de plataformas (branding del sitio) */}
+          <div className="absolute bottom-8 z-0 w-full overflow-hidden">
+            <motion.div
+              className="flex gap-4 md:gap-6"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" }}
             >
-              La buena noticia: juntos podemos transformar nuestro hogar en un espacio digital seguro.
-            </motion.h3>
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
-              className="mt-4 text-base md:text-lg text-white/90 max-w-3xl mx-auto"
-            >
-              Empieza hoy con pasos simples que hacen la diferencia.
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94], 
-                delay: 0.7,
-                type: "spring",
-                stiffness: 100 
-              }}
-              className="mt-8"
-            >
-              <Button
-                size="lg"
-                className="bg-[#4BAEA0] hover:bg-[#3E8E82] text-white text-base md:text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                onClick={() => {
-                  const el = document.getElementById("quiz");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Haz el quiz y conoce tu nivel
-              </Button>
+              {Array.from({ length: 2 }).map((_, loop) => (
+                <div key={loop} className="flex gap-4 pr-6 md:gap-6">
+                  {PLATFORMS.map((label, i) => (
+                    <BrandPill
+                      key={`${loop}-${label}-${i}`}
+                      label={label}
+                      variant={i % 4 === 0 ? "primary" : i % 4 === 1 ? "accent" : i % 4 === 2 ? "muted" : "outline"}
+                    />
+                  ))}
+                </div>
+              ))}
             </motion.div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Estadísticas */}
+        <div className="bg-white">
+          <div className="mx-auto w-full max-w-5xl px-6 py-16 md:px-12 md:py-24 lg:px-24">
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.35 }}
+              className="grid grid-cols-1 gap-8 sm:grid-cols-2"
+            >
+              {stats.map(({ icon: Icon, stat, text }, i) => (
+                <motion.div
+                  key={i}
+                  variants={item}
+                  className="flex items-start gap-4 rounded-2xl border border-[#E6EEF5] bg-[#F5F7FA] p-5 shadow-sm transition hover:shadow-md"
+                >
+                  <Icon className="h-8 w-8 shrink-0 text-[#003A5D]" aria-hidden />
+                  <div>
+                    <p className="text-2xl font-extrabold leading-tight text-[#003A5D] md:text-3xl">{stat}</p>
+                    <p className="text-base font-semibold text-[#003A5D] md:text-lg">{text}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Cierre con CTA */}
+        <div className="bg-[#003A5D]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="w-full px-6 py-16 md:px-12 md:py-24 lg:px-24"
+          >
+            <div className="mx-auto max-w-4xl text-center text-white">
+              <h3 className="text-2xl font-bold leading-tight md:text-[2.25rem]">
+                La buena noticia: juntos podemos transformar nuestro hogar en un espacio digital seguro.
+              </h3>
+              <p className="mx-auto mt-4 max-w-3xl text-base text-white/90 md:text-lg">
+                Empieza hoy con pasos simples que hacen la diferencia.
+              </p>
+              <div className="mt-8">
+                <Button
+                  size="lg"
+                  className="rounded-2xl bg-[#4BAEA0] px-8 py-6 text-base text-white shadow-lg hover:bg-[#3E8E82] md:text-lg"
+                  onClick={() => {
+                    const el = document.getElementById("quiz");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Haz el quiz y conoce tu nivel
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -243,7 +231,7 @@ function BrandPill({
       role="img"
       aria-label={label}
     >
-      <span className="inline-block w-2.5 h-2.5 rounded-full bg-current opacity-70" aria-hidden />
+      <span className="inline-block h-2.5 w-2.5 rounded-full bg-current opacity-70" aria-hidden />
       <span className="text-sm font-semibold">{label}</span>
     </motion.div>
   );
