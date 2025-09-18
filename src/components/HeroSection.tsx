@@ -47,11 +47,12 @@ const HeroSection = () => {
       ))}
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center">
           {/* Content Section */}
           <div className={`text-center lg:text-left transition-all duration-1000 transform ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
+            <div className="max-w-lg mx-auto lg:mx-0">
             {/* Headline */}
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight">
               <span className="block">UN HOGAR SEGURO</span>
@@ -99,6 +100,7 @@ const HeroSection = () => {
             <p className="text-sm text-muted-foreground mt-4 opacity-80">
               Sin registros • 100% confidencial • Toma solo 3 minutos
             </p>
+            </div>
           </div>
 
           {/* Image Section */}
