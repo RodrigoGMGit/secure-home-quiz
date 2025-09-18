@@ -47,7 +47,7 @@ const HeroSection = () => {
       ))}
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Content Section */}
           <div className={`text-center lg:text-left transition-all duration-1000 transform ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
