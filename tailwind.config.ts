@@ -32,13 +32,8 @@ export default {
         },
         cta: {
           blue: "hsl(var(--cta-blue))",
-          "blue-hover": "hsl(var(--cta-blue-hover))",
           green: "hsl(var(--cta-green))",
-          "green-trust": "hsl(var(--cta-green-trust))",
           foreground: "hsl(var(--cta-foreground))",
-        },
-        trust: {
-          metric: "hsl(var(--trust-metric))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -91,7 +86,7 @@ export default {
         "bounce": "var(--transition-bounce)",
       },
       fontFamily: {
-        "heading": ["Roboto", "Brandon Grotesque", "ui-sans-serif", "system-ui", "sans-serif"],
+        "heading": ["Inter", "Brandon Grotesque", "ui-sans-serif", "system-ui", "sans-serif"],
         "body": ["Inter", "Uniform", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {

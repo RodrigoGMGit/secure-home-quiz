@@ -16,13 +16,8 @@ All colors based on PMS corporate palette. All colors MUST be HSL.
 
     /* CTA colors - PMS 7459C (bright blue) and PMS 573C (soft green) */
     --cta-blue: 207 91% 54%;
-    --cta-blue-hover: 207 91% 48%;
     --cta-green: 152 60% 45%;
-    --cta-green-trust: 156 45% 55%;
     --cta-foreground: 0 0% 100%;
-    
-    /* Trust metrics color - PMS 5615C (grey green) */
-    --trust-metric: 156 25% 40%;
 
     /* Background and surfaces */
     --background: 0 0% 100%;
