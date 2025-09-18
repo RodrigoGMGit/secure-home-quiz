@@ -1,23 +1,59 @@
-import { useState, useEffect, useMemo } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
-import familyImage from "@/assets/family-digital-safety.jpg";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
+import { Shield, CheckCircle, Clock, Zap, Lock, Wifi, Smartphone, Eye } from "lucide-react";
+
+// Helper component for reusable benefit items
+const BenefitItem = ({ icon: Icon, title, description, delay }: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  delay: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+    className="flex items-start gap-3 p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/40"
+  >
+    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+      <Icon className="w-5 h-5 text-primary" />
+    </div>
+    <div>
+      <h3 className="font-semibold text-foreground mb-1">{title}</h3>
+      <p className="text-sm text-muted-foreground">{description}</p>
+    </div>
+  </motion.div>
+);
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const benefits = [
+    {
+      icon: CheckCircle,
+      title: "Evaluación gratuita",
+      description: "Análisis completo sin costo alguno"
+    },
+    {
+      icon: Zap,
+      title: "Resultados inmediatos",
+      description: "Conoce tu puntuación al instante"
+    },
+    {
+      icon: Clock,
+      title: "Toma solo 3 minutos",
+      description: "Rápido y fácil de completar"
+    }
+  ];
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const headlineLines = useMemo(
-    () => [
-      { text: "UN HOGAR SEGURO", Icon: Shield, highlight: false },
-      { text: "EN LÍNEA", Icon: Lock, highlight: true },
-      { text: "EMPIEZA CONTIGO", Icon: Wifi, highlight: false },
-    ],
-    []
-  );
+  const safetyMetrics = [
+    { label: "Control parental", score: 85, color: "bg-primary" },
+    { label: "Contraseñas y 2FA", score: 92, color: "bg-cta-green" },
+    { label: "Privacidad en redes", score: 78, color: "bg-cta-blue" },
+    { label: "Dispositivos actualizados", score: 95, color: "bg-primary-glow" }
+  ];
 
   return (
     <main className="min-h-screen bg-gradient-subtle overflow-hidden">
@@ -29,114 +65,135 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Content Section */}
-          <div className={`text-center lg:text-left transition-all duration-1000 transform ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}>
+          <div className="text-center lg:text-left">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-6"
+            >
+              <Badge variant="secondary" className="px-4 py-2 text-sm font-medium">
+                <Shield className="w-4 h-4 mr-2" />
+                Seguridad digital familiar
+              </Badge>
+            </motion.div>
+
             {/* Headline */}
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight">
-              <div className="flex flex-col gap-3">
-                {headlineLines.map(({ text, Icon, highlight }, index) => (
-                  <div
-                    key={text}
-                    className="flex items-center gap-4 justify-center lg:justify-start"
-                  >
-                    <div
-                      className={`hidden sm:flex w-12 h-12 items-center justify-center rounded-xl bg-background/80 backdrop-blur-sm shadow-soft border border-border/40 transition-all duration-700 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                      } ${isVisible ? "animate-bounce" : ""}`}
-                      style={{
-                        animationDelay: `${index * 0.2}s`,
-                        animationDuration: "2.8s",
-                      }}
-                    >
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <span
-                      className={`block ${
-                        highlight
-                          ? "bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent"
-                          : ""
-                      }`}
-                    >
-                      {text}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight"
+            >
+              <span className="block">Un hogar seguro</span>
+              <span className="block bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                en línea
+              </span>
+              <span className="block">empieza contigo</span>
+            </motion.h1>
 
             {/* Subtitle */}
-            <p className="font-body text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-body text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            >
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
-            </p>
+            </motion.p>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-              {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center gap-2 px-4 py-2 bg-background-subtle rounded-full transition-all duration-500 ${
-                    isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                  }`}
-                  style={{ transitionDelay: `${800 + index * 100}ms` }}
-                >
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{item}</span>
-                </div>
+            {/* Benefits checklist */}
+            <div className="space-y-4 mb-8">
+              {benefits.map((benefit, index) => (
+                <BenefitItem
+                  key={benefit.title}
+                  icon={benefit.icon}
+                  title={benefit.title}
+                  description={benefit.description}
+                  delay={0.3 + index * 0.1}
+                />
               ))}
             </div>
 
             {/* CTA Button */}
-            <div className={`transition-all duration-700 transform ${
-              isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
-            }`} style={{ transitionDelay: "1200ms" }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mb-4"
+            >
               <Button 
                 variant="cta" 
                 size="xl" 
-                className="font-heading text-lg tracking-wide uppercase shadow-2xl"
+                className="font-heading text-lg tracking-wide uppercase shadow-2xl w-full sm:w-auto"
               >
-                <Shield className="w-6 h-6" />
+                <Shield className="w-6 h-6 mr-2" />
                 Haz el quiz ahora
               </Button>
-            </div>
+            </motion.div>
 
-            <p className="text-sm text-muted-foreground mt-4 opacity-80">
-              Sin registros • 100% confidencial • Toma solo 3 minutos
-            </p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="text-sm text-muted-foreground opacity-80"
+            >
+              Sin registros • 100% confidencial • Resultados al instante
+            </motion.p>
           </div>
 
-          {/* Image Section */}
-          <div className={`relative transition-all duration-1000 transform ${
-            isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
-          }`} style={{ transitionDelay: "600ms" }}>
-            <div className="relative">
-              {/* Main image container */}
-              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-gradient-warm p-8">
-                <img
-                  src={familyImage}
-                  alt="Familia usando tecnología de forma segura"
-                  className="w-full h-auto object-cover rounded-xl"
-                  loading="eager"
-                />
-                
-                {/* Overlay gradient for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent rounded-xl"></div>
-              </div>
+          {/* Digital Safety Report Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="relative"
+          >
+            <Card className="overflow-hidden shadow-cta border border-border/40 bg-background/80 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Reporte de Seguridad Digital</h3>
+                    <p className="text-sm text-muted-foreground">Tu familia</p>
+                  </div>
+                </div>
 
-              {/* Floating stats */}
-              <div className="absolute -bottom-6 -left-6 bg-background rounded-xl shadow-cta p-4 border border-border/20">
-                <div className="text-2xl font-bold text-primary">85%</div>
-                <div className="text-xs text-muted-foreground">Padres mejoró<br/>su seguridad</div>
-              </div>
+                <div className="space-y-4 mb-6">
+                  {safetyMetrics.map((metric, index) => (
+                    <motion.div
+                      key={metric.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                    >
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium text-foreground">{metric.label}</span>
+                        <span className="text-sm font-bold text-primary">{metric.score}%</span>
+                      </div>
+                      <Progress value={metric.score} className="h-2" />
+                    </motion.div>
+                  ))}
+                </div>
 
-              <div className="absolute -top-6 -right-6 bg-background rounded-xl shadow-green p-4 border border-border/20">
-                <div className="text-2xl font-bold text-cta-green">3 min</div>
-                <div className="text-xs text-muted-foreground">Tiempo<br/>promedio</div>
-              </div>
-            </div>
-          </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.0 }}
+                  className="p-4 bg-primary/5 rounded-lg border border-primary/20"
+                >
+                  <p className="text-sm text-foreground leading-relaxed">
+                    Obtén una guía personalizada con pasos simples para elevar tu puntuación y proteger a tu familia.
+                  </p>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </main>
