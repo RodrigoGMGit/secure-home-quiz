@@ -50,11 +50,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+  show: { opacity: 1, y: 0 },
 };
 
 export default function ProblemSection() {
@@ -66,7 +62,7 @@ export default function ProblemSection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-full px-6 md:px-12 lg:px-24 py-16 md:py-24 z-10"
         >
           <div className="max-w-4xl mx-auto text-center">
@@ -138,7 +134,7 @@ export default function ProblemSection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-full px-6 md:px-12 lg:px-24 py-16 md:py-24"
         >
           <div className="max-w-4xl mx-auto text-center text-white">
