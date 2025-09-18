@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Shield, Wifi, Lock, Cloud, CheckCircle } from "lucide-react";
+import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
 import familyImage from "@/assets/family-digital-safety.jpg";
 
 const HeroSection = () => {
@@ -10,12 +10,14 @@ const HeroSection = () => {
     setIsVisible(true);
   }, []);
 
-  const securityIcons = [
-    { Icon: Shield, delay: "delay-100" },
-    { Icon: Lock, delay: "delay-200" },
-    { Icon: Wifi, delay: "delay-300" },
-    { Icon: Cloud, delay: "delay-400" },
-  ];
+  const headlineLines = useMemo(
+    () => [
+      { text: "UN HOGAR SEGURO", Icon: Shield, highlight: false },
+      { text: "EN LÍNEA", Icon: Lock, highlight: true },
+      { text: "EMPIEZA CONTIGO", Icon: Wifi, highlight: false },
+    ],
+    []
+  );
 
   return (
     <main className="min-h-screen bg-gradient-subtle overflow-hidden">
@@ -26,26 +28,6 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-cta-blue/5 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Floating security icons */}
-      {securityIcons.map(({ Icon, delay }, index) => (
-        <div
-          key={index}
-          className={`absolute hidden lg:block ${delay} ${
-            isVisible ? "animate-bounce" : "opacity-0"
-          }`}
-          style={{
-            top: `${20 + index * 15}%`,
-            left: `${10 + index * 20}%`,
-            animationDuration: `${2 + index * 0.5}s`,
-            animationDelay: `${index * 0.3}s`,
-          }}
-        >
-          <div className="p-3 bg-background/80 backdrop-blur-sm rounded-xl shadow-soft border border-border/50">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
-        </div>
-      ))}
-
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content Section */}
@@ -54,11 +36,35 @@ const HeroSection = () => {
           }`}>
             {/* Headline */}
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight">
-              <span className="block">UN HOGAR SEGURO</span>
-              <span className="block bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-                EN LÍNEA
-              </span>
-              <span className="block">EMPIEZA CONTIGO</span>
+              <div className="flex flex-col gap-3">
+                {headlineLines.map(({ text, Icon, highlight }, index) => (
+                  <div
+                    key={text}
+                    className="flex items-center gap-4 justify-center lg:justify-start"
+                  >
+                    <div
+                      className={`hidden sm:flex w-12 h-12 items-center justify-center rounded-xl bg-background/80 backdrop-blur-sm shadow-soft border border-border/40 transition-all duration-700 ${
+                        isVisible ? "opacity-100" : "opacity-0"
+                      } ${isVisible ? "animate-bounce" : ""}`}
+                      style={{
+                        animationDelay: `${index * 0.2}s`,
+                        animationDuration: "2.8s",
+                      }}
+                    >
+                      <Icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <span
+                      className={`block ${
+                        highlight
+                          ? "bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent"
+                          : ""
+                      }`}
+                    >
+                      {text}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </h1>
 
             {/* Subtitle */}
