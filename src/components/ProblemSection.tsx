@@ -95,7 +95,7 @@ export default function ProblemSection() {
                   id="problem-heading"
                   className="text-2xl font-bold leading-tight text-[#003A5D] md:text-[2.25rem]"
                 >
-                  Como padres que somos, queremos compartirte lo que hemos aprendido sobre a qué están expuestos nuestros hijos en internet.
+                  Como padres que somos, queremos compartirte lo que hemos aprendido acerca de a qué están expuestos nuestros hijos en internet.
                 </h2>
                 <p className="mt-4 text-base text-gray-700 md:text-lg">
                   El mundo digital abre puertas para aprender, jugar y convivir… pero también trae riesgos que a veces no vemos.
