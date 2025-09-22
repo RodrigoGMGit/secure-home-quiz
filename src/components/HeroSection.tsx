@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
-import familyImage from "@/assets/family-digital-safety.jpg";
+import childGaming from "@/assets/child-gaming-safely.png";
+import childrenLearning from "@/assets/children-learning-together.png";
+import childTablet from "@/assets/child-using-tablet.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -108,26 +110,61 @@ const HeroSection = () => {
             isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
           }`} style={{ transitionDelay: "600ms" }}>
             <div className="relative">
-              {/* Main image container */}
-              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-gradient-warm p-8">
+              {/* Modern image grid */}
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                {/* Child gaming safely */}
+                <div className="relative overflow-hidden rounded-xl shadow-card bg-white p-4">
+                  <img
+                    src={childGaming}
+                    alt="Niño jugando videojuegos de forma segura con supervisión"
+                    className="w-full h-32 object-cover rounded-lg"
+                    loading="eager"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-brand-teal-500/90 text-white text-xs px-2 py-1 rounded">
+                    Gaming seguro
+                  </div>
+                </div>
+
+                {/* Child using tablet */}
+                <div className="relative overflow-hidden rounded-xl shadow-card bg-white p-4">
+                  <img
+                    src={childTablet}
+                    alt="Niña usando tablet con contenido educativo"
+                    className="w-full h-32 object-cover rounded-lg"
+                    loading="eager"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-brand-olive-500/90 text-white text-xs px-2 py-1 rounded">
+                    Aprendizaje
+                  </div>
+                </div>
+              </div>
+
+              {/* Main featured image */}
+              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-white p-6">
                 <img
-                  src={familyImage}
-                  alt="Familia usando tecnología de forma segura"
-                  className="w-full h-auto object-cover rounded-xl"
+                  src={childrenLearning}
+                  alt="Niños aprendiendo juntos con tecnología de forma segura"
+                  className="w-full h-48 object-cover rounded-xl"
                   loading="eager"
                 />
                 
                 {/* Overlay gradient for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent rounded-xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-ink-900/20 to-transparent rounded-xl"></div>
+                
+                {/* Technology safety badge */}
+                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-brand-teal-500" />
+                  <span className="text-sm font-medium text-brand-ink-800">Protegido</span>
+                </div>
               </div>
 
               {/* Floating stats */}
-              <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-card p-4 border border-brand-mint-200">
                 <div className="text-2xl font-bold text-brand-teal-500">85%</div>
                 <div className="text-xs text-brand-olive-500">Padres mejoró<br/>su seguridad</div>
               </div>
 
-              <div className="absolute -top-6 -right-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
+              <div className="absolute -top-6 -right-6 bg-white rounded-xl shadow-card p-4 border border-brand-mint-200">
                 <div className="text-2xl font-bold text-brand-olive-500">3 min</div>
                 <div className="text-xs text-brand-olive-500">Tiempo<br/>promedio</div>
               </div>
