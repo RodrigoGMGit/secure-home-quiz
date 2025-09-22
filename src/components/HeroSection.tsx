@@ -45,11 +45,7 @@ const HeroSection = () => {
                     <div
                       className={`hidden sm:flex w-12 h-12 items-center justify-center rounded-xl bg-background/80 backdrop-blur-sm shadow-soft border border-border/40 transition-all duration-700 ${
                         isVisible ? "opacity-100" : "opacity-0"
-                      } ${isVisible ? "animate-bounce" : ""}`}
-                      style={{
-                        animationDelay: `${index * 0.2}s`,
-                        animationDuration: "2.8s",
-                      }}
+                      }`}
                     >
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
