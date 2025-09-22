@@ -20,12 +20,12 @@ const HeroSection = () => {
   );
 
   return (
-    <main className="min-h-screen bg-brand-mint-200 overflow-hidden">
+    <main className="min-h-screen bg-gradient-subtle overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-ink-800/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
@@ -57,7 +57,7 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-body text-lg md:text-xl text-brand-ink-800 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="font-body text-lg md:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
@@ -66,7 +66,7 @@ const HeroSection = () => {
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 border border-brand-teal-500 bg-white/50 rounded-lg transition-all duration-500 ${
+                  className={`flex items-center gap-2 px-4 py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
@@ -98,7 +98,7 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            <p className="text-sm text-brand-ink-800 mt-4 opacity-80 font-body">
+            <p className="text-sm text-brand-olive-500 mt-4 opacity-80 font-body">
               Sin registros • 100% confidencial • Toma solo 3 minutos
             </p>
           </div>
@@ -109,7 +109,7 @@ const HeroSection = () => {
           }`} style={{ transitionDelay: "600ms" }}>
             <div className="relative">
               {/* Main image container */}
-              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-brand-mint-200 p-8">
+              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-gradient-warm p-8">
                 <img
                   src={familyImage}
                   alt="Familia usando tecnología de forma segura"
@@ -118,18 +118,18 @@ const HeroSection = () => {
                 />
                 
                 {/* Overlay gradient for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-teal-500/10 to-transparent rounded-xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent rounded-xl"></div>
               </div>
 
               {/* Floating stats */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-card p-4 border border-brand-teal-500/20">
+              <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
                 <div className="text-2xl font-bold text-brand-teal-500">85%</div>
-                <div className="text-xs text-brand-ink-800">Padres mejoró<br/>su seguridad</div>
+                <div className="text-xs text-brand-olive-500">Padres mejoró<br/>su seguridad</div>
               </div>
 
-              <div className="absolute -top-6 -right-6 bg-white rounded-xl shadow-card p-4 border border-brand-teal-500/20">
-                <div className="text-2xl font-bold text-brand-ink-800">3 min</div>
-                <div className="text-xs text-brand-ink-800">Tiempo<br/>promedio</div>
+              <div className="absolute -top-6 -right-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
+                <div className="text-2xl font-bold text-brand-olive-500">3 min</div>
+                <div className="text-xs text-brand-olive-500">Tiempo<br/>promedio</div>
               </div>
             </div>
           </div>
