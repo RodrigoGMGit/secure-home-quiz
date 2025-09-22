@@ -77,8 +77,8 @@ const HeroSection = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className={`transition-all duration-700 transform ${
+            {/* CTA Buttons */}
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 transform ${
               isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
             }`} style={{ transitionDelay: "1200ms" }}>
               <Button 
@@ -88,6 +88,13 @@ const HeroSection = () => {
               >
                 <Shield className="w-6 h-6" />
                 Haz el quiz ahora
+              </Button>
+              <Button 
+                variant="outline" 
+                size="xl" 
+                className="font-heading text-lg tracking-wide uppercase"
+              >
+                Conoce más
               </Button>
             </div>
 
