@@ -14,6 +14,15 @@ export default {
     },
     extend: {
       colors: {
+        // Brand colors from design system
+        "brand-ink-900": "hsl(var(--brand-ink-900))",
+        "brand-ink-800": "hsl(var(--brand-ink-800))",
+        "brand-teal-500": "hsl(var(--brand-teal-500))",
+        "brand-olive-500": "hsl(var(--brand-olive-500))",
+        "brand-mint-200": "hsl(var(--brand-mint-200))",
+        "neutral-100": "hsl(var(--neutral-100))",
+        
+        // System colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -23,17 +32,11 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          light: "hsl(var(--primary-light))",
-          glow: "hsl(var(--primary-glow))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-        },
-        cta: {
-          blue: "hsl(var(--cta-blue))",
-          green: "hsl(var(--cta-green))",
-          foreground: "hsl(var(--cta-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -67,9 +70,11 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        'sm': 'var(--radius-sm)',
+        'md': 'var(--radius-md)', 
+        'lg': 'var(--radius-lg)',
+        'xl': 'var(--radius-xl)',
+        DEFAULT: 'var(--radius)',
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
@@ -86,8 +91,16 @@ export default {
         "bounce": "var(--transition-bounce)",
       },
       fontFamily: {
-        "heading": ["Inter", "Brandon Grotesque", "ui-sans-serif", "system-ui", "sans-serif"],
-        "body": ["Inter", "Uniform", "ui-sans-serif", "system-ui", "sans-serif"],
+        "heading": ["Brandon Grotesque", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        "body": ["Uniform", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      spacing: {
+        '1': 'var(--space-1)',
+        '2': 'var(--space-2)', 
+        '3': 'var(--space-3)',
+        '4': 'var(--space-4)',
+        '6': 'var(--space-6)',
+        '8': 'var(--space-8)',
       },
       keyframes: {
         "accordion-down": {

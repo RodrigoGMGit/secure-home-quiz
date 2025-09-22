@@ -2,83 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hogares Responsables y Seguros Design System
-All colors based on PMS corporate palette. All colors MUST be HSL.
+/* Hogares Seguros Design System
+Based on official brand guidelines and tokens
 */
 
 @layer base {
   :root {
-    /* Main brand colors - PMS 302C base (teal) */
-    --primary: 175 100% 35%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 175 70% 45%;
-    --primary-glow: 175 80% 60%;
+    /* Official Hogares Seguros brand colors */
+    --brand-ink-900: 195 100% 11%; /* #002B36 */
+    --brand-ink-800: 204 100% 17%; /* #003556 */
+    --brand-teal-500: 200 50% 46%; /* #3994B2 */
+    --brand-olive-500: 145 18% 38%; /* #576D5B */
+    --brand-mint-200: 162 56% 78%; /* #B0E0D6 */
+    --neutral-100: 120 2% 84%; /* #D5D6D5 */
+    --white: 0 0% 100%; /* #FFFFFF */
 
-    /* CTA colors - PMS 7459C (bright blue) and PMS 573C (soft green) */
-    --cta-blue: 207 91% 54%;
-    --cta-green: 152 60% 45%;
-    --cta-foreground: 0 0% 100%;
+    /* Design system tokens mapped to brand colors */
+    --primary: var(--brand-teal-500);
+    --primary-foreground: var(--white);
+    --primary-hover: var(--brand-ink-800);
 
     /* Background and surfaces */
-    --background: 0 0% 100%;
-    --background-subtle: 175 15% 98%;
-    --foreground: 215 25% 15%;
+    --background: var(--white);
+    --background-subtle: var(--brand-mint-200);
+    --foreground: var(--brand-ink-900);
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card: var(--white);
+    --card-foreground: var(--brand-ink-900);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover: var(--white);
+    --popover-foreground: var(--brand-ink-900);
 
-    /* Secondary colors for warmth */
-    --secondary: 175 25% 92%;
-    --secondary-foreground: 175 40% 20%;
+    /* Secondary colors */
+    --secondary: var(--neutral-100);
+    --secondary-foreground: var(--brand-ink-800);
 
-    --muted: 175 15% 94%;
-    --muted-foreground: 215 15% 45%;
+    --muted: var(--neutral-100);
+    --muted-foreground: var(--brand-olive-500);
 
-    --accent: 175 30% 88%;
-    --accent-foreground: 175 40% 20%;
+    --accent: var(--brand-mint-200);
+    --accent-foreground: var(--brand-ink-800);
+
+    /* Button variants */
+    --btn-primary-bg: var(--brand-ink-800);
+    --btn-primary-fg: var(--white);
+    --btn-primary-hover: var(--brand-ink-900);
+    
+    --btn-secondary-bg: transparent;
+    --btn-secondary-fg: var(--brand-teal-500);
+    --btn-secondary-border: var(--brand-teal-500);
+    --btn-secondary-hover-bg: var(--brand-mint-200);
 
     /* System colors */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: var(--white);
 
-    --border: 175 20% 88%;
-    --input: 175 20% 92%;
-    --ring: 175 100% 35%;
+    --border: var(--neutral-100);
+    --input: var(--neutral-100);
+    --ring: var(--brand-teal-500);
 
-    --radius: 0.75rem;
+    /* Spacing tokens */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
 
-    /* Gradients for modern backgrounds */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 50%, hsl(var(--primary-glow)) 100%);
+    /* Radius tokens */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius: var(--radius-md);
+
+    /* Shadows */
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-soft: var(--shadow-card);
+    --shadow-cta: 0 8px 30px -8px hsl(var(--brand-teal-500) / 0.3);
+
+    /* Gradients */
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background-subtle)) 100%);
     --gradient-warm: linear-gradient(135deg, hsl(var(--background-subtle)) 0%, hsl(var(--accent)) 100%);
 
-    /* Shadows for depth */
-    --shadow-soft: 0 4px 20px -8px hsl(var(--primary) / 0.15);
-    --shadow-cta: 0 8px 30px -8px hsl(var(--cta-blue) / 0.3);
-    --shadow-green: 0 8px 30px -8px hsl(var(--cta-green) / 0.3);
-
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: var(--neutral-100);
+    --sidebar-foreground: var(--brand-ink-900);
+    --sidebar-primary: var(--brand-ink-900);
+    --sidebar-primary-foreground: var(--white);
+    --sidebar-accent: var(--brand-mint-200);
+    --sidebar-accent-foreground: var(--brand-ink-800);
+    --sidebar-border: var(--neutral-100);
+    --sidebar-ring: var(--brand-teal-500);
   }
 
   .dark {

@@ -12,9 +12,9 @@ const HeroSection = () => {
 
   const headlineLines = useMemo(
     () => [
-      { text: "UN HOGAR SEGURO", Icon: Shield, highlight: false },
-      { text: "EN LÍNEA", Icon: Lock, highlight: true },
-      { text: "EMPIEZA CONTIGO", Icon: Wifi, highlight: false },
+      { text: "UN HOGAR SEGURO", highlight: false },
+      { text: "EN LÍNEA", highlight: true },
+      { text: "EMPIEZA CONTIGO", highlight: false },
     ],
     []
   );
@@ -23,9 +23,9 @@ const HeroSection = () => {
     <main className="min-h-screen bg-gradient-subtle overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-primary-glow/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-cta-blue/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
@@ -35,7 +35,7 @@ const HeroSection = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
             {/* Headline */}
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 leading-tight">
               <div className="flex flex-col gap-3">
                 {headlineLines.map(({ text, highlight }) => (
                   <div
@@ -45,7 +45,7 @@ const HeroSection = () => {
                     <span
                       className={`block ${
                         highlight
-                          ? "bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent"
+                          ? "bg-gradient-to-r from-brand-teal-500 to-brand-olive-500 bg-clip-text text-transparent"
                           : ""
                       }`}
                     >
@@ -57,7 +57,7 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-body text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="font-body text-lg md:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
@@ -66,13 +66,13 @@ const HeroSection = () => {
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 bg-background-subtle rounded-full transition-all duration-500 ${
+                  className={`flex items-center gap-2 px-4 py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
                 >
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{item}</span>
+                  <CheckCircle className="w-4 h-4 text-brand-teal-500" />
+                  <span className="text-sm font-medium text-brand-ink-800">{item}</span>
                 </div>
               ))}
             </div>
@@ -82,23 +82,23 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
             }`} style={{ transitionDelay: "1200ms" }}>
               <Button 
-                variant="cta" 
-                size="xl" 
-                className="font-heading text-lg tracking-wide uppercase shadow-2xl"
+                variant="primary-brand" 
+                size="lg" 
+                className="uppercase tracking-wide shadow-cta"
               >
-                <Shield className="w-6 h-6" />
+                <Shield className="w-5 h-5" />
                 Haz el quiz ahora
               </Button>
               <Button 
-                variant="outline" 
-                size="xl" 
-                className="font-heading text-lg tracking-wide uppercase"
+                variant="secondary-brand" 
+                size="lg" 
+                className="uppercase tracking-wide"
               >
                 Conoce más
               </Button>
             </div>
 
-            <p className="text-sm text-muted-foreground mt-4 opacity-80">
+            <p className="text-sm text-brand-olive-500 mt-4 opacity-80 font-body">
               Sin registros • 100% confidencial • Toma solo 3 minutos
             </p>
           </div>
@@ -122,14 +122,14 @@ const HeroSection = () => {
               </div>
 
               {/* Floating stats */}
-              <div className="absolute -bottom-6 -left-6 bg-background rounded-xl shadow-cta p-4 border border-border/20">
-                <div className="text-2xl font-bold text-primary">85%</div>
-                <div className="text-xs text-muted-foreground">Padres mejoró<br/>su seguridad</div>
+              <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
+                <div className="text-2xl font-bold text-brand-teal-500">85%</div>
+                <div className="text-xs text-brand-olive-500">Padres mejoró<br/>su seguridad</div>
               </div>
 
-              <div className="absolute -top-6 -right-6 bg-background rounded-xl shadow-green p-4 border border-border/20">
-                <div className="text-2xl font-bold text-cta-green">3 min</div>
-                <div className="text-xs text-muted-foreground">Tiempo<br/>promedio</div>
+              <div className="absolute -top-6 -right-6 bg-card rounded-xl shadow-card p-4 border border-neutral-100">
+                <div className="text-2xl font-bold text-brand-olive-500">3 min</div>
+                <div className="text-xs text-brand-olive-500">Tiempo<br/>promedio</div>
               </div>
             </div>
           </div>
