@@ -37,18 +37,11 @@ const HeroSection = () => {
             {/* Headline */}
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-foreground mb-6 leading-tight">
               <div className="flex flex-col gap-3">
-                {headlineLines.map(({ text, Icon, highlight }, index) => (
+                {headlineLines.map(({ text, highlight }) => (
                   <div
                     key={text}
-                    className="flex items-center gap-4 justify-center lg:justify-start"
+                    className="justify-center lg:justify-start"
                   >
-                    <div
-                      className={`hidden sm:flex w-12 h-12 items-center justify-center rounded-xl bg-background/80 backdrop-blur-sm shadow-soft border border-border/40 transition-all duration-700 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
                     <span
                       className={`block ${
                         highlight
