@@ -159,14 +159,5 @@ Based on official brand guidelines and tokens
 
   .animate-marquee {
     animation: marquee 30s linear infinite;
-    will-change: transform;
-  }
-
-  /* Optimize image rendering */
-  .marquee-image {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    backface-visibility: hidden;
-    transform: translateZ(0);
   }
 }
