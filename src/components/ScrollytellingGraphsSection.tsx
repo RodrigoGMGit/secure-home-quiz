@@ -110,7 +110,7 @@ const ScrollytellingGraphsSection = () => {
           ref={titleRef}
           className="text-4xl lg:text-6xl font-bold text-foreground mb-16 text-center"
         >
-          La puerta ya no es física
+          La puerta al mundo de tus hijos, ya no es física
         </h2>
 
         {/* Charts grid */}
