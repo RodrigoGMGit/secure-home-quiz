@@ -1,24 +1,18 @@
 import { ReactNode } from 'react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
 
 interface AppShellCardProps {
   children: ReactNode;
   showProgress?: boolean;
   currentStep?: number;
   totalSteps?: number;
-  onBack?: () => void;
-  showBackButton?: boolean;
 }
 
 export function AppShellCard({ 
   children, 
   showProgress = false, 
   currentStep = 0, 
-  totalSteps = 7,
-  onBack,
-  showBackButton = false
+  totalSteps = 7
 }: AppShellCardProps) {
   const progressPercentage = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
 
@@ -33,34 +27,20 @@ export function AppShellCard({
         <Card className="bg-card border-0 rounded-xl shadow-soft overflow-hidden backdrop-blur-sm">
           {/* Header */}
           <div className="px-6 pt-4 pb-3 border-b border-brand-mint-200/30">
-            <div className="flex items-center justify-between mb-3">
-              {showBackButton && onBack && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onBack}
-                  className="flex items-center gap-2 text-brand-olive-500 hover:text-brand-ink-800 hover:bg-brand-mint-200/50 min-h-[44px]"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span className="font-body">Atrás</span>
-                </Button>
-              )}
-              
-              {showProgress && (
-                <div className="flex-1 max-w-xs ml-auto">
-                  <div className="flex items-center justify-between text-sm font-body text-brand-olive-500 mb-2">
-                    <span>Paso {currentStep} de {totalSteps}</span>
-                    <span className="font-heading font-bold">{Math.round(progressPercentage)}%</span>
-                  </div>
-                  <div className="w-full bg-brand-mint-200/40 rounded-full h-3">
-                    <div 
-                      className="bg-gradient-to-r from-brand-teal-500 to-brand-ink-800 h-3 rounded-full transition-all duration-700 ease-out shadow-sm"
-                      style={{ width: `${progressPercentage}%` }}
-                    />
-                  </div>
+            {showProgress && (
+              <div className="mb-3">
+                <div className="flex items-center justify-between text-sm font-body text-brand-olive-500 mb-2">
+                  <span>Paso {currentStep} de {totalSteps}</span>
+                  <span className="font-heading font-bold">{Math.round(progressPercentage)}%</span>
                 </div>
-              )}
-            </div>
+                <div className="w-full bg-brand-mint-200/40 rounded-full h-3">
+                  <div 
+                    className="bg-gradient-to-r from-brand-teal-500 to-brand-ink-800 h-3 rounded-full transition-all duration-700 ease-out shadow-sm"
+                    style={{ width: `${progressPercentage}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Content */}

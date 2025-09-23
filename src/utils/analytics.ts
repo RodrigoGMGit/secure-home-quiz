@@ -56,13 +56,13 @@ export function captureAnalyticsData(): AnalyticsData {
     os: getOS(),
     browser: getBrowser(),
     lang: navigator.language,
-    connection: (navigator as any).connection?.effectiveType || undefined,
+    connection: (navigator as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType || undefined,
     first_visit: isFirstVisit(),
     inapp_browser: detectInAppBrowser()
   };
 }
 
-export function track(eventName: string, properties: Record<string, any> = {}) {
+export function track(eventName: string, properties: Record<string, unknown> = {}) {
   const data = {
     event: eventName,
     properties: {

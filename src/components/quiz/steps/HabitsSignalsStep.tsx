@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { StepHeader } from '../StepHeader';
@@ -74,29 +74,29 @@ export function HabitsSignalsStep({
   );
   const [selectedSignals, setSelectedSignals] = useState<string[]>(initialSignals);
 
-  const handleHabitToggle = (habitId: string) => {
+  const handleHabitToggle = useCallback((habitId: string) => {
     setSelectedHabits(prev => 
       prev.includes(habitId) 
         ? prev.filter(id => id !== habitId)
         : [...prev, habitId]
     );
-  };
+  }, []);
 
-  const handleChallengeToggle = (challengeId: string) => {
+  const handleChallengeToggle = useCallback((challengeId: string) => {
     setSelectedChallenges(prev => 
       prev.includes(challengeId) 
         ? prev.filter(id => id !== challengeId)
         : [...prev, challengeId]
     );
-  };
+  }, []);
 
-  const handleSignalToggle = (signalId: string) => {
+  const handleSignalToggle = useCallback((signalId: string) => {
     setSelectedSignals(prev => 
       prev.includes(signalId) 
         ? prev.filter(id => id !== signalId)
         : [...prev, signalId]
     );
-  };
+  }, []);
 
   const handleNext = () => {
     const allHabits = [...selectedHabits, ...selectedChallenges];
@@ -119,9 +119,10 @@ export function HabitsSignalsStep({
           </h3>
           <div className="grid gap-3">
             {habitOptions.map(option => (
-              <div 
+              <label
                 key={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors"
+                htmlFor={option.id}
+                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
               >
                 <Checkbox
                   id={option.id}
@@ -133,14 +134,11 @@ export function HabitsSignalsStep({
                   <div className="text-green-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <label 
-                    htmlFor={option.id}
-                    className="text-sm font-medium text-foreground cursor-pointer leading-relaxed"
-                  >
+                  <div className="text-sm font-medium text-foreground leading-relaxed">
                     {option.label}
-                  </label>
+                  </div>
                 </div>
-              </div>
+              </label>
             ))}
           </div>
         </div>
@@ -153,9 +151,10 @@ export function HabitsSignalsStep({
           </h3>
           <div className="grid gap-3">
             {challengeOptions.map(option => (
-              <div 
+              <label
                 key={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors"
+                htmlFor={option.id}
+                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
               >
                 <Checkbox
                   id={option.id}
@@ -167,14 +166,11 @@ export function HabitsSignalsStep({
                   <div className="text-amber-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <label 
-                    htmlFor={option.id}
-                    className="text-sm font-medium text-foreground cursor-pointer leading-relaxed"
-                  >
+                  <div className="text-sm font-medium text-foreground leading-relaxed">
                     {option.label}
-                  </label>
+                  </div>
                 </div>
-              </div>
+              </label>
             ))}
           </div>
         </div>
@@ -187,9 +183,10 @@ export function HabitsSignalsStep({
           </h3>
           <div className="grid gap-3">
             {signalOptions.map(option => (
-              <div 
+              <label
                 key={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors"
+                htmlFor={option.id}
+                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
               >
                 <Checkbox
                   id={option.id}
@@ -201,14 +198,11 @@ export function HabitsSignalsStep({
                   <div className="text-red-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <label 
-                    htmlFor={option.id}
-                    className="text-sm font-medium text-foreground cursor-pointer leading-relaxed"
-                  >
+                  <div className="text-sm font-medium text-foreground leading-relaxed">
                     {option.label}
-                  </label>
+                  </div>
                 </div>
-              </div>
+              </label>
             ))}
           </div>
         </div>

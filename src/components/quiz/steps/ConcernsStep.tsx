@@ -10,7 +10,7 @@ interface ConcernsStepProps {
   ageband?: AgeBand;
   onNext: (concerns: string[]) => void;
   onPrevious: () => void;
-  onTrack: (event: string, data: any) => void;
+  onTrack: (event: string, data: Record<string, unknown>) => void;
 }
 
 const baseConcernOptions = [

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Platform } from '@/types/quiz';
 
@@ -56,14 +57,14 @@ const platformMeasures: Record<Platform, { id: string; label: string; descriptio
 };
 
 export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChange }: ChecklistByPlatformProps) {
-  const handleMeasureToggle = (platform: Platform, measureId: string) => {
+  const handleMeasureToggle = useCallback((platform: Platform, measureId: string) => {
     const currentMeasures = selectedMeasures[platform] || [];
     const newMeasures = currentMeasures.includes(measureId)
       ? currentMeasures.filter(id => id !== measureId)
       : [...currentMeasures, measureId];
     
     onMeasureChange(platform, newMeasures);
-  };
+  }, [selectedMeasures, onMeasureChange]);
 
   if (platforms.length === 0) {
     return null;
@@ -85,10 +86,10 @@ export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChan
             
             <div className="grid gap-3">
               {measures.map(measure => (
-                <div 
+                <label
                   key={measure.id}
-                  className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
-                  onClick={() => handleMeasureToggle(platform, measure.id)}
+                  htmlFor={`${platform}-${measure.id}`}
+                  className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer block"
                 >
                   <Checkbox
                     id={`${platform}-${measure.id}`}
@@ -97,19 +98,16 @@ export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChan
                     className="mt-1"
                   />
                   <div className="flex-1 min-w-0">
-                    <label 
-                      htmlFor={`${platform}-${measure.id}`}
-                      className="text-sm font-medium text-foreground cursor-pointer"
-                    >
+                    <div className="text-sm font-medium text-foreground">
                       {measure.label}
-                    </label>
+                    </div>
                     {measure.description && (
                       <p className="text-xs text-muted-foreground mt-1">
                         {measure.description}
                       </p>
                     )}
                   </div>
-                </div>
+                </label>
               ))}
             </div>
           </div>

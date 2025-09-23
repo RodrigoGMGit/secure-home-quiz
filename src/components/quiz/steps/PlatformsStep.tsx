@@ -14,7 +14,7 @@ interface PlatformsStepProps {
   ageband?: AgeBand;
   onNext: (data: { platforms?: Platform[]; otherPlatforms?: string; unknownPlatforms?: boolean }) => void;
   onPrevious: () => void;
-  onTrack: (event: string, data: any) => void;
+  onTrack: (event: string, data: Record<string, unknown>) => void;
 }
 
 const platformOptions = [

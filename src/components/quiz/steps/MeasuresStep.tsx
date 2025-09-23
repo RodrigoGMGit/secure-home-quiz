@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { StepHeader } from '../StepHeader';
 import { ChecklistByPlatform } from '../ChecklistByPlatform';
@@ -10,7 +10,7 @@ interface MeasuresStepProps {
   initialMeasures?: { [key in Platform]?: string[] };
   onNext: (measures: { [key in Platform]?: string[] }) => void;
   onPrevious: () => void;
-  onTrack: (event: string, data: any) => void;
+  onTrack: (event: string, data: Record<string, unknown>) => void;
 }
 
 export function MeasuresStep({ 
@@ -22,11 +22,13 @@ export function MeasuresStep({
 }: MeasuresStepProps) {
   const [selectedMeasures, setSelectedMeasures] = useState<{ [key in Platform]?: string[] }>(initialMeasures);
 
-  const handleMeasureChange = (platform: Platform, measures: string[]) => {
-    const newMeasures = { ...selectedMeasures, [platform]: measures };
-    setSelectedMeasures(newMeasures);
-    onTrack('measures_selected', { platform, count: measures.length });
-  };
+  const handleMeasureChange = useCallback((platform: Platform, measures: string[]) => {
+    setSelectedMeasures(prev => {
+      const newMeasures = { ...prev, [platform]: measures };
+      onTrack('measures_selected', { platform, count: measures.length });
+      return newMeasures;
+    });
+  }, [onTrack]);
 
   const handleNext = () => {
     onNext(selectedMeasures);

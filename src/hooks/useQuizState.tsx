@@ -7,7 +7,8 @@ import {
   loadQuizAnswers,
   getOrCreateVisitorId, 
   getOrCreateABVariant,
-  savePlanInput
+  savePlanInput,
+  clearQuizData
 } from '@/utils/localStorage';
 import { track, captureAnalyticsData } from '@/utils/analytics';
 
@@ -50,6 +51,9 @@ export function useQuizState() {
       currentStep: step
     }));
     track('quiz_step_view', { step });
+    
+    // Scroll to top when changing steps
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const nextStep = useCallback(() => {
@@ -66,7 +70,7 @@ export function useQuizState() {
         goToStep(nextStep);
       }
     }
-  }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
+  }, [state.currentStep, state.answers.platforms, goToStep]);
 
   const nextStepWithData = useCallback((data: Partial<QuizAnswers>) => {
     const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
@@ -100,7 +104,7 @@ export function useQuizState() {
         goToStep(prevStep);
       }
     }
-  }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
+  }, [state.currentStep, state.answers.platforms, goToStep]);
 
   const completeQuiz = useCallback(() => {
     const planInput: PlanInput = {
@@ -149,6 +153,25 @@ export function useQuizState() {
     return stepNumbers[state.currentStep];
   }, [state.currentStep]);
 
+  const restartQuiz = useCallback(() => {
+    // Limpiar el estado local
+    clearQuizData();
+    
+    // Resetear el estado a valores iniciales
+    setState({
+      currentStep: 'welcome',
+      answers: {},
+      visitorId: getOrCreateVisitorId(),
+      abVariant: getOrCreateABVariant(),
+      startTime: Date.now()
+    });
+    
+    track('quiz_restart', { 
+      previous_step: state.currentStep,
+      previous_answers_count: Object.keys(state.answers).length
+    });
+  }, [state.currentStep, state.answers]);
+
   return {
     state,
     updateAnswers,
@@ -159,6 +182,7 @@ export function useQuizState() {
     completeQuiz,
     canProceed,
     getStepNumber,
+    restartQuiz,
     track
   };
 }

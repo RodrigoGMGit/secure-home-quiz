@@ -1,60 +1,57 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { StepHeader } from '../StepHeader';
-import { ABGateEmail } from '../ABGateEmail';
 import { Notice } from '../Notice';
-import { ABVariant } from '@/types/quiz';
-import { CheckCircle, Mail, FileText } from 'lucide-react';
+import { SpecificMeasures } from '../SpecificMeasures';
+import { ABVariant, QuizAnswers } from '@/types/quiz';
+import { generateSpecificMeasures } from '@/utils/planGenerator';
+import { CheckCircle, Mail, FileText, Send } from 'lucide-react';
 
 interface DoneStepProps {
   abVariant: ABVariant;
+  answers: QuizAnswers;
   onComplete: () => void;
-  onTrack: (event: string, data: any) => void;
+  onRestart: () => void;
+  onTrack: (event: string, data: Record<string, unknown>) => void;
 }
 
-export function DoneStep({ abVariant, onComplete, onTrack }: DoneStepProps) {
-  const [showEmailGate, setShowEmailGate] = useState(false);
+export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }: DoneStepProps) {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleContinueClick = () => {
-    setShowEmailGate(true);
+  // Generar medidas específicas basadas en las respuestas
+  const specificMeasures = generateSpecificMeasures(answers);
+
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleEmailSubmit = (email?: string, wantsReminders?: boolean) => {
-    if (email) {
-      onTrack('plan_email_request', { 
-        variant: abVariant, 
-        email_provided: true,
-        wants_reminders: wantsReminders
-      });
-    } else {
-      onTrack('plan_email_request', { 
-        variant: abVariant, 
-        email_provided: false 
-      });
-    }
+  const canSubmit = () => {
+    return email.trim() && isValidEmail(email.trim());
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit()) return;
+
+    setIsSubmitting(true);
+    
+    // Simular procesamiento
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    onTrack('plan_email_request', { 
+      variant: abVariant, 
+      email_provided: true,
+      measures_count: specificMeasures.length
+    });
     
     // Complete the quiz
     onComplete();
+    
+    setIsSubmitting(false);
   };
-
-  const handleSkipEmail = () => {
-    onTrack('plan_email_request', { 
-      variant: abVariant, 
-      email_provided: false,
-      skipped: true 
-    });
-    onComplete();
-  };
-
-  if (showEmailGate) {
-    return (
-      <ABGateEmail
-        variant={abVariant}
-        onSubmit={handleEmailSubmit}
-        onSkip={handleSkipEmail}
-      />
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -65,46 +62,87 @@ export function DoneStep({ abVariant, onComplete, onTrack }: DoneStepProps) {
         
         <StepHeader
           title="¡Listo!"
-          subtitle="Ya tenemos lo necesario para construir tu plan personalizado de seguridad digital."
+          subtitle="Tu diagnóstico está completo. Aquí tienes las medidas específicas para tu familia:"
         />
       </div>
 
-      <Notice type="success">
-        <div className="space-y-3">
-          <p className="font-medium">Tu diagnóstico está completo</p>
-          <p>
-            Hemos analizado las plataformas que usa tu hijo/a, las medidas de seguridad 
-            que ya tienes implementadas, y tus principales preocupaciones.
+      {/* Medidas específicas */}
+      <SpecificMeasures measures={specificMeasures} />
+
+      {/* Formulario de email obligatorio */}
+      <div className="bg-brand-mint-200/20 rounded-lg p-6">
+        <div className="text-center mb-4">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Mail className="w-5 h-5 text-brand-teal-500" />
+            <h3 className="font-semibold text-brand-ink-800">Recibe tu plan completo</h3>
+          </div>
+          <p className="text-sm text-brand-olive-600">
+            Para enviarte el diagnóstico completo y plan de protección personalizado
           </p>
         </div>
-      </Notice>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex items-center gap-3 p-4 bg-accent/30 rounded-lg">
-          <FileText className="w-6 h-6 text-primary flex-shrink-0" />
-          <div>
-            <div className="font-medium text-sm text-foreground">Plan personalizado</div>
-            <div className="text-xs text-muted-foreground">Adaptado a tu familia</div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-sm font-medium">
+              Correo electrónico <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="tu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="text-base"
+            />
+            {email && !isValidEmail(email) && (
+              <p className="text-sm text-red-500">
+                Por favor ingresa un correo válido
+              </p>
+            )}
           </div>
-        </div>
-        
-        <div className="flex items-center gap-3 p-4 bg-accent/30 rounded-lg">
-          <Mail className="w-6 h-6 text-primary flex-shrink-0" />
-          <div>
-            <div className="font-medium text-sm text-foreground">Opcional por email</div>
-            <div className="text-xs text-muted-foreground">PDF para consultar después</div>
-          </div>
-        </div>
-      </div>
 
-      <div className="text-center pt-4">
-        <Button 
-          onClick={handleContinueClick}
-          size="lg"
-          className="px-6 text-base font-medium"
-        >
-          Continuar
-        </Button>
+          <div className="space-y-3">
+            <Button
+              type="submit"
+              disabled={!canSubmit() || isSubmitting}
+              className="w-full text-base font-medium"
+              size="lg"
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  Enviando tu plan...
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  Enviar mi plan completo
+                </>
+              )}
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                onRestart();
+              }}
+              className="w-full text-base font-medium"
+              size="lg"
+            >
+              <FileText className="w-4 h-4 mr-2" />
+              Hacer el quiz de nuevo
+            </Button>
+          </div>
+        </form>
+
+        <Notice type="info" className="mt-4">
+          <p className="text-xs">
+            Tu plan incluye: Guías paso a paso, scripts de conversación, herramientas recomendadas 
+            y cronograma de implementación. Solo usamos tu correo para enviarte el plan personalizado.
+          </p>
+        </Notice>
       </div>
     </div>
   );

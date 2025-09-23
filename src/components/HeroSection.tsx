@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
+import { LoadingOverlay } from "@/components/ui/loading-spinner";
+import { useNavigationLoading } from "@/hooks/useNavigationLoading";
 import childGaming from "@/assets/child-gaming-safely.png";
 import childrenLearning from "@/assets/children-learning-together.png";
 import childTablet from "@/assets/child-using-tablet.png";
@@ -12,6 +14,7 @@ const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+  const { isLoading, navigateWithLoading } = useNavigationLoading();
 
   const totalImages = 6; // Número total de imágenes únicas en el marquee
 
@@ -232,10 +235,11 @@ const HeroSection = () => {
                 variant="primary-brand" 
                 size="lg" 
                 className="uppercase tracking-wide shadow-cta"
-                onClick={() => window.location.href = '/quiz'}
+                onClick={() => navigateWithLoading('/quiz')}
+                disabled={isLoading}
               >
                 <Shield className="w-5 h-5" />
-                Haz el quiz ahora
+                {isLoading ? 'Cargando...' : 'Haz el quiz ahora'}
               </Button>
               <Button 
                 variant="secondary-brand" 
@@ -253,6 +257,9 @@ const HeroSection = () => {
 
         </div>
       </div>
+      
+      {/* Loading overlay */}
+      {isLoading && <LoadingOverlay message="Preparando tu evaluación..." />}
     </main>
   );
 };

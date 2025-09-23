@@ -19,6 +19,7 @@ const Quiz = () => {
     previousStep, 
     completeQuiz, 
     getStepNumber,
+    restartQuiz,
     track 
   } = useQuizState();
 
@@ -113,7 +114,9 @@ const Quiz = () => {
         return (
           <DoneStep
             abVariant={state.abVariant}
+            answers={state.answers}
             onComplete={completeQuiz}
+            onRestart={restartQuiz}
             onTrack={track}
           />
         );
@@ -126,15 +129,12 @@ const Quiz = () => {
   const currentStepNumber = getStepNumber();
   const totalSteps = 7;
   const showProgress = currentStepNumber > 0 && currentStepNumber < totalSteps;
-  const showBackButton = currentStepNumber > 1 && currentStepNumber < totalSteps;
 
   return (
     <AppShellCard
       showProgress={showProgress}
       currentStep={currentStepNumber}
       totalSteps={totalSteps}
-      onBack={showBackButton ? previousStep : undefined}
-      showBackButton={showBackButton}
     >
       {renderStep()}
     </AppShellCard>
