@@ -112,6 +112,8 @@ export function PlatformsStep({
     }
   };
 
+  const canProceed = isUnsure || selectedPlatforms.length > 0;
+
   // Add current age to options for age restriction checking
   const optionsWithAge = platformOptions.map(option => ({
     ...option,
@@ -124,6 +126,12 @@ export function PlatformsStep({
         title="¿Qué plataformas usa con más frecuencia?"
         subtitle="Selecciona todas las que apliquen. Esto nos ayuda a dar recomendaciones más específicas."
       />
+
+      <div className="text-center mb-2">
+        <span className="text-sm font-medium text-brand-olive-500">
+          Campo requerido <span className="text-destructive">*</span>
+        </span>
+      </div>
 
       {!showingHelp && (
         <>
@@ -213,8 +221,10 @@ export function PlatformsStep({
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-6 min-h-[40px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

@@ -105,6 +105,7 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
           <div className="space-y-3">
             <Button
               type="submit"
+              variant="primary-brand"
               disabled={!canSubmit() || isSubmitting}
               className="w-full text-base font-medium"
               size="lg"

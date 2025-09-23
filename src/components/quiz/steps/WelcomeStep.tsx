@@ -54,6 +54,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
 
       <div className="flex justify-center pt-4">
         <Button 
+          variant="primary-brand"
           onClick={onNext}
           size="lg"
           className="px-6 text-base font-medium"

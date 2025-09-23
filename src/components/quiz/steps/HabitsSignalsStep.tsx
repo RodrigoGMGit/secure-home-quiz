@@ -103,12 +103,20 @@ export function HabitsSignalsStep({
     onNext({ habits: allHabits, signals: selectedSignals });
   };
 
+  const canProceed = selectedHabits.length > 0 || selectedChallenges.length > 0 || selectedSignals.length > 0;
+
   return (
     <div className="space-y-8">
       <StepHeader
         title="En casa..."
         subtitle="Esto nos ayuda a entender mejor tu situación actual y personalizar las recomendaciones."
       />
+
+      <div className="text-center mb-2">
+        <span className="text-sm font-medium text-brand-olive-500">
+          Campo requerido <span className="text-destructive">*</span>
+        </span>
+      </div>
 
       <div className="space-y-6">
         {/* Positive habits */}
@@ -217,8 +225,10 @@ export function HabitsSignalsStep({
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-6"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-6 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

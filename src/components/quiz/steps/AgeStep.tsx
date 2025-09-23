@@ -67,9 +67,10 @@ export function AgeStep({ initialAge, onNext, onPrevious }: AgeStepProps) {
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
           disabled={!canProceed}
-          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full sm:w-auto px-6 min-h-[40px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

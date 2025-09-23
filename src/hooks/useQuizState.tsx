@@ -20,7 +20,14 @@ export function useQuizState() {
     
     return {
       currentStep: 'welcome',
-      answers: {},
+      answers: {
+        child_gender: undefined as ChildGender,
+        age_band: undefined as AgeBand,
+        platforms: [],
+        habits: [],
+        signals: [],
+        concerns: []
+      },
       visitorId: getOrCreateVisitorId(),
       abVariant: getOrCreateABVariant(),
       startTime: Date.now()
@@ -144,10 +151,20 @@ export function useQuizState() {
 
   const canProceed = useCallback(() => {
     switch (state.currentStep) {
+      case 'gender':
+        return !!state.answers.child_gender; // Gender is required
       case 'age':
-        return !!state.answers.age_band; // Age is required for plan relevance
+        return !!state.answers.age_band; // Age is required
+      case 'platforms':
+        return (state.answers.platforms?.length || 0) > 0 || !!state.answers.unknown_platforms; // At least one platform or unknown
+      case 'measures':
+        return true; // Measures step is optional (can be skipped)
+      case 'habits_signals':
+        return (state.answers.habits?.length || 0) > 0 || (state.answers.signals?.length || 0) > 0; // At least one habit or signal
+      case 'concerns':
+        return (state.answers.concerns?.length || 0) > 0; // At least one concern
       default:
-        return true; // All other steps are optional
+        return true; // Welcome and done steps
     }
   }, [state.currentStep, state.answers]);
 
@@ -172,7 +189,14 @@ export function useQuizState() {
     // Resetear el estado a valores iniciales
     setState({
       currentStep: 'welcome',
-      answers: {},
+      answers: {
+        child_gender: undefined as ChildGender,
+        age_band: undefined as AgeBand,
+        platforms: [],
+        habits: [],
+        signals: [],
+        concerns: []
+      },
       visitorId: getOrCreateVisitorId(),
       abVariant: getOrCreateABVariant(),
       startTime: Date.now()

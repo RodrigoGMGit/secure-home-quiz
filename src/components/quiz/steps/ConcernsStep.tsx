@@ -87,12 +87,20 @@ export function ConcernsStep({
     onNext(selectedConcerns);
   };
 
+  const canProceed = selectedConcerns.length > 0;
+
   return (
     <div className="space-y-6">
       <StepHeader
         title="¿Qué te preocupa más ahora?"
         subtitle="Selecciona todas las opciones que te generen inquietud. Esto nos ayuda a priorizar tu plan."
       />
+
+      <div className="text-center mb-2">
+        <span className="text-sm font-medium text-brand-olive-500">
+          Campo requerido <span className="text-destructive">*</span>
+        </span>
+      </div>
 
       <OptionGrid
         options={concernOptions}
@@ -122,8 +130,10 @@ export function ConcernsStep({
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-6"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-6 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

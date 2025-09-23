@@ -136,6 +136,7 @@ export function ABGateEmail({ variant, onSubmit, onSkip }: ABGateEmailProps) {
         <div className="flex flex-col gap-3 pt-4">
           <Button
             type="submit"
+            variant="primary-brand"
             disabled={!canSubmit() || isSubmitting}
             className="w-full text-base font-medium"
             size="lg"

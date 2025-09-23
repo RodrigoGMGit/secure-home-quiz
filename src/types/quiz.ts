@@ -17,17 +17,17 @@ export type Platform = 'whatsapp' | 'youtube' | 'instagram' | 'roblox' | 'minecr
 export type ABVariant = 'A' | 'B' | 'C';
 
 export interface QuizAnswers {
-  child_gender?: ChildGender;
-  age_band?: AgeBand;
-  platforms?: Platform[];
+  child_gender: ChildGender;
+  age_band: AgeBand;
+  platforms: Platform[];
   other_platforms?: string;
   unknown_platforms?: boolean;
   measures?: {
     [key in Platform]?: string[];
   };
-  habits?: string[];
-  signals?: string[];
-  concerns?: string[];
+  habits: string[];
+  signals: string[];
+  concerns: string[];
 }
 
 export interface PlanInput {

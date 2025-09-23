@@ -62,6 +62,7 @@ export function MeasuresStep({
             Atrás
           </Button>
           <Button
+            variant="primary-brand"
             onClick={handleNext}
             className="w-full sm:w-auto px-6"
           >
@@ -112,6 +113,7 @@ export function MeasuresStep({
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
           className="w-full sm:w-auto px-8"
         >

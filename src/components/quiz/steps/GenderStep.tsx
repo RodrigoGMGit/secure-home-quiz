@@ -7,7 +7,7 @@ import { User } from 'lucide-react';
 
 interface GenderStepProps {
   initialGender?: ChildGender;
-  onNext: (data: { gender?: ChildGender }) => void;
+  onNext: (data: { gender: ChildGender }) => void;
   onPrevious: () => void;
 }
 
@@ -21,8 +21,12 @@ export function GenderStep({ initialGender, onNext, onPrevious }: GenderStepProp
   const [selectedGender, setSelectedGender] = useState<ChildGender | undefined>(initialGender);
 
   const handleNext = () => {
-    onNext({ gender: selectedGender });
+    if (selectedGender) {
+      onNext({ gender: selectedGender });
+    }
   };
+
+  const canProceed = !!selectedGender;
 
   return (
     <div className="space-y-8">
@@ -33,8 +37,13 @@ export function GenderStep({ initialGender, onNext, onPrevious }: GenderStepProp
 
       <div className="space-y-6">
         <div>
+          <div className="text-center mb-2">
+            <span className="text-sm font-medium text-brand-olive-500">
+              Campo requerido <span className="text-destructive">*</span>
+            </span>
+          </div>
           <h3 className="font-heading text-lg font-bold text-brand-ink-800 mb-6 text-center">
-            Género (opcional)
+            Género
           </h3>
           <OptionGrid
             options={genderOptions}
@@ -62,10 +71,12 @@ export function GenderStep({ initialGender, onNext, onPrevious }: GenderStepProp
           Atrás
         </Button>
         <Button
+          variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-6 min-h-[40px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {selectedGender ? 'Continuar' : 'Saltar'}
+          Continuar
         </Button>
       </div>
     </div>

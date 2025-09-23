@@ -20,7 +20,8 @@ const Quiz = () => {
     completeQuiz, 
     getStepNumber,
     restartQuiz,
-    track 
+    track,
+    canProceed
   } = useQuizState();
 
   const renderStep = () => {
