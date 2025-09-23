@@ -87,6 +87,7 @@ const HeroSection = () => {
                 variant="primary-brand" 
                 size="lg" 
                 className="uppercase tracking-wide shadow-cta"
+                onClick={() => window.location.href = '/quiz'}
               >
                 <Shield className="w-5 h-5" />
                 Haz el quiz ahora

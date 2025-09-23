@@ -1,0 +1,146 @@
+import { useState, useEffect, useCallback } from 'react';
+import { QuizStep, QuizState, QuizAnswers, PlanInput } from '@/types/quiz';
+import { 
+  saveQuizState, 
+  loadQuizState, 
+  saveQuizAnswers,
+  loadQuizAnswers,
+  getOrCreateVisitorId, 
+  getOrCreateABVariant,
+  savePlanInput
+} from '@/utils/localStorage';
+import { track, captureAnalyticsData } from '@/utils/analytics';
+
+export function useQuizState() {
+  const [state, setState] = useState<QuizState>(() => {
+    const stored = loadQuizState();
+    if (stored) return stored;
+    
+    return {
+      currentStep: 'welcome',
+      answers: {},
+      visitorId: getOrCreateVisitorId(),
+      abVariant: getOrCreateABVariant(),
+      startTime: Date.now()
+    };
+  });
+
+  // Auto-save state on changes
+  useEffect(() => {
+    saveQuizState(state);
+    saveQuizAnswers(state.answers);
+  }, [state]);
+
+  // Track session start on mount
+  useEffect(() => {
+    const analyticsData = captureAnalyticsData();
+    track('session_start', analyticsData);
+  }, []);
+
+  const updateAnswers = useCallback((updates: Partial<QuizAnswers>) => {
+    setState(prev => ({
+      ...prev,
+      answers: { ...prev.answers, ...updates }
+    }));
+  }, []);
+
+  const goToStep = useCallback((step: QuizStep) => {
+    setState(prev => ({
+      ...prev,
+      currentStep: step
+    }));
+    track('quiz_step_view', { step });
+  }, []);
+
+  const nextStep = useCallback(() => {
+    const stepOrder: QuizStep[] = ['welcome', 'profile', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const currentIndex = stepOrder.indexOf(state.currentStep);
+    
+    if (currentIndex < stepOrder.length - 1) {
+      const nextStep = stepOrder[currentIndex + 1];
+      
+      // Skip measures if no platforms selected
+      if (nextStep === 'measures' && (!state.answers.platforms?.length && !state.answers.unknown_platforms)) {
+        goToStep('habits_signals');
+      } else {
+        goToStep(nextStep);
+      }
+    }
+  }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
+
+  const previousStep = useCallback(() => {
+    const stepOrder: QuizStep[] = ['welcome', 'profile', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const currentIndex = stepOrder.indexOf(state.currentStep);
+    
+    if (currentIndex > 0) {
+      let prevStep = stepOrder[currentIndex - 1];
+      
+      // Skip measures if no platforms selected when going back
+      if (prevStep === 'measures' && (!state.answers.platforms?.length && !state.answers.unknown_platforms)) {
+        prevStep = stepOrder[currentIndex - 2];
+      }
+      
+      if (prevStep) {
+        goToStep(prevStep);
+      }
+    }
+  }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
+
+  const completeQuiz = useCallback(() => {
+    const planInput: PlanInput = {
+      age_band: state.answers.age_band || '9-12',
+      platforms: state.answers.platforms || [],
+      unknown_platforms: !!state.answers.unknown_platforms,
+      measures: state.answers.measures || {},
+      habits: state.answers.habits || [],
+      signals: state.answers.signals || [],
+      concerns: state.answers.concerns || [],
+      ab_variant_plan_email: state.abVariant
+    };
+
+    savePlanInput(planInput);
+    
+    track('quiz_complete', {
+      age_band: planInput.age_band,
+      platforms_selected: planInput.platforms,
+      concerns: planInput.concerns,
+      quiz_duration: Date.now() - state.startTime
+    });
+
+    goToStep('done');
+  }, [state.answers, state.abVariant, state.startTime, goToStep]);
+
+  const canProceed = useCallback(() => {
+    switch (state.currentStep) {
+      case 'profile':
+        return !!state.answers.age_band; // Age is required for plan relevance
+      default:
+        return true; // All other steps are optional
+    }
+  }, [state.currentStep, state.answers]);
+
+  const getStepNumber = useCallback(() => {
+    const stepNumbers = {
+      'welcome': 0,
+      'profile': 1,
+      'platforms': 2,
+      'measures': 3,
+      'habits_signals': 4,
+      'concerns': 5,
+      'done': 6
+    };
+    return stepNumbers[state.currentStep];
+  }, [state.currentStep]);
+
+  return {
+    state,
+    updateAnswers,
+    goToStep,
+    nextStep,
+    previousStep,
+    completeQuiz,
+    canProceed,
+    getStepNumber,
+    track
+  };
+}
