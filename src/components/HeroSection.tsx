@@ -34,8 +34,8 @@ const HeroSection = () => {
       </div>
 
 
-      {/* Image Marquee - Only visible on mobile */}
-      <div className="lg:hidden absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none">
+      {/* Image Marquee - Visible on all screen sizes */}
+      <div className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0">
         <div className="flex animate-marquee gap-4">
           {/* First set of images */}
           <div className="flex gap-4 flex-shrink-0">
@@ -142,10 +142,10 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative container mx-auto px-4 py-12 lg:py-20 z-10">
+        <div className="flex justify-center items-center">
           {/* Content Section */}
-          <div className={`text-center lg:text-left transition-all duration-1000 transform ${
+          <div className={`text-center transition-all duration-1000 transform max-w-4xl mx-auto ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
             {/* Headline */}
@@ -154,7 +154,7 @@ const HeroSection = () => {
                 {headlineLines.map(({ text, highlight }) => (
                   <div
                     key={text}
-                    className="justify-center lg:justify-start"
+                    className="justify-center"
                   >
                     <span
                       className={`block ${
@@ -171,12 +171,12 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-body text-lg md:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="font-body text-lg md:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto leading-relaxed">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
             {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
@@ -192,7 +192,7 @@ const HeroSection = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 transform ${
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 transform ${
               isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
             }`} style={{ transitionDelay: "1200ms" }}>
               <Button 
@@ -218,71 +218,6 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Image Section - Hidden on mobile, visible on large screens */}
-          <div className={`hidden lg:block relative transition-all duration-1000 transform ${
-            isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
-          }`} style={{ transitionDelay: "600ms" }}>
-            <div className="relative">
-              {/* Modern image grid */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                {/* Child gaming safely */}
-                <div className="relative overflow-hidden rounded-xl shadow-card bg-white p-4">
-                  <img
-                    src={childGaming}
-                    alt="Niño jugando videojuegos de forma segura con supervisión"
-                    className="w-full h-32 object-cover rounded-lg"
-                    loading="eager"
-                  />
-                  <div className="absolute bottom-2 left-2 bg-brand-teal-500/90 text-white text-xs px-2 py-1 rounded">
-                    Gaming seguro
-                  </div>
-                </div>
-
-                {/* Child using tablet */}
-                <div className="relative overflow-hidden rounded-xl shadow-card bg-white p-4">
-                  <img
-                    src={childTablet}
-                    alt="Niña usando tablet con contenido educativo"
-                    className="w-full h-32 object-cover rounded-lg"
-                    loading="eager"
-                  />
-                  <div className="absolute bottom-2 left-2 bg-brand-olive-500/90 text-white text-xs px-2 py-1 rounded">
-                    Aprendizaje
-                  </div>
-                </div>
-              </div>
-
-              {/* Main featured image */}
-              <div className="relative overflow-hidden rounded-2xl shadow-soft bg-white p-6">
-                <img
-                  src={childrenLearning}
-                  alt="Niños aprendiendo juntos con tecnología de forma segura"
-                  className="w-full h-48 object-cover rounded-xl"
-                  loading="eager"
-                />
-                
-                {/* Overlay gradient for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-ink-900/20 to-transparent rounded-xl"></div>
-                
-                {/* Technology safety badge */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-brand-teal-500" />
-                  <span className="text-sm font-medium text-brand-ink-800">Protegido</span>
-                </div>
-              </div>
-
-              {/* Floating stats */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-card p-4 border border-brand-mint-200">
-                <div className="text-2xl font-bold text-brand-teal-500">85%</div>
-                <div className="text-xs text-brand-olive-500">Padres mejoró<br/>su seguridad</div>
-              </div>
-
-              <div className="absolute -top-6 -right-6 bg-white rounded-xl shadow-card p-4 border border-brand-mint-200">
-                <div className="text-2xl font-bold text-brand-olive-500">3 min</div>
-                <div className="text-xs text-brand-olive-500">Tiempo<br/>promedio</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </main>
