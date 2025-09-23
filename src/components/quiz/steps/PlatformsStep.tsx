@@ -120,14 +120,17 @@ export function PlatformsStep({
             multiSelect={true}
           />
 
-          <div className="text-center">
+          <div className="flex justify-center">
             <Button
               variant="outline"
               onClick={handleUnsureClick}
-              className="gap-2"
+              className="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-3 p-4 sm:p-6 text-center sm:text-left border-dashed border-brand-teal-500/50 hover:border-brand-teal-500 hover:bg-brand-mint-200/30 min-h-[44px] rounded-xl transition-all duration-300 font-body"
+              aria-expanded={showingHelp}
             >
-              <HelpCircle className="w-4 h-4" />
-              No estoy seguro/a. ¿Cómo puedo descubrirlo?
+              <HelpCircle className="w-5 h-5 flex-shrink-0 text-brand-teal-500" />
+              <span className="text-sm sm:text-base font-medium text-brand-ink-800">
+                No estoy seguro/a. ¿Cómo puedo descubrirlo?
+              </span>
             </Button>
           </div>
         </>
@@ -160,17 +163,17 @@ export function PlatformsStep({
         </Notice>
       )}
 
-      <div className="flex flex-col-reverse sm:flex-row gap-3 justify-between pt-4">
+      <div className="flex flex-col-reverse sm:flex-row gap-4 justify-between pt-6">
         <Button
           variant="outline"
           onClick={onPrevious}
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto min-h-[44px]"
         >
           Atrás
         </Button>
         <Button
           onClick={handleNext}
-          className="w-full sm:w-auto px-8"
+          className="w-full sm:w-auto px-8 min-h-[44px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
         >
           Continuar
         </Button>

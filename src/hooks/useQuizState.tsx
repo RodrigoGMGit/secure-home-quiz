@@ -53,7 +53,7 @@ export function useQuizState() {
   }, []);
 
   const nextStep = useCallback(() => {
-    const stepOrder: QuizStep[] = ['welcome', 'profile', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
     
     if (currentIndex < stepOrder.length - 1) {
@@ -69,7 +69,7 @@ export function useQuizState() {
   }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
 
   const previousStep = useCallback(() => {
-    const stepOrder: QuizStep[] = ['welcome', 'profile', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
     
     if (currentIndex > 0) {
@@ -112,7 +112,7 @@ export function useQuizState() {
 
   const canProceed = useCallback(() => {
     switch (state.currentStep) {
-      case 'profile':
+      case 'age':
         return !!state.answers.age_band; // Age is required for plan relevance
       default:
         return true; // All other steps are optional
@@ -122,12 +122,13 @@ export function useQuizState() {
   const getStepNumber = useCallback(() => {
     const stepNumbers = {
       'welcome': 0,
-      'profile': 1,
-      'platforms': 2,
-      'measures': 3,
-      'habits_signals': 4,
-      'concerns': 5,
-      'done': 6
+      'gender': 1,
+      'age': 2,
+      'platforms': 3,
+      'measures': 4,
+      'habits_signals': 5,
+      'concerns': 6,
+      'done': 7
     };
     return stepNumbers[state.currentStep];
   }, [state.currentStep]);

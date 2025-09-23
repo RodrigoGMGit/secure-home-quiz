@@ -1,7 +1,8 @@
 import { useQuizState } from '@/hooks/useQuizState';
 import { AppShellCard } from '@/components/quiz/AppShellCard';
 import { WelcomeStep } from '@/components/quiz/steps/WelcomeStep';
-import { ProfileStep } from '@/components/quiz/steps/ProfileStep';
+import { GenderStep } from '@/components/quiz/steps/GenderStep';
+import { AgeStep } from '@/components/quiz/steps/AgeStep';
 import { PlatformsStep } from '@/components/quiz/steps/PlatformsStep';
 import { MeasuresStep } from '@/components/quiz/steps/MeasuresStep';
 import { HabitsSignalsStep } from '@/components/quiz/steps/HabitsSignalsStep';
@@ -25,16 +26,24 @@ const Quiz = () => {
       case 'welcome':
         return <WelcomeStep onNext={nextStep} />;
       
-      case 'profile':
+      case 'gender':
         return (
-          <ProfileStep
+          <GenderStep
             initialGender={state.answers.child_gender}
+            onNext={(data) => {
+              updateAnswers({ child_gender: data.gender });
+              nextStep();
+            }}
+            onPrevious={previousStep}
+          />
+        );
+      
+      case 'age':
+        return (
+          <AgeStep
             initialAge={state.answers.age_band}
             onNext={(data) => {
-              updateAnswers({ 
-                child_gender: data.gender, 
-                age_band: data.age 
-              });
+              updateAnswers({ age_band: data.age });
               nextStep();
             }}
             onPrevious={previousStep}
@@ -112,7 +121,7 @@ const Quiz = () => {
   };
 
   const currentStepNumber = getStepNumber();
-  const totalSteps = 6;
+  const totalSteps = 7;
   const showProgress = currentStepNumber > 0 && currentStepNumber < totalSteps;
   const showBackButton = currentStepNumber > 1 && currentStepNumber < totalSteps;
 

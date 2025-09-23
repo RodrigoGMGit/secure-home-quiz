@@ -50,7 +50,7 @@ export function OptionGrid({
   };
 
   return (
-    <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4", className)}>
+    <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6", className)}>
       {options.map((option) => {
         const isSelected = selectedValues.includes(option.value);
         const isDisabled = isOptionDisabled(option);
@@ -61,28 +61,29 @@ export function OptionGrid({
             onClick={() => !isDisabled && handleOptionClick(option.value)}
             disabled={isDisabled}
             className={cn(
-              "relative p-4 rounded-lg border-2 transition-all duration-200",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-              "min-h-[120px] flex flex-col items-center justify-center text-center",
-              "hover:shadow-md active:scale-95",
+              "relative p-6 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm",
+              "focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2",
+              "min-h-[44px] sm:min-h-[140px] flex flex-col items-center justify-center text-center",
+              "hover:shadow-soft hover:scale-[1.02] active:scale-[0.98]",
               isSelected
-                ? "border-primary bg-primary/5 shadow-sm"
-                : "border-border bg-card hover:border-primary/50",
-              isDisabled && "opacity-50 cursor-not-allowed hover:border-border hover:shadow-none"
+                ? "border-brand-teal-500 bg-brand-mint-200/50 shadow-cta"
+                : "border-brand-mint-200 bg-white/60 hover:border-brand-teal-500/60 hover:bg-brand-mint-200/30",
+              isDisabled && "opacity-50 cursor-not-allowed hover:border-brand-mint-200 hover:shadow-none hover:scale-100"
             )}
           >
             {/* Selection indicator */}
             {isSelected && (
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                <Check className="w-3 h-3 text-primary-foreground" />
+              <div className="absolute -top-2 -right-2 w-7 h-7 bg-brand-teal-500 rounded-full flex items-center justify-center shadow-cta">
+                <Check className="w-4 h-4 text-white" />
               </div>
             )}
             
             {/* Icon */}
             {option.icon && (
               <div className={cn(
-                "mb-3 text-2xl",
-                isSelected ? "text-primary" : "text-muted-foreground"
+                "mb-4 text-3xl transition-all duration-300",
+                isSelected ? "text-brand-teal-500 scale-110" : "text-brand-olive-500",
+                !isDisabled && "group-hover:text-brand-teal-500"
               )}>
                 {option.icon}
               </div>
@@ -90,22 +91,25 @@ export function OptionGrid({
             
             {/* Label */}
             <div className={cn(
-              "font-medium text-sm",
-              isSelected ? "text-primary" : "text-foreground"
+              "font-body font-semibold text-base mb-2",
+              isSelected ? "text-brand-ink-800" : "text-brand-ink-800"
             )}>
               {option.label}
             </div>
             
             {/* Description */}
             {option.description && (
-              <div className="text-xs text-muted-foreground mt-1">
+              <div className={cn(
+                "text-sm font-body",
+                isSelected ? "text-brand-ink-800/80" : "text-brand-olive-500"
+              )}>
                 {option.description}
               </div>
             )}
             
             {/* Age restriction notice */}
             {isDisabled && (
-              <div className="text-xs text-destructive mt-1 font-medium">
+              <div className="text-sm text-destructive mt-2 font-body font-medium">
                 13+ años
               </div>
             )}

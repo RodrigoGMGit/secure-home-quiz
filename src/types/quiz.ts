@@ -1,6 +1,7 @@
 export type QuizStep = 
   | 'welcome' 
-  | 'profile' 
+  | 'gender' 
+  | 'age'
   | 'platforms' 
   | 'measures' 
   | 'habits_signals' 

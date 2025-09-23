@@ -11,22 +11,22 @@ interface StepHeaderProps {
 
 export function StepHeader({ title, subtitle, tooltip, children }: StepHeaderProps) {
   return (
-    <div className="text-center space-y-3">
-      <div className="flex items-center justify-center gap-2">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold uppercase text-brand-ink-800 tracking-tight">
+    <div className="text-center space-y-6">
+      <div className="flex items-center justify-center gap-3">
+        <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-brand-ink-800 tracking-tight leading-tight">
           {title}
-        </h2>
+        </h1>
         {tooltip && (
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="text-muted-foreground hover:text-foreground transition-colors">
-                  <Info className="w-4 h-4" />
+                <button className="text-brand-olive-500 hover:text-brand-ink-800 transition-colors p-2 rounded-full hover:bg-brand-mint-200/50">
+                  <Info className="w-5 h-5" />
                   <span className="sr-only">Más información</span>
                 </button>
               </TooltipTrigger>
-              <TooltipContent side="top" className="max-w-xs">
-                <p className="text-sm">{tooltip}</p>
+              <TooltipContent side="top" className="max-w-xs bg-white border border-brand-mint-200 shadow-soft">
+                <p className="text-sm font-body text-brand-ink-800">{tooltip}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -34,7 +34,7 @@ export function StepHeader({ title, subtitle, tooltip, children }: StepHeaderPro
       </div>
       
       {subtitle && (
-        <p className="text-muted-foreground text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+        <p className="text-brand-olive-500 font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}
