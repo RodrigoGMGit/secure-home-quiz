@@ -101,7 +101,7 @@ const HeroSection = () => {
             </div>
 
             <p className="text-sm text-brand-olive-500 mt-4 opacity-80 font-body">
-              Sin registros • 100% confidencial • Toma solo 3 minutos
+              Personalizado • 100% confidencial • Toma solo 3 minutos
             </p>
           </div>
 
