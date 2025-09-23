@@ -12,7 +12,7 @@ export type ChildGender = 'Niño' | 'Niña' | 'Prefiero no especificar';
 
 export type AgeBand = '6-8' | '9-12' | '13-15' | '16-17';
 
-export type Platform = 'whatsapp' | 'youtube' | 'youtube_kids' | 'roblox' | 'minecraft' | 'tiktok' | 'otros';
+export type Platform = 'whatsapp' | 'youtube' | 'instagram' | 'roblox' | 'minecraft' | 'tiktok' | 'otros';
 
 export type ABVariant = 'A' | 'B' | 'C';
 
@@ -20,6 +20,7 @@ export interface QuizAnswers {
   child_gender?: ChildGender;
   age_band?: AgeBand;
   platforms?: Platform[];
+  other_platforms?: string;
   unknown_platforms?: boolean;
   measures?: {
     [key in Platform]?: string[];
@@ -32,6 +33,7 @@ export interface QuizAnswers {
 export interface PlanInput {
   age_band: AgeBand;
   platforms: Platform[];
+  other_platforms?: string;
   unknown_platforms: boolean;
   measures: {
     [key in Platform]?: string[];

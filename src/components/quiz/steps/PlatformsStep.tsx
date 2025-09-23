@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { StepHeader } from '../StepHeader';
 import { OptionGrid } from '../OptionGrid';
 import { Notice } from '../Notice';
@@ -8,9 +9,10 @@ import { MessageCircle, Video, Gamepad2, HelpCircle, Plus } from 'lucide-react';
 
 interface PlatformsStepProps {
   initialPlatforms?: Platform[];
+  initialOtherPlatforms?: string;
   initialUnknownPlatforms?: boolean;
   ageband?: AgeBand;
-  onNext: (data: { platforms?: Platform[]; unknownPlatforms?: boolean }) => void;
+  onNext: (data: { platforms?: Platform[]; otherPlatforms?: string; unknownPlatforms?: boolean }) => void;
   onPrevious: () => void;
   onTrack: (event: string, data: any) => void;
 }
@@ -29,10 +31,10 @@ const platformOptions = [
     description: 'Videos' 
   },
   { 
-    value: 'youtube_kids', 
-    label: 'YouTube Kids', 
+    value: 'instagram', 
+    label: 'Instagram', 
     icon: <Video />, 
-    description: 'Videos para niños' 
+    description: 'Red social de fotos y videos' 
   },
   { 
     value: 'roblox', 
@@ -63,6 +65,7 @@ const platformOptions = [
 
 export function PlatformsStep({ 
   initialPlatforms = [], 
+  initialOtherPlatforms = '',
   initialUnknownPlatforms = false, 
   ageband,
   onNext, 
@@ -70,12 +73,19 @@ export function PlatformsStep({
   onTrack 
 }: PlatformsStepProps) {
   const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>(initialPlatforms);
+  const [otherPlatforms, setOtherPlatforms] = useState<string>(initialOtherPlatforms);
   const [showingHelp, setShowingHelp] = useState(false);
   const [isUnsure, setIsUnsure] = useState(initialUnknownPlatforms);
 
   const handlePlatformSelection = (values: string[]) => {
     setSelectedPlatforms(values as Platform[]);
     setIsUnsure(false);
+    
+    // Limpiar el campo de texto si se deselecciona "otros"
+    if (!values.includes('otros')) {
+      setOtherPlatforms('');
+    }
+    
     onTrack('platform_select', { platforms: values });
   };
 
@@ -83,6 +93,7 @@ export function PlatformsStep({
     setShowingHelp(true);
     setIsUnsure(true);
     setSelectedPlatforms([]);
+    setOtherPlatforms('');
     onTrack('platform_select', { unknown_platforms: true });
   };
 
@@ -94,7 +105,10 @@ export function PlatformsStep({
     if (isUnsure) {
       onNext({ unknownPlatforms: true });
     } else {
-      onNext({ platforms: selectedPlatforms });
+      onNext({ 
+        platforms: selectedPlatforms,
+        otherPlatforms: selectedPlatforms.includes('otros') ? otherPlatforms : undefined
+      });
     }
   };
 
@@ -119,6 +133,23 @@ export function PlatformsStep({
             onSelectionChange={handlePlatformSelection}
             multiSelect={true}
           />
+
+          {/* Campo de texto para otras plataformas */}
+          {selectedPlatforms.includes('otros') && (
+            <div className="space-y-2">
+              <label htmlFor="other-platforms" className="text-sm font-medium text-brand-ink-800">
+                ¿Cuáles otras plataformas usa? (opcional)
+              </label>
+              <Input
+                id="other-platforms"
+                type="text"
+                placeholder="Ej: Instagram, Discord, Fortnite, etc."
+                value={otherPlatforms}
+                onChange={(e) => setOtherPlatforms(e.target.value)}
+                className="w-full"
+              />
+            </div>
+          )}
 
           <div className="flex justify-center">
             <button

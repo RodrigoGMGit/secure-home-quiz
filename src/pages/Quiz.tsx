@@ -54,6 +54,7 @@ const Quiz = () => {
         return (
           <PlatformsStep
             initialPlatforms={state.answers.platforms}
+            initialOtherPlatforms={state.answers.other_platforms}
             initialUnknownPlatforms={state.answers.unknown_platforms}
             ageband={state.answers.age_band}
             onNext={(data) => {

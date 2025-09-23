@@ -26,7 +26,7 @@ export type AgeBand = '6-8' | '9-12' | '13-15' | '16-17';
 export type Platform = 
   | 'whatsapp' 
   | 'youtube' 
-  | 'youtube_kids' 
+  | 'instagram' 
   | 'roblox' 
   | 'minecraft' 
   | 'tiktok' 
@@ -258,7 +258,7 @@ export const isAgeBand = (value: any): value is AgeBand => {
 
 // Check if value is a valid platform
 export const isPlatform = (value: any): value is Platform => {
-  return ['whatsapp', 'youtube', 'youtube_kids', 'roblox', 'minecraft', 'tiktok', 'otros'].includes(value);
+  return ['whatsapp', 'youtube', 'instagram', 'roblox', 'minecraft', 'tiktok', 'otros'].includes(value);
 };
 
 // Check if value is a valid quiz step

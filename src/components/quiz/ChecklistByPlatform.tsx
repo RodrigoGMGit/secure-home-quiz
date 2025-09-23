@@ -21,11 +21,12 @@ const platformMeasures: Record<Platform, { id: string; label: string; descriptio
     { id: 'comments_off', label: 'Comentarios desactivados', description: 'Evita interacciones no deseadas' },
     { id: 'safe_channels', label: 'Lista de canales seguros creada', description: 'Contenido verificado y apropiado' }
   ],
-  youtube_kids: [
-    { id: 'profile_setup', label: 'Perfil de niño configurado', description: 'Experiencia adaptada a la edad' },
-    { id: 'timer', label: 'Temporizador activado', description: 'Controla el tiempo de pantalla' },
-    { id: 'content_level', label: 'Nivel de contenido apropiado seleccionado', description: 'Contenido según la edad' },
-    { id: 'search_off', label: 'Búsqueda desactivada', description: 'Solo contenido pre-aprobado' }
+  instagram: [
+    { id: 'private_account', label: 'Cuenta privada activada', description: 'Solo seguidores aprobados pueden ver el contenido' },
+    { id: 'dm_limited', label: 'Mensajes directos limitados', description: 'Solo personas que sigues pueden enviar mensajes' },
+    { id: 'story_privacy', label: 'Historias solo para amigos cercanos', description: 'Control sobre quién ve las historias' },
+    { id: 'location_off', label: 'Ubicación desactivada en publicaciones', description: 'Protege la privacidad de ubicación' },
+    { id: 'block_report', label: 'Sabe bloquear y reportar usuarios', description: 'Herramientas de protección' }
   ],
   roblox: [
     { id: 'account_restricted', label: 'Cuenta con restricciones activadas', description: 'Configuración segura para niños' },
@@ -86,7 +87,8 @@ export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChan
               {measures.map(measure => (
                 <div 
                   key={measure.id}
-                  className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors"
+                  className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
+                  onClick={() => handleMeasureToggle(platform, measure.id)}
                 >
                   <Checkbox
                     id={`${platform}-${measure.id}`}
