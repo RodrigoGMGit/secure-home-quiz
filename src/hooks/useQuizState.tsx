@@ -11,6 +11,7 @@ import {
   clearQuizData
 } from '@/utils/localStorage';
 import { track, captureAnalyticsData } from '@/utils/analytics';
+import { scrollToTop } from '@/utils/scroll';
 
 export function useQuizState() {
   const [state, setState] = useState<QuizState>(() => {
@@ -52,8 +53,8 @@ export function useQuizState() {
     }));
     track('quiz_step_view', { step });
     
-    // Scroll to top when changing steps
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top when changing steps - enhanced for mobile
+    scrollToTop();
   }, []);
 
   const nextStep = useCallback(() => {
@@ -170,6 +171,9 @@ export function useQuizState() {
       previous_step: state.currentStep,
       previous_answers_count: Object.keys(state.answers).length
     });
+    
+    // Scroll to top when restarting quiz - enhanced for mobile
+    scrollToTop();
   }, [state.currentStep, state.answers]);
 
   return {
