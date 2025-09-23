@@ -11,7 +11,7 @@ import {
   clearQuizData
 } from '@/utils/localStorage';
 import { track, captureAnalyticsData } from '@/utils/analytics';
-import { scrollToTop } from '@/utils/scroll';
+import { scrollToTop, scrollToTopDelayed } from '@/utils/scroll';
 
 export function useQuizState() {
   const [state, setState] = useState<QuizState>(() => {
@@ -57,6 +57,17 @@ export function useQuizState() {
     scrollToTop();
   }, []);
 
+  const goToStepWithDelay = useCallback((step: QuizStep) => {
+    setState(prev => ({
+      ...prev,
+      currentStep: step
+    }));
+    track('quiz_step_view', { step });
+    
+    // Use delayed scroll for complex navigation scenarios
+    scrollToTopDelayed();
+  }, []);
+
   const nextStep = useCallback(() => {
     const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
@@ -66,12 +77,12 @@ export function useQuizState() {
       
       // Skip measures if no platforms selected
       if (nextStep === 'measures' && !state.answers.platforms?.length) {
-        goToStep('habits_signals');
+        goToStepWithDelay('habits_signals');
       } else {
         goToStep(nextStep);
       }
     }
-  }, [state.currentStep, state.answers.platforms, goToStep]);
+  }, [state.currentStep, state.answers.platforms, goToStep, goToStepWithDelay]);
 
   const nextStepWithData = useCallback((data: Partial<QuizAnswers>) => {
     const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
@@ -82,12 +93,12 @@ export function useQuizState() {
       
       // Skip measures if no platforms selected (using fresh data)
       if (nextStep === 'measures' && !data.platforms?.length) {
-        goToStep('habits_signals');
+        goToStepWithDelay('habits_signals');
       } else {
         goToStep(nextStep);
       }
     }
-  }, [state.currentStep, goToStep]);
+  }, [state.currentStep, goToStep, goToStepWithDelay]);
 
   const previousStep = useCallback(() => {
     const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];

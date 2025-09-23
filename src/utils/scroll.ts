@@ -23,6 +23,27 @@ export function scrollToTop(): void {
 }
 
 /**
+ * Scroll to top with additional delay for complex navigation scenarios
+ * Useful when skipping steps or when DOM updates might interfere
+ */
+export function scrollToTopDelayed(): void {
+  // Wait for DOM to settle, then scroll
+  setTimeout(() => {
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Additional fallback with longer delay
+      setTimeout(() => {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 150);
+    };
+    
+    requestAnimationFrame(scrollToTop);
+  }, 50);
+}
+
+/**
  * Scroll to top with immediate effect (no smooth animation)
  * Useful for cases where smooth scrolling might be problematic
  */
