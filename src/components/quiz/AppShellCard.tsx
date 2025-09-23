@@ -32,8 +32,8 @@ export function AppShellCard({
       <div className="w-full max-w-2xl relative z-10">
         <Card className="bg-card border-0 rounded-xl shadow-soft overflow-hidden backdrop-blur-sm">
           {/* Header */}
-          <div className="px-8 pt-8 pb-6 border-b border-brand-mint-200/30">
-            <div className="flex items-center justify-between mb-6">
+          <div className="px-6 pt-4 pb-3 border-b border-brand-mint-200/30">
+            <div className="flex items-center justify-between mb-3">
               {showBackButton && onBack && (
                 <Button
                   variant="ghost"
@@ -48,7 +48,7 @@ export function AppShellCard({
               
               {showProgress && (
                 <div className="flex-1 max-w-xs ml-auto">
-                  <div className="flex items-center justify-between text-sm font-body text-brand-olive-500 mb-3">
+                  <div className="flex items-center justify-between text-sm font-body text-brand-olive-500 mb-2">
                     <span>Paso {currentStep} de {totalSteps}</span>
                     <span className="font-heading font-bold">{Math.round(progressPercentage)}%</span>
                   </div>
@@ -64,7 +64,7 @@ export function AppShellCard({
           </div>
 
           {/* Content */}
-          <div className="p-8 space-y-8">
+          <div className="p-6 space-y-6">
             {children}
           </div>
         </Card>

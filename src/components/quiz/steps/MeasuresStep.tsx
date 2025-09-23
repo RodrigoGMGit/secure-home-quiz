@@ -61,7 +61,7 @@ export function MeasuresStep({
           </Button>
           <Button
             onClick={handleNext}
-            className="w-full sm:w-auto px-8"
+            className="w-full sm:w-auto px-6"
           >
             Continuar
           </Button>
@@ -75,7 +75,6 @@ export function MeasuresStep({
       <StepHeader
         title="Configuraciones de seguridad"
         subtitle="Marca las medidas que ya tienes activadas. Esto nos ayuda a enfocar tu plan en lo que aún falta."
-        tooltip="Solo incluiremos en tu plan las medidas que aún no has implementado"
       />
 
       <ChecklistByPlatform

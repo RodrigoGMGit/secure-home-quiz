@@ -102,13 +102,16 @@ export function ConcernsStep({
         className="grid-cols-1 sm:grid-cols-2"
       />
 
-      {selectedConcerns.length > 0 && (
-        <div className="text-center text-sm text-muted-foreground bg-accent/30 p-4 rounded-lg">
-          <p>
-            Perfecto, priorizaremos estas {selectedConcerns.length} área{selectedConcerns.length > 1 ? 's' : ''} en tu plan personalizado.
-          </p>
-        </div>
-      )}
+      {/* Reserved space for dynamic content to prevent layout shift */}
+      <div className="min-h-[60px] flex items-center justify-center">
+        {selectedConcerns.length > 0 && (
+          <div className="text-center text-sm text-muted-foreground bg-accent/30 p-4 rounded-lg">
+            <p>
+              Perfecto, priorizaremos estas {selectedConcerns.length} área{selectedConcerns.length > 1 ? 's' : ''} en tu plan personalizado.
+            </p>
+          </div>
+        )}
+      </div>
 
       <div className="flex flex-col-reverse sm:flex-row gap-3 justify-between pt-4">
         <Button
@@ -120,7 +123,7 @@ export function ConcernsStep({
         </Button>
         <Button
           onClick={handleNext}
-          className="w-full sm:w-auto px-8"
+          className="w-full sm:w-auto px-6"
         >
           Continuar
         </Button>

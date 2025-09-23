@@ -42,25 +42,28 @@ export function GenderStep({ initialGender, onNext, onPrevious }: GenderStepProp
             onSelectionChange={(values) => setSelectedGender(values[0] as ChildGender)}
             multiSelect={false}
           />
-          {selectedGender && (
-            <p className="text-sm text-muted-foreground mt-6 text-center">
-              Perfecto, continuemos con la edad.
-            </p>
-          )}
+          {/* Reserved space for dynamic content to prevent layout shift */}
+          <div className="min-h-[40px] flex items-center justify-center mt-6">
+            {selectedGender && (
+              <p className="text-sm text-muted-foreground text-center">
+                Perfecto, continuemos con la edad.
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row gap-4 justify-between pt-6">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 justify-between pt-4">
         <Button
           variant="outline"
           onClick={onPrevious}
-          className="w-full sm:w-auto min-h-[44px]"
+          className="w-full sm:w-auto min-h-[40px]"
         >
           Atrás
         </Button>
         <Button
           onClick={handleNext}
-          className="w-full sm:w-auto px-8 min-h-[44px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
+          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
         >
           {selectedGender ? 'Continuar' : 'Saltar'}
         </Button>

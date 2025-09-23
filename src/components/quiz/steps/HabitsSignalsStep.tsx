@@ -224,7 +224,7 @@ export function HabitsSignalsStep({
         </Button>
         <Button
           onClick={handleNext}
-          className="w-full sm:w-auto px-8"
+          className="w-full sm:w-auto px-6"
         >
           Continuar
         </Button>

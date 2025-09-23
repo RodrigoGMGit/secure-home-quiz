@@ -121,17 +121,26 @@ export function PlatformsStep({
           />
 
           <div className="flex justify-center">
-            <Button
-              variant="outline"
+            <button
               onClick={handleUnsureClick}
-              className="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-3 p-4 sm:p-6 text-center sm:text-left border-dashed border-brand-teal-500/50 hover:border-brand-teal-500 hover:bg-brand-mint-200/30 min-h-[44px] rounded-xl transition-all duration-300 font-body"
+              className="group relative p-6 rounded-xl border-2 border-dashed border-brand-teal-500/50 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2 min-h-[44px] sm:min-h-[140px] flex flex-col items-center justify-center text-center hover:border-brand-teal-500 hover:bg-brand-mint-200/30 hover:shadow-soft hover:scale-[1.02] active:scale-[0.98] bg-white/60 w-full max-w-sm"
               aria-expanded={showingHelp}
             >
-              <HelpCircle className="w-5 h-5 flex-shrink-0 text-brand-teal-500" />
-              <span className="text-sm sm:text-base font-medium text-brand-ink-800">
-                No estoy seguro/a. ¿Cómo puedo descubrirlo?
-              </span>
-            </Button>
+              {/* Icon */}
+              <div className="mb-4 text-3xl transition-all duration-300 text-brand-teal-500 group-hover:text-brand-teal-500">
+                <HelpCircle className="w-8 h-8" />
+              </div>
+              
+              {/* Label */}
+              <div className="font-body font-semibold text-base mb-2 text-brand-ink-800">
+                No estoy seguro/a
+              </div>
+              
+              {/* Description */}
+              <div className="text-sm font-body text-brand-olive-500">
+                ¿Cómo puedo descubrirlo?
+              </div>
+            </button>
           </div>
         </>
       )}
@@ -146,34 +155,35 @@ export function PlatformsStep({
               <li>Los iconos de juegos en su dispositivo</li>
               <li>El historial del navegador</li>
             </ul>
-            <div className="pt-3">
-              <Button onClick={handleContinueUnsure} className="w-full">
-                Lo revisaré más tarde. Continuar con recomendaciones generales
-              </Button>
-            </div>
+            <p className="text-sm text-muted-foreground pt-2">
+              Puedes continuar con recomendaciones generales usando el botón "Continuar" de abajo.
+            </p>
           </div>
         </Notice>
       )}
 
-      {selectedPlatforms.length > 0 && (
-        <Notice type="success">
-          <p>
-            Perfecto, crearemos recomendaciones específicas para {selectedPlatforms.length} plataforma{selectedPlatforms.length > 1 ? 's' : ''}.
-          </p>
-        </Notice>
-      )}
+      {/* Reserved space for dynamic content to prevent layout shift */}
+      <div className="min-h-[60px] flex items-center justify-center">
+        {selectedPlatforms.length > 0 && (
+          <Notice type="success">
+            <p>
+              Perfecto, crearemos recomendaciones específicas para {selectedPlatforms.length} plataforma{selectedPlatforms.length > 1 ? 's' : ''}.
+            </p>
+          </Notice>
+        )}
+      </div>
 
-      <div className="flex flex-col-reverse sm:flex-row gap-4 justify-between pt-6">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 justify-between pt-4">
         <Button
           variant="outline"
           onClick={onPrevious}
-          className="w-full sm:w-auto min-h-[44px]"
+          className="w-full sm:w-auto min-h-[40px]"
         >
           Atrás
         </Button>
         <Button
           onClick={handleNext}
-          className="w-full sm:w-auto px-8 min-h-[44px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
+          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta"
         >
           Continuar
         </Button>

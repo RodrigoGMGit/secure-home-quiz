@@ -32,40 +32,44 @@ export function AgeStep({ initialAge, onNext, onPrevious }: AgeStepProps) {
       <StepHeader
         title="¿En qué rango de edad está?"
         subtitle="La edad nos permite adaptar mejor las acciones recomendadas."
-        tooltip="Cada grupo de edad tiene necesidades y capacidades diferentes en el mundo digital"
       />
 
       <div className="space-y-6">
-        <div>
-          <h3 className="font-heading text-lg font-bold text-brand-ink-800 mb-6 text-center">
-            Rango de edad <span className="text-destructive">*</span>
-          </h3>
-          <OptionGrid
-            options={ageOptions}
-            selectedValues={selectedAge ? [selectedAge] : []}
-            onSelectionChange={(values) => setSelectedAge(values[0] as AgeBand)}
-            multiSelect={false}
-          />
+        <div className="text-center mb-2">
+          <span className="text-sm font-medium text-brand-olive-500">
+            Campo requerido <span className="text-destructive">*</span>
+          </span>
+        </div>
+        
+        <OptionGrid
+          options={ageOptions}
+          selectedValues={selectedAge ? [selectedAge] : []}
+          onSelectionChange={(values) => setSelectedAge(values[0] as AgeBand)}
+          multiSelect={false}
+        />
+        
+        {/* Reserved space for dynamic content to prevent layout shift */}
+        <div className="min-h-[40px] flex items-center justify-center mt-6">
           {selectedAge && (
-            <p className="text-sm text-muted-foreground mt-6 text-center">
+            <p className="text-sm text-muted-foreground text-center">
               Excelente, ahora veamos qué plataformas usa.
             </p>
           )}
         </div>
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row gap-4 justify-between pt-6">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 justify-between pt-4">
         <Button
           variant="outline"
           onClick={onPrevious}
-          className="w-full sm:w-auto min-h-[44px]"
+          className="w-full sm:w-auto min-h-[40px]"
         >
           Atrás
         </Button>
         <Button
           onClick={handleNext}
           disabled={!canProceed}
-          className="w-full sm:w-auto px-8 min-h-[44px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full sm:w-auto px-6 min-h-[40px] bg-brand-ink-800 hover:bg-brand-ink-900 text-white shadow-cta disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

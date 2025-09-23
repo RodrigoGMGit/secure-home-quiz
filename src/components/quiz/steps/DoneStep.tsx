@@ -101,7 +101,7 @@ export function DoneStep({ abVariant, onComplete, onTrack }: DoneStepProps) {
         <Button 
           onClick={handleContinueClick}
           size="lg"
-          className="px-8 text-base font-medium"
+          className="px-6 text-base font-medium"
         >
           Continuar
         </Button>

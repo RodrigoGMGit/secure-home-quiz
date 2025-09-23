@@ -56,7 +56,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
         <Button 
           onClick={onNext}
           size="lg"
-          className="px-8 text-base font-medium"
+          className="px-6 text-base font-medium"
         >
           Empezar diagnóstico
         </Button>

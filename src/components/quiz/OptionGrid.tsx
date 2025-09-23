@@ -61,9 +61,9 @@ export function OptionGrid({
             onClick={() => !isDisabled && handleOptionClick(option.value)}
             disabled={isDisabled}
             className={cn(
-              "relative p-6 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm",
+              "relative p-4 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm",
               "focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2",
-              "min-h-[44px] sm:min-h-[140px] flex flex-col items-center justify-center text-center",
+              "min-h-[40px] sm:min-h-[120px] flex flex-col items-center justify-center text-center",
               "hover:shadow-soft hover:scale-[1.02] active:scale-[0.98]",
               isSelected
                 ? "border-brand-teal-500 bg-brand-mint-200/50 shadow-cta"
