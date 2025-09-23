@@ -2,13 +2,11 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import childImage from "@/assets/child-using-device.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollytellingGraphsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const childImageRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const chartsRef = useRef<HTMLDivElement[]>([]);
 
@@ -57,57 +55,42 @@ const ScrollytellingGraphsSection = () => {
   ];
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const childImg = childImageRef.current;
     const title = titleRef.current;
     const charts = chartsRef.current;
 
-    if (!section || !childImg || !title) return;
+    if (!title) return;
 
     // Set initial states
     gsap.set(title, { y: 50, opacity: 0 });
-    gsap.set(charts, { y: 100, opacity: 0, scale: 0.8 });
-
-    // Create timeline for the section
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: 1,
-      }
-    });
+    gsap.set(charts, { opacity: 0, scale: 0.95 });
 
     // Animate title
-    tl.to(title, {
+    gsap.to(title, {
       y: 0,
       opacity: 1,
       duration: 1,
-      ease: "power2.out"
-    });
-
-    // Animate charts sequentially
-    charts.forEach((chart, index) => {
-      if (chart) {
-        tl.to(chart, {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power2.out"
-        }, index * 0.3);
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: title,
+        start: "top 80%",
+        toggleActions: "play none none reverse"
       }
     });
 
-    // Parallax effect for child image
-    gsap.to(childImg, {
-      y: -50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2
+    // Individual chart animations
+    charts.forEach((chart, index) => {
+      if (chart) {
+        gsap.to(chart, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: chart,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        });
       }
     });
 
@@ -121,21 +104,11 @@ const ScrollytellingGraphsSection = () => {
       ref={sectionRef}
       className="min-h-screen py-20 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden"
     >
-      {/* Fixed child image with parallax */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
-        <img
-          ref={childImageRef}
-          src={childImage}
-          alt="Niño usando dispositivo digital"
-          className="w-64 h-auto opacity-80"
-        />
-      </div>
-
-      <div className="container mx-auto px-4 lg:pr-80">
+      <div className="container mx-auto px-4">
         {/* Main title */}
         <h2
           ref={titleRef}
-          className="text-4xl lg:text-6xl font-bold text-foreground mb-16 text-center lg:text-left"
+          className="text-4xl lg:text-6xl font-bold text-foreground mb-16 text-center"
         >
           La puerta ya no es física
         </h2>
