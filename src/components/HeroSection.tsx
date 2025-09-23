@@ -7,6 +7,7 @@ import childTablet from "@/assets/child-using-tablet.png";
 import child1 from "@/assets/child1.png";
 import familia3 from "@/assets/familia 3.png";
 import familia1 from "@/assets/familia1.png";
+import { ImagePreloader } from "./ImagePreloader";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +27,7 @@ const HeroSection = () => {
 
   return (
     <main className="min-h-screen bg-gradient-subtle overflow-hidden relative">
+      <ImagePreloader />
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -43,48 +45,55 @@ const HeroSection = () => {
               <img
                 src={childGaming}
                 alt=""
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover marquee-image"
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={childTablet}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={childrenLearning}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={child1}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={familia3}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={familia1}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -94,48 +103,54 @@ const HeroSection = () => {
               <img
                 src={childGaming}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={childTablet}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={childrenLearning}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={child1}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={familia3}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
               <img
                 src={familia1}
                 alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
+                className="w-full h-full object-cover marquee-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
