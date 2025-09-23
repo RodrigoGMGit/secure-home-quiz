@@ -10,10 +10,24 @@ import familia1 from "@/assets/familia1.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
+  const totalImages = 6; // Número total de imágenes únicas en el marquee
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleImageLoad = () => {
+    setLoadedImagesCount(prev => {
+      const newCount = prev + 1;
+      if (newCount >= totalImages) {
+        setImagesLoaded(true);
+      }
+      return newCount;
+    });
+  };
 
   const headlineLines = useMemo(
     () => [
@@ -34,8 +48,21 @@ const HeroSection = () => {
       </div>
 
 
+      {/* Loading indicator */}
+      {!imagesLoaded && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
+          <div className="flex items-center gap-2 text-brand-olive-500/30">
+            <div className="w-2 h-2 bg-brand-teal-500/20 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-brand-teal-500/20 rounded-full animate-pulse delay-100"></div>
+            <div className="w-2 h-2 bg-brand-teal-500/20 rounded-full animate-pulse delay-200"></div>
+          </div>
+        </div>
+      )}
+
       {/* Image Marquee - Visible on all screen sizes */}
-      <div className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0">
+      <div className={`absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0 transition-opacity duration-500 ${
+        imagesLoaded ? 'opacity-100' : 'opacity-0'
+      }`}>
         <div className="flex animate-marquee gap-4">
           {/* First set of images */}
           <div className="flex gap-4 flex-shrink-0">
@@ -45,6 +72,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
@@ -53,6 +81,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
@@ -61,6 +90,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
@@ -69,6 +99,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
@@ -77,6 +108,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
             <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
@@ -85,6 +117,7 @@ const HeroSection = () => {
                 alt=""
                 className="w-full h-full object-cover"
                 loading="eager"
+                onLoad={handleImageLoad}
               />
             </div>
           </div>
