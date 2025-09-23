@@ -60,13 +60,29 @@ export function useQuizState() {
       const nextStep = stepOrder[currentIndex + 1];
       
       // Skip measures if no platforms selected
-      if (nextStep === 'measures' && (!state.answers.platforms?.length && !state.answers.unknown_platforms)) {
+      if (nextStep === 'measures' && !state.answers.platforms?.length) {
         goToStep('habits_signals');
       } else {
         goToStep(nextStep);
       }
     }
   }, [state.currentStep, state.answers.platforms, state.answers.unknown_platforms, goToStep]);
+
+  const nextStepWithData = useCallback((data: Partial<QuizAnswers>) => {
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const currentIndex = stepOrder.indexOf(state.currentStep);
+    
+    if (currentIndex < stepOrder.length - 1) {
+      const nextStep = stepOrder[currentIndex + 1];
+      
+      // Skip measures if no platforms selected (using fresh data)
+      if (nextStep === 'measures' && !data.platforms?.length) {
+        goToStep('habits_signals');
+      } else {
+        goToStep(nextStep);
+      }
+    }
+  }, [state.currentStep, goToStep]);
 
   const previousStep = useCallback(() => {
     const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
@@ -76,7 +92,7 @@ export function useQuizState() {
       let prevStep = stepOrder[currentIndex - 1];
       
       // Skip measures if no platforms selected when going back
-      if (prevStep === 'measures' && (!state.answers.platforms?.length && !state.answers.unknown_platforms)) {
+      if (prevStep === 'measures' && !state.answers.platforms?.length) {
         prevStep = stepOrder[currentIndex - 2];
       }
       
@@ -138,6 +154,7 @@ export function useQuizState() {
     updateAnswers,
     goToStep,
     nextStep,
+    nextStepWithData,
     previousStep,
     completeQuiz,
     canProceed,

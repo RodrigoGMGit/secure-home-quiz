@@ -15,6 +15,7 @@ const Quiz = () => {
     state, 
     updateAnswers, 
     nextStep, 
+    nextStepWithData,
     previousStep, 
     completeQuiz, 
     getStepNumber,
@@ -59,7 +60,8 @@ const Quiz = () => {
             ageband={state.answers.age_band}
             onNext={(data) => {
               updateAnswers(data);
-              nextStep();
+              // Call nextStep with updated data to ensure correct navigation
+              nextStepWithData(data);
             }}
             onPrevious={previousStep}
             onTrack={track}
