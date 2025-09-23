@@ -4,6 +4,9 @@ import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
 import childGaming from "@/assets/child-gaming-safely.png";
 import childrenLearning from "@/assets/children-learning-together.png";
 import childTablet from "@/assets/child-using-tablet.png";
+import child1 from "@/assets/child1.png";
+import familia3 from "@/assets/familia 3.png";
+import familia1 from "@/assets/familia1.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,12 +25,121 @@ const HeroSection = () => {
   );
 
   return (
-    <main className="min-h-screen bg-gradient-subtle overflow-hidden">
+    <main className="min-h-screen bg-gradient-subtle overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+      </div>
+
+
+      {/* Image Marquee - Only visible on mobile */}
+      <div className="lg:hidden absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none">
+        <div className="flex animate-marquee gap-4">
+          {/* First set of images */}
+          <div className="flex gap-4 flex-shrink-0">
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childGaming}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childTablet}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childrenLearning}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={child1}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={familia3}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={familia1}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+          </div>
+          {/* Duplicate set for seamless loop */}
+          <div className="flex gap-4 flex-shrink-0">
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childGaming}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childTablet}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={childrenLearning}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={child1}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={familia3}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+              <img
+                src={familia1}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20">
@@ -64,17 +176,17 @@ const HeroSection = () => {
             </p>
 
             {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4 mb-8">
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1 sm:py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
                 >
-                  <CheckCircle className="w-4 h-4 text-brand-teal-500" />
-                  <span className="text-sm font-medium text-brand-ink-800">{item}</span>
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-brand-teal-500" />
+                  <span className="text-xs sm:text-sm font-medium text-brand-ink-800">{item}</span>
                 </div>
               ))}
             </div>
@@ -106,8 +218,8 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Image Section */}
-          <div className={`relative transition-all duration-1000 transform ${
+          {/* Image Section - Hidden on mobile, visible on large screens */}
+          <div className={`hidden lg:block relative transition-all duration-1000 transform ${
             isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
           }`} style={{ transitionDelay: "600ms" }}>
             <div className="relative">
