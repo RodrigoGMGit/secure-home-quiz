@@ -36,16 +36,7 @@ const HeroSection = () => {
   const handleConoceMas = () => {
     const element = document.getElementById('intro');
     if (element) {
-      // Add a subtle fade effect to the button before scrolling
-      const button = document.querySelector('[data-button="conoce-mas"]') as HTMLElement;
-      if (button) {
-        button.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          button.style.transform = 'scale(1)';
-        }, 150);
-      }
-      
-      // Smooth scroll with custom easing
+      // Smooth scroll with enhanced easing using native scrollIntoView
       element.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
