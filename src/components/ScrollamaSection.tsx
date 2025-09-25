@@ -16,6 +16,8 @@ const ScrollamaSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const scrollamaRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const lastCardRef = useRef<HTMLDivElement>(null);
 
   const steps: Step[] = [
     {
@@ -59,6 +61,18 @@ const ScrollamaSection = () => {
   useEffect(() => {
     if (!scrollamaRef.current || !scrollerRef.current) return;
 
+    // Enable video playback on first user interaction
+    const enableVideoPlayback = () => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(() => {});
+        document.removeEventListener('click', enableVideoPlayback);
+        document.removeEventListener('scroll', enableVideoPlayback);
+      }
+    };
+
+    document.addEventListener('click', enableVideoPlayback);
+    document.addEventListener('scroll', enableVideoPlayback);
+
     const scroller = scrollama();
     
     scroller
@@ -82,8 +96,46 @@ const ScrollamaSection = () => {
 
     return () => {
       scroller.destroy();
+      document.removeEventListener('click', enableVideoPlayback);
+      document.removeEventListener('scroll', enableVideoPlayback);
     };
   }, [steps.length]);
+
+  // Separate useEffect for IntersectionObserver to detect last card exit
+  useEffect(() => {
+    if (!lastCardRef.current || !videoRef.current) return;
+
+    let hasBeenVisible = false;
+    let videoPlayed = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Last card is visible
+            hasBeenVisible = true;
+            console.log('Last card is visible');
+          } else if (hasBeenVisible && !videoPlayed) {
+            // Last card was visible before and now has exited, play the video
+            console.log('Last card exited viewport after being visible, playing video');
+            videoRef.current?.play().catch((error) => {
+              console.log('Video play failed:', error);
+            });
+            videoPlayed = true;
+            // Disconnect observer after first trigger
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 } // Trigger when 10% of the card is visible
+    );
+
+    observer.observe(lastCardRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -109,8 +161,8 @@ const ScrollamaSection = () => {
             {/* Central Video */}
             <div className="w-96 h-[600px] rounded-2xl overflow-hidden shadow-2xl">
               <video
+                ref={videoRef}
                 src="/assets/door.mp4"
-                autoPlay
                 loop
                 muted
                 playsInline
@@ -124,6 +176,7 @@ const ScrollamaSection = () => {
             {steps.map((step, index) => (
               <div
                 key={step.id}
+                ref={index === steps.length - 1 ? lastCardRef : null}
                 className="scrollama-step h-screen flex items-center justify-center"
                 data-step={index}
               >
@@ -193,6 +246,31 @@ const ScrollamaSection = () => {
                 </div>
               </div>
             ))}
+            
+            {/* Extra scrollable content to keep sticky element visible longer */}
+            <div className="h-screen"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Section After Scrollama */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-brand-ink-900 mb-4">
+              Protege a tu Familia Hoy
+            </h2>
+            <p className="text-lg text-brand-olive-500 max-w-2xl mx-auto mb-8">
+              Comienza tu evaluación personalizada y obtén un plan de acción específico para tu familia
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-brand-teal-500 hover:bg-brand-teal-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                Comenzar Evaluación
+              </button>
+              <button className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-teal-50 font-semibold py-3 px-8 rounded-lg transition-colors">
+                Saber Más
+              </button>
+            </div>
           </div>
         </div>
       </section>
