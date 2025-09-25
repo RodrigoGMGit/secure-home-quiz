@@ -191,13 +191,13 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-12 lg:py-20 z-10">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh]">
           {/* Content Section */}
           <div className={`text-center transition-all duration-1000 transform max-w-4xl mx-auto ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
             {/* Headline */}
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 leading-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 leading-tight">
               <div className="flex flex-col gap-3">
                 {headlineLines.map(({ text, highlight }) => (
                   <div
@@ -219,22 +219,22 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-body text-lg md:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-lg sm:text-xl md:text-xl lg:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto leading-relaxed">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
             {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1 sm:py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
+                  className={`flex items-center gap-2 px-4 py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
                 >
-                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-brand-teal-500" />
-                  <span className="text-xs sm:text-sm font-medium text-brand-ink-800">{item}</span>
+                  <CheckCircle className="w-4 h-4 text-brand-teal-500 flex-shrink-0" />
+                  <span className="text-sm sm:text-base font-medium text-brand-ink-800 whitespace-nowrap">{item}</span>
                 </div>
               ))}
             </div>
