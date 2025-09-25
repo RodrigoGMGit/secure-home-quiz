@@ -106,29 +106,16 @@ const ScrollamaSection = () => {
         <div className="relative">
           {/* Sticky Graphic - Center Element (Behind content) */}
           <div className="sticky top-0 z-0 h-screen flex items-center justify-center">
-            <div className="text-center">
-              {/* Progress Bar */}
-              <div className="w-64 h-4 bg-gray-300 rounded-full mb-8 overflow-hidden">
-                <div 
-                  className={`h-full ${steps[activeStep]?.bgColor} transition-all duration-500 ease-out`}
-                  style={{ width: steps[activeStep]?.percentage }}
-                ></div>
-              </div>
-              
-              {/* Central Circle */}
-              <div className={`w-32 h-32 ${steps[activeStep]?.bgColor} rounded-full flex items-center justify-center mb-6 mx-auto shadow-2xl`}>
-                <span className="text-white text-6xl font-bold">
-                  {activeStep + 1}
-                </span>
-              </div>
-              
-              {/* Step Info */}
-              <h3 className="text-2xl font-bold text-brand-ink-900 mb-2">
-                {steps[activeStep]?.title}
-              </h3>
-              <p className="text-brand-olive-500 max-w-md">
-                {steps[activeStep]?.description}
-              </p>
+            {/* Central Video */}
+            <div className="w-96 h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                src="/assets/door.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 
