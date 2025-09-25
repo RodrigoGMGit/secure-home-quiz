@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import scrollama from 'scrollama';
 import { Shield, Users, Smartphone, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface Step {
   id: string;
@@ -158,27 +159,58 @@ const ScrollamaSection = () => {
 
   return (
     <>
-      {/* Title Section */}
-      <section className="bg-gray-100 py-20">
+      {/* Intro Section */}
+      <section id="intro" className="bg-white h-screen flex items-center justify-center">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-brand-ink-900 mb-4">
-              Cómo Funciona
-            </h2>
-            <p className="text-lg text-brand-olive-500 max-w-2xl mx-auto">
-              En solo 4 pasos simples, podrás evaluar y mejorar la seguridad digital de tu familia
-            </p>
-          </div>
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: "easeOut",
+              staggerChildren: 0.2
+            }}
+          >
+            <motion.h2 
+              className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-brand-ink-900 mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              1. La puerta ya no es la calle
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-brand-olive-500 max-w-2xl mx-auto mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Hoy los riesgos no llegan solo de afuera, también entran por las pantallas.
+            </motion.p>
+            <motion.p 
+              className="text-sm text-brand-olive-400 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              En México, muchos peligros digitales inician en redes sociales y apps usadas a diario por niñas y niños.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Scrollytelling Section */}
-      <section className="relative bg-gray-100">
+      <section className="relative bg-white">
         <div className="relative">
           {/* Sticky Graphic - Center Element (Behind content) */}
           <div className="sticky top-0 z-0 h-screen flex items-center justify-center">
             {/* Central Video */}
-            <div className="w-96 h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-96 h-[600px] rounded-2xl overflow-hidden">
               <video
                 ref={videoRef}
                 src="/assets/door.mp4"

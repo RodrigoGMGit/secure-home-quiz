@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
 import { LoadingOverlay } from "@/components/ui/loading-spinner";
 import { useNavigationLoading } from "@/hooks/useNavigationLoading";
+import { motion } from "framer-motion";
 import childGaming from "@/assets/child-gaming-safely.png";
 import childrenLearning from "@/assets/children-learning-together.png";
 import childTablet from "@/assets/child-using-tablet.png";
@@ -30,6 +31,26 @@ const HeroSection = () => {
       }
       return newCount;
     });
+  };
+
+  const handleConoceMas = () => {
+    const element = document.getElementById('intro');
+    if (element) {
+      // Add a subtle fade effect to the button before scrolling
+      const button = document.querySelector('[data-button="conoce-mas"]') as HTMLElement;
+      if (button) {
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+        }, 150);
+      }
+      
+      // Smooth scroll with custom easing
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   const headlineLines = useMemo(
@@ -241,13 +262,21 @@ const HeroSection = () => {
                 <Shield className="w-5 h-5" />
                 {isLoading ? 'Cargando...' : 'Haz el quiz ahora'}
               </Button>
-              <Button 
-                variant="secondary-brand" 
-                size="lg" 
-                className="uppercase tracking-wide"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                Conoce más
-              </Button>
+                <Button 
+                  variant="secondary-brand" 
+                  size="lg" 
+                  className="uppercase tracking-wide"
+                  onClick={handleConoceMas}
+                  data-button="conoce-mas"
+                >
+                  Conoce más
+                </Button>
+              </motion.div>
             </div>
 
             <p className="text-sm text-brand-olive-500 mt-4 opacity-80 font-body">
