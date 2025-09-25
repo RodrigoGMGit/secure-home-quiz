@@ -137,6 +137,25 @@ const ScrollamaSection = () => {
     };
   }, []);
 
+  // Effect to handle video time limit (stop at 4 seconds)
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const handleTimeUpdate = () => {
+      if (videoRef.current && videoRef.current.currentTime >= 4) {
+        videoRef.current.pause();
+        console.log('Video stopped at 4 seconds');
+      }
+    };
+
+    const video = videoRef.current;
+    video.addEventListener('timeupdate', handleTimeUpdate);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
   return (
     <>
       {/* Title Section */}
@@ -163,7 +182,6 @@ const ScrollamaSection = () => {
               <video
                 ref={videoRef}
                 src="/assets/door.mp4"
-                loop
                 muted
                 playsInline
                 className="w-full h-full object-cover"
@@ -248,6 +266,8 @@ const ScrollamaSection = () => {
             ))}
             
             {/* Extra scrollable content to keep sticky element visible longer */}
+            <div className="h-screen"></div>
+            <div className="h-screen"></div>
             <div className="h-screen"></div>
           </div>
         </div>
