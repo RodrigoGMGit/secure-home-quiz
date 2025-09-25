@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { QuizStep, QuizState, QuizAnswers, PlanInput, ChildGender, AgeBand } from '@/types/quiz';
+import { QuizStep, QuizState, QuizAnswers, PlanInput } from '@/types/quiz';
 import { 
   saveQuizState, 
   loadQuizState, 
