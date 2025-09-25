@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
+import { Shield, Wifi, Lock, CheckCircle, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LoadingOverlay } from "@/components/ui/loading-spinner";
 import { useNavigationLoading } from "@/hooks/useNavigationLoading";
 import childGaming from "@/assets/child-gaming-safely.png";
@@ -43,6 +44,44 @@ const HeroSection = () => {
 
   return (
     <main className="min-h-screen bg-gradient-subtle overflow-hidden relative">
+      {/* Navigation Bar */}
+      <nav className="relative z-20 bg-white/90 backdrop-blur-sm border-b border-brand-mint-200/30">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Shield className="h-6 w-6 text-brand-teal-500" />
+              <span className="font-heading font-bold text-lg text-brand-ink-900 tracking-wide">
+                HOGARES SEGUROS
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <Link to="/manual" className="group">
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className="text-brand-ink-800 hover:text-brand-teal-500 hover:bg-brand-mint-200/50 transition-all duration-200"
+                >
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Manual de Seguridad
+                </Button>
+              </Link>
+              
+              <Button 
+                variant="primary-brand" 
+                size="sm"
+                className="shadow-sm"
+                onClick={() => navigateWithLoading('/quiz')}
+                disabled={isLoading}
+              >
+                <Shield className="h-4 w-4 mr-2" />
+                {isLoading ? 'Cargando...' : 'Evaluar'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -245,8 +284,12 @@ const HeroSection = () => {
                 variant="secondary-brand" 
                 size="lg" 
                 className="uppercase tracking-wide"
+                asChild
               >
-                Conoce más
+                <Link to="/manual">
+                  <BookOpen className="w-5 h-5" />
+                  Manual de Seguridad
+                </Link>
               </Button>
             </div>
 

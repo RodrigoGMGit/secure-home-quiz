@@ -65,4 +65,5 @@ export interface AnalyticsData {
   connection?: string;
   first_visit: boolean;
   inapp_browser: boolean;
+  [key: string]: unknown;
 }
