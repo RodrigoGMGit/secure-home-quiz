@@ -80,6 +80,7 @@ const ScrollamaSection = () => {
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.pause();
+      videoRef.current.playbackRate = 3; // Set faster playback speed
       videoRef.current.load(); // Force reload for Safari
     }
     
@@ -323,7 +324,7 @@ const ScrollamaSection = () => {
         videoRef.current.pause();
         setVideoFinished(true);
         document.body.style.overflow = 'auto'; // Ensure scrolling is re-enabled
-        console.log('Video stopped at 4 seconds - scrolling re-enabled');
+        console.log('Video stopped at 4 seconds (1.5x speed) - scrolling re-enabled');
         
         // Center the first card after a short delay to ensure scrolling is re-enabled
         setTimeout(scrollToFirstCard, 100);
@@ -387,6 +388,11 @@ const ScrollamaSection = () => {
                 preload="metadata"
                 webkit-playsinline="true"
                 className="w-full h-full object-cover"
+                onLoadedMetadata={() => {
+                  if (videoRef.current) {
+                    videoRef.current.playbackRate = 1.5; // Speed up video by 50%
+                  }
+                }}
               />
               
               {/* Mobile play button overlay */}
