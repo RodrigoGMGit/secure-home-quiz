@@ -20,6 +20,7 @@ const ScrollamaSection = () => {
   const [videoFinished, setVideoFinished] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [showVideoTransition, setShowVideoTransition] = useState(true);
   const scrollamaRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -264,13 +265,36 @@ const ScrollamaSection = () => {
         const viewportCenter = viewportHeight / 2;
         const scrollOffset = elementCenter - viewportCenter;
         
-        // Smooth scroll to center the first card
-        window.scrollBy({
-          top: scrollOffset,
-          behavior: 'smooth'
-        });
+        // Enhanced smooth scroll with custom easing
+        const startTime = performance.now();
+        const startScrollY = window.scrollY;
+        const targetScrollY = startScrollY + scrollOffset;
+        const duration = 1200; // 1.2 seconds for smoother transition
         
-        console.log('Scrolling to center first card after video completion');
+        const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+        
+        const animateScroll = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutCubic(progress);
+          
+          const currentScrollY = startScrollY + (targetScrollY - startScrollY) * easedProgress;
+          window.scrollTo(0, currentScrollY);
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          }
+        };
+        
+        // Start scrolling first
+        requestAnimationFrame(animateScroll);
+        
+        // Start the visual transition after scroll begins
+        setTimeout(() => {
+          setShowVideoTransition(false);
+        }, 400);
+        
+        console.log('Smooth scrolling to center first card after video completion');
       }
     };
 
@@ -343,7 +367,18 @@ const ScrollamaSection = () => {
           {/* Sticky Graphic - Center Element (Behind content) */}
           <div ref={videoContainerRef} className="sticky top-0 z-0 h-screen flex items-center justify-center">
             {/* Central Video */}
-            <div className="w-96 h-[600px] rounded-2xl overflow-hidden relative">
+            <motion.div 
+              className="w-96 h-[600px] rounded-2xl overflow-hidden relative"
+              animate={{ 
+                opacity: showVideoTransition ? 1 : 0.4,
+                scale: showVideoTransition ? 1 : 0.98,
+                filter: showVideoTransition ? "blur(0px)" : "blur(2px)"
+              }}
+              transition={{ 
+                duration: 0.8,
+                ease: "easeInOut"
+              }}
+            >
               <video
                 ref={videoRef}
                 src="/assets/door.mp4"
@@ -379,7 +414,7 @@ const ScrollamaSection = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </motion.div>
           </div>
 
           {/* Scrollable Steps (In front of sticky element) */}
@@ -394,10 +429,23 @@ const ScrollamaSection = () => {
             {steps.map((step, index) => (
               <div
                 key={step.id}
-                className="scrollama-step h-screen flex items-center justify-center"
+                className="scrollama-step h-[80vh] flex items-center justify-center"
                 data-step={index}
               >
-                <div className="text-center max-w-6xl mx-auto px-8">
+                <motion.div 
+                  className="text-center max-w-6xl mx-auto px-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: activeStep === index ? 1 : 0.7,
+                    y: activeStep === index ? 0 : 10,
+                    scale: activeStep === index ? 1 : 0.98
+                  }}
+                  transition={{ 
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: index === 0 && !showVideoTransition ? 0.3 : 0
+                  }}
+                >
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${step.bgColor} text-white mb-6`}>
                     {step.icon}
                   </div>
@@ -452,13 +500,13 @@ const ScrollamaSection = () => {
                       </div>
                     )}
                   </div>
-                </div>
+                </motion.div>
               </div>
             ))}
             
             {/* Extra scrollable content to keep sticky element visible longer */}
-            <div className="h-screen"></div>
-            <div className="h-screen"></div>
+            <div className="h-[60vh]"></div>
+            <div className="h-[60vh]"></div>
             {/* <div className="h-screen"></div> */}
           </div>
         </div>
