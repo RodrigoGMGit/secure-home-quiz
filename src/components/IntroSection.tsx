@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import RollingGallery from './RollingGallery';
 
 const IntroSection = () => {
+  const [galleryLoaded, setGalleryLoaded] = useState(false);
+
   return (
     <section id="intro" className="bg-gradient-to-br from-white via-gray-50 to-blue-50/30 min-h-screen flex flex-col relative">
       {/* Background decorative elements - optimized animations */}
@@ -87,7 +89,11 @@ const IntroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="w-full"
         >
-          <RollingGallery autoplay={true} pauseOnHover={true} />
+          <RollingGallery 
+            autoplay={true} 
+            pauseOnHover={true} 
+            onLoadComplete={() => setGalleryLoaded(true)}
+          />
         </motion.div>
       </div>
       

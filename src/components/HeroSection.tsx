@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
-import { LoadingOverlay } from "@/components/ui/loading-spinner";
+import LoadingComponent from "@/components/ui/loading-component";
 import { useNavigationLoading } from "@/hooks/useNavigationLoading";
 import { motion } from "framer-motion";
 import childGaming from "@/assets/child-gaming-safely.png";
@@ -15,7 +15,7 @@ const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImagesCount, setLoadedImagesCount] = useState(0);
-  const { isLoading, navigateWithLoading } = useNavigationLoading();
+  const { isLoading, loadingType, navigateWithLoading } = useNavigationLoading();
 
   const totalImages = 6; // Número total de imágenes únicas en el marquee
 
@@ -34,14 +34,7 @@ const HeroSection = () => {
   };
 
   const handleConoceMas = () => {
-    const element = document.getElementById('intro');
-    if (element) {
-      // Smooth scroll with enhanced easing using native scrollIntoView
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+    navigateWithLoading('/about', 'about');
   };
 
   const headlineLines = useMemo(
@@ -247,7 +240,7 @@ const HeroSection = () => {
                 variant="primary-brand" 
                 size="lg" 
                 className="uppercase tracking-wide shadow-cta"
-                onClick={() => navigateWithLoading('/quiz')}
+                onClick={() => navigateWithLoading('/quiz', 'quiz')}
                 disabled={isLoading}
               >
                 <Shield className="w-5 h-5" />
@@ -278,8 +271,8 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Loading overlay */}
-      {isLoading && <LoadingOverlay message="Preparando tu evaluación..." />}
+      {/* Loading component */}
+      {isLoading && <LoadingComponent type={loadingType} />}
     </main>
   );
 };

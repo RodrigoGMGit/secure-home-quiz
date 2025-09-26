@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback, memo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, memo, useRef } from 'react';
 import { motion, useMotionValue, useAnimation, useTransform, PanInfo, ResolvedValues } from 'framer-motion';
 
 // Optimized image URLs with smaller dimensions and better compression
@@ -19,24 +19,64 @@ interface RollingGalleryProps {
   autoplay?: boolean;
   pauseOnHover?: boolean;
   images?: string[];
+  onLoadComplete?: () => void;
 }
 
-const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pauseOnHover = false, images = [] }) => {
+const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pauseOnHover = false, images = [], onLoadComplete }) => {
   const galleryImages = useMemo(() => images.length > 0 ? images : IMGS, [images]);
-
   const [isScreenSizeSm, setIsScreenSizeSm] = useState<boolean>(() => window.innerWidth <= 640);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const loadedImagesRef = useRef(new Set<string>());
+
+  // Image loading optimization
+  const handleImageLoad = useCallback((url: string) => {
+    if (!loadedImagesRef.current.has(url)) {
+      loadedImagesRef.current.add(url);
+      setLoadedCount(prev => {
+        const newCount = prev + 1;
+        if (newCount >= galleryImages.length && !imagesLoaded) {
+          setImagesLoaded(true);
+          onLoadComplete?.();
+        }
+        return newCount;
+      });
+    }
+  }, [galleryImages.length, imagesLoaded, onLoadComplete]);
+
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImages = () => {
+      galleryImages.forEach((url) => {
+        const img = new Image();
+        img.onload = () => handleImageLoad(url);
+        img.onerror = () => handleImageLoad(url); // Count as loaded even if failed
+        img.src = url;
+      });
+    };
+
+    preloadImages();
+  }, [galleryImages, handleImageLoad]);
   
-  // Debounced resize handler for better performance
+  // Optimized resize handler with throttling
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    let ticking = false;
+    
     const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsScreenSizeSm(window.innerWidth <= 640);
-      }, 100);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            setIsScreenSizeSm(window.innerWidth <= 640);
+            ticking = false;
+          }, 150);
+        });
+        ticking = true;
+      }
     };
     
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timeoutId);
@@ -60,15 +100,17 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pause
   const transform = useTransform(rotation, (val: number) => `rotate3d(0,1,0,${val}deg)`);
 
   const startInfiniteSpin = useCallback((startAngle: number) => {
+    if (!imagesLoaded) return; // Don't start animation until images are loaded
+    
     controls.start({
       rotateY: [startAngle, startAngle - 360],
       transition: {
-        duration: 60, // Slightly slower for better performance
+        duration: 60,
         ease: 'linear',
         repeat: Infinity
       }
     });
-  }, [controls]);
+  }, [controls, imagesLoaded]);
 
   useEffect(() => {
     if (autoplay) {
@@ -111,6 +153,28 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pause
     }
   }, [autoplay, pauseOnHover, rotation, startInfiniteSpin]);
 
+  // Loading skeleton component
+  const LoadingSkeleton = () => (
+    <div className="flex h-full items-center justify-center">
+      <div className="flex space-x-4">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div
+            key={i}
+            className="h-[100px] w-[250px] bg-gray-200 rounded-[15px] animate-pulse sm:h-[110px] sm:w-[260px] md:h-[120px] md:w-[270px] lg:h-[130px] lg:w-[280px] xl:h-[140px] xl:w-[290px]"
+          />
+        ))}
+      </div>
+    </div>
+  );
+
+  if (!imagesLoaded) {
+    return (
+      <div className="relative h-[160px] sm:h-[170px] md:h-[180px] lg:h-[190px] xl:h-[200px] w-full overflow-hidden">
+        <LoadingSkeleton />
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-[160px] sm:h-[170px] md:h-[180px] lg:h-[190px] xl:h-[200px] w-full overflow-hidden">
       <div className="flex h-full items-center justify-center [perspective:1000px] [transform-style:preserve-3d]">
@@ -143,8 +207,9 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pause
               <img
                 src={url}
                 alt={`Gallery image ${i + 1}`}
-                loading="lazy"
+                loading="eager"
                 className="pointer-events-none h-[100px] w-[250px] rounded-[15px] border-[3px] border-white object-cover transition-transform duration-300 ease-out group-hover:scale-105 sm:h-[110px] sm:w-[260px] md:h-[120px] md:w-[270px] lg:h-[130px] lg:w-[280px] xl:h-[140px] xl:w-[290px]"
+                onLoad={() => handleImageLoad(url)}
               />
             </div>
           ))}
