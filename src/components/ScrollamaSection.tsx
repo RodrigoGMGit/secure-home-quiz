@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import scrollama from 'scrollama';
 import { Shield, Users, Smartphone, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigationLoading } from '@/hooks/useNavigationLoading';
 
 interface Step {
   id: string;
@@ -17,11 +18,80 @@ const ScrollamaSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [videoFinished, setVideoFinished] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
   const scrollamaRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const lastCardRef = useRef<HTMLDivElement>(null);
-  const knockKnockRef = useRef<HTMLDivElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const { navigateWithLoading } = useNavigationLoading();
+
+  // Detect mobile device and user interaction
+  useEffect(() => {
+    // Detect mobile device with more comprehensive checks
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent;
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) || 
+                            window.innerWidth <= 768 ||
+                            ('ontouchstart' in window) ||
+                            (navigator.maxTouchPoints > 0);
+      setIsMobile(isMobileDevice);
+      console.log('Mobile device detected:', isMobileDevice, 'User Agent:', userAgent);
+    };
+    
+    checkMobile();
+    
+    // Track user interaction for mobile autoplay
+    const handleUserInteraction = () => {
+      setUserInteracted(true);
+      console.log('User interaction detected - video autoplay now allowed');
+      // Remove listeners after first interaction
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+    };
+    
+    // Add event listeners for user interaction (more comprehensive)
+    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchend', handleUserInteraction, { once: true });
+    
+    return () => {
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+    };
+  }, []);
+
+  // Reset component state on mount (handles Safari navigation issues)
+  useEffect(() => {
+    console.log('ScrollamaSection mounted - resetting state');
+    
+    // Reset all states
+    setActiveStep(0);
+    setIsVideoPlaying(false);
+    setVideoFinished(false);
+    
+    // Ensure scrolling is enabled
+    document.body.style.overflow = 'auto';
+    
+    // Reset video if it exists
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.pause();
+      videoRef.current.load(); // Force reload for Safari
+    }
+    
+    return () => {
+      console.log('ScrollamaSection unmounting - cleaning up');
+      // Cleanup on unmount
+      document.body.style.overflow = 'auto';
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   const steps: Step[] = [
     {
@@ -65,18 +135,6 @@ const ScrollamaSection = () => {
   useEffect(() => {
     if (!scrollamaRef.current || !scrollerRef.current) return;
 
-    // Enable video playback on first user interaction
-    const enableVideoPlayback = () => {
-      if (videoRef.current) {
-        videoRef.current.play().catch(() => {});
-        document.removeEventListener('click', enableVideoPlayback);
-        document.removeEventListener('scroll', enableVideoPlayback);
-      }
-    };
-
-    document.addEventListener('click', enableVideoPlayback);
-    document.addEventListener('scroll', enableVideoPlayback);
-
     const scroller = scrollama();
     
     scroller
@@ -100,44 +158,94 @@ const ScrollamaSection = () => {
 
     return () => {
       scroller.destroy();
-      document.removeEventListener('click', enableVideoPlayback);
-      document.removeEventListener('scroll', enableVideoPlayback);
     };
   }, [steps.length]);
 
-  // Separate useEffect for IntersectionObserver to detect last card exit
+  // Separate useEffect for IntersectionObserver to detect video container reaching center
   useEffect(() => {
-    if (!lastCardRef.current || !videoRef.current) return;
+    if (!videoContainerRef.current || !videoRef.current) return;
 
-    let hasBeenVisible = false;
     let videoPlayed = false;
+    let observer: IntersectionObserver | null = null;
 
-    const observer = new IntersectionObserver(
+    // Add a small delay for Safari to ensure elements are ready
+    const initObserver = () => {
+      observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Last card is visible
-            hasBeenVisible = true;
-            console.log('Last card is visible');
-          } else if (hasBeenVisible && !videoPlayed) {
-            // Last card was visible before and now has exited, play the video
-            console.log('Last card exited viewport after being visible, playing video');
-            videoRef.current?.play().catch((error) => {
-              console.log('Video play failed:', error);
+          if (entry.isIntersecting && !videoPlayed) {
+            // Check if the video container is actually centered in the viewport
+            const rect = entry.boundingClientRect;
+            const viewportHeight = window.innerHeight;
+            const containerCenter = rect.top + rect.height / 2;
+            const viewportCenter = viewportHeight / 2;
+            const distanceFromCenter = Math.abs(containerCenter - viewportCenter);
+            
+            console.log('Video container IntersectionObserver triggered:', {
+              isIntersecting: entry.isIntersecting,
+              intersectionRatio: entry.intersectionRatio,
+              containerCenter,
+              viewportCenter,
+              distanceFromCenter,
+              videoPlayed
             });
-            videoPlayed = true;
-            // Disconnect observer after first trigger
-            observer.disconnect();
+            
+             // Only trigger if video container is within 200px of viewport center
+             if (distanceFromCenter < 200) {
+               console.log('Video container reached center, starting video in 500ms');
+               // Disable scrolling immediately when video should start
+               document.body.style.overflow = 'hidden';
+               setTimeout(() => {
+                 if (!videoPlayed) {
+                   console.log('Playing video');
+                   
+                   // For mobile devices, check if user has interacted
+                   if (isMobile && !userInteracted) {
+                     console.log('Mobile device detected - user interaction required for video playback');
+                     // Re-enable scrolling since video can't play
+                     document.body.style.overflow = 'auto';
+                     videoPlayed = true; // Mark as played to prevent retries
+                     observer.disconnect();
+                     return;
+                   }
+                   
+                   videoRef.current?.play().catch((error) => {
+                     console.log('Video play failed:', error);
+                     // Re-enable scrolling if video fails to play
+                     document.body.style.overflow = 'auto';
+                     
+                     // On mobile, if autoplay fails, mark as finished to allow scrolling
+                     if (isMobile) {
+                       setVideoFinished(true);
+                     }
+                   });
+                   videoPlayed = true;
+                   // Disconnect observer after first trigger
+                   observer.disconnect();
+                 }
+               }, 500); // Small delay as requested
+             } else {
+               console.log('Video container not centered enough, distance:', distanceFromCenter);
+             }
           }
         });
       },
-      { threshold: 0.1 } // Trigger when 10% of the card is visible
+      { 
+        threshold: 0.8 // Trigger when container is 80% visible (more centered)
+      }
     );
 
-    observer.observe(lastCardRef.current);
+      observer.observe(videoContainerRef.current);
+    };
+
+    // Initialize observer with a small delay for Safari
+    const timeoutId = setTimeout(initObserver, 100);
 
     return () => {
-      observer.disconnect();
+      clearTimeout(timeoutId);
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, []);
 
@@ -145,9 +253,30 @@ const ScrollamaSection = () => {
   useEffect(() => {
     if (!videoRef.current) return;
 
+    const scrollToFirstCard = () => {
+      // Find the first step element (index 0)
+      const firstStepElement = document.querySelector('[data-step="0"]');
+      if (firstStepElement) {
+        // Calculate the position to center the first card
+        const elementRect = firstStepElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const elementCenter = elementRect.top + elementRect.height / 2;
+        const viewportCenter = viewportHeight / 2;
+        const scrollOffset = elementCenter - viewportCenter;
+        
+        // Smooth scroll to center the first card
+        window.scrollBy({
+          top: scrollOffset,
+          behavior: 'smooth'
+        });
+        
+        console.log('Scrolling to center first card after video completion');
+      }
+    };
+
     const handlePlay = () => {
       setIsVideoPlaying(true);
-      console.log('Video started playing');
+      console.log('Video started playing - scrolling should be disabled');
     };
 
     const handlePause = () => {
@@ -158,32 +287,22 @@ const ScrollamaSection = () => {
     const handleEnded = () => {
       setIsVideoPlaying(false);
       setVideoFinished(true);
-      console.log('Video finished');
-      // Scroll to center the knock knock card
-      setTimeout(() => {
-        if (knockKnockRef.current) {
-          knockKnockRef.current.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-          });
-        }
-      }, 500);
+      document.body.style.overflow = 'auto'; // Ensure scrolling is re-enabled
+      console.log('Video finished - scrolling re-enabled');
+      
+      // Center the first card after a short delay to ensure scrolling is re-enabled
+      setTimeout(scrollToFirstCard, 100);
     };
 
     const handleTimeUpdate = () => {
       if (videoRef.current && videoRef.current.currentTime >= 4) {
         videoRef.current.pause();
         setVideoFinished(true);
-        console.log('Video stopped at 4 seconds');
-        // Scroll to center the knock knock card
-        setTimeout(() => {
-          if (knockKnockRef.current) {
-            knockKnockRef.current.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'center' 
-            });
-          }
-        }, 500);
+        document.body.style.overflow = 'auto'; // Ensure scrolling is re-enabled
+        console.log('Video stopped at 4 seconds - scrolling re-enabled');
+        
+        // Center the first card after a short delay to ensure scrolling is re-enabled
+        setTimeout(scrollToFirstCard, 100);
       }
     };
 
@@ -205,8 +324,10 @@ const ScrollamaSection = () => {
   useEffect(() => {
     if (isVideoPlaying && !videoFinished) {
       document.body.style.overflow = 'hidden';
+      console.log('Scrolling disabled - video is playing');
     } else {
       document.body.style.overflow = 'auto';
+      console.log('Scrolling enabled - video not playing or finished');
     }
 
     return () => {
@@ -220,25 +341,59 @@ const ScrollamaSection = () => {
       <section className="relative bg-white">
         <div className="relative">
           {/* Sticky Graphic - Center Element (Behind content) */}
-          <div className="sticky top-0 z-0 h-screen flex items-center justify-center">
+          <div ref={videoContainerRef} className="sticky top-0 z-0 h-screen flex items-center justify-center">
             {/* Central Video */}
-            <div className="w-96 h-[600px] rounded-2xl overflow-hidden">
+            <div className="w-96 h-[600px] rounded-2xl overflow-hidden relative">
               <video
                 ref={videoRef}
                 src="/assets/door.mp4"
                 muted
                 playsInline
+                preload="metadata"
+                webkit-playsinline="true"
                 className="w-full h-full object-cover"
               />
+              
+              {/* Mobile play button overlay */}
+              {isMobile && !userInteracted && !videoFinished && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+                  <div className="text-center">
+                    <button
+                      onClick={() => {
+                        setUserInteracted(true);
+                        videoRef.current?.play().catch((error) => {
+                          console.log('Manual video play failed:', error);
+                          setVideoFinished(true);
+                        });
+                      }}
+                      className="bg-white/95 hover:bg-white text-gray-800 rounded-full p-6 shadow-xl transition-all duration-200 hover:scale-105 mb-3"
+                      aria-label="Reproducir video"
+                    >
+                      <svg className="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </button>
+                    <p className="text-white text-sm font-medium bg-black/50 px-3 py-1 rounded-full">
+                      Toca para reproducir
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Scrollable Steps (In front of sticky element) */}
           <div ref={scrollerRef} className="relative z-10">
+            {/* Empty step to give more space for video */}
+            <div className="scrollama-step h-screen flex items-center justify-center">
+              <div className="text-center max-w-6xl mx-auto px-8">
+                {/* Empty space for video to play */}
+              </div>
+            </div>
+
             {steps.map((step, index) => (
               <div
                 key={step.id}
-                ref={index === steps.length - 1 ? lastCardRef : null}
                 className="scrollama-step h-screen flex items-center justify-center"
                 data-step={index}
               >
@@ -301,60 +456,6 @@ const ScrollamaSection = () => {
               </div>
             ))}
             
-            {/* Knock knock text - fixed only during video playback */}
-            <div 
-              ref={knockKnockRef}
-              className={`scrollama-step h-screen flex items-center justify-center ${isVideoPlaying && !videoFinished ? 'fixed inset-0 z-20' : ''}`}
-            >
-              <div className="text-center max-w-6xl mx-auto px-8">
-                <motion.h3 
-                  className="font-heading text-3xl font-bold text-white drop-shadow-lg"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.8, 
-                    ease: "easeOut",
-                    delay: 0.2
-                  }}
-                  animate={isVideoPlaying && !videoFinished ? {
-                    scale: [1, 1.05, 1],
-                    opacity: [1, 0.8, 1]
-                  } : {}}
-                  transition={{
-                    duration: 2,
-                    repeat: isVideoPlaying && !videoFinished ? Infinity : 0,
-                    ease: "easeInOut"
-                  }}
-                >
-                  Knock knock...
-                </motion.h3>
-                
-                
-                {/* Continue scrolling indicator */}
-                {videoFinished && (
-                  <motion.div
-                    className="mt-6 text-white/70 text-lg"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      <span>Continúa deslizando...</span>
-                      <motion.div
-                        animate={{ y: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </div>
-            
             {/* Extra scrollable content to keep sticky element visible longer */}
             <div className="h-screen"></div>
             <div className="h-screen"></div>
@@ -374,10 +475,16 @@ const ScrollamaSection = () => {
               Comienza tu evaluación personalizada y obtén un plan de acción específico para tu familia
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-brand-teal-500 hover:bg-brand-teal-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+              <button 
+                className="bg-brand-teal-500 hover:bg-brand-teal-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+                onClick={() => navigateWithLoading('/quiz', 'quiz')}
+              >
                 Comenzar Evaluación
               </button>
-              <button className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-teal-50 font-semibold py-3 px-8 rounded-lg transition-colors">
+              <button 
+                className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-teal-50 font-semibold py-3 px-8 rounded-lg transition-colors"
+                onClick={() => navigateWithLoading('/about', 'about')}
+              >
                 Saber Más
               </button>
             </div>
