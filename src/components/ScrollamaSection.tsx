@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import scrollama from 'scrollama';
-import { Shield, Users, Smartphone, CheckCircle } from 'lucide-react';
+import { Shield, Users, Smartphone, CheckCircle, Monitor, Lock, Clock, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigationLoading } from '@/hooks/useNavigationLoading';
+import StackingCards from './StackingCards';
 
 interface Step {
   id: string;
@@ -131,6 +132,41 @@ const ScrollamaSection = () => {
       color: 'from-brand-ink-500 to-brand-ink-600',
       bgColor: 'bg-brand-ink-500',
       percentage: '100%'
+    }
+  ];
+
+  const stackingCardsData = [
+    {
+      id: 'card-1',
+      title: 'Filtros de Contenido',
+      description: 'Protege a tus hijos de contenido inapropiado con filtros inteligentes que bloquean automáticamente sitios web, videos y aplicaciones no deseadas.',
+      icon: <Monitor className="w-8 h-8" />,
+      color: 'from-brand-teal-500 to-brand-teal-600',
+      bgColor: 'bg-brand-teal-500'
+    },
+    {
+      id: 'card-2',
+      title: 'Control Parental',
+      description: 'Monitorea y controla el uso de dispositivos de tu familia con herramientas avanzadas que te permiten establecer límites de tiempo y supervisar actividades.',
+      icon: <Lock className="w-8 h-8" />,
+      color: 'from-brand-olive-500 to-brand-olive-600',
+      bgColor: 'bg-brand-olive-500'
+    },
+    {
+      id: 'card-3',
+      title: 'Gestión de Tiempo',
+      description: 'Ayuda a tu familia a desarrollar hábitos digitales saludables con herramientas que promueven el equilibrio entre el tiempo en pantalla y otras actividades.',
+      icon: <Clock className="w-8 h-8" />,
+      color: 'from-brand-mint-500 to-brand-mint-600',
+      bgColor: 'bg-brand-mint-500'
+    },
+    {
+      id: 'card-4',
+      title: 'Protección Familiar',
+      description: 'Mantén a toda tu familia segura con una solución integral que combina tecnología avanzada y orientación experta para la seguridad digital.',
+      icon: <Heart className="w-8 h-8" />,
+      color: 'from-brand-ink-500 to-brand-ink-600',
+      bgColor: 'bg-brand-ink-500'
     }
   ];
 
@@ -363,7 +399,7 @@ const ScrollamaSection = () => {
   return (
     <>
       {/* Scrollytelling Section */}
-      <section className="relative bg-white">
+      <section id="scrollama-section" className="relative bg-white">
         <div className="relative">
           {/* Sticky Graphic - Center Element (Behind content) */}
           <div ref={videoContainerRef} className="sticky top-0 z-0 h-screen flex items-center justify-center">
@@ -440,9 +476,9 @@ const ScrollamaSection = () => {
               >
                 <motion.div 
                   className="text-center max-w-6xl mx-auto px-8"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 20 }}
                   animate={{ 
-                    opacity: activeStep === index ? 1 : 0.7,
+                    opacity: 1,
                     y: activeStep === index ? 0 : 10,
                     scale: activeStep === index ? 1 : 0.98
                   }}
@@ -517,6 +553,9 @@ const ScrollamaSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Stacking Cards Section */}
+      <StackingCards cards={stackingCardsData} />
 
       {/* New Section After Scrollama */}
       <section className="bg-white py-20">

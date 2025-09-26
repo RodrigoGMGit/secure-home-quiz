@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
-import { memo, useMemo, useState } from 'react';
-import RollingGallery from './RollingGallery';
+import { memo, useState } from 'react';
+import TextType from './ui/TextType';
 
 const IntroSection = () => {
-  const [galleryLoaded, setGalleryLoaded] = useState(false);
+  const [textAnimationComplete, setTextAnimationComplete] = useState(false);
+
+  // Note: Auto-scroll removed - users will manually scroll after seeing the legend
 
   return (
-    <section id="intro" className="bg-gradient-to-br from-white via-gray-50 to-blue-50/30 min-h-screen flex flex-col relative">
+    <section id="intro" className="bg-gradient-to-br from-white via-gray-50 to-blue-50/30 min-h-screen flex flex-col items-center justify-start relative pt-16 sm:pt-20 md:pt-24">
+
       {/* Background decorative elements - optimized animations */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
@@ -35,87 +38,76 @@ const IntroSection = () => {
         />
       </div>
 
-      {/* Main content area */}
-      <div className="flex flex-col justify-start px-4 pt-6 md:pt-8 lg:pt-10 relative z-10">
-        <div className="container mx-auto max-w-4xl">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ 
-              duration: 0.6, 
-              ease: "easeOut"
+      {/* Title positioned towards top */}
+      <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 pt-8 sm:pt-12 md:pt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            rotate: 0
+          }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeOut",
+            delay: 0.2
+          }}
+          className="max-w-4xl mx-auto"
+          style={{ transform: 'none' }}
+        >
+          <h1 
+            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-brand-ink-900 leading-tight tracking-tight text-center transform-none"
+            style={{ 
+              transform: 'none !important',
+              writingMode: 'horizontal-tb',
+              textOrientation: 'mixed'
             }}
           >
-            {/* Modern badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-brand-blue-200/50 shadow-sm mb-4 md:mb-6">
-              <div className="w-2 h-2 bg-brand-blue-500 rounded-full animate-pulse" />
-              <span className="text-sm md:text-base font-medium text-brand-ink-700">Protección Digital Familiar</span>
-            </div>
-
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-brand-ink-900 mb-4 md:mb-6 leading-tight tracking-tight">
-              La puerta ya no es{' '}
-              <span className="relative">
-                <span className="text-brand-blue-500">la calle</span>
-                <motion.div 
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-brand-blue-400 to-brand-blue-600 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                />
-              </span>
-            </h1>
-            
-            <div className="space-y-3 md:space-y-4">
-              <p className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-xl text-brand-ink-800 leading-relaxed font-medium">
-                Hoy los riesgos no llegan solo de afuera, también entran por las pantallas.
-              </p>
-              <p className="text-base sm:text-lg md:text-lg lg:text-lg xl:text-lg text-brand-ink-700 leading-relaxed">
-                En México, muchos peligros digitales inician en redes sociales y apps usadas a diario por niñas y niños.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Rolling Gallery Section */}
-      <div className="relative z-10 mt-8 md:mt-12 lg:mt-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="w-full"
-        >
-          <RollingGallery 
-            autoplay={true} 
-            pauseOnHover={true} 
-            onLoadComplete={() => setGalleryLoaded(true)}
-          />
+            <TextType
+              text={["La puerta ya no es la calle..."]}
+              as="span"
+              typingSpeed={120}
+              initialDelay={1000}
+              pauseDuration={1500}
+              loop={false}
+              showCursor={true}
+              cursorCharacter="|"
+              cursorBlinkDuration={0.8}
+              startOnVisible={true}
+              className="text-brand-ink-900 block text-center transform-none"
+              textColors={["#1f2937"]}
+              variableSpeed={{ min: 80, max: 150 }}
+              onSentenceComplete={() => {
+                // Animation completed - trigger legend appearance
+                console.log('Text animation completed! Setting textAnimationComplete to true');
+                setTextAnimationComplete(true);
+              }}
+            />
+          </h1>
         </motion.div>
       </div>
-      
-      {/* Legend at the bottom - positioned at screen bottom */}
-      <div className="flex justify-center pb-8 relative z-10 mt-auto">
-        <motion.div 
-          className="bg-white/80 backdrop-blur-sm rounded-lg px-6 py-4 shadow-sm border border-gray-100 text-center max-w-sm mx-4"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <p className="text-sm text-brand-ink-600 mb-1 font-medium">
+
+      {/* Interactive experience legend - positioned at bottom with mobile safe area */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: textAnimationComplete ? 1 : 0, 
+          y: textAnimationComplete ? 0 : 20 
+        }}
+        transition={{ duration: 0.8, delay: textAnimationComplete ? 0.5 : 0 }}
+        className="absolute bottom-0 left-0 right-0 z-10 pb-20 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-8"
+      >
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg px-6 py-4 shadow-lg border border-gray-200/50 text-center max-w-sm mx-auto">
+          <p className="text-sm sm:text-base text-brand-ink-600 mb-2 font-medium">
             Esta es una experiencia interactiva
           </p>
-          <p className="text-sm text-brand-ink-500">
+          <p className="text-sm text-brand-ink-500 mb-4">
             Continúa deslizando hacia abajo para descubrir más
           </p>
           <motion.div 
-            className="mt-4 flex justify-center"
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="flex justify-center"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             <svg 
               className="w-5 h-5 text-brand-blue-400" 
@@ -131,8 +123,8 @@ const IntroSection = () => {
               />
             </svg>
           </motion.div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 };
