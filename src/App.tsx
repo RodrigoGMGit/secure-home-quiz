@@ -8,6 +8,10 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Quiz from "./pages/Quiz";
 import NotFound from "./pages/NotFound";
+import TuFamilia from "./pages/TuFamilia";
+import TuFamiliaConectada from "./pages/TuFamiliaConectada";
+import TuFamiliaRedesSociales from "./pages/TuFamiliaRedesSociales";
+import TuFamiliaVideojuegos from "./pages/TuFamiliaVideojuegos";
 
 const queryClient = new QueryClient();
 const routerBase =
@@ -47,6 +51,10 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/aprende/tu-familia" element={<TuFamilia />} />
+            <Route path="/aprende/tu-familia/conectada" element={<TuFamiliaConectada />} />
+            <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
+            <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
