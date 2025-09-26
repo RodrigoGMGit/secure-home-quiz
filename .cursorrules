@@ -69,3 +69,9 @@ This is a Spanish-language (ES-MX) educational website for Mexican parents/guard
 - Respect privacy with opt-in email collection
 - Use first-party analytics (no third-party tracking)
 - Follow Mexican privacy regulations
+
+## Implementation Guidelines
+- Para la implementación de estas secciones, que la información venga de manual.md
+- Utiliza el sistema de diseño del proyecto en todas las cosas a implementar
+- Que todo lo que implementes sea responsive
+- Cuando finalices de implementar algo marca en este documento como finalizado la sección o tarea

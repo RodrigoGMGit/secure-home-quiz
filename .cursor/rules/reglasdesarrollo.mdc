@@ -1,0 +1,13 @@
+---
+description: Reglas de desarrollo para el proyecto Secure Home Quiz
+globs:
+alwaysApply: true
+---
+
+# Reglas de Desarrollo - Secure Home Quiz
+
+## Implementación de Secciones
+- Para la implementación de estas secciones, que la información venga de manual.md
+- Utiliza el sistema de diseño del proyecto en todas las cosas a implementar
+- Que todo lo que implementes sea responsive
+- Cuando finalices de implementar algo marca en este documento como finalizado la sección o tarea
