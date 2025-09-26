@@ -15,10 +15,13 @@ interface Step {
 
 const ScrollamaSection = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [videoFinished, setVideoFinished] = useState(false);
   const scrollamaRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastCardRef = useRef<HTMLDivElement>(null);
+  const knockKnockRef = useRef<HTMLDivElement>(null);
 
   const steps: Step[] = [
     {
@@ -138,24 +141,78 @@ const ScrollamaSection = () => {
     };
   }, []);
 
-  // Effect to handle video time limit (stop at 4 seconds)
+  // Effect to handle video playback and completion
   useEffect(() => {
     if (!videoRef.current) return;
+
+    const handlePlay = () => {
+      setIsVideoPlaying(true);
+      console.log('Video started playing');
+    };
+
+    const handlePause = () => {
+      setIsVideoPlaying(false);
+      console.log('Video paused');
+    };
+
+    const handleEnded = () => {
+      setIsVideoPlaying(false);
+      setVideoFinished(true);
+      console.log('Video finished');
+      // Scroll to center the knock knock card
+      setTimeout(() => {
+        if (knockKnockRef.current) {
+          knockKnockRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }
+      }, 500);
+    };
 
     const handleTimeUpdate = () => {
       if (videoRef.current && videoRef.current.currentTime >= 4) {
         videoRef.current.pause();
+        setVideoFinished(true);
         console.log('Video stopped at 4 seconds');
+        // Scroll to center the knock knock card
+        setTimeout(() => {
+          if (knockKnockRef.current) {
+            knockKnockRef.current.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }
+        }, 500);
       }
     };
 
     const video = videoRef.current;
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+    video.addEventListener('ended', handleEnded);
     video.addEventListener('timeupdate', handleTimeUpdate);
 
     return () => {
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
+      video.removeEventListener('ended', handleEnded);
       video.removeEventListener('timeupdate', handleTimeUpdate);
     };
   }, []);
+
+  // Effect to prevent scrolling when video is playing
+  useEffect(() => {
+    if (isVideoPlaying && !videoFinished) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isVideoPlaying, videoFinished]);
 
   return (
     <>
@@ -185,18 +242,10 @@ const ScrollamaSection = () => {
                 className="scrollama-step h-screen flex items-center justify-center"
                 data-step={index}
               >
-                <div className="text-center max-w-2xl mx-auto px-8">
+                <div className="text-center max-w-6xl mx-auto px-8">
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${step.bgColor} text-white mb-6`}>
                     {step.icon}
                   </div>
-                  
-                  <h3 className="font-heading text-3xl font-bold text-brand-ink-900 mb-4">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-lg text-brand-olive-500 leading-relaxed mb-8">
-                    {step.description}
-                  </p>
                   
                   {/* Additional content for each step */}
                   <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">
@@ -252,10 +301,64 @@ const ScrollamaSection = () => {
               </div>
             ))}
             
+            {/* Knock knock text - fixed only during video playback */}
+            <div 
+              ref={knockKnockRef}
+              className={`scrollama-step h-screen flex items-center justify-center ${isVideoPlaying && !videoFinished ? 'fixed inset-0 z-20' : ''}`}
+            >
+              <div className="text-center max-w-6xl mx-auto px-8">
+                <motion.h3 
+                  className="font-heading text-3xl font-bold text-white drop-shadow-lg"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: "easeOut",
+                    delay: 0.2
+                  }}
+                  animate={isVideoPlaying && !videoFinished ? {
+                    scale: [1, 1.05, 1],
+                    opacity: [1, 0.8, 1]
+                  } : {}}
+                  transition={{
+                    duration: 2,
+                    repeat: isVideoPlaying && !videoFinished ? Infinity : 0,
+                    ease: "easeInOut"
+                  }}
+                >
+                  Knock knock...
+                </motion.h3>
+                
+                
+                {/* Continue scrolling indicator */}
+                {videoFinished && (
+                  <motion.div
+                    className="mt-6 text-white/70 text-lg"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <span>Continúa deslizando...</span>
+                      <motion.div
+                        animate={{ y: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+            
             {/* Extra scrollable content to keep sticky element visible longer */}
             <div className="h-screen"></div>
             <div className="h-screen"></div>
-            <div className="h-screen"></div>
+            {/* <div className="h-screen"></div> */}
           </div>
         </div>
       </section>
