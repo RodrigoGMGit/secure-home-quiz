@@ -28,7 +28,7 @@ const GlobalHeader = () => {
     },
     {
       title: "Conoce Más",
-      href: "/conoce-mas",
+      href: "/about",
       icon: BookOpen,
     },
     {
@@ -95,41 +95,72 @@ const GlobalHeader = () => {
   const MobileMenu = () => (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-6 w-6" />
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="md:hidden hover:bg-brand-mint-200/30 transition-smooth"
+        >
+          <Menu className="h-6 w-6 text-brand-ink-800" />
           <span className="sr-only">Abrir menú</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-        <div className="flex flex-col space-y-4 mt-6">
-          <div className="text-lg font-semibold text-primary mb-4">
-            Hogares Digitales Seguros
+      <SheetContent 
+        side="right" 
+        className="w-[320px] sm:w-[400px] bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-l border-brand-mint-200/30 flex flex-col p-0"
+      >
+        {/* Header fijo con logo circular */}
+        <div className="flex-shrink-0 p-6 border-b border-brand-mint-200/30 bg-gradient-to-r from-white to-brand-mint-200/10">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+              <Shield className="h-6 w-6 text-primary-foreground" />
+            </div>
+            <div>
+              <div className="text-lg font-heading font-bold text-brand-ink-900">
+                Hogares Digitales Seguros
+              </div>
+              <div className="text-xs text-brand-olive-500 font-body">
+                Navegación
+              </div>
+            </div>
           </div>
-          
-          <Accordion type="single" collapsible className="w-full">
-            {navigationItems.map((item) => {
+        </div>
+
+        {/* Contenido scrolleable */}
+        <div className="flex-1 overflow-y-auto p-6">
+          <Accordion type="single" collapsible className="w-full space-y-2">
+            {navigationItems.map((item, index) => {
               if (item.hasSubmenu && item.submenu) {
                 return (
-                  <AccordionItem key={item.title} value={item.title}>
-                    <AccordionTrigger className="text-left">
-                      <div className="flex items-center space-x-2">
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.title}</span>
+                  <AccordionItem 
+                    key={item.title} 
+                    value={item.title}
+                    className="border border-brand-mint-200/30 rounded-lg mb-2 bg-gradient-to-r from-white to-brand-mint-200/10"
+                  >
+                    <AccordionTrigger className="text-left px-4 py-3 hover:bg-brand-mint-200/20 transition-smooth rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-1.5 bg-brand-teal-500/20 rounded-lg">
+                          <item.icon className="h-4 w-4 text-brand-teal-500" />
+                        </div>
+                        <span className="font-heading font-semibold text-brand-ink-800">{item.title}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="space-y-2 pl-4">
-                        {item.submenu.map((subItem) => (
+                    <AccordionContent className="px-4 pb-4">
+                      <div className="space-y-2 pl-2">
+                        {item.submenu.map((subItem, subIndex) => (
                           <Link
                             key={subItem.href}
                             to={subItem.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-start space-x-3 p-2 rounded-md hover:bg-accent transition-colors"
+                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-brand-mint-200/30 transition-smooth group"
                           >
-                            <subItem.icon className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                            <div>
-                              <div className="font-medium text-sm">{subItem.title}</div>
-                              <div className="text-xs text-muted-foreground">
+                            <div className="p-1 bg-brand-mint-200/40 rounded-md group-hover:bg-brand-teal-500/20 transition-smooth">
+                              <subItem.icon className="h-3 w-3 text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-heading font-medium text-sm text-brand-ink-900 group-hover:text-brand-teal-500 transition-colors">
+                                {subItem.title}
+                              </div>
+                              <div className="text-xs text-brand-olive-500 font-body leading-relaxed mt-1">
                                 {subItem.description}
                               </div>
                             </div>
@@ -147,18 +178,41 @@ const GlobalHeader = () => {
                   to={item.href!}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "flex items-center space-x-2 p-2 rounded-md transition-colors",
+                    "flex items-center space-x-3 p-4 rounded-lg transition-smooth group border",
                     isActive(item.href!) 
-                      ? "bg-primary text-primary-foreground" 
-                      : "hover:bg-accent"
+                      ? "bg-gradient-to-r from-brand-teal-500/20 to-brand-mint-200/30 border-brand-teal-500/30 text-brand-ink-900" 
+                      : "border-brand-mint-200/30 bg-gradient-to-r from-white to-brand-mint-200/10 hover:bg-brand-mint-200/20 hover:border-brand-teal-500/20"
                   )}
                 >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.title}</span>
+                  <div className={cn(
+                    "p-1.5 rounded-lg transition-smooth",
+                    isActive(item.href!)
+                      ? "bg-brand-teal-500/30"
+                      : "bg-brand-mint-200/40 group-hover:bg-brand-teal-500/20"
+                  )}>
+                    <item.icon className={cn(
+                      "h-4 w-4 transition-colors",
+                      isActive(item.href!)
+                        ? "text-brand-teal-500"
+                        : "text-brand-ink-800 group-hover:text-brand-teal-500"
+                    )} />
+                  </div>
+                  <span className="font-heading font-semibold text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors">
+                    {item.title}
+                  </span>
                 </Link>
               );
             })}
           </Accordion>
+        </div>
+
+        {/* Footer fijo del menú */}
+        <div className="flex-shrink-0 p-6 border-t border-brand-mint-200/30 bg-gradient-to-r from-brand-mint-200/10 to-white">
+          <div className="text-center">
+            <p className="text-xs text-brand-olive-500 font-body">
+              Protegiendo familias digitales
+            </p>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

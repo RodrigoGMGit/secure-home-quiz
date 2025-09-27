@@ -69,12 +69,12 @@ Asegurate de leer y considerar estas Instrucciones de implementación:
   * CTA: "Descargar guía PDF" o "Ver video corto".
 * Incluir banners visuales con frases del manual (ej. “El silencio también educa”).
 
-### 1.4 Comunicación y Apoyo
+### 1.4 Comunicación y Apoyo ✅ FINALIZADO
 
-* Implementar **listado de señales de alerta** con íconos representativos (ej. tristeza, aislamiento, cambios de humor).
-* Crear **cards con frases sugeridas** para iniciar conversación.
-* Añadir **carrusel de historias reales** extraídas del manual con CTA: “Cómo actuar en este caso”.
-* UI de estilo cálido (colores suaves, tipografía legible) para transmitir cercanía y confianza.
+* ✅ Implementar **listado de señales de alerta** con íconos representativos (ej. tristeza, aislamiento, cambios de humor).
+* ✅ Crear **cards con frases sugeridas** para iniciar conversación.
+* ✅ Añadir **carrusel de historias reales** extraídas del manual con CTA: "Cómo actuar en este caso".
+* ✅ UI de estilo cálido (colores suaves, tipografía legible) para transmitir cercanía y confianza.
 
 ### 1.5 Acciones Legales y Apoyo
 

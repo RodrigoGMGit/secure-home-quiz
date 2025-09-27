@@ -1,0 +1,1091 @@
+---
+description: Sistema de Diseño Completo - Secure Home Quiz / Hogares Seguros
+globs: ["**/*.tsx", "**/*.ts", "**/*.css"]
+alwaysApply: true
+---
+
+# Sistema de Diseño - Secure Home Quiz / Hogares Seguros
+
+## 1. Identidad de Marca
+
+### Nombre del Proyecto
+- **Título Principal**: "Secure Home Quiz" / "Hogares Seguros"
+- **Propósito**: Plataforma educativa para padres mexicanos sobre seguridad digital infantil
+- **Idioma**: Español (México)
+- **Tono**: Cálido, accionable, de apoyo
+
+## 2. Paleta de Colores
+
+### Colores Principales de Marca
+```css
+/* Colores oficiales de la marca Hogares Seguros */
+--brand-ink-900: #002B36    /* PMS 547C - Texto principal, títulos */
+--brand-ink-800: #003556    /* PMS 302C - Botones primarios, hover */
+--brand-teal-500: #3994B2   /* PMS 7459C - Acentos, enlaces */
+--brand-olive-500: #576D5B  /* PMS 5615C - Texto secundario */
+--brand-mint-200: #B0E0D6   /* PMS 573C - Fondos suaves, acentos */
+--neutral-100: #D5D6D5      /* Cool Gray 1C - Bordes, fondos neutros */
+--white: #FFFFFF            /* Fondo principal */
+```
+
+### Mapeo de Colores del Sistema
+```css
+/* Colores semánticos */
+--primary: var(--brand-teal-500)           /* Acentos principales */
+--primary-foreground: var(--white)         /* Texto sobre primario */
+--primary-hover: var(--brand-ink-800)      /* Hover de primarios */
+
+--secondary: var(--neutral-100)            /* Elementos secundarios */
+--secondary-foreground: var(--brand-ink-800) /* Texto sobre secundario */
+
+--accent: var(--brand-mint-200)            /* Acentos suaves */
+--accent-foreground: var(--brand-ink-800)  /* Texto sobre acento */
+
+--muted: var(--neutral-100)                /* Elementos silenciados */
+--muted-foreground: var(--brand-olive-500) /* Texto silenciado */
+
+--background: var(--white)                 /* Fondo principal */
+--background-subtle: var(--brand-mint-200) /* Fondos sutiles */
+--foreground: var(--brand-ink-900)         /* Texto principal */
+```
+
+### Uso de Colores
+- **Botones Primarios**: `--brand-ink-800` con texto blanco, hover `--brand-ink-900`
+- **Enlaces y Acentos**: `--brand-teal-500`
+- **Fondos Suaves**: `--brand-mint-200` o `--neutral-100`
+- **Texto Principal**: `--brand-ink-900` sobre blanco
+- **Texto Secundario**: `--brand-olive-500`
+- **Bordes**: `--neutral-100`
+
+## 3. Tipografía
+
+### Familias de Fuentes
+```css
+/* Fuentes principales */
+--font-heading: "Brandon Grotesque", "Inter", "ui-sans-serif", "system-ui", "sans-serif"
+--font-body: "Uniform", "Inter", "ui-sans-serif", "system-ui", "sans-serif"
+```
+
+### Jerarquía Tipográfica
+- **Títulos Principales**: Brandon Grotesque Bold, mayúsculas
+- **Títulos Secundarios**: Brandon Grotesque Bold, tamaño mediano
+- **Texto del Cuerpo**: Uniform Regular/Bold
+- **Fallbacks**: Montserrat, Inter, Arial
+
+### Tamaños y Espaciado
+- **Base**: 16px (1rem)
+- **Interlínea**: 1.5 (24px)
+- **Tap-target mínimo**: 44px
+- **Foco visible**: Siempre presente
+
+### Escala Tipográfica Responsiva
+```css
+/* Títulos principales */
+--text-hero: 3rem sm:4rem md:5rem lg:6rem    /* Títulos de página */
+--text-h1: 2rem sm:3rem md:4rem lg:5rem      /* Títulos principales */
+--text-h2: 1.5rem sm:2rem md:2.5rem lg:3rem  /* Títulos secundarios */
+--text-h3: 1.25rem sm:1.5rem md:1.75rem lg:2rem /* Títulos terciarios */
+--text-h4: 1.125rem sm:1.25rem md:1.5rem lg:1.75rem /* Títulos de sección */
+
+/* Texto del cuerpo */
+--text-body-lg: 1.125rem sm:1.25rem md:1.5rem lg:1.75rem /* Párrafos grandes */
+--text-body: 1rem sm:1.125rem md:1.25rem lg:1.375rem     /* Párrafos normales */
+--text-body-sm: 0.875rem sm:1rem md:1.125rem lg:1.25rem  /* Párrafos pequeños */
+--text-caption: 0.75rem sm:0.875rem md:1rem lg:1.125rem  /* Texto de apoyo */
+
+/* Elementos especiales */
+--text-button: 0.875rem sm:1rem md:1.125rem lg:1.25rem   /* Botones */
+--text-label: 0.75rem sm:0.875rem md:1rem lg:1.125rem    /* Labels */
+--text-meta: 0.75rem sm:0.875rem                         /* Metadatos */
+```
+
+### Clases de Tailwind para Tipografía
+```css
+/* Títulos */
+.text-hero { @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl }
+.text-h1 { @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl }
+.text-h2 { @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl }
+.text-h3 { @apply text-lg sm:text-xl md:text-2xl lg:text-3xl }
+.text-h4 { @apply text-base sm:text-lg md:text-xl lg:text-2xl }
+
+/* Texto del cuerpo */
+.text-body-lg { @apply text-lg sm:text-xl md:text-2xl lg:text-3xl }
+.text-body { @apply text-base sm:text-lg md:text-xl lg:text-2xl }
+.text-body-sm { @apply text-sm sm:text-base md:text-lg lg:text-xl }
+.text-caption { @apply text-xs sm:text-sm md:text-base lg:text-lg }
+
+/* Elementos especiales */
+.text-button { @apply text-sm sm:text-base md:text-lg lg:text-xl }
+.text-label { @apply text-xs sm:text-sm md:text-base lg:text-lg }
+.text-meta { @apply text-xs sm:text-sm }
+```
+
+## 4. Espaciado y Layout
+
+### Escala de Espaciado
+```css
+--space-1: 4px    /* Espaciado mínimo */
+--space-2: 8px    /* Espaciado pequeño */
+--space-3: 12px   /* Espaciado mediano */
+--space-4: 16px   /* Espaciado base */
+--space-6: 24px   /* Espaciado grande */
+--space-8: 32px   /* Espaciado extra grande */
+```
+
+### Espaciado Responsivo
+```css
+/* Padding de contenedores */
+--padding-container: 1rem sm:2rem md:3rem lg:4rem
+--padding-section: 2rem sm:3rem md:4rem lg:6rem
+--padding-card: 1rem sm:1.5rem md:2rem lg:2.5rem
+
+/* Margin entre secciones */
+--margin-section: 2rem sm:3rem md:4rem lg:6rem
+--margin-element: 1rem sm:1.5rem md:2rem lg:2.5rem
+
+/* Clases de Tailwind para espaciado */
+.p-container { @apply px-4 sm:px-8 md:px-12 lg:px-16 }
+.p-section { @apply py-8 sm:py-12 md:py-16 lg:py-24 }
+.p-card { @apply p-4 sm:p-6 md:p-8 lg:p-10 }
+.m-section { @apply mb-8 sm:mb-12 md:mb-16 lg:mb-24 }
+```
+
+### Border Radius
+```css
+--radius-sm: 8px   /* Elementos pequeños */
+--radius-md: 12px  /* Elementos base */
+--radius-lg: 16px  /* Elementos grandes */
+--radius-xl: 20px  /* Elementos extra grandes */
+--radius: var(--radius-md) /* Radio por defecto */
+```
+
+### Sombras
+```css
+--shadow-card: 0 4px 16px rgba(0,0,0,0.08)  /* Sombras de tarjetas */
+--shadow-soft: var(--shadow-card)            /* Sombra suave */
+--shadow-cta: 0 8px 30px -8px hsl(var(--brand-teal-500) / 0.3) /* Sombra CTA */
+```
+
+## 5. Patrones de Diseño Sofisticado
+
+### Headers de Sección
+```css
+/* Header con logo circular */
+.header-with-logo {
+  @apply relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b;
+}
+
+.logo-circular {
+  @apply p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft;
+}
+
+/* Frase destacada */
+.quote-highlight {
+  @apply bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 shadow-soft;
+}
+
+.quote-label {
+  @apply flex items-center justify-center mb-3;
+}
+
+.quote-text {
+  @apply font-body text-base sm:text-lg text-brand-ink-800 font-medium italic;
+}
+```
+
+### Cards con Colores Diversos
+```css
+/* Paleta de colores para cards */
+.card-teal {
+  @apply border-brand-teal-500/30 bg-brand-teal-500/10;
+}
+
+.card-mint {
+  @apply border-brand-mint-200/40 bg-brand-mint-200/20;
+}
+
+.card-olive {
+  @apply border-brand-olive-500/30 bg-brand-olive-500/10;
+}
+
+.card-primary {
+  @apply border-primary/30 bg-primary/10;
+}
+
+.card-ink {
+  @apply border-brand-ink-800/30 bg-brand-ink-800/10;
+}
+
+/* Íconos con fondos */
+.icon-bg-teal {
+  @apply bg-brand-teal-500/20 text-brand-teal-500;
+}
+
+.icon-bg-mint {
+  @apply bg-brand-mint-200/30 text-brand-mint-200;
+}
+
+.icon-bg-olive {
+  @apply bg-brand-olive-500/20 text-brand-olive-500;
+}
+```
+
+### Secciones de Contenido
+```css
+/* Introducción con layout de 2 columnas */
+.intro-section {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30;
+}
+
+.intro-grid {
+  @apply grid md:grid-cols-2 gap-8 mb-8;
+}
+
+.intro-item {
+  @apply flex items-center mb-4;
+}
+
+.intro-dot {
+  @apply w-2 h-2 rounded-full mr-3;
+}
+
+/* Key Points mejorados */
+.key-points {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30;
+}
+
+.key-point-item {
+  @apply text-center group;
+}
+
+.key-point-number {
+  @apply bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth;
+}
+```
+
+### Elementos Decorativos
+```css
+/* Elementos de fondo animados */
+.bg-decorative {
+  @apply absolute inset-0 overflow-hidden;
+}
+
+.bg-circle-1 {
+  @apply absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse;
+}
+
+.bg-circle-2 {
+  @apply absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000;
+}
+
+.bg-circle-3 {
+  @apply absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500;
+}
+```
+
+### Transiciones y Animaciones
+```css
+/* Transiciones estándar */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.transition-bounce {
+  @apply transition-all duration-300 cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Hover effects */
+.hover-scale {
+  @apply hover:scale-105 transition-smooth;
+}
+
+.hover-lift {
+  @apply hover:-translate-y-1 transition-smooth;
+}
+
+/* Animaciones de entrada */
+.fade-in-up {
+  @apply animate-in slide-in-from-bottom-4 fade-in duration-600;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+```
+
+## 6. Componentes Base
+
+### Botones
+```css
+/* Variantes de botones */
+.btn-primary {
+  background: var(--brand-ink-800);
+  color: var(--white);
+  hover: var(--brand-ink-900);
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--brand-teal-500);
+  border: 2px solid var(--brand-teal-500);
+  hover-background: var(--brand-mint-200);
+  hover-color: var(--brand-ink-800);
+}
+```
+
+### Tarjetas (Cards)
+```css
+.card {
+  background: var(--white);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+```
+
+### Formularios
+- **Inputs**: Altura mínima 44px, border-radius 8px
+- **Labels**: Color `--brand-ink-800`, font-weight 500
+- **Placeholders**: Color `--brand-olive-500`
+- **Focus**: Ring color `--brand-teal-500`, outline visible
+
+## 6. Patrones de Interacción
+
+### Estados de Hover
+- **Escala**: `transform: scale(1.02)` para elementos interactivos
+- **Sombra**: Incremento sutil de sombra
+- **Transición**: `transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)`
+
+### Estados de Focus
+- **Ring**: 2px solid `--brand-teal-500`
+- **Offset**: 2px del elemento
+- **Accesibilidad**: Siempre visible para navegación por teclado
+
+### Animaciones
+```css
+--transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+--transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+```
+
+## 7. Responsive Design
+
+### Breakpoints
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1024px
+- **Desktop**: > 1024px
+- **Large Desktop**: > 1400px
+
+### Principios Mobile-First
+- Diseño optimizado para móviles primero
+- Tap-targets mínimos de 44px
+- Texto legible sin zoom
+- Navegación táctil intuitiva
+
+## 8. Accesibilidad (WCAG AA)
+
+### Contraste
+- **Texto normal**: Mínimo 4.5:1
+- **Texto grande**: Mínimo 3:1
+- **Elementos no textuales**: Mínimo 3:1
+
+### Navegación
+- **Foco visible**: Siempre presente
+- **Navegación por teclado**: Completa
+- **Skip links**: Para contenido principal
+- **ARIA labels**: En elementos interactivos
+
+### Preferencias del Usuario
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+## 9. Gradientes y Fondos
+
+### Gradientes Disponibles
+```css
+--gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background-subtle)) 100%)
+--gradient-warm: linear-gradient(135deg, hsl(var(--background-subtle)) 0%, hsl(var(--accent)) 100%)
+```
+
+### Gradientes de Marca
+```css
+/* Gradientes principales */
+.gradient-brand-teal {
+  @apply bg-gradient-to-r from-brand-teal-500 to-primary;
+}
+
+.gradient-brand-mint {
+  @apply bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10;
+}
+
+.gradient-brand-olive {
+  @apply bg-gradient-to-r from-brand-olive-500 to-brand-teal-500;
+}
+
+/* Gradientes de fondo */
+.gradient-header {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/20 to-white;
+}
+
+.gradient-card {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/5 to-white;
+}
+
+.gradient-section {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/10 to-white;
+}
+
+/* Gradientes con opacidad */
+.gradient-teal-soft {
+  @apply bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10;
+}
+
+.gradient-mint-soft {
+  @apply bg-gradient-to-br from-brand-mint-200/40 to-brand-mint-200/20;
+}
+
+.gradient-olive-soft {
+  @apply bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10;
+}
+```
+
+## 10. Iconografía
+
+### Librería de Iconos
+- **Lucide React**: Iconos principales
+- **Estilo**: Outline, 24px por defecto
+- **Colores**: Siguen la paleta de marca
+- **Tamaños**: 16px, 20px, 24px, 32px
+
+### Uso de Iconos
+- **Acciones**: ChevronRight, Search, AlertTriangle
+- **Estados**: CheckCircle, Shield, Eye
+- **Navegación**: ArrowLeft, ArrowRight, Home
+
+## 11. Estados de Severidad
+
+### Colores de Estado
+```css
+/* Severidad de riesgos */
+--severity-low: #10B981    /* Verde - Bajo riesgo */
+--severity-medium: #F59E0B /* Amarillo - Riesgo medio */
+--severity-high: #EF4444   /* Rojo - Alto riesgo */
+
+/* Fondos de estado */
+--severity-low-bg: #D1FAE5
+--severity-medium-bg: #FEF3C7
+--severity-high-bg: #FEE2E2
+```
+
+## 12. Reglas de Implementación
+
+### Uso de Tailwind
+- Usar clases de Tailwind con `cn()` helper
+- Preferir tokens del sistema de diseño
+- Mantener consistencia en espaciado y colores
+
+### Componentes
+- Usar shadcn-ui como base
+- Personalizar con tokens de marca
+- Mantener accesibilidad en todos los componentes
+
+### Responsive
+- Mobile-first approach
+- Usar breakpoints de Tailwind
+- Probar en diferentes dispositivos
+
+### Performance
+- Optimizar imágenes (WebP, lazy loading)
+- Minimizar bundle size
+- Usar `font-display: swap` para fuentes
+
+## 13. Reglas de Diseño Sofisticado
+
+### Headers de Sección
+- **SIEMPRE** incluir logo circular con gradiente en headers principales
+- Usar `header-with-logo` para fondos con gradiente sutil
+- Implementar `quote-highlight` para frases destacadas
+- Aplicar `logo-circular` para íconos principales
+
+### Paleta de Colores para Cards
+- **Rotar colores** entre: `card-teal`, `card-mint`, `card-olive`, `card-primary`, `card-ink`
+- Usar opacidades consistentes: `/10` para fondos, `/30` para bordes
+- Aplicar colores correspondientes a íconos: `icon-bg-teal`, `icon-bg-mint`, etc.
+
+### Estructura de Contenido
+- **Introducciones**: Usar `intro-section` con layout de 2 columnas
+- **Key Points**: Implementar `key-points` con números circulares y hover effects
+- **Elementos decorativos**: Incluir `bg-decorative` con círculos animados
+
+### Transiciones y Animaciones
+- **SIEMPRE** usar `transition-smooth` para elementos interactivos
+- Aplicar `hover-scale` o `hover-lift` según el contexto
+- Implementar animaciones de entrada con delays escalonados
+- Usar `fade-in-up` para elementos que aparecen
+
+### Responsividad Avanzada
+- **Tipografía**: Usar clases `.text-hero`, `.text-h1`, `.text-body-lg`, etc.
+- **Espaciado**: Aplicar `.p-container`, `.p-section`, `.p-card`, `.m-section`
+- **Breakpoints**: Implementar `sm:`, `md:`, `lg:` en todos los elementos
+- **Escalado**: Ajustar tamaños de íconos, padding y márgenes por breakpoint
+
+### Elementos Visuales
+- **Sombras**: Usar `shadow-soft` para profundidad sutil
+- **Gradientes**: Aplicar gradientes de marca según el contexto
+- **Bordes**: Usar opacidades de marca para bordes sutiles
+- **Íconos**: Siempre con fondos circulares y colores de marca
+
+### Consistencia Visual
+- **Mantener** la misma estructura de header en todas las secciones
+- **Rotar** colores de cards para evitar monotonía visual
+- **Aplicar** el mismo nivel de sofisticación en todas las páginas
+- **Usar** elementos decorativos de fondo en secciones principales
+
+## 13.1. Patrones de Diseño Avanzados (Basados en Tu Familia)
+
+### Estructura de Página Completa
+```css
+/* Layout principal de página */
+.page-layout {
+  @apply min-h-screen bg-gradient-subtle;
+}
+
+/* Elementos decorativos de fondo */
+.bg-decorative-elements {
+  @apply absolute inset-0 overflow-hidden;
+}
+
+.bg-circle-1 {
+  @apply absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse;
+}
+
+.bg-circle-2 {
+  @apply absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000;
+}
+
+.bg-circle-3 {
+  @apply absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500;
+}
+```
+
+### Headers Sofisticados con Logo Circular
+```css
+/* Header principal con logo circular */
+.header-with-logo {
+  @apply relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b;
+}
+
+.logo-circular-main {
+  @apply p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft;
+}
+
+.logo-icon {
+  @apply h-12 w-12 text-primary-foreground;
+}
+
+/* Frase destacada con icono */
+.quote-highlight {
+  @apply bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft;
+}
+
+.quote-label {
+  @apply flex items-center justify-center mb-3;
+}
+
+.quote-icon {
+  @apply h-6 w-6 text-brand-teal-500 mr-2;
+}
+
+.quote-label-text {
+  @apply font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide;
+}
+
+.quote-text {
+  @apply font-body text-base sm:text-lg text-brand-ink-800 font-medium italic;
+}
+```
+
+### Secciones de Introducción Avanzadas
+```css
+/* Introducción con icono y layout de 2 columnas */
+.intro-section {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30;
+}
+
+.intro-header {
+  @apply text-center mb-8;
+}
+
+.intro-icon-container {
+  @apply flex justify-center mb-4;
+}
+
+.intro-icon {
+  @apply p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full;
+}
+
+.intro-icon-svg {
+  @apply h-8 w-8 text-primary-foreground;
+}
+
+.intro-title {
+  @apply font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2;
+}
+
+.intro-subtitle {
+  @apply font-body text-sm text-brand-olive-500;
+}
+
+.intro-grid {
+  @apply grid md:grid-cols-2 gap-8 mb-8;
+}
+
+.intro-item {
+  @apply flex items-center mb-4;
+}
+
+.intro-dot {
+  @apply w-2 h-2 rounded-full mr-3;
+}
+
+.intro-dot-teal {
+  @apply bg-brand-teal-500;
+}
+
+.intro-dot-mint {
+  @apply bg-brand-mint-200;
+}
+
+.intro-item-title {
+  @apply font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center;
+}
+
+.intro-item-text {
+  @apply font-body text-base text-brand-ink-800 leading-relaxed;
+}
+
+/* Dato importante destacado */
+.info-highlight {
+  @apply bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6;
+}
+
+.info-highlight-content {
+  @apply flex items-start gap-4;
+}
+
+.info-highlight-icon {
+  @apply p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0;
+}
+
+.info-highlight-icon-svg {
+  @apply h-5 w-5 text-brand-teal-500;
+}
+
+.info-highlight-title {
+  @apply font-heading text-base font-semibold text-brand-ink-900 mb-2;
+}
+
+.info-highlight-text {
+  @apply font-body text-sm text-brand-ink-800 leading-relaxed;
+}
+```
+
+### Cards con Iconos y Contraste Mejorado
+```css
+/* Cards de sección con iconos */
+.section-card {
+  @apply border hover:shadow-soft transition-smooth hover:scale-105 h-full;
+}
+
+.section-card-header {
+  @apply text-center p-4 sm:p-6;
+}
+
+.section-card-icon-container {
+  @apply mx-auto mb-3 sm:mb-4 p-3 sm:p-4 rounded-full w-fit shadow-soft;
+}
+
+.section-card-icon {
+  @apply h-6 w-6 sm:h-8 sm:w-8;
+}
+
+.section-card-title {
+  @apply font-heading text-lg sm:text-xl text-brand-ink-900;
+}
+
+.section-card-description {
+  @apply font-body text-sm sm:text-base text-brand-olive-500;
+}
+
+.section-card-content {
+  @apply p-4 sm:p-6 pt-0;
+}
+
+.section-card-features {
+  @apply space-y-2 sm:space-y-3 mb-4 sm:mb-6;
+}
+
+.section-card-feature {
+  @apply flex items-center text-xs sm:text-sm text-brand-ink-800;
+}
+
+.section-card-checkmark {
+  @apply w-3 h-3 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0;
+}
+
+.section-card-button {
+  @apply w-full text-sm sm:text-base shadow-soft;
+}
+
+/* Colores específicos para cards */
+.card-teal {
+  @apply border-brand-teal-500/30 bg-brand-teal-500/10;
+}
+
+.card-teal-icon {
+  @apply bg-brand-teal-500/20 text-brand-teal-500;
+}
+
+.card-teal-checkmark {
+  @apply text-brand-teal-500;
+}
+
+.card-mint {
+  @apply border-brand-mint-200/40 bg-brand-mint-200/20;
+}
+
+.card-mint-icon {
+  @apply bg-brand-mint-200/60 text-brand-ink-800;
+}
+
+.card-mint-checkmark {
+  @apply text-brand-ink-800;
+}
+
+.card-olive {
+  @apply border-brand-olive-500/30 bg-brand-olive-500/10;
+}
+
+.card-olive-icon {
+  @apply bg-brand-olive-500/20 text-brand-olive-500;
+}
+
+.card-olive-checkmark {
+  @apply text-brand-olive-500;
+}
+```
+
+### Key Points con Números Circulares
+```css
+/* Sección de puntos clave */
+.key-points {
+  @apply bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30;
+}
+
+.key-points-header {
+  @apply text-center mb-8;
+}
+
+.key-points-icon-container {
+  @apply flex justify-center mb-4;
+}
+
+.key-points-icon {
+  @apply p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full;
+}
+
+.key-points-icon-svg {
+  @apply h-8 w-8 text-primary-foreground;
+}
+
+.key-points-title {
+  @apply font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2;
+}
+
+.key-points-subtitle {
+  @apply font-body text-sm text-brand-olive-500;
+}
+
+.key-points-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+}
+
+.key-point-item {
+  @apply text-center group;
+}
+
+.key-point-number-container {
+  @apply rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth;
+}
+
+.key-point-number {
+  @apply font-heading text-xl sm:text-2xl font-bold;
+}
+
+.key-point-title {
+  @apply font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3;
+}
+
+.key-point-description {
+  @apply font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed;
+}
+
+/* Números específicos con contraste mejorado */
+.key-point-number-1 {
+  @apply bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10;
+}
+
+.key-point-number-1-text {
+  @apply text-brand-teal-500;
+}
+
+.key-point-number-2 {
+  @apply bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40;
+}
+
+.key-point-number-2-text {
+  @apply text-brand-ink-800;
+}
+
+.key-point-number-3 {
+  @apply bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10;
+}
+
+.key-point-number-3-text {
+  @apply text-brand-olive-500;
+}
+```
+
+### Animaciones y Transiciones Avanzadas
+```css
+/* Animaciones de entrada con Framer Motion */
+.fade-in-up {
+  @apply animate-in slide-in-from-bottom-4 fade-in duration-600;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Hover effects específicos */
+.hover-scale-cards {
+  @apply hover:scale-105 transition-smooth;
+}
+
+.hover-scale-numbers {
+  @apply group-hover:scale-110 transition-smooth;
+}
+
+/* Transiciones suaves */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.transition-bounce {
+  @apply transition-all duration-300 cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+```
+
+### Responsividad Avanzada
+```css
+/* Contenedores responsivos */
+.container-responsive {
+  @apply container mx-auto px-4 py-8 sm:py-12;
+}
+
+.content-max-width {
+  @apply max-w-6xl mx-auto;
+}
+
+.header-max-width {
+  @apply max-w-4xl mx-auto text-center;
+}
+
+/* Espaciado responsivo */
+.spacing-responsive {
+  @apply mb-12 sm:mb-16;
+}
+
+.padding-responsive {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+
+/* Grids responsivos */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.grid-key-points {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+}
+
+/* Tamaños de iconos responsivos */
+.icon-responsive {
+  @apply h-6 w-6 sm:h-8 sm:w-8;
+}
+
+.icon-small-responsive {
+  @apply w-3 h-3 sm:w-4 sm:h-4;
+}
+
+/* Texto responsivo */
+.text-responsive-hero {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+.text-responsive-h1 {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+}
+
+.text-responsive-h2 {
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+.text-responsive-body {
+  @apply text-base sm:text-lg md:text-xl lg:text-2xl;
+}
+
+.text-responsive-small {
+  @apply text-xs sm:text-sm md:text-base lg:text-lg;
+}
+```
+
+### Reglas de Implementación Específicas
+1. **SIEMPRE** usar elementos decorativos de fondo en páginas principales
+2. **SIEMPRE** incluir logo circular con gradiente en headers
+3. **SIEMPRE** implementar frases destacadas con iconos
+4. **SIEMPRE** usar contraste mejorado para iconos y números
+5. **SIEMPRE** aplicar animaciones escalonadas en grids
+6. **SIEMPRE** usar hover effects en elementos interactivos
+7. **SIEMPRE** implementar responsividad completa con breakpoints
+8. **SIEMPRE** mantener consistencia visual entre secciones
+
+## 13.2. Mejoras de Contraste y Accesibilidad
+
+### Principios de Contraste Mejorado
+- **Iconos principales**: Usar colores oscuros (`brand-ink-800`) sobre fondos claros para máximo contraste
+- **Fondos de iconos**: Aumentar opacidad de `/30` a `/60` para mejor contraste
+- **Checkmarks**: Usar colores específicos por sección con contraste adecuado
+- **Números en círculos**: Asegurar contraste mínimo 4.5:1 según WCAG AA
+
+### Patrones de Contraste Específicos
+```css
+/* Contraste mejorado para iconos */
+.icon-high-contrast {
+  @apply text-brand-ink-800;
+}
+
+.icon-bg-high-contrast {
+  @apply bg-brand-mint-200/60;
+}
+
+/* Contraste mejorado para números */
+.number-high-contrast {
+  @apply text-brand-ink-800;
+}
+
+.number-bg-high-contrast {
+  @apply bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40;
+}
+
+/* Checkmarks con contraste específico */
+.checkmark-teal {
+  @apply text-brand-teal-500;
+}
+
+.checkmark-ink {
+  @apply text-brand-ink-800;
+}
+
+.checkmark-olive {
+  @apply text-brand-olive-500;
+}
+```
+
+### Reglas de Accesibilidad Visual
+1. **Iconos**: Siempre usar `text-brand-ink-800` sobre fondos claros
+2. **Números**: Usar `text-brand-ink-800` en fondos `brand-mint-200` con opacidad `/60`
+3. **Checkmarks**: Asignar colores específicos por sección para consistencia
+4. **Fondos**: Aumentar opacidad mínima a `/60` para elementos críticos
+5. **Texto**: Mantener `text-brand-ink-900` para texto principal
+6. **Contraste**: Verificar relación mínima 4.5:1 para texto normal
+7. **Elementos interactivos**: Asegurar contraste en todos los estados (hover, focus, active)
+8. **Iconos decorativos**: Usar opacidades bajas (`/5`, `/10`) para elementos de fondo
+
+## 14. Contenido y Copy
+
+### Tono de Voz
+- **Cálido y de apoyo**: Como un amigo experto
+- **Accionable**: Instrucciones claras y específicas
+- **Empático**: Entender las preocupaciones de los padres
+- **Profesional pero cercano**: Credible pero no intimidante
+
+### Estructura de Contenido
+- **Títulos**: Claros y directos
+- **Subtítulos**: Organizan la información
+- **Listas**: Para pasos y consejos
+- **Call-to-actions**: Claros y motivadores
+
+### Edades Objetivo
+- **6-8 años**: Lenguaje simple, ejemplos básicos
+- **9-12 años**: Explicaciones más detalladas
+- **13-15 años**: Enfoque en independencia responsable
+- **16-17 años**: Preparación para la adultez digital
+
+## 15. Plataformas Específicas
+
+### WhatsApp
+- Enfoque en mensajería segura
+- Configuración de privacidad
+- Gestión de contactos
+
+### YouTube/YouTube Kids
+- Filtros de contenido
+- Límites de tiempo
+- Configuración parental
+
+### Roblox/Minecraft
+- Seguridad en juegos
+- Moderación de contenido
+- Interacciones seguras
+
+### TikTok
+- Restricciones de edad
+- Monitoreo de contenido
+- Configuración de privacidad
+
+## 16. Métricas y Analytics
+
+### Eventos a Rastrear
+- `quiz_started`: Inicio del quiz
+- `quiz_completed`: Finalización del quiz
+- `email_submitted`: Envío de email
+- `plan_downloaded`: Descarga de plan PDF
+- `section_viewed`: Visualización de secciones
+
+### Conversiones
+- **Primaria**: `email_submit_rate` (emails / plan_generated)
+- **Secundarias**: `plan_download_pdf`, retorno de usuarios
+
+---
+
+**Nota**: Este sistema de diseño debe ser seguido consistentemente en todo el proyecto para mantener la identidad de marca y la experiencia de usuario óptima.

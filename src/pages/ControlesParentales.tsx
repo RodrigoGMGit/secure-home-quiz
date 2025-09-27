@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi } from 'lucide-react';
+import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi, Settings, Users, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
@@ -16,100 +16,172 @@ const ControlesParentales: React.FC = () => {
     <>
       <GlobalHeader />
       <div className="min-h-screen bg-gradient-subtle">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Controles Parentales
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
-                Más que restringir, se trata de acompañar
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-background/10 backdrop-blur-sm rounded-xl p-8 max-w-3xl mx-auto border border-background/20"
-            >
-              <p className="text-lg leading-relaxed text-primary-foreground">
-                Los controles parentales son una herramienta de acompañamiento y protección que nos permite 
-                guiar el crecimiento digital de las niñas, niños y adolescentes de manera consciente y respetuosa.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Key Phrases Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="bg-amber-50 border-l-4 border-amber-400 p-6 my-8"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center space-x-4">
-            <Shield className="h-8 w-8 text-amber-600" />
-            <div>
-              <p className="text-lg font-semibold text-amber-800">
+      {/* Header Section */}
+      <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
+        <div className="container mx-auto px-4 py-8 sm:py-12">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Logo circular con gradiente */}
+            <div className="flex justify-center mb-6">
+              <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+                <Settings className="h-12 w-12 text-primary-foreground" />
+              </div>
+            </div>
+            
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              Controles Parentales
+            </h1>
+            <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+              Más que restringir, se trata de acompañar
+            </p>
+            
+            {/* Frase destacada mejorada */}
+            <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
+              <div className="flex items-center justify-center mb-3">
+                <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
+                <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
+              </div>
+              <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
               </p>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
+      <div className="relative container mx-auto px-4 py-8 sm:py-12">
+        <div className="max-w-6xl mx-auto">
+          {/* Introduction */}
+          <motion.div 
+            className="mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-3xl font-bold text-foreground mb-8 text-center"
+            transition={{ duration: 0.6 }}
           >
-            Configuraciones por Dispositivo
-          </motion.h2>
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full">
+                  <Settings className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </div>
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+                ¿Qué son los controles parentales?
+              </h2>
+              <p className="font-body text-sm text-brand-olive-500">
+                Herramientas de acompañamiento y protección digital
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30">
+              <div className="max-w-4xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
+                      Acompañamiento, no restricción
+                    </h3>
+                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      Los controles parentales son herramientas de acompañamiento y protección que nos permiten 
+                      guiar el crecimiento digital de las niñas, niños y adolescentes de manera consciente y respetuosa.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
+                      Herramientas para cada dispositivo
+                    </h3>
+                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      Cada plataforma y dispositivo tiene sus propias herramientas de control parental. 
+                      Te mostramos las más efectivas y fáciles de configurar.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
+                      <AlertTriangle className="h-5 w-5 text-brand-teal-500" />
+                    </div>
+                    <div>
+                      <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+                        Dato importante
+                      </h4>
+                      <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                        No hay herramienta que sustituya al diálogo, pero sin herramientas, 
+                        el diálogo llega cuando ya es tarde.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Configuraciones por Dispositivo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8 sm:mb-12"
+          >
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full">
+                  <Smartphone className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </div>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                Configuraciones por Dispositivo
+              </h2>
+              <p className="font-body text-sm text-brand-olive-500">
+                Herramientas específicas para cada plataforma
+              </p>
+            </div>
+          </motion.div>
 
           <Accordion type="single" collapsible className="w-full space-y-4">
             {/* Android Section */}
-            <AccordionItem value="android" className="border rounded-lg">
+            <AccordionItem value="android" className="border-brand-teal-500/30 bg-brand-teal-500/10 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
-                  <Smartphone className="h-6 w-6 text-green-600" />
+                  <div className="p-2 bg-brand-teal-500/20 rounded-full">
+                    <Smartphone className="h-6 w-6 text-brand-teal-500" />
+                  </div>
                   <div className="text-left">
-                    <h3 className="text-xl font-semibold">Android</h3>
-                    <p className="text-sm text-gray-600">Google Family Link + Google SafeSearch</p>
+                    <h3 className="font-heading text-xl font-semibold text-brand-ink-900">Android</h3>
+                    <p className="font-body text-sm text-brand-olive-500">Google Family Link + Google SafeSearch</p>
                   </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
                 <div className="space-y-6">
                   {/* Google Family Link */}
-                  <Card>
+                  <Card className="border-brand-teal-500/20 bg-white shadow-soft">
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <Shield className="h-5 w-5 text-blue-600" />
-                        <span>Google Family Link</span>
+                        <div className="p-1 bg-brand-teal-500/20 rounded-full">
+                          <Shield className="h-5 w-5 text-brand-teal-500" />
+                        </div>
+                        <span className="font-heading text-lg font-semibold text-brand-ink-900">Google Family Link</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
                         Herramienta gratuita de Google que permite supervisar, limitar y acompañar 
                         el uso que tus hijos hacen de sus dispositivos Android.
                       </p>
                       
-                      <div className="bg-blue-50 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">Requisitos:</h4>
-                        <ul className="space-y-1 text-sm">
+                      <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-4">
+                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">Requisitos:</h4>
+                        <ul className="space-y-1 text-sm font-body text-brand-ink-800">
                           <li>• Dispositivo Android 7.0 o superior</li>
                           <li>• Cuentas de Google válidas (@gmail.com)</li>
                           <li>• Conexión a internet activa</li>
@@ -118,26 +190,26 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <h4 className="font-semibold">Pasos para configurar:</h4>
+                        <h4 className="font-heading text-base font-semibold text-brand-ink-900">Pasos para configurar:</h4>
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>1. Descarga Family Link en tu dispositivo (Android o iPhone)</span>
+                            <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
+                            <span className="font-body text-sm text-brand-ink-800">1. Descarga Family Link en tu dispositivo (Android o iPhone)</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>2. Crea una cuenta de Google para tu hijo o conecta la que ya tiene</span>
+                            <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
+                            <span className="font-body text-sm text-brand-ink-800">2. Crea una cuenta de Google para tu hijo o conecta la que ya tiene</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>3. Empareja el dispositivo de tu hijo con el tuyo</span>
+                            <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
+                            <span className="font-body text-sm text-brand-ink-800">3. Empareja el dispositivo de tu hijo con el tuyo</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-green-50 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">Lo que puedes configurar:</h4>
-                        <ul className="space-y-1 text-sm">
+                      <div className="bg-gradient-to-r from-brand-mint-200/20 to-brand-teal-500/10 border border-brand-mint-200/30 rounded-lg p-4">
+                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">Lo que puedes configurar:</h4>
+                        <ul className="space-y-1 text-sm font-body text-brand-ink-800">
                           <li>• Límites de tiempo de uso diario y por app</li>
                           <li>• Aprobar o bloquear la descarga de apps</li>
                           <li>• Filtrar contenido inapropiado en Chrome, YouTube y Google Play</li>
@@ -625,18 +697,64 @@ const ControlesParentales: React.FC = () => {
             </AccordionItem>
           </Accordion>
 
-          {/* Final Banner */}
-          <motion.div
+          {/* Key Points */}
+          <motion.div 
+            className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="bg-emerald-50 border-l-4 border-emerald-400 p-6 mt-12"
           >
-            <div className="flex items-center space-x-4">
-              <Shield className="h-8 w-8 text-emerald-600" />
-              <div>
-                <p className="text-lg font-semibold text-emerald-800">
-                  "No hay herramienta que sustituya al diálogo, pero sin herramientas, el diálogo llega cuando ya es tarde."
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full">
+                  <Shield className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </div>
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                Recuerda estos 3 elementos clave:
+              </h3>
+              <p className="font-body text-sm text-brand-olive-500">
+                Fundamentos para controles parentales efectivos
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              <div className="text-center group">
+                <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
+                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
+                </div>
+                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  Acompañamiento
+                </h4>
+                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  Los controles parentales son herramientas de acompañamiento, no de restricción. 
+                  Su objetivo es guiar y proteger, no limitar.
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
+                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">2</span>
+                </div>
+                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  Diálogo Constante
+                </h4>
+                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  No hay herramienta que sustituya al diálogo, pero sin herramientas, 
+                  el diálogo llega cuando ya es tarde.
+                </p>
+              </div>
+              
+              <div className="text-center group sm:col-span-2 lg:col-span-1">
+                <div className="bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
+                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
+                </div>
+                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  Configuración Gradual
+                </h4>
+                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  Comienza con configuraciones básicas y ajusta según la edad y madurez 
+                  de tu hijo o hija.
                 </p>
               </div>
             </div>

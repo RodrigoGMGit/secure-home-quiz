@@ -67,14 +67,14 @@ const HeroSection = () => {
         </div>
       )}
 
-      {/* Image Marquee - Visible on all screen sizes */}
+      {/* Image Marquee - Mobile optimized */}
       <div className={`absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0 transition-opacity duration-500 ${
         imagesLoaded ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="flex animate-marquee gap-4">
+        <div className="flex animate-marquee gap-2 sm:gap-4">
           {/* First set of images */}
-          <div className="flex gap-4 flex-shrink-0">
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childGaming}
                 alt=""
@@ -83,7 +83,7 @@ const HeroSection = () => {
                 onLoad={handleImageLoad}
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childTablet}
                 alt=""
@@ -92,7 +92,7 @@ const HeroSection = () => {
                 onLoad={handleImageLoad}
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childrenLearning}
                 alt=""
@@ -101,7 +101,7 @@ const HeroSection = () => {
                 onLoad={handleImageLoad}
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={child1}
                 alt=""
@@ -110,7 +110,7 @@ const HeroSection = () => {
                 onLoad={handleImageLoad}
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={familia3}
                 alt=""
@@ -119,7 +119,7 @@ const HeroSection = () => {
                 onLoad={handleImageLoad}
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={familia1}
                 alt=""
@@ -130,8 +130,8 @@ const HeroSection = () => {
             </div>
           </div>
           {/* Duplicate set for seamless loop */}
-          <div className="flex gap-4 flex-shrink-0">
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childGaming}
                 alt=""
@@ -139,7 +139,7 @@ const HeroSection = () => {
                 loading="eager"
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childTablet}
                 alt=""
@@ -147,7 +147,7 @@ const HeroSection = () => {
                 loading="eager"
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={childrenLearning}
                 alt=""
@@ -155,7 +155,7 @@ const HeroSection = () => {
                 loading="eager"
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={child1}
                 alt=""
@@ -163,7 +163,7 @@ const HeroSection = () => {
                 loading="eager"
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={familia3}
                 alt=""
@@ -171,7 +171,7 @@ const HeroSection = () => {
                 loading="eager"
               />
             </div>
-            <div className="w-24 h-24 rounded-xl overflow-hidden shadow-md opacity-20">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
               <img
                 src={familia1}
                 alt=""
@@ -183,15 +183,15 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-12 lg:py-20 z-10">
-        <div className="flex justify-center items-center min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh]">
+      <div className="relative container mx-auto px-4 py-8 sm:py-12 lg:py-20 z-10">
+        <div className="flex justify-center items-center min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]">
           {/* Content Section */}
           <div className={`text-center transition-all duration-1000 transform max-w-4xl mx-auto ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
-            {/* Headline */}
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 leading-tight">
-              <div className="flex flex-col gap-3">
+            {/* Headline - Extra enhanced mobile sizing */}
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase tracking-tight text-brand-ink-900 mb-8 sm:mb-10 leading-tight">
+              <div className="flex flex-col gap-4 sm:gap-5">
                 {headlineLines.map(({ text, highlight }) => (
                   <div
                     key={text}
@@ -211,50 +211,51 @@ const HeroSection = () => {
               </div>
             </h1>
 
-            {/* Subtitle */}
-            <p className="font-body text-lg sm:text-xl md:text-xl lg:text-xl text-brand-olive-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+            {/* Subtitle - Extra enhanced mobile sizing */}
+            <p className="font-body text-xl sm:text-2xl md:text-3xl lg:text-3xl text-brand-olive-500 mb-10 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
+            {/* Trust indicators - Compact mobile sizing */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 px-2">
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
                 >
-                  <CheckCircle className="w-4 h-4 text-brand-teal-500 flex-shrink-0" />
-                  <span className="text-sm sm:text-base font-medium text-brand-ink-800 whitespace-nowrap">{item}</span>
+                  <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-teal-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm md:text-base font-medium text-brand-ink-800 whitespace-nowrap">{item}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 transform ${
+            {/* CTA Buttons - Mobile optimized */}
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center transition-all duration-700 transform px-2 ${
               isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
             }`} style={{ transitionDelay: "1200ms" }}>
               <Button 
                 variant="primary-brand" 
                 size="lg" 
-                className="uppercase tracking-wide shadow-cta"
+                className="uppercase tracking-wide shadow-cta text-sm sm:text-base h-12 sm:h-14 w-full sm:w-auto"
                 onClick={() => navigateWithLoading('/quiz', 'quiz')}
                 disabled={isLoading}
               >
-                <Shield className="w-5 h-5" />
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 {isLoading ? 'Cargando...' : 'Haz el quiz ahora'}
               </Button>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full sm:w-auto"
               >
                 <Button 
                   variant="secondary-brand" 
                   size="lg" 
-                  className="uppercase tracking-wide"
+                  className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-full"
                   onClick={handleConoceMas}
                   data-button="conoce-mas"
                 >
@@ -263,7 +264,7 @@ const HeroSection = () => {
               </motion.div>
             </div>
 
-            <p className="text-sm text-brand-olive-500 mt-4 opacity-80 font-body">
+            <p className="text-xs sm:text-sm text-brand-olive-500 mt-3 sm:mt-4 opacity-80 font-body px-2">
               Sin registros • 100% confidencial • Toma solo 3 minutos
             </p>
           </div>
