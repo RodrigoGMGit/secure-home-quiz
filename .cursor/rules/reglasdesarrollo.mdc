@@ -7,7 +7,8 @@ alwaysApply: true
 # Reglas de Desarrollo - Secure Home Quiz
 
 ## Implementación de Secciones
-- Para la implementación de estas secciones, que la información venga de manual.md
+- Para el contenido que se requiere en el desarrollo, que la información venga de manual.md
 - Utiliza el sistema de diseño del proyecto en todas las cosas a implementar
 - Que todo lo que implementes sea responsive
-- Cuando finalices de implementar algo marca en este documento como finalizado la sección o tarea
+- Cuando finalices de implementar algo marca en el titulo de new_sections.md que ya lo finalizazte
+-En todas las páginas nuevas que crees implementa el menú global salvo en la página de /about

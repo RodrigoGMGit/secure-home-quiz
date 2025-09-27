@@ -6,13 +6,16 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
+import GlobalHeader from '@/components/GlobalHeader';
 
 const ControlesParentales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <>
+      <GlobalHeader />
+      <div className="min-h-screen bg-gradient-subtle">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
         <div className="container mx-auto px-4">
@@ -640,7 +643,8 @@ const ControlesParentales: React.FC = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

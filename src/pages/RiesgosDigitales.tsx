@@ -10,6 +10,7 @@ import { RiskDetailModal } from '../components/risks/RiskDetailModal';
 import { digitalRisks, riskCategories } from '../data/risks';
 import { DigitalRisk } from '../types/risks';
 import { Search, Filter, AlertTriangle, Shield, Search as SearchIcon } from 'lucide-react';
+import GlobalHeader from '@/components/GlobalHeader';
 
 const RiesgosDigitales: React.FC = () => {
   const [selectedRisk, setSelectedRisk] = useState<DigitalRisk | null>(null);
@@ -58,15 +59,17 @@ const RiesgosDigitales: React.FC = () => {
   const severityStats = getSeverityStats();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <>
+      <GlobalHeader />
+      <div className="min-h-screen bg-gradient-subtle">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+            <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
               Riesgos Digitales
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="font-body text-base sm:text-lg lg:text-xl text-brand-olive-500 max-w-3xl mx-auto leading-relaxed">
               Conoce los principales riesgos digitales que pueden afectar a tu familia y aprende 
               cómo identificarlos, prevenirlos y actuar si ya ocurrieron.
             </p>
@@ -77,37 +80,37 @@ const RiesgosDigitales: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Estadísticas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <Card className="border-red-200 bg-red-50/50">
+          <Card className="border-brand-teal-500/20 bg-brand-teal-500/5">
             <CardContent className="p-4 sm:p-6">
               <div className="flex items-center gap-3">
-                <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-red-600 flex-shrink-0" />
+                <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xl sm:text-2xl font-bold text-red-900">{severityStats.high || 0}</p>
-                  <p className="text-sm sm:text-base text-red-700">Riesgos Altos</p>
+                  <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{severityStats.high || 0}</p>
+                  <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Altos</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-yellow-200 bg-yellow-50/50">
+          <Card className="border-brand-olive-500/20 bg-brand-olive-500/5">
             <CardContent className="p-4 sm:p-6">
               <div className="flex items-center gap-3">
-                <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-600 flex-shrink-0" />
+                <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xl sm:text-2xl font-bold text-yellow-900">{severityStats.medium || 0}</p>
-                  <p className="text-sm sm:text-base text-yellow-700">Riesgos Medios</p>
+                  <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{severityStats.medium || 0}</p>
+                  <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Medios</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-green-200 bg-green-50/50 sm:col-span-2 lg:col-span-1">
+          <Card className="border-brand-mint-200/20 bg-brand-mint-200/5 sm:col-span-2 lg:col-span-1">
             <CardContent className="p-4 sm:p-6">
               <div className="flex items-center gap-3">
-                <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 flex-shrink-0" />
+                <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xl sm:text-2xl font-bold text-green-900">{digitalRisks.length}</p>
-                  <p className="text-sm sm:text-base text-green-700">Riesgos Identificados</p>
+                  <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{digitalRisks.length}</p>
+                  <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Identificados</p>
                 </div>
               </div>
             </CardContent>
@@ -251,21 +254,21 @@ const RiesgosDigitales: React.FC = () => {
         )}
 
         {/* Información adicional */}
-        <Card className="mt-8 sm:mt-12 bg-blue-50 border-blue-200">
+        <Card className="mt-8 sm:mt-12 bg-brand-mint-200/50 border-brand-teal-500/20">
           <CardContent className="p-6 sm:p-8 text-center">
-            <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-3 sm:mb-4">
+            <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-teal-500 mx-auto mb-4" />
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
               ¿Necesitas ayuda inmediata?
             </h3>
-            <p className="text-sm sm:text-base text-blue-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
               Si tu hijo está en peligro inmediato o has detectado una situación grave, 
               no dudes en contactar a las autoridades correspondientes.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Button className="bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base px-4 sm:px-6">
+              <Button variant="destructive" className="text-sm sm:text-base px-4 sm:px-6">
                 Policía Cibernética: 088
               </Button>
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 text-sm sm:text-base px-4 sm:px-6">
+              <Button variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6">
                 Te Protejo México
               </Button>
             </div>
@@ -279,7 +282,8 @@ const RiesgosDigitales: React.FC = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import { Users, Shield, Gamepad2, ChevronRight, CheckCircle } from "lucide-react
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import GlobalHeader from "@/components/GlobalHeader";
 
 const TuFamilia = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -53,7 +54,9 @@ const TuFamilia = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <>
+      <GlobalHeader />
+      <div className="min-h-screen bg-gradient-subtle">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -193,7 +196,8 @@ const TuFamilia = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
