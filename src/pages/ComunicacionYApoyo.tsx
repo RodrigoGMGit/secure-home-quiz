@@ -167,10 +167,10 @@ const ComunicacionYApoyo = () => {
                 </div>
               </div>
               
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
                 Comunicación y Apoyo
               </h1>
-              <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+              <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
                 La comunicación abierta y el apoyo emocional son las herramientas más poderosas 
                 para proteger a tus hijos en el mundo digital
               </p>
@@ -200,10 +200,10 @@ const ComunicacionYApoyo = () => {
                     <MessageCircle className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
                   ¿Por qué es importante la comunicación?
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Fundamentos para una comunicación efectiva con tus hijos
                 </p>
               </div>
@@ -212,22 +212,22 @@ const ComunicacionYApoyo = () => {
                 <div className="max-w-4xl mx-auto">
                   <div className="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
-                      <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                         <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
                         La comunicación como protección
                       </h3>
-                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                         Una comunicación abierta y constante es la primera línea de defensa contra los riesgos digitales. 
                         Los niños que se sienten escuchados y apoyados son más propensos a buscar ayuda cuando enfrentan problemas.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                         <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
                         Construir confianza desde temprano
                       </h3>
-                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                         Establecer canales de comunicación desde la infancia crea una base sólida para cuando los 
                         desafíos digitales se vuelvan más complejos en la adolescencia.
                       </p>
@@ -240,10 +240,10 @@ const ComunicacionYApoyo = () => {
                         <Heart className="h-5 w-5 text-brand-teal-500" />
                       </div>
                       <div>
-                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+                        <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
                           Dato importante
                         </h4>
-                        <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                        <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                           Los niños que tienen conversaciones regulares con sus padres sobre seguridad digital 
                           tienen 3 veces menos probabilidades de experimentar ciberacoso o grooming.
                         </p>
@@ -262,10 +262,10 @@ const ComunicacionYApoyo = () => {
                     <AlertTriangle className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Señales de Alerta a Observar
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Indicadores que requieren atención inmediata
                 </p>
               </div>
@@ -276,12 +276,12 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${señal.iconBg} rounded-full w-fit shadow-soft`}>
                         {señal.icon}
                       </div>
-                      <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                         {señal.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 sm:p-6 pt-0">
-                      <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500 text-center leading-relaxed">
+                      <CardDescription className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 text-center leading-relaxed">
                         {señal.description}
                       </CardDescription>
                     </CardContent>
@@ -298,10 +298,10 @@ const ComunicacionYApoyo = () => {
                     <MessageCircle className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Frases Sugeridas para Iniciar Conversación
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Herramientas para abrir el diálogo con tus hijos
                 </p>
               </div>
@@ -312,7 +312,7 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${categoria.iconBg} rounded-full w-fit shadow-soft`}>
                         <MessageCircle className={`h-6 w-6 sm:h-8 sm:w-8 ${categoria.iconColor}`} />
                       </div>
-                      <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                         {categoria.categoria}
                       </CardTitle>
                     </CardHeader>
@@ -320,7 +320,7 @@ const ComunicacionYApoyo = () => {
                       <div className="space-y-3">
                         {categoria.frases.map((frase, fraseIndex) => (
                           <div key={fraseIndex} className="p-3 bg-background rounded-lg border border-brand-mint-200/30">
-                            <p className="font-body text-sm sm:text-base text-brand-olive-500 italic leading-relaxed">"{frase}"</p>
+                            <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 italic leading-relaxed">"{frase}"</p>
                           </div>
                         ))}
                       </div>
@@ -338,10 +338,10 @@ const ComunicacionYApoyo = () => {
                     <Users className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Pasos para Establecer Comunicación Asertiva
                 </h3>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Guía práctica para mejorar la comunicación familiar
                 </p>
               </div>
@@ -356,10 +356,10 @@ const ComunicacionYApoyo = () => {
                         'text-brand-olive-500'
                       }`}>{paso.numero}</span>
                     </div>
-                    <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                    <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                       {paso.titulo}
                     </h4>
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       {paso.descripcion}
                     </p>
                   </div>
@@ -375,10 +375,10 @@ const ComunicacionYApoyo = () => {
                     <BookOpen className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Historias Reales del Manual
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Casos reales que demuestran la importancia de la comunicación
                 </p>
               </div>
@@ -388,22 +388,22 @@ const ComunicacionYApoyo = () => {
                 <CarouselItem key={index} className="basis-full sm:basis-1/2 lg:basis-1/3">
                   <Card className={`${historia.color} border h-full hover:shadow-soft transition-smooth`}>
                     <CardHeader className="pb-3">
-                      <CardTitle className="font-heading text-lg text-brand-ink-900 mb-2 leading-tight">
+                      <CardTitle className="font-heading text-sm sm:text-lg text-brand-ink-900 mb-2 leading-tight">
                         {historia.titulo}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4 pt-0">
                       <div>
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-base">Situación:</h4>
-                        <p className="font-body text-brand-olive-500 text-sm leading-relaxed">{historia.descripcion}</p>
+                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Situación:</h4>
+                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.descripcion}</p>
                       </div>
                       <div>
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-base">Resultado:</h4>
-                        <p className="font-body text-brand-olive-500 text-sm leading-relaxed">{historia.resultado}</p>
+                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Resultado:</h4>
+                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.resultado}</p>
                       </div>
                       <div className="p-3 bg-background rounded-lg border border-brand-mint-200/30">
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-base">Lección:</h4>
-                        <p className="font-body text-brand-olive-500 text-sm italic leading-relaxed">"{historia.leccion}"</p>
+                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Lección:</h4>
+                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm italic leading-relaxed">"{historia.leccion}"</p>
                       </div>
                       <Button className="w-full bg-primary hover:bg-primary-hover text-primary-foreground">
                         Cómo actuar en este caso
@@ -426,10 +426,10 @@ const ComunicacionYApoyo = () => {
                     <Lightbulb className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Tips para Abrir Conversaciones Complicadas
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Estrategias prácticas para mejorar la comunicación familiar
                 </p>
               </div>
@@ -439,12 +439,12 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                       Elige un momento de tranquilidad
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       Aprovecha tiempos naturales de convivencia (como la hora de la cena, trayectos en coche, 
                       o después de ver juntos un video) para iniciar pláticas sin prisas ni distracciones.
                     </p>
@@ -456,12 +456,12 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Users className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                       Escucha más de lo que hablas
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       Deja que tu hijo exprese sus opiniones, preocupaciones o dudas, incluso si no estás de acuerdo. 
                       La confianza se construye escuchando sin interrumpir.
                     </p>
@@ -473,12 +473,12 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-olive-500/20 rounded-full w-fit shadow-soft">
                       <HandHeart className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500" />
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                       Valida sus emociones
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       Si cuentan algo que les dio miedo, tristeza o enojo, evita minimizarlo. Responde con frases como 
                       "Entiendo por qué te sentiste así" o "Gracias por confiar en mí para contarlo".
                     </p>
@@ -490,12 +490,12 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Lightbulb className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                       Comparte tus experiencias
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       Contarles algo que viste, aprendiste o incluso un error que cometiste en línea, los ayuda a ver 
                       que el mundo digital es complejo también para los adultos.
                     </p>
@@ -507,12 +507,12 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
                       Enfócate en el aprendizaje
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                       Si surge un problema, en lugar de castigar, busca soluciones juntos. El objetivo es aprender 
                       y prevenir, no generar miedo o culpa.
                     </p>
@@ -523,10 +523,10 @@ const ComunicacionYApoyo = () => {
 
             {/* CTA Final */}
             <section className="text-center bg-gradient-to-r from-primary to-primary-hover rounded-2xl p-8 text-primary-foreground shadow-cta">
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold mb-4">
+              <h2 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4">
                 Recuerda: La Comunicación es la Mejor Protección
               </h2>
-              <p className="font-body text-lg lg:text-xl mb-6 opacity-90 leading-relaxed">
+              <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl mb-6 opacity-90 leading-relaxed">
                 Acompañar a nuestros hijos e hijas en su vida digital es un acto de amor y una de las 
                 mejores herramientas que podemos otorgarles.
               </p>

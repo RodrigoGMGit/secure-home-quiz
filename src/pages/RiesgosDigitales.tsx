@@ -85,10 +85,10 @@ const RiesgosDigitales: React.FC = () => {
                 </div>
               </div>
               
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
                 Riesgos Digitales
               </h1>
-              <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+              <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
                 Conoce los principales riesgos digitales que pueden afectar a tu familia y aprende cómo identificarlos, prevenirlos y actuar si ya ocurrieron
               </p>
               
@@ -122,10 +122,10 @@ const RiesgosDigitales: React.FC = () => {
                     <Eye className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+                <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
                   ¿Qué son los riesgos digitales?
                 </h2>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Guía completa para padres y madres sobre seguridad digital
                 </p>
               </div>
@@ -134,22 +134,22 @@ const RiesgosDigitales: React.FC = () => {
                 <div className="max-w-4xl mx-auto">
                   <div className="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
-                      <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                         <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
                         Identificación temprana
                       </h3>
-                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                         Los riesgos digitales son situaciones que pueden poner en peligro la seguridad, 
                         privacidad o bienestar de niñas, niños y adolescentes en el entorno digital.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                      <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                         <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
                         Prevención activa
                       </h3>
-                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                         Conocer estos riesgos te permite tomar medidas preventivas y estar preparado 
                         para actuar de manera efectiva si se presentan.
                       </p>
@@ -162,10 +162,10 @@ const RiesgosDigitales: React.FC = () => {
                         <Shield className="h-5 w-5 text-brand-teal-500" />
                       </div>
                       <div>
-                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+                        <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
                           Dato importante
                         </h4>
-                        <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                        <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                           El 73% de los padres mexicanos reportan preocupación por la seguridad digital 
                           de sus hijos, pero solo el 45% tiene controles parentales activos.
                         </p>
@@ -190,8 +190,8 @@ const RiesgosDigitales: React.FC = () => {
                       <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500 flex-shrink-0" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{severityStats.high || 0}</p>
-                      <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Altos</p>
+                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{severityStats.high || 0}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Altos</p>
                     </div>
                   </div>
                 </CardContent>
@@ -204,8 +204,8 @@ const RiesgosDigitales: React.FC = () => {
                       <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800 flex-shrink-0" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{severityStats.medium || 0}</p>
-                      <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Medios</p>
+                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{severityStats.medium || 0}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Medios</p>
                     </div>
                   </div>
                 </CardContent>
@@ -218,8 +218,8 @@ const RiesgosDigitales: React.FC = () => {
                       <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500 flex-shrink-0" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xl sm:text-2xl font-bold text-brand-ink-900">{digitalRisks.length}</p>
-                      <p className="text-sm sm:text-base text-brand-ink-800">Riesgos Identificados</p>
+                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{digitalRisks.length}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Identificados</p>
                     </div>
                   </div>
                 </CardContent>
@@ -235,7 +235,7 @@ const RiesgosDigitales: React.FC = () => {
             >
               <Card className="border-brand-mint-200/30 bg-gradient-to-br from-white via-brand-mint-200/5 to-white shadow-soft">
                 <CardHeader className="pb-3 sm:pb-6">
-                  <CardTitle className="flex items-center gap-2 text-base sm:text-lg text-brand-ink-900">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-brand-ink-900">
                     <div className="p-1 bg-brand-teal-500/20 rounded-full">
                       <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
                     </div>
@@ -250,12 +250,12 @@ const RiesgosDigitales: React.FC = () => {
                         placeholder="Buscar riesgos..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 text-sm sm:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20"
+                        className="pl-10 text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20"
                       />
                     </div>
 
                     <Select value={selectedSeverity} onValueChange={setSelectedSeverity}>
-                      <SelectTrigger className="text-sm sm:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
+                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
                         <SelectValue placeholder="Nivel de riesgo" />
                       </SelectTrigger>
                       <SelectContent>
@@ -267,7 +267,7 @@ const RiesgosDigitales: React.FC = () => {
                     </Select>
 
                     <Select value={selectedAgeGroup} onValueChange={setSelectedAgeGroup}>
-                      <SelectTrigger className="text-sm sm:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
+                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
                         <SelectValue placeholder="Grupo de edad" />
                       </SelectTrigger>
                       <SelectContent>
@@ -280,7 +280,7 @@ const RiesgosDigitales: React.FC = () => {
                     </Select>
 
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="text-sm sm:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
+                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
                         <SelectValue placeholder="Categoría" />
                       </SelectTrigger>
                       <SelectContent>
@@ -411,10 +411,10 @@ const RiesgosDigitales: React.FC = () => {
                     <CheckCircle className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                   Recuerda estos 3 elementos clave:
                 </h3>
-                <p className="font-body text-sm text-brand-olive-500">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                   Fundamentos para proteger a tu familia en el mundo digital
                 </p>
               </div>
@@ -424,10 +424,10 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                     <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
                   </div>
-                  <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                     Comunicación Abierta
                   </h4>
-                  <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                     Mantén un diálogo constante con tus hijos sobre sus actividades digitales. 
                     La confianza es la base de la seguridad.
                   </p>
@@ -437,10 +437,10 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                     <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">2</span>
                   </div>
-                  <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                     Prevención Activa
                   </h4>
-                  <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                     Implementa controles parentales, configura privacidad y establece reglas 
                     claras sobre el uso de dispositivos.
                   </p>
@@ -450,10 +450,10 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                     <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
                   </div>
-                  <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                  <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                     Acción Inmediata
                   </h4>
-                  <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                     Si detectas un riesgo, actúa de inmediato. No esperes a que la situación 
                     empeore. Busca ayuda profesional si es necesario.
                   </p>
@@ -473,18 +473,18 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="p-3 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-4">
                     <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-teal-500" />
                   </div>
-                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
                     ¿Necesitas ayuda inmediata?
                   </h3>
-                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
                     Si tu hijo está en peligro inmediato o has detectado una situación grave, 
                     no dudes en contactar a las autoridades correspondientes.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                    <Button variant="destructive" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
+                    <Button variant="destructive" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
                       Policía Cibernética: 088
                     </Button>
-                    <Button variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
+                    <Button variant="secondary-brand" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
                       Te Protejo México
                     </Button>
                   </div>

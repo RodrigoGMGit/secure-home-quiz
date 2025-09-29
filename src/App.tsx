@@ -15,6 +15,9 @@ import TuFamiliaVideojuegos from "./pages/TuFamiliaVideojuegos";
 import RiesgosDigitales from "./pages/RiesgosDigitales";
 import ControlesParentales from "./pages/ControlesParentales";
 import ComunicacionYApoyo from "./pages/ComunicacionYApoyo";
+import Recursos from "./pages/Recursos";
+import Ayuda from "./pages/Ayuda";
+import AccionesLegales from "./pages/AccionesLegales";
 
 const queryClient = new QueryClient();
 const routerBase =
@@ -61,6 +64,9 @@ const App = () => {
             <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />
             <Route path="/aprende/controles" element={<ControlesParentales />} />
             <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
+            <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
+            <Route path="/recursos" element={<Recursos />} />
+            <Route path="/ayuda" element={<Ayuda />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

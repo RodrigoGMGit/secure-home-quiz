@@ -34,10 +34,10 @@ const ControlesParentales: React.FC = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Controles Parentales
             </h1>
-            <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+            <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
               Más que restringir, se trata de acompañar
             </p>
             
@@ -71,10 +71,10 @@ const ControlesParentales: React.FC = () => {
                   <Settings className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
                 ¿Qué son los controles parentales?
               </h2>
-              <p className="font-body text-sm text-brand-olive-500">
+              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                 Herramientas de acompañamiento y protección digital
               </p>
             </div>
@@ -83,22 +83,22 @@ const ControlesParentales: React.FC = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                    <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                       <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
                       Acompañamiento, no restricción
                     </h3>
-                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                    <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                       Los controles parentales son herramientas de acompañamiento y protección que nos permiten 
                       guiar el crecimiento digital de las niñas, niños y adolescentes de manera consciente y respetuosa.
                     </p>
                   </div>
                   
                   <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                    <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                       <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
                       Herramientas para cada dispositivo
                     </h3>
-                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                    <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                       Cada plataforma y dispositivo tiene sus propias herramientas de control parental. 
                       Te mostramos las más efectivas y fáciles de configurar.
                     </p>
@@ -111,10 +111,10 @@ const ControlesParentales: React.FC = () => {
                       <AlertTriangle className="h-5 w-5 text-brand-teal-500" />
                     </div>
                     <div>
-                      <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+                      <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
                         Dato importante
                       </h4>
-                      <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                         No hay herramienta que sustituya al diálogo, pero sin herramientas, 
                         el diálogo llega cuando ya es tarde.
                       </p>
@@ -138,10 +138,10 @@ const ControlesParentales: React.FC = () => {
                   <Smartphone className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+              <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                 Configuraciones por Dispositivo
               </h2>
-              <p className="font-body text-sm text-brand-olive-500">
+              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                 Herramientas específicas para cada plataforma
               </p>
             </div>
@@ -156,8 +156,8 @@ const ControlesParentales: React.FC = () => {
                     <Smartphone className="h-6 w-6 text-brand-teal-500" />
                   </div>
                   <div className="text-left">
-                    <h3 className="font-heading text-xl font-semibold text-brand-ink-900">Android</h3>
-                    <p className="font-body text-sm text-brand-olive-500">Google Family Link + Google SafeSearch</p>
+                    <h3 className="font-heading text-lg sm:text-xl font-semibold text-brand-ink-900">Android</h3>
+                    <p className="font-body text-xs sm:text-sm text-brand-olive-500">Google Family Link + Google SafeSearch</p>
                   </div>
                 </div>
               </AccordionTrigger>
@@ -170,18 +170,18 @@ const ControlesParentales: React.FC = () => {
                         <div className="p-1 bg-brand-teal-500/20 rounded-full">
                           <Shield className="h-5 w-5 text-brand-teal-500" />
                         </div>
-                        <span className="font-heading text-lg font-semibold text-brand-ink-900">Google Family Link</span>
+                        <span className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900">Google Family Link</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                         Herramienta gratuita de Google que permite supervisar, limitar y acompañar 
                         el uso que tus hijos hacen de sus dispositivos Android.
                       </p>
                       
                       <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-4">
-                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">Requisitos:</h4>
-                        <ul className="space-y-1 text-sm font-body text-brand-ink-800">
+                        <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">Requisitos:</h4>
+                        <ul className="space-y-1 text-xs sm:text-sm font-body text-brand-ink-800">
                           <li>• Dispositivo Android 7.0 o superior</li>
                           <li>• Cuentas de Google válidas (@gmail.com)</li>
                           <li>• Conexión a internet activa</li>
@@ -190,26 +190,26 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <h4 className="font-heading text-base font-semibold text-brand-ink-900">Pasos para configurar:</h4>
+                        <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900">Pasos para configurar:</h4>
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                            <span className="font-body text-sm text-brand-ink-800">1. Descarga Family Link en tu dispositivo (Android o iPhone)</span>
+                            <span className="font-body text-xs sm:text-sm text-brand-ink-800">1. Descarga Family Link en tu dispositivo (Android o iPhone)</span>
                           </div>
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                            <span className="font-body text-sm text-brand-ink-800">2. Crea una cuenta de Google para tu hijo o conecta la que ya tiene</span>
+                            <span className="font-body text-xs sm:text-sm text-brand-ink-800">2. Crea una cuenta de Google para tu hijo o conecta la que ya tiene</span>
                           </div>
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                            <span className="font-body text-sm text-brand-ink-800">3. Empareja el dispositivo de tu hijo con el tuyo</span>
+                            <span className="font-body text-xs sm:text-sm text-brand-ink-800">3. Empareja el dispositivo de tu hijo con el tuyo</span>
                           </div>
                         </div>
                       </div>
 
                       <div className="bg-gradient-to-r from-brand-mint-200/20 to-brand-teal-500/10 border border-brand-mint-200/30 rounded-lg p-4">
-                        <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">Lo que puedes configurar:</h4>
-                        <ul className="space-y-1 text-sm font-body text-brand-ink-800">
+                        <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">Lo que puedes configurar:</h4>
+                        <ul className="space-y-1 text-xs sm:text-sm font-body text-brand-ink-800">
                           <li>• Límites de tiempo de uso diario y por app</li>
                           <li>• Aprobar o bloquear la descarga de apps</li>
                           <li>• Filtrar contenido inapropiado en Chrome, YouTube y Google Play</li>
@@ -710,10 +710,10 @@ const ControlesParentales: React.FC = () => {
                   <Shield className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+              <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                 Recuerda estos 3 elementos clave:
               </h3>
-              <p className="font-body text-sm text-brand-olive-500">
+              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                 Fundamentos para controles parentales efectivos
               </p>
             </div>
@@ -723,10 +723,10 @@ const ControlesParentales: React.FC = () => {
                 <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Acompañamiento
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   Los controles parentales son herramientas de acompañamiento, no de restricción. 
                   Su objetivo es guiar y proteger, no limitar.
                 </p>
@@ -736,10 +736,10 @@ const ControlesParentales: React.FC = () => {
                 <div className="bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">2</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Diálogo Constante
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   No hay herramienta que sustituya al diálogo, pero sin herramientas, 
                   el diálogo llega cuando ya es tarde.
                 </p>
@@ -749,10 +749,10 @@ const ControlesParentales: React.FC = () => {
                 <div className="bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Configuración Gradual
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   Comienza con configuraciones básicas y ajusta según la edad y madurez 
                   de tu hijo o hija.
                 </p>

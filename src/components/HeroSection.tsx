@@ -183,14 +183,14 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-8 sm:py-12 lg:py-20 z-10">
-        <div className="flex justify-center items-center min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]">
+      <div className="relative container mx-auto px-4 py-8 sm:py-12 lg:py-8 z-10">
+        <div className="flex justify-center items-center min-h-[60vh] sm:min-h-[70vh] md:min-h-[70vh] lg:min-h-[75vh]">
           {/* Content Section */}
           <div className={`text-center transition-all duration-1000 transform max-w-4xl mx-auto ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
-            {/* Headline - Extra enhanced mobile sizing */}
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase tracking-tight text-brand-ink-900 mb-8 sm:mb-10 leading-tight">
+            {/* Headline - Mobile optimized, desktop reduced */}
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 sm:mb-8 md:mb-6 lg:mb-6 leading-tight">
               <div className="flex flex-col gap-4 sm:gap-5">
                 {headlineLines.map(({ text, highlight }) => (
                   <div
@@ -211,13 +211,13 @@ const HeroSection = () => {
               </div>
             </h1>
 
-            {/* Subtitle - Extra enhanced mobile sizing */}
-            <p className="font-body text-xl sm:text-2xl md:text-3xl lg:text-3xl text-brand-olive-500 mb-10 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
+            {/* Subtitle - Mobile optimized, desktop reduced */}
+            <p className="font-body text-xl sm:text-2xl md:text-2xl lg:text-2xl text-brand-olive-500 mb-8 sm:mb-10 md:mb-8 lg:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
               Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
             </p>
 
             {/* Trust indicators - Compact mobile sizing */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 px-2">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-4 lg:mb-4 px-2">
               {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
                 <div
                   key={index}

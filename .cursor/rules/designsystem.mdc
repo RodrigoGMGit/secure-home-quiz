@@ -517,49 +517,273 @@ alwaysApply: true
 - Minimizar bundle size
 - Usar `font-display: swap` para fuentes
 
-## 13. Reglas de Diseño Sofisticado
+## 13. Patrón de Diseño Estándar (Basado en /tu-familia)
 
-### Headers de Sección
-- **SIEMPRE** incluir logo circular con gradiente en headers principales
-- Usar `header-with-logo` para fondos con gradiente sutil
-- Implementar `quote-highlight` para frases destacadas
-- Aplicar `logo-circular` para íconos principales
+### Estructura de Página Completa
+```jsx
+// Layout principal de página
+<>
+  <GlobalHeader />
+  <div className="min-h-screen bg-gradient-subtle">
+    {/* Elementos decorativos de fondo - OBLIGATORIOS */}
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+    </div>
 
-### Paleta de Colores para Cards
-- **Rotar colores** entre: `card-teal`, `card-mint`, `card-olive`, `card-primary`, `card-ink`
-- Usar opacidades consistentes: `/10` para fondos, `/30` para bordes
-- Aplicar colores correspondientes a íconos: `icon-bg-teal`, `icon-bg-mint`, etc.
+    {/* Header Section - OBLIGATORIO */}
+    <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Logo circular con gradiente - OBLIGATORIO */}
+          <div className="flex justify-center mb-6">
+            <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+              <IconComponent className="h-12 w-12 text-primary-foreground" />
+            </div>
+          </div>
+          
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            Título Principal
+          </h1>
+          <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+            Subtítulo descriptivo
+          </p>
+          
+          {/* Frase destacada - OBLIGATORIA */}
+          <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
+            <div className="flex items-center justify-center mb-3">
+              <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
+              <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
+            </div>
+            <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
+              "Frase inspiradora o clave del contenido"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-### Estructura de Contenido
-- **Introducciones**: Usar `intro-section` con layout de 2 columnas
-- **Key Points**: Implementar `key-points` con números circulares y hover effects
-- **Elementos decorativos**: Incluir `bg-decorative` con círculos animados
+    {/* Main Content */}
+    <div className="relative container mx-auto px-4 py-8 sm:py-12">
+      <div className="max-w-6xl mx-auto">
+        {/* Contenido de la página */}
+      </div>
+    </div>
+  </div>
+</>
+```
 
-### Transiciones y Animaciones
-- **SIEMPRE** usar `transition-smooth` para elementos interactivos
-- Aplicar `hover-scale` o `hover-lift` según el contexto
-- Implementar animaciones de entrada con delays escalonados
-- Usar `fade-in-up` para elementos que aparecen
+### Sección de Introducción Obligatoria
+```jsx
+// SIEMPRE incluir esta sección después del header
+<motion.div 
+  className="mb-12 sm:mb-16"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+>
+  <div className="text-center mb-8">
+    <div className="flex justify-center mb-4">
+      <div className="p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full">
+        <IconComponent className="h-8 w-8 text-primary-foreground" />
+      </div>
+    </div>
+    <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+      ¿Por qué es importante este tema?
+    </h2>
+    <p className="font-body text-sm text-brand-olive-500">
+      Subtítulo explicativo
+    </p>
+  </div>
+  
+  <div className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30">
+    <div className="max-w-4xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+            <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
+            Punto clave 1
+          </h3>
+          <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+            Descripción del primer punto clave.
+          </p>
+        </div>
+        
+        <div>
+          <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+            <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
+            Punto clave 2
+          </h3>
+          <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+            Descripción del segundo punto clave.
+          </p>
+        </div>
+      </div>
+      
+      <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
+            <InfoIcon className="h-5 w-5 text-brand-teal-500" />
+          </div>
+          <div>
+            <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+              Dato importante
+            </h4>
+            <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+              Información destacada o estadística relevante.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
+```
 
-### Responsividad Avanzada
-- **Tipografía**: Usar clases `.text-hero`, `.text-h1`, `.text-body-lg`, etc.
-- **Espaciado**: Aplicar `.p-container`, `.p-section`, `.p-card`, `.m-section`
-- **Breakpoints**: Implementar `sm:`, `md:`, `lg:` en todos los elementos
-- **Escalado**: Ajustar tamaños de íconos, padding y márgenes por breakpoint
+### Headers de Sección Estándar
+```jsx
+// Para cada sección principal usar este patrón
+<div className="text-center mb-8">
+  <div className="flex justify-center mb-4">
+    <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
+      <IconComponent className="h-8 w-8 text-primary-foreground" />
+    </div>
+  </div>
+  <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+    Título de la Sección
+  </h2>
+  <p className="font-body text-sm text-brand-olive-500">
+    Subtítulo descriptivo de la sección
+  </p>
+</div>
+```
 
-### Elementos Visuales
-- **Sombras**: Usar `shadow-soft` para profundidad sutil
-- **Gradientes**: Aplicar gradientes de marca según el contexto
-- **Bordes**: Usar opacidades de marca para bordes sutiles
-- **Íconos**: Siempre con fondos circulares y colores de marca
+### Cards con Sistema de Colores Rotativos
+```jsx
+// Rotar entre estos colores para evitar monotonía
+const cardColors = [
+  "border-brand-teal-500/30 bg-brand-teal-500/10",
+  "border-brand-mint-200/40 bg-brand-mint-200/20", 
+  "border-brand-olive-500/30 bg-brand-olive-500/10"
+];
 
-### Consistencia Visual
-- **Mantener** la misma estructura de header en todas las secciones
-- **Rotar** colores de cards para evitar monotonía visual
-- **Aplicar** el mismo nivel de sofisticación en todas las páginas
-- **Usar** elementos decorativos de fondo en secciones principales
+const iconColors = [
+  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-mint-200/60 text-brand-ink-800",
+  "bg-brand-olive-500/20 text-brand-olive-500"
+];
 
-## 13.1. Patrones de Diseño Avanzados (Basados en Tu Familia)
+// Estructura de card estándar
+<Card className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
+  <CardHeader className="text-center p-4 sm:p-6">
+    <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconBg} rounded-full w-fit shadow-soft`}>
+      <IconComponent className={`h-6 w-6 sm:h-8 sm:w-8 ${iconColor}`} />
+    </div>
+    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">
+      Título de la Card
+    </CardTitle>
+    <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
+      Descripción de la card
+    </CardDescription>
+  </CardHeader>
+  <CardContent className="p-4 sm:p-6 pt-0">
+    {/* Contenido de la card */}
+  </CardContent>
+</Card>
+```
+
+### Sección de Puntos Clave (Key Points)
+```jsx
+// Para secciones con pasos, tips o puntos importantes
+<div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-12 sm:mb-16">
+  <div className="text-center mb-8">
+    <div className="flex justify-center mb-4">
+      <div className="p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full">
+        <IconComponent className="h-8 w-8 text-primary-foreground" />
+      </div>
+    </div>
+    <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+      Título de los Puntos Clave
+    </h3>
+    <p className="font-body text-sm text-brand-olive-500">
+      Subtítulo explicativo
+    </p>
+  </div>
+  
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {items.map((item, index) => (
+      <div key={index} className="text-center group">
+        <div className={`rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth ${item.iconColor}`}>
+          <span className={`font-heading text-xl sm:text-2xl font-bold ${
+            item.iconColor.includes('brand-mint-200') ? 'text-brand-ink-800' : 
+            item.iconColor.includes('brand-teal-500') ? 'text-brand-teal-500' : 
+            'text-brand-olive-500'
+          }`}>{item.numero}</span>
+        </div>
+        <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+          {item.titulo}
+        </h4>
+        <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+          {item.descripcion}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+```
+
+### Reglas de Implementación Obligatorias
+1. **SIEMPRE** usar elementos decorativos de fondo en páginas principales
+2. **SIEMPRE** incluir logo circular con gradiente en headers
+3. **SIEMPRE** implementar frase destacada con icono y etiqueta
+4. **SIEMPRE** usar contraste mejorado para iconos y números
+5. **SIEMPRE** aplicar animaciones escalonadas en grids
+6. **SIEMPRE** usar hover effects en elementos interactivos
+7. **SIEMPRE** implementar responsividad completa con breakpoints
+8. **SIEMPRE** mantener consistencia visual entre secciones
+9. **SIEMPRE** rotar colores de cards para evitar monotonía visual
+10. **SIEMPRE** usar el mismo nivel de sofisticación en todas las páginas
+
+## 13.1. Estándar de Calidad Visual (Referencia: /tu-familia)
+
+### Nivel de Sofisticación Requerido
+Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación visual que la página `/tu-familia`. Esto incluye:
+
+#### Elementos Visuales Obligatorios
+- **Elementos decorativos de fondo**: Círculos animados con blur y opacidades bajas
+- **Headers sofisticados**: Con gradientes sutiles, logos circulares y frases destacadas
+- **Secciones de introducción**: Layout de 2 columnas con iconos y datos importantes
+- **Sistema de colores rotativos**: Para evitar monotonía visual
+- **Animaciones y transiciones**: Hover effects, escalas y animaciones escalonadas
+- **Contraste mejorado**: Para accesibilidad y legibilidad
+
+#### Estructura de Contenido Estándar
+1. **Header con logo circular y frase destacada**
+2. **Sección de introducción con layout de 2 columnas**
+3. **Secciones de contenido con headers con iconos**
+4. **Cards con sistema de colores rotativos**
+5. **Sección de puntos clave con números circulares**
+6. **Elementos decorativos de fondo en toda la página**
+
+#### Responsividad Completa
+- **Tipografía escalable**: `text-3xl sm:text-4xl md:text-5xl lg:text-6xl`
+- **Espaciado responsivo**: `p-4 sm:p-6 lg:p-8`
+- **Iconos escalables**: `h-6 w-6 sm:h-8 sm:w-8`
+- **Grids adaptativos**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+
+### Criterios de Evaluación
+Una página cumple con el estándar cuando:
+- ✅ Tiene elementos decorativos de fondo animados
+- ✅ Incluye header con logo circular y frase destacada
+- ✅ Implementa sección de introducción con layout de 2 columnas
+- ✅ Usa sistema de colores rotativos en cards
+- ✅ Aplica hover effects y transiciones suaves
+- ✅ Mantiene contraste mejorado en iconos y texto
+- ✅ Es completamente responsiva en todos los breakpoints
+- ✅ Tiene el mismo nivel de sofisticación que `/tu-familia`
+
+## 13.2. Patrones de Diseño Avanzados (Basados en Tu Familia)
 
 ### Estructura de Página Completa
 ```css
@@ -1088,4 +1312,45 @@ alwaysApply: true
 
 ---
 
-**Nota**: Este sistema de diseño debe ser seguido consistentemente en todo el proyecto para mantener la identidad de marca y la experiencia de usuario óptima.
+## 14. Resumen de Implementación
+
+### Objetivo Principal
+Todas las páginas del proyecto deben reflejar el mismo nivel de sofisticación visual y consistencia que la página `/tu-familia`. Este documento establece los patrones específicos y obligatorios que deben seguirse.
+
+### Checklist de Implementación
+Antes de considerar una página como "completada", verificar que incluya:
+
+#### ✅ Estructura Básica
+- [ ] Elementos decorativos de fondo animados (3 círculos con blur)
+- [ ] Header con gradiente sutil y logo circular
+- [ ] Frase destacada con icono y etiqueta
+- [ ] Sección de introducción con layout de 2 columnas
+- [ ] Headers de sección con iconos circulares
+
+#### ✅ Sistema Visual
+- [ ] Colores rotativos en cards (teal, mint, olive)
+- [ ] Contraste mejorado en iconos y texto
+- [ ] Hover effects en elementos interactivos
+- [ ] Transiciones suaves en todas las interacciones
+- [ ] Sombras sutiles para profundidad
+
+#### ✅ Responsividad
+- [ ] Tipografía escalable por breakpoint
+- [ ] Espaciado responsivo en todos los elementos
+- [ ] Iconos que escalan correctamente
+- [ ] Grids que se adaptan a diferentes pantallas
+- [ ] Padding y márgenes responsivos
+
+#### ✅ Contenido
+- [ ] Sección de puntos clave con números circulares
+- [ ] Cards con sistema de colores rotativos
+- [ ] Datos importantes destacados
+- [ ] Animaciones escalonadas en grids
+- [ ] Consistencia visual entre secciones
+
+### Referencia de Calidad
+La página `/tu-familia` es el estándar de referencia. Todas las páginas nuevas deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle.
+
+---
+
+**Nota**: Este sistema de diseño debe ser seguido consistentemente en todo el proyecto para mantener la identidad de marca y la experiencia de usuario óptima. La página `/tu-familia` es el estándar de calidad que todas las demás páginas deben igualar.

@@ -87,10 +87,10 @@ const TuFamilia = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Tu Familia Digital
             </h1>
-            <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+            <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
               Conoce los hábitos digitales de tu familia y aprende a crear un hogar digital más seguro
             </p>
             
@@ -124,10 +124,10 @@ const TuFamilia = () => {
                   <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
                 ¿Por dónde empezamos?
               </h2>
-              <p className="font-body text-sm text-brand-olive-500">
+              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                 Guía para padres y madres en el mundo digital
               </p>
             </div>
@@ -136,22 +136,22 @@ const TuFamilia = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                    <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                       <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
                       Nuestro rol como guías
                     </h3>
-                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                    <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                       Como madres, padres o personas cuidadoras, somos guías de nuestros hijos e hijas en la nueva 
                       ciudadanía digital, donde el respeto, la protección y la educación digital son clave.
                     </p>
                   </div>
                   
                   <div>
-                    <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+                    <h3 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
                       <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
                       La realidad digital actual
                     </h3>
-                    <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+                    <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
                       Hoy, la conexión digital empieza muy temprano. YouTube, WhatsApp y los juegos en línea son 
                       parte del día a día de la mayoría de los niños y niñas entre 7 y 11 años.
                     </p>
@@ -164,10 +164,10 @@ const TuFamilia = () => {
                       <Shield className="h-5 w-5 text-brand-teal-500" />
                     </div>
                     <div>
-                      <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+                      <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
                         Dato importante
                       </h4>
-                      <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                      <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                         El 65% de los niños ve videos en línea por casi 3 horas al día, 
                         la mayoría en plataformas gratuitas, con publicidad y sin filtros.
                       </p>
@@ -231,10 +231,10 @@ const TuFamilia = () => {
                   <CheckCircle className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+              <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                 Recuerda estos 3 elementos clave:
               </h3>
-              <p className="font-body text-sm text-brand-olive-500">
+              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
                 Fundamentos para un hogar digital seguro
               </p>
             </div>
@@ -244,10 +244,10 @@ const TuFamilia = () => {
                 <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Comunicación Familiar
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   Aprender sobre seguridad digital no solo protege a niñas, niños y adolescentes: 
                   también fortalece la comunicación familiar y fomenta el diálogo.
                 </p>
@@ -257,10 +257,10 @@ const TuFamilia = () => {
                 <div className="bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">2</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Hábitos Seguros
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   Este manual está diseñado para ayudarte a crear hábitos, rutinas y valores que 
                   hagan de tu hogar un espacio seguro y conectado.
                 </p>
@@ -270,10 +270,10 @@ const TuFamilia = () => {
                 <div className="bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
                 </div>
-                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+                <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Crecimiento Digital
                 </h4>
-                <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
                   Internet no tiene que dar miedo. Con información, presencia y diálogo, podemos 
                   convertirlo en un espacio de crecimiento, creatividad y conexión en familia.
                 </p>

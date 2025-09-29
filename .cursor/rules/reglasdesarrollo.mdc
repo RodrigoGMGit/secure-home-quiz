@@ -11,5 +11,5 @@ alwaysApply: true
 - Utiliza el sistema de diseño del proyecto en todas las cosas a implementar
 - Que todo lo que implementes sea responsive
 - Cuando finalices de implementar algo marca en el titulo de new_sections.md que ya lo finalizazte
--En todas las páginas nuevas que crees implementa el menú global salvo en la página de /about
+-Que todas las páginas tengan implementa el menú global salvo en la página de /about
 -El plan de trabajo lo encuentras en el archivo new_sections.md
