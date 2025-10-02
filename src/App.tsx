@@ -1,23 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Quiz from "./pages/Quiz";
-import NotFound from "./pages/NotFound";
-import TuFamilia from "./pages/TuFamilia";
-import TuFamiliaConectada from "./pages/TuFamiliaConectada";
-import TuFamiliaRedesSociales from "./pages/TuFamiliaRedesSociales";
-import TuFamiliaVideojuegos from "./pages/TuFamiliaVideojuegos";
-import RiesgosDigitales from "./pages/RiesgosDigitales";
-import ControlesParentales from "./pages/ControlesParentales";
-import ComunicacionYApoyo from "./pages/ComunicacionYApoyo";
-import Recursos from "./pages/Recursos";
-import Ayuda from "./pages/Ayuda";
-import AccionesLegales from "./pages/AccionesLegales";
+
+// Route-level code splitting
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Quiz = lazy(() => import("./pages/Quiz"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const TuFamilia = lazy(() => import("./pages/TuFamilia"));
+const TuFamiliaConectada = lazy(() => import("./pages/TuFamiliaConectada"));
+const TuFamiliaRedesSociales = lazy(() => import("./pages/TuFamiliaRedesSociales"));
+const TuFamiliaVideojuegos = lazy(() => import("./pages/TuFamiliaVideojuegos"));
+const RiesgosDigitales = lazy(() => import("./pages/RiesgosDigitales"));
+const ControlesParentales = lazy(() => import("./pages/ControlesParentales"));
+const ComunicacionYApoyo = lazy(() => import("./pages/ComunicacionYApoyo"));
+const Recursos = lazy(() => import("./pages/Recursos"));
+const Ayuda = lazy(() => import("./pages/Ayuda"));
+const AccionesLegales = lazy(() => import("./pages/AccionesLegales"));
 
 const queryClient = new QueryClient();
 const routerBase =
@@ -53,23 +55,25 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter basename={routerBase}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/aprende/tu-familia" element={<TuFamilia />} />
-            <Route path="/aprende/tu-familia/conectada" element={<TuFamiliaConectada />} />
-            <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
-            <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
-            <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />
-            <Route path="/aprende/controles" element={<ControlesParentales />} />
-            <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
-            <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
-            <Route path="/recursos" element={<Recursos />} />
-            <Route path="/ayuda" element={<Ayuda />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/aprende/tu-familia" element={<TuFamilia />} />
+              <Route path="/aprende/tu-familia/conectada" element={<TuFamiliaConectada />} />
+              <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
+              <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
+              <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />
+              <Route path="/aprende/controles" element={<ControlesParentales />} />
+              <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
+              <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
+              <Route path="/recursos" element={<Recursos />} />
+              <Route path="/ayuda" element={<Ayuda />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
