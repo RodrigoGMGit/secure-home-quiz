@@ -611,3 +611,111 @@ const cardColors = [
 ### 16.5. Archivos Afectados
 - `src/components/risks/RiskCard.tsx` - Componente completamente rediseñado
 - Todos los cards de riesgos en la página de Riesgos Digitales se benefician automáticamente
+
+## 17. Corrección de Alineación de Modales en Mobile
+
+### 17.1. Problema Identificado
+- **Síntoma**: Los modales no aparecían correctamente alineados en dispositivos móviles
+- **Causa**: Los modales específicos estaban sobrescribiendo las clases del componente base `DialogContent` con dimensiones fijas que causaban problemas de alineación
+- **Afectación**: Todos los modales del proyecto (RiskDetailModal, TuFamiliaVideojuegos, TuFamiliaRedesSociales)
+
+### 17.2. Solución Implementada
+
+#### Mejoras al Componente Base DialogContent
+```jsx
+// ANTES (problemático)
+className={cn(
+  "fixed left-[50%] top-[10%] sm:top-[15%] md:top-[10%] lg:top-[8%] z-50 grid w-full max-w-lg translate-x-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-xl sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl mx-4 sm:mx-6 md:mx-8 lg:mx-12 mb-4 sm:mb-6 md:mb-8 lg:mb-12 max-h-[85vh] sm:max-h-[80vh] md:max-h-[85vh] lg:max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent",
+  className,
+)}
+
+// DESPUÉS (corregido)
+className={cn(
+  "fixed left-[50%] top-[5%] sm:top-[8%] md:top-[6%] lg:top-[5%] z-50 grid w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] xl:w-[75vw] 2xl:w-[70vw] max-w-lg translate-x-[-50%] gap-4 border bg-background p-4 sm:p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-xl sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl mb-4 sm:mb-6 md:mb-8 lg:mb-12 max-h-[90vh] sm:max-h-[85vh] md:max-h-[88vh] lg:max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent",
+  className,
+)}
+```
+
+#### Cambios Específicos Implementados
+1. **Ancho responsivo mejorado**:
+   - Móvil: `w-[95vw]` (95% del viewport width)
+   - Tablet: `w-[90vw]` (90% del viewport width)
+   - Desktop: `w-[80vw]` a `w-[70vw]` (80% a 70% del viewport width)
+
+2. **Posicionamiento vertical optimizado**:
+   - Móvil: `top-[5%]` (5% desde arriba)
+   - Tablet: `top-[8%]` (8% desde arriba)
+   - Desktop: `top-[5%]` (5% desde arriba)
+
+3. **Padding responsivo**:
+   - Móvil: `p-4` (16px)
+   - Desktop: `p-6` (24px)
+
+4. **Altura máxima mejorada**:
+   - Móvil: `max-h-[90vh]` (90% del viewport height)
+   - Tablet: `max-h-[85vh]` (85% del viewport height)
+   - Desktop: `max-h-[90vh]` (90% del viewport height)
+
+### 17.3. Estandarización de Modales Específicos
+
+#### RiskDetailModal
+```jsx
+// ANTES (problemático)
+<DialogContent className="max-w-5xl max-h-[95vh] overflow-y-auto w-[98vw] sm:w-full bg-gradient-subtle border-brand-mint-200/30">
+
+// DESPUÉS (estandarizado)
+<DialogContent className="bg-gradient-subtle border-brand-mint-200/30">
+```
+
+#### TuFamiliaVideojuegos Modal
+```jsx
+// ANTES (problemático)
+<DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+
+// DESPUÉS (estandarizado)
+<DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+```
+
+#### TuFamiliaRedesSociales Modal
+```jsx
+// ANTES (problemático)
+<DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+
+// DESPUÉS (estandarizado)
+<DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+```
+
+### 17.4. Beneficios de la Estandarización
+
+#### ✅ Alineación Perfecta
+- **Centrado horizontal**: Los modales aparecen perfectamente centrados usando `left-[50%] translate-x-[-50%]`
+- **Centrado vertical**: Posicionamiento optimizado con `top-[5%]` en móvil
+- **Márgenes simétricos**: Espacios iguales en ambos lados del modal
+
+#### ✅ Responsividad Mejorada
+- **Ancho adaptativo**: Usa viewport width (`vw`) para mejor adaptación
+- **Altura optimizada**: Usa viewport height (`vh`) para evitar desbordamiento
+- **Padding responsivo**: Menor padding en móvil para maximizar espacio de contenido
+
+#### ✅ Consistencia Visual
+- **Comportamiento uniforme**: Todos los modales siguen el mismo patrón
+- **Animaciones preservadas**: Mantiene todas las transiciones y efectos
+- **Scrollbar personalizado**: Scrollbar delgado y estilizado
+
+#### ✅ Accesibilidad Mejorada
+- **Tap targets**: Espaciado adecuado para interacción táctil
+- **Contraste**: Mantiene todos los colores y contrastes del sistema de diseño
+- **Navegación por teclado**: Funcionalidad completa preservada
+
+### 17.5. Archivos Modificados
+- `src/components/ui/dialog.tsx` - Componente base mejorado con alineación perfecta
+- `src/components/risks/RiskDetailModal.tsx` - Clases estandarizadas
+- `src/pages/TuFamiliaVideojuegos.tsx` - Modal estandarizado
+- `src/pages/TuFamiliaRedesSociales.tsx` - Modal estandarizado
+
+### 17.6. Resultado Final
+- ✅ **Alineación perfecta**: Los modales aparecen centrados en todos los dispositivos
+- ✅ **Responsividad completa**: Adaptación óptima desde móvil hasta desktop
+- ✅ **Consistencia visual**: Todos los modales siguen el mismo patrón estándar
+- ✅ **Experiencia de usuario mejorada**: Mejor usabilidad en dispositivos móviles
+- ✅ **Mantenibilidad**: Un solo punto de control para el comportamiento de modales

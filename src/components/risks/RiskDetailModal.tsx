@@ -40,7 +40,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[95vh] overflow-y-auto w-[98vw] sm:w-full bg-gradient-subtle border-brand-mint-200/30">
+      <DialogContent className="bg-gradient-subtle border-brand-mint-200/30">
         {/* Header con diseño sofisticado */}
         <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
           {/* Elementos decorativos de fondo */}

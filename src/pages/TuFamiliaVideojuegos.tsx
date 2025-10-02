@@ -565,7 +565,7 @@ const TuFamiliaVideojuegos = () => {
                           Ver Guía Completa
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+                      <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
                         <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
                           <div className="flex justify-center mb-3 sm:mb-4">
                             <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
