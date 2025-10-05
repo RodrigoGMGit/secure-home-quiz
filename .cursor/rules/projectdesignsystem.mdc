@@ -1,0 +1,1128 @@
+---
+description: Sistema de Diseño - Secure Home Quiz / Hogares Seguros
+globs: ["**/*.tsx", "**/*.ts", "**/*.css"]
+alwaysApply: true
+---
+
+# Sistema de Diseño - Secure Home Quiz / Hogares Seguros
+
+## Estándar de Referencia
+
+**Página de referencia**: `/tu-familia`
+
+Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle que la página `/tu-familia`.
+
+---
+
+## 1. Identidad de Marca
+
+### Nombre del Proyecto
+- **Título**: "Secure Home Quiz" / "Hogares Seguros"
+- **Propósito**: Plataforma educativa para padres mexicanos sobre seguridad digital infantil
+- **Idioma**: Español (México)
+- **Tono**: Cálido, accionable, de apoyo
+
+---
+
+## 2. Fundamentos: Color
+
+### Paleta de Colores de Marca
+
+```css
+/* Colores oficiales de la marca Hogares Seguros */
+--brand-ink-900: #002B36    /* PMS 547C - Texto principal, títulos */
+--brand-ink-800: #003556    /* PMS 302C - Botones primarios, hover */
+--brand-teal-500: #3994B2   /* PMS 7459C - Acentos, enlaces */
+--brand-olive-500: #576D5B  /* PMS 5615C - Texto secundario */
+--brand-mint-200: #B0E0D6   /* PMS 573C - Fondos suaves, acentos */
+--neutral-100: #D5D6D5      /* Cool Gray 1C - Bordes, fondos neutros */
+--white: #FFFFFF            /* Fondo principal */
+```
+
+### Mapeo Semántico de Colores
+
+```css
+--primary: var(--brand-teal-500)           /* Acentos principales */
+--primary-foreground: var(--white)         /* Texto sobre primario */
+--primary-hover: var(--brand-ink-800)      /* Hover de primarios */
+
+--secondary: var(--neutral-100)            /* Elementos secundarios */
+--secondary-foreground: var(--brand-ink-800) /* Texto sobre secundario */
+
+--accent: var(--brand-mint-200)            /* Acentos suaves */
+--accent-foreground: var(--brand-ink-800)  /* Texto sobre acento */
+
+--background: var(--white)                 /* Fondo principal */
+--background-subtle: var(--brand-mint-200) /* Fondos sutiles */
+--foreground: var(--brand-ink-900)         /* Texto principal */
+```
+
+### Sistema de Colores Rotativos (para Cards)
+
+```javascript
+// Rotar entre estos 3 colores para evitar monotonía visual
+const cardColors = [
+  "border-brand-teal-500/30 bg-brand-teal-500/10",    // Card 1, 4, 7...
+  "border-brand-mint-200/40 bg-brand-mint-200/20",    // Card 2, 5, 8...
+  "border-brand-olive-500/30 bg-brand-olive-500/10"   // Card 3, 6, 9...
+];
+
+const iconColors = [
+  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-mint-200/60 text-brand-ink-800",
+  "bg-brand-olive-500/20 text-brand-olive-500"
+];
+```
+
+### Uso de Colores por Elemento
+
+| Elemento | Color | Uso |
+|----------|-------|-----|
+| Texto principal | `text-brand-ink-900` | Títulos, párrafos principales |
+| Texto secundario | `text-brand-olive-500` | Subtítulos, descripciones |
+| Botones primarios | `bg-brand-ink-800` hover `bg-brand-ink-900` | CTAs principales |
+| Enlaces y acentos | `text-brand-teal-500` | Enlaces, elementos interactivos |
+| Fondos suaves | `bg-brand-mint-200/20` o `bg-neutral-100` | Secciones, cards |
+| Bordes | `border-brand-mint-200/30` | Delimitadores sutiles |
+
+---
+
+## 3. Fundamentos: Tipografía
+
+### Familias de Fuentes
+
+```css
+--font-heading: "Brandon Grotesque", "Inter", "ui-sans-serif", "system-ui", "sans-serif"
+--font-body: "Uniform", "Inter", "ui-sans-serif", "system-ui", "sans-serif"
+```
+
+### Escala Tipográfica Responsiva
+
+| Elemento | Clase Tailwind | Tamaños Responsivos |
+|----------|----------------|---------------------|
+| Hero | `text-3xl sm:text-4xl md:text-5xl lg:text-6xl` | 48px → 96px |
+| Hero (alt) | `text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl` | 32px → 96px |
+| H1 | `text-2xl sm:text-3xl md:text-4xl lg:text-5xl` | 32px → 80px |
+| H2 | `text-xl sm:text-2xl md:text-3xl lg:text-4xl` | 24px → 56px |
+| H3 | `text-lg sm:text-xl md:text-2xl lg:text-3xl` | 20px → 48px |
+| Body | `text-base sm:text-lg md:text-xl lg:text-2xl` | 16px → 32px |
+| Body Small | `text-sm sm:text-base md:text-lg lg:text-xl` | 14px → 24px |
+| Caption | `text-xs sm:text-sm md:text-base lg:text-lg` | 12px → 20px |
+
+### Clases de Tipografía Estándar
+
+```css
+/* Para títulos */
+.font-heading { font-family: "Brandon Grotesque", "Inter", sans-serif; }
+
+/* Para texto del cuerpo */
+.font-body { font-family: "Uniform", "Inter", sans-serif; }
+
+/* Colores de texto */
+.text-brand-ink-900   /* Texto principal oscuro */
+.text-brand-ink-800   /* Texto sobre acentos */
+.text-brand-olive-500 /* Texto secundario */
+.text-brand-teal-500  /* Enlaces y acentos */
+```
+
+---
+
+## 4. Fundamentos: Espaciado y Layout
+
+### Escala de Espaciado
+
+```css
+--space-1: 4px    /* Espaciado mínimo */
+--space-2: 8px    /* Espaciado pequeño */
+--space-3: 12px   /* Espaciado mediano */
+--space-4: 16px   /* Espaciado base */
+--space-6: 24px   /* Espaciado grande */
+--space-8: 32px   /* Espaciado extra grande */
+```
+
+### Clases de Espaciado Responsivo
+
+```css
+/* Padding de contenedores */
+.p-container { @apply px-4 sm:px-8 md:px-12 lg:px-16 }
+.p-section { @apply py-8 sm:py-12 md:py-16 lg:py-24 }
+.p-card { @apply p-4 sm:p-6 md:p-8 lg:p-10 }
+
+/* Margin entre secciones */
+.m-section { @apply mb-8 sm:mb-12 md:mb-16 lg:mb-24 }
+.spacing-responsive { @apply mb-12 sm:mb-16 }
+```
+
+### Border Radius y Sombras
+
+```css
+/* Border Radius */
+--radius-sm: 8px   /* Elementos pequeños */
+--radius-md: 12px  /* Elementos base (por defecto) */
+--radius-lg: 16px  /* Elementos grandes */
+--radius-xl: 20px  /* Elementos extra grandes */
+
+/* Sombras */
+--shadow-soft: 0 4px 16px rgba(0,0,0,0.08)  /* Sombra suave para cards */
+--shadow-cta: 0 8px 30px -8px hsl(var(--brand-teal-500) / 0.3) /* Sombra para CTAs */
+```
+
+---
+
+## 5. Componentes: Botones
+
+### Variantes de Botones
+
+#### Botón Primario (Brand)
+
+**Uso recomendado**: CTAs principales, acciones importantes
+
+```jsx
+// Usando variant (recomendado)
+<Button variant="primary-brand" className="px-8 py-3">
+  Texto del Botón
+</Button>
+
+// O con clases manuales
+<Button className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth">
+  Texto del Botón
+</Button>
+```
+
+**Características**:
+- Fondo: `bg-brand-ink-800`
+- Hover: `hover:bg-brand-ink-900`
+- Texto: `text-white` con `font-heading`
+- Altura mínima: 44px (accesibilidad)
+- Transición: `transition-smooth`
+
+#### Botón Secundario (Outline)
+
+```jsx
+<Button variant="outline" className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-8 py-3 text-sm sm:text-base font-heading font-semibold">
+  Texto del Botón
+</Button>
+```
+
+#### Botón como Link (React Router)
+
+**Uso**: Cuando un botón necesita navegar a otra página
+
+```jsx
+import { Link } from "react-router-dom";
+
+<Button asChild variant="primary-brand">
+  <Link to="/ruta/destino">
+    Ir a la página
+    <ChevronRight className="ml-2 h-4 w-4" />
+  </Link>
+</Button>
+```
+
+**Nota**: El prop `asChild` permite que el Button renderice como Link manteniendo los estilos
+
+---
+
+## 6. Componentes: Cards
+
+### Card Estándar con Sistema de Colores Rotativos
+
+```jsx
+// Define los índices de color
+const cardColors = [
+  "border-brand-teal-500/30 bg-brand-teal-500/10",
+  "border-brand-mint-200/40 bg-brand-mint-200/20", 
+  "border-brand-olive-500/30 bg-brand-olive-500/10"
+];
+
+const iconColors = [
+  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-mint-200/60 text-brand-ink-800",
+  "bg-brand-olive-500/20 text-brand-olive-500"
+];
+
+const checkmarkColors = [
+  "text-brand-teal-500",
+  "text-brand-ink-800",
+  "text-brand-olive-500"
+];
+
+// Uso en un grid
+{items.map((item, index) => {
+  const colorIndex = index % 3;
+  const cardColor = cardColors[colorIndex];
+  const iconColor = iconColors[colorIndex];
+  const checkColor = checkmarkColors[colorIndex];
+  
+  return (
+    <Card key={index} className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
+      <CardHeader className="text-center p-4 sm:p-6">
+        {/* Logo circular con icono */}
+        <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
+          <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+        </div>
+        
+        <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
+          {item.title}
+        </CardTitle>
+        
+        <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
+          {item.description}
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent className="p-4 sm:p-6 pt-0">
+        {/* Lista de features con checkmarks */}
+        <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+          {item.features.map((feature, i) => (
+            <li key={i} className="flex items-center text-xs sm:text-sm text-brand-ink-800">
+              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0 ${checkColor}`} />
+              {feature}
+            </li>
+          ))}
+        </ul>
+        
+        {/* Botón de acción */}
+        <Button className="w-full text-sm sm:text-base shadow-soft">
+          Ver más
+        </Button>
+      </CardContent>
+    </Card>
+  );
+})}
+```
+
+---
+
+## 7. Componentes: Modales (Sistema Estandarizado)
+
+### Patrón Base para Todos los Modales
+
+```jsx
+<Dialog open={isOpen} onOpenChange={onClose}>
+  {/* DialogContent usa clases base, solo agregar estilos específicos */}
+  <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+    
+    {/* Header con diseño sofisticado */}
+    <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
+      
+      {/* Elementos decorativos de fondo */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-4 left-4 w-16 h-16 bg-brand-teal-500/5 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-4 right-4 w-20 h-20 bg-brand-mint-200/10 rounded-full blur-xl animate-pulse delay-500"></div>
+      </div>
+      
+      <div className="relative">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          {/* Logo circular con gradiente */}
+          <div className="flex justify-center sm:justify-start">
+            <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+              <IconComponent className="h-8 w-8 text-primary-foreground" />
+            </div>
+          </div>
+          
+          <div className="flex-1 min-w-0 text-center sm:text-left">
+            <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
+              Título del Modal
+            </DialogTitle>
+            
+            {/* Badges opcionales */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+              <Badge variant="outline" className="text-xs sm:text-sm w-fit px-3 py-1">
+                Información relevante
+              </Badge>
+            </div>
+            
+            {/* Descripción */}
+            <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed">
+              Descripción del contenido del modal
+            </p>
+          </div>
+        </div>
+      </div>
+    </DialogHeader>
+
+    {/* Contenido del modal con animaciones */}
+    <div className="space-y-6 sm:space-y-8">
+      {/* Tu contenido aquí */}
+    </div>
+
+    <Separator className="my-6 sm:my-8 border-brand-mint-200/30" />
+
+    {/* Botón de cierre */}
+    <div className="flex justify-center px-4 sm:px-0">
+      <Button 
+        onClick={onClose} 
+        className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
+      >
+        Cerrar
+      </Button>
+    </div>
+  </DialogContent>
+</Dialog>
+```
+
+### Configuración del DialogContent Base
+
+El componente base `DialogContent` en `src/components/ui/dialog.tsx` ya incluye:
+
+```jsx
+className={cn(
+  "fixed left-[50%] top-[5%] sm:top-[8%] md:top-[6%] lg:top-[5%] z-50",
+  "grid w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] xl:w-[75vw] 2xl:w-[70vw]",
+  "max-w-lg sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl",
+  "translate-x-[-50%] gap-4 border bg-background p-4 sm:p-6 shadow-lg",
+  "rounded-xl mb-4 sm:mb-6 md:mb-8 lg:mb-12",
+  "max-h-[90vh] sm:max-h-[85vh] md:max-h-[88vh] lg:max-h-[90vh]",
+  "overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent",
+  "duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out",
+  // ... animaciones
+  className,
+)}
+```
+
+**⚠️ IMPORTANTE**: NO sobrescribir las clases `max-w-*`, `w-[*vw]`, `max-h-[*vh]`, `overflow-y-auto` del DialogContent base. Solo agregar estilos visuales (gradientes, bordes, sombras).
+
+### Características Obligatorias de Modales
+
+✅ **Header sofisticado**: Gradiente sutil + elementos decorativos animados  
+✅ **Logo circular**: Icono principal dentro de círculo con gradiente  
+✅ **Elementos decorativos**: Círculos animados con blur en el fondo  
+✅ **Tipografía consistente**: `font-heading` y `font-body`  
+✅ **Responsividad completa**: Anchos y padding adaptables  
+✅ **Animaciones suaves**: `animate-pulse` con delays escalonados
+
+---
+
+## 8. Patrones de Página: Elementos Decorativos de Fondo
+
+### **OBLIGATORIO** en todas las páginas principales
+
+```jsx
+{/* Colocar después del tag de apertura del contenedor principal */}
+<div className="absolute inset-0 overflow-hidden">
+  <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+  <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+  <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+</div>
+```
+
+---
+
+## 9. Patrones de Página: Header Principal
+
+### **OBLIGATORIO** en todas las páginas principales
+
+```jsx
+<div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
+  <div className="container mx-auto px-4 py-8 sm:py-12">
+    <div className="max-w-4xl mx-auto text-center">
+      
+      {/* Logo circular con gradiente - OBLIGATORIO */}
+      <div className="flex justify-center mb-6">
+        <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+          <IconComponent className="h-12 w-12 text-primary-foreground" />
+        </div>
+      </div>
+      
+      {/* Título principal */}
+      <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+        Título Principal de la Página
+      </h1>
+      
+      {/* Subtítulo */}
+      <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+        Subtítulo descriptivo que explica el contenido
+      </p>
+      
+      {/* Frase destacada - OBLIGATORIA */}
+      <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
+        <div className="flex items-center justify-center mb-3">
+          <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
+          <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">
+            Etiqueta Clave
+          </span>
+        </div>
+        <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
+          "Frase inspiradora o mensaje clave del contenido"
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## 10. Patrones de Página: Sección de Introducción
+
+### **OBLIGATORIO** después del header principal
+
+```jsx
+<motion.div 
+  className="mb-12 sm:mb-16"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+>
+  {/* Header de la sección */}
+  <div className="text-center mb-8">
+    <div className="flex justify-center mb-4">
+      <div className="p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full">
+        <InfoIcon className="h-8 w-8 text-primary-foreground" />
+      </div>
+    </div>
+    <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
+      ¿Por qué es importante este tema?
+    </h2>
+    <p className="font-body text-sm text-brand-olive-500">
+      Subtítulo explicativo de la sección
+    </p>
+  </div>
+  
+  {/* Contenedor con gradiente */}
+  <div className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30">
+    <div className="max-w-4xl mx-auto">
+      
+      {/* Grid de 2 columnas con puntos clave */}
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+            <div className="w-2 h-2 bg-brand-teal-500 rounded-full mr-3"></div>
+            Punto Clave 1
+          </h3>
+          <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+            Descripción del primer punto clave que explica la importancia.
+          </p>
+        </div>
+        
+        <div>
+          <h3 className="font-heading text-lg font-semibold text-brand-ink-900 mb-4 flex items-center">
+            <div className="w-2 h-2 bg-brand-mint-200 rounded-full mr-3"></div>
+            Punto Clave 2
+          </h3>
+          <p className="font-body text-base text-brand-ink-800 leading-relaxed">
+            Descripción del segundo punto clave que refuerza el mensaje.
+          </p>
+        </div>
+      </div>
+      
+      {/* Dato importante destacado */}
+      <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
+            <AlertCircle className="h-5 w-5 text-brand-teal-500" />
+          </div>
+          <div>
+            <h4 className="font-heading text-base font-semibold text-brand-ink-900 mb-2">
+              Dato Importante
+            </h4>
+            <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+              Estadística relevante o información destacada que capta la atención.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</motion.div>
+```
+
+---
+
+## 11. Patrones de Página: Headers de Sección
+
+### Para cada sección principal del contenido
+
+```jsx
+<div className="text-center mb-8">
+  <div className="flex justify-center mb-4">
+    <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
+      <IconComponent className="h-8 w-8 text-primary-foreground" />
+    </div>
+  </div>
+  <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+    Título de la Sección
+  </h2>
+  <p className="font-body text-sm text-brand-olive-500">
+    Subtítulo descriptivo de la sección
+  </p>
+</div>
+```
+
+---
+
+## 12. Patrones de Página: Sección de Puntos Clave
+
+### Para secciones con pasos, tips o conceptos numerados
+
+```jsx
+<div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-12 sm:mb-16">
+  
+  {/* Header de la sección */}
+  <div className="text-center mb-8">
+    <div className="flex justify-center mb-4">
+      <div className="p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full">
+        <Target className="h-8 w-8 text-primary-foreground" />
+      </div>
+    </div>
+    <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+      Puntos Clave a Recordar
+    </h3>
+    <p className="font-body text-sm text-brand-olive-500">
+      Los conceptos más importantes para entender
+    </p>
+  </div>
+  
+  {/* Grid de puntos con números circulares */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {keyPoints.map((point, index) => {
+      const colorIndex = index % 3;
+      const numberBg = [
+        "bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10",
+        "bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40",
+        "bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10"
+      ][colorIndex];
+      
+      const numberColor = [
+        "text-brand-teal-500",
+        "text-brand-ink-800",
+        "text-brand-olive-500"
+      ][colorIndex];
+      
+      return (
+        <div key={index} className="text-center group">
+          {/* Número circular con hover */}
+          <div className={`${numberBg} rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth`}>
+            <span className={`font-heading text-xl sm:text-2xl font-bold ${numberColor}`}>
+              {index + 1}
+            </span>
+          </div>
+          
+          <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-3">
+            {point.title}
+          </h4>
+          
+          <p className="font-body text-sm sm:text-base text-brand-olive-500 leading-relaxed">
+            {point.description}
+          </p>
+        </div>
+      );
+    })}
+  </div>
+</div>
+```
+
+---
+
+## 13. Interacción y Animación
+
+### Estados de Hover
+
+```css
+/* Hover para cards */
+.hover:scale-105 transition-smooth
+
+/* Hover para números circulares */
+.group-hover:scale-110 transition-smooth
+
+/* Hover para botones */
+.hover:shadow-lg transition-smooth
+```
+
+### Transiciones Estándar
+
+```css
+/* Transición suave para la mayoría de elementos */
+.transition-smooth { @apply transition-all duration-300 ease-in-out; }
+
+/* Transición con rebote para elementos especiales */
+.transition-bounce { @apply transition-all duration-300 cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+```
+
+### Animation Delays (para elementos decorativos)
+
+```css
+/* Delays para círculos de fondo animados */
+.delay-500   /* 500ms animation delay */
+.delay-1000  /* 1000ms animation delay */
+```
+
+**Uso en elementos decorativos**:
+```jsx
+<div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+<div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+<div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+```
+
+### Animaciones Escalonadas (Stagger)
+
+**Patrón dinámico con índice** (recomendado para listas):
+
+```jsx
+{items.map((item, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ 
+      duration: 0.6, 
+      delay: index * 0.1  // Stagger: 0s, 0.1s, 0.2s, 0.3s...
+    }}
+  >
+    {/* Contenido */}
+  </motion.div>
+))}
+```
+
+**Patrón fijo** (para elementos conocidos):
+```jsx
+<motion.div transition={{ duration: 0.6, delay: 0.1 }}>Item 1</motion.div>
+<motion.div transition={{ duration: 0.6, delay: 0.2 }}>Item 2</motion.div>
+<motion.div transition={{ duration: 0.6, delay: 0.3 }}>Item 3</motion.div>
+```
+
+### Estados de Focus (Accesibilidad)
+
+```css
+/* Siempre visible para navegación por teclado */
+focus:ring-2 focus:ring-brand-teal-500 focus:ring-offset-2
+```
+
+---
+
+## 14. Responsive Design
+
+### Breakpoints de Tailwind
+
+| Breakpoint | Ancho Mínimo | Uso |
+|------------|--------------|-----|
+| `sm:` | 640px | Tablet pequeña |
+| `md:` | 768px | Tablet |
+| `lg:` | 1024px | Desktop |
+| `xl:` | 1280px | Desktop grande |
+| `2xl:` | 1536px | Desktop extra grande |
+
+### Principios Mobile-First
+
+1. **Diseñar para móvil primero**, luego escalar
+2. **Tap-targets mínimos de 44px** para elementos interactivos
+3. **Texto legible sin zoom** (mínimo 16px base)
+4. **Navegación táctil intuitiva**
+
+### Patrones Responsivos Comunes
+
+```jsx
+{/* Contenedores */}
+className="container mx-auto px-4 py-8 sm:py-12"
+className="max-w-6xl mx-auto"
+
+{/* Grids */}
+className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+
+{/* Padding */}
+className="p-4 sm:p-6 md:p-8 lg:p-10"
+
+{/* Iconos */}
+className="h-6 w-6 sm:h-8 sm:w-8"
+
+{/* Espaciado */}
+className="space-y-4 sm:space-y-6 lg:space-y-8"
+```
+
+### Grid con Número Impar de Items (Centering Pattern)
+
+**Problema**: Al tener 3 items en un grid de 2 columnas, el tercer item queda desalineado.
+
+**Solución**: Hacer que el tercer item abarque 2 columnas en tablet, volviendo a 1 columna en desktop.
+
+```jsx
+{/* Grid de 3 items centrado en todas las resoluciones */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  {/* Este item se centra automáticamente en tablet */}
+  <div className="sm:col-span-2 lg:col-span-1">
+    Item 3
+  </div>
+</div>
+```
+
+**Resultado**:
+- Móvil: 1 columna (Item 1, Item 2, Item 3)
+- Tablet: 2 columnas con Item 3 centrado (abarca 2 col-span)
+- Desktop: 3 columnas normales (Item 1, Item 2, Item 3)
+
+---
+
+## 15. Accesibilidad (WCAG AA)
+
+### Contraste de Colores
+
+**Requisitos mínimos**:
+- Texto normal: **4.5:1**
+- Texto grande (18px+): **3:1**
+- Elementos no textuales: **3:1**
+
+### Reglas de Contraste Específicas
+
+```css
+/* ✅ Iconos principales - máximo contraste */
+.text-brand-ink-800  /* Sobre fondos claros */
+
+/* ✅ Números en círculos - contraste mejorado */
+.text-brand-ink-800  /* Sobre brand-mint-200/60 */
+.text-brand-teal-500 /* Sobre brand-teal-500/20 */
+.text-brand-olive-500 /* Sobre brand-olive-500/20 */
+
+/* ✅ Checkmarks - colores específicos por sección */
+.text-brand-teal-500  /* Card teal */
+.text-brand-ink-800   /* Card mint */
+.text-brand-olive-500 /* Card olive */
+
+/* ⚠️ Fondos de iconos - opacidad mínima /60 para elementos críticos */
+.bg-brand-mint-200/60 /* ✅ BIEN - alto contraste */
+.bg-brand-mint-200/30 /* ⚠️ EVITAR para iconos principales */
+```
+
+### Navegación por Teclado
+
+```jsx
+{/* Elementos interactivos deben ser focusables */}
+<button className="focus:ring-2 focus:ring-brand-teal-500 focus:ring-offset-2">
+  Acción
+</button>
+
+{/* Skip links para contenido principal */}
+<a href="#main-content" className="sr-only focus:not-sr-only">
+  Saltar al contenido principal
+</a>
+```
+
+### ARIA Labels
+
+```jsx
+{/* Iconos sin texto visible */}
+<button aria-label="Cerrar modal">
+  <X className="h-6 w-6" />
+</button>
+
+{/* Elementos decorativos */}
+<div aria-hidden="true">
+  {/* Círculos decorativos de fondo */}
+</div>
+```
+
+### Preferencias del Usuario
+
+```css
+/* Respetar preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+---
+
+## 16. Iconografía
+
+### Librería de Iconos
+
+**Lucide React** - https://lucide.dev/
+
+```jsx
+import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
+```
+
+### Tamaños de Iconos
+
+| Contexto | Clase Tailwind | Tamaño |
+|----------|----------------|--------|
+| Icono pequeño | `h-4 w-4` | 16px |
+| Icono normal | `h-6 w-6` | 24px |
+| Icono grande | `h-8 w-8` | 32px |
+| Icono hero | `h-12 w-12` | 48px |
+| **Responsivo** | `h-6 w-6 sm:h-8 sm:w-8` | 24px → 32px |
+
+### Iconos Comunes
+
+```jsx
+// Acciones
+<ChevronRight /> <Search /> <ExternalLink />
+
+// Estados
+<CheckCircle /> <Shield /> <Eye /> <AlertCircle />
+
+// Navegación
+<ArrowLeft /> <ArrowRight /> <Home /> <Menu />
+
+// Información
+<Info /> <HelpCircle /> <AlertTriangle />
+```
+
+---
+
+## 17. Gradientes y Fondos
+
+### Clase Utility Principal
+
+```css
+/* Gradiente sutil para fondo de página completa */
+.bg-gradient-subtle {
+  background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background-subtle)) 100%);
+}
+```
+
+**Uso**: Aplicar al contenedor principal de cada página
+
+```jsx
+<div className="min-h-screen bg-gradient-subtle">
+  {/* Contenido de la página */}
+</div>
+```
+
+### Gradientes de Marca
+
+```css
+/* Gradientes principales */
+.bg-gradient-to-r from-brand-teal-500 to-primary
+.bg-gradient-to-r from-brand-olive-500 to-brand-teal-500
+
+/* Gradientes de fondo (sutiles) */
+.bg-gradient-to-br from-white via-brand-mint-200/20 to-white  /* Headers */
+.bg-gradient-to-br from-white via-brand-mint-200/5 to-white   /* Secciones ligeras */
+.bg-gradient-to-br from-white via-brand-mint-200/10 to-white  /* Secciones medias */
+
+/* Gradientes para elementos específicos */
+.bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10  /* Frases destacadas */
+.bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20  /* Datos importantes */
+
+/* Gradientes para números circulares */
+.bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10
+.bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40
+.bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10
+```
+
+---
+
+## 18. Patrones de React Comunes
+
+### Hook: Auto-scroll al inicio de página
+
+**Uso**: Aplicar en todas las páginas para scroll automático al cambiar de ruta
+
+```jsx
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+
+const MyPage = () => {
+  // Scroll automático al inicio de la página al cambiar de ruta
+  useScrollToTop();
+  
+  return (
+    <>
+      {/* Contenido de la página */}
+    </>
+  );
+};
+
+export default MyPage;
+```
+
+### Componente: Global Header
+
+**Uso**: Incluir en todas las páginas (excepto `/about`)
+
+```jsx
+import GlobalHeader from "@/components/GlobalHeader";
+
+const MyPage = () => {
+  return (
+    <>
+      <GlobalHeader />
+      <div className="min-h-screen bg-gradient-subtle">
+        {/* Contenido de la página */}
+      </div>
+    </>
+  );
+};
+```
+
+### Pattern: Button como Link
+
+**Uso**: Cuando un botón necesita navegar a otra página usando React Router
+
+```jsx
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+
+<Button asChild variant="primary-brand">
+  <Link to="/ruta/destino">
+    Ir a la página
+    <ChevronRight className="ml-2 h-4 w-4" />
+  </Link>
+</Button>
+```
+
+**Nota**: El prop `asChild` hace que el Button renderice como Link mientras mantiene todos sus estilos.
+
+### Imports Comunes
+
+```jsx
+// Layout y navegación
+import GlobalHeader from "@/components/GlobalHeader";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { Link } from "react-router-dom";
+
+// UI Components
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+// Animaciones
+import { motion } from "framer-motion";
+
+// Iconos (lucide-react)
+import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
+```
+
+---
+
+## 19. Checklist de Implementación
+
+### ✅ Estructura Básica (Obligatorio)
+
+- [ ] Elementos decorativos de fondo animados (3 círculos con blur)
+- [ ] Header con gradiente sutil y logo circular
+- [ ] Frase destacada con icono y etiqueta
+- [ ] Sección de introducción con layout de 2 columnas
+- [ ] Headers de sección con iconos circulares
+
+### ✅ Sistema Visual (Obligatorio)
+
+- [ ] Colores rotativos en cards (teal, mint, olive)
+- [ ] Contraste mejorado en iconos y texto (WCAG AA)
+- [ ] Hover effects en elementos interactivos
+- [ ] Transiciones suaves en todas las interacciones
+- [ ] Sombras sutiles para profundidad
+
+### ✅ Responsividad (Obligatorio)
+
+- [ ] Tipografía escalable por breakpoint
+- [ ] Espaciado responsivo en todos los elementos
+- [ ] Iconos que escalan correctamente
+- [ ] Grids que se adaptan a diferentes pantallas
+- [ ] Padding y márgenes responsivos
+
+### ✅ Contenido (Obligatorio)
+
+- [ ] Sección de puntos clave con números circulares
+- [ ] Cards con sistema de colores rotativos
+- [ ] Datos importantes destacados
+- [ ] Animaciones escalonadas en grids
+- [ ] Consistencia visual entre secciones
+
+### ✅ Accesibilidad (Obligatorio)
+
+- [ ] Contraste mínimo 4.5:1 para texto normal
+- [ ] Navegación completa por teclado
+- [ ] ARIA labels en elementos interactivos
+- [ ] Focus visible en todos los elementos
+- [ ] Respeto a `prefers-reduced-motion`
+
+---
+
+## 20. Reglas de Implementación
+
+### SIEMPRE Hacer
+
+1. **Usar elementos decorativos de fondo** en páginas principales
+2. **Incluir logo circular con gradiente** en headers
+3. **Implementar frase destacada** con icono y etiqueta
+4. **Usar contraste mejorado** para iconos y números (WCAG AA)
+5. **Aplicar animaciones escalonadas** en grids
+6. **Usar hover effects** en elementos interactivos
+7. **Implementar responsividad completa** con breakpoints
+8. **Mantener consistencia visual** entre secciones
+9. **Rotar colores de cards** para evitar monotonía
+10. **Alcanzar el nivel de `/tu-familia`** en sofisticación
+
+### NUNCA Hacer
+
+1. ❌ Usar colores genéricos (red, green, blue) en lugar de colores de marca
+2. ❌ Crear elementos con contraste insuficiente (<4.5:1)
+3. ❌ Ignorar la responsividad en móviles
+4. ❌ Omitir animaciones y transiciones
+5. ❌ Usar un solo color para todas las cards
+6. ❌ Sobrescribir clases de `DialogContent` base para modales
+7. ❌ Crear tap targets menores a 44px
+8. ❌ Olvidar ARIA labels en iconos sin texto
+
+---
+
+## 21. Ejemplos Rápidos
+
+### Layout de Página Completo
+
+```jsx
+<>
+  <GlobalHeader />
+  
+  <div className="min-h-screen bg-gradient-subtle">
+    {/* Elementos decorativos de fondo */}
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+    </div>
+
+    {/* Header Principal */}
+    <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
+      {/* Ver sección 9 para código completo */}
+    </div>
+
+    {/* Contenido Principal */}
+    <div className="relative container mx-auto px-4 py-8 sm:py-12">
+      <div className="max-w-6xl mx-auto">
+        {/* Sección de Introducción */}
+        {/* Ver sección 10 para código completo */}
+        
+        {/* Secciones de Contenido */}
+        {/* Ver secciones 11-12 para patrones */}
+      </div>
+    </div>
+  </div>
+</>
+```
+
+---
+
+## Recursos Adicionales
+
+### Enlaces Útiles
+
+- **Lucide Icons**: https://lucide.dev/
+- **Tailwind CSS**: https://tailwindcss.com/docs
+- **shadcn/ui**: https://ui.shadcn.com/
+- **Framer Motion**: https://www.framer.com/motion/
+- **WCAG Guidelines**: https://www.w3.org/WAI/WCAG21/quickref/
+
+### Archivos de Referencia en el Proyecto
+
+- **Página estándar**: `src/pages/TuFamilia.tsx`
+- **Componente modal**: `src/components/ui/dialog.tsx`
+- **Componente card**: `src/components/ui/card.tsx`
+- **Estilos globales**: `src/index.css`
+- **Configuración Tailwind**: `tailwind.config.ts`
+
+---
+
+**Última actualización**: Octubre 2025  
+**Estándar de referencia**: `/tu-familia`  
+**Objetivo**: Todas las páginas deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle.
+
