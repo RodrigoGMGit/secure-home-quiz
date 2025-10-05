@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoadingComponent from "@/components/ui/loading-component";
 
 // Route-level code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -55,7 +56,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter basename={routerBase}>
-          <Suspense fallback={null}>
+          <Suspense fallback={<LoadingComponent />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
