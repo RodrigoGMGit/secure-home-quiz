@@ -95,7 +95,7 @@ const RiesgosDigitales: React.FC = () => {
               {/* Frase destacada mejorada */}
               <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
                 <div className="flex items-center justify-center mb-3">
-                  <AlertTriangle className="h-6 w-6 text-brand-teal-500 mr-2" />
+                  <AlertTriangle className="h-6 w-6 text-brand-ink-800 mr-2" />
                   <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
                 </div>
                 <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
@@ -159,7 +159,7 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                        <Shield className="h-5 w-5 text-brand-teal-500" />
+                        <Shield className="h-5 w-5 text-brand-ink-800" />
                       </div>
                       <div>
                         <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
@@ -187,7 +187,7 @@ const RiesgosDigitales: React.FC = () => {
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-brand-teal-500/20 rounded-full">
-                      <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500 flex-shrink-0" />
+                      <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800 flex-shrink-0" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{severityStats.high || 0}</p>
@@ -237,7 +237,7 @@ const RiesgosDigitales: React.FC = () => {
                 <CardHeader className="pb-3 sm:pb-6">
                   <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-brand-ink-900">
                     <div className="p-1 bg-brand-teal-500/20 rounded-full">
-                      <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
+                      <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-brand-ink-800" />
                     </div>
                     Filtrar Riesgos
                   </CardTitle>
@@ -422,7 +422,7 @@ const RiesgosDigitales: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <div className="text-center group">
                   <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
-                    <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
+                    <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">1</span>
                   </div>
                   <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                     Comunicación Abierta
@@ -471,7 +471,7 @@ const RiesgosDigitales: React.FC = () => {
               <Card className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border-brand-teal-500/20 shadow-soft">
                 <CardContent className="p-6 sm:p-8 text-center">
                   <div className="p-3 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-4">
-                    <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-teal-500" />
+                    <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-ink-800" />
                   </div>
                   <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
                     ¿Necesitas ayuda inmediata?

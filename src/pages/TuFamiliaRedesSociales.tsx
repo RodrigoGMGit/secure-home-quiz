@@ -666,7 +666,7 @@ const TuFamiliaRedesSociales = () => {
                               {platform.tutorial.steps.map((step, index) => (
                                 <div key={index} className="bg-white rounded-lg p-4 sm:p-6 border border-brand-mint-200/20 shadow-soft hover:shadow-md transition-smooth">
                                   <div className="flex items-start space-x-3 sm:space-x-4">
-                                    <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 text-brand-teal-500 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 shadow-soft">
+                                    <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 text-brand-ink-800 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 shadow-soft">
                                       {index + 1}
                                     </div>
                                     <div className="flex-1">

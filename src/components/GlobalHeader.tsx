@@ -139,7 +139,7 @@ const GlobalHeader = () => {
                     <AccordionTrigger className="text-left px-4 py-3 hover:bg-brand-mint-200/20 transition-smooth rounded-lg">
                       <div className="flex items-center space-x-3">
                         <div className="p-1.5 bg-brand-teal-500/20 rounded-lg">
-                          <item.icon className="h-4 w-4 text-brand-teal-500" />
+                          <item.icon className="h-4 w-4 text-brand-ink-800" />
                         </div>
                         <span className="font-heading font-semibold text-brand-ink-800">{item.title}</span>
                       </div>
@@ -154,10 +154,10 @@ const GlobalHeader = () => {
                             className="flex items-start space-x-3 p-3 rounded-lg hover:bg-brand-mint-200/30 transition-smooth group"
                           >
                             <div className="p-1 bg-brand-mint-200/40 rounded-md group-hover:bg-brand-teal-500/20 transition-smooth">
-                              <subItem.icon className="h-3 w-3 text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors" />
+                              <subItem.icon className="h-3 w-3 text-brand-ink-800 group-hover:text-brand-ink-800 transition-colors" />
                             </div>
                             <div className="flex-1">
-                              <div className="font-heading font-medium text-sm text-brand-ink-900 group-hover:text-brand-teal-500 transition-colors">
+                              <div className="font-heading font-medium text-sm text-brand-ink-900 group-hover:text-brand-ink-800 transition-colors">
                                 {subItem.title}
                               </div>
                               <div className="text-xs text-brand-olive-500 font-body leading-relaxed mt-1">
@@ -193,11 +193,11 @@ const GlobalHeader = () => {
                     <item.icon className={cn(
                       "h-4 w-4 transition-colors",
                       isActive(item.href!)
-                        ? "text-brand-teal-500"
-                        : "text-brand-ink-800 group-hover:text-brand-teal-500"
+                        ? "text-brand-ink-800"
+                        : "text-brand-ink-800 group-hover:text-brand-ink-800"
                     )} />
                   </div>
-                  <span className="font-heading font-semibold text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors">
+                  <span className="font-heading font-semibold text-brand-ink-800 group-hover:text-brand-ink-800 transition-colors">
                     {item.title}
                   </span>
                 </Link>

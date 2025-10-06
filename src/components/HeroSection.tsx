@@ -226,7 +226,7 @@ const HeroSection = () => {
                   }`}
                   style={{ transitionDelay: `${800 + index * 100}ms` }}
                 >
-                  <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-teal-500 flex-shrink-0" />
+                  <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-ink-800 flex-shrink-0" />
                   <span className="text-xs sm:text-sm md:text-base font-medium text-brand-ink-800 whitespace-nowrap">{item}</span>
                 </div>
               ))}

@@ -25,9 +25,9 @@ const TuFamilia = () => {
         "Estadísticas de México"
       ],
       color: "border-brand-teal-500/30 bg-brand-teal-500/10",
-      iconColor: "text-brand-teal-500",
+      iconColor: "text-brand-ink-800",
       iconBg: "bg-brand-teal-500/20",
-      checkmarkColor: "text-brand-teal-500"
+      checkmarkColor: "text-brand-ink-800"
     },
     {
       id: "redes-sociales",
@@ -97,7 +97,7 @@ const TuFamilia = () => {
             {/* Frase destacada mejorada */}
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
               <div className="flex items-center justify-center mb-3">
-                <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
+                <Shield className="h-6 w-6 text-brand-ink-800 mr-2" />
                 <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
               </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
@@ -161,7 +161,7 @@ const TuFamilia = () => {
                 <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                      <Shield className="h-5 w-5 text-brand-teal-500" />
+                      <Shield className="h-5 w-5 text-brand-ink-800" />
                     </div>
                     <div>
                       <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
@@ -242,7 +242,7 @@ const TuFamilia = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <div className="text-center group">
                 <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
-                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
+                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">1</span>
                 </div>
                 <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Comunicación Familiar

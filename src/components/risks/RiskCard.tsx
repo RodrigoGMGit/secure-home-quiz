@@ -13,9 +13,9 @@ interface RiskCardProps {
 }
 
 const severityColors = {
-  low: 'bg-brand-teal-500/20 text-brand-teal-500 border-brand-teal-500/30',
+  low: 'bg-brand-teal-500/20 text-brand-ink-800 border-brand-teal-500/30',
   medium: 'bg-brand-mint-200/60 text-brand-ink-800 border-brand-mint-200/40',
-  high: 'bg-brand-olive-500/20 text-brand-olive-500 border-brand-olive-500/30'
+  high: 'bg-brand-olive-500/20 text-brand-ink-800 border-brand-olive-500/30'
 };
 
 const severityLabels = {
@@ -37,9 +37,9 @@ const cardColors = [
 ];
 
 const iconColors = [
-  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-teal-500/20 text-brand-ink-800",
   "bg-brand-mint-200/60 text-brand-ink-800",
-  "bg-brand-olive-500/20 text-brand-olive-500"
+  "bg-brand-olive-500/20 text-brand-ink-800"
 ];
 
 export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails }) => {
@@ -88,19 +88,19 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails }) => {
           {/* Features con sistema de colores rotativos */}
           <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
             <li className="flex items-center text-xs sm:text-sm text-brand-ink-800">
-              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 ${iconColor.includes('brand-teal-500') ? 'text-brand-teal-500' : iconColor.includes('brand-mint-200') ? 'text-brand-ink-800' : 'text-brand-olive-500'} mr-2 sm:mr-3 flex-shrink-0`} />
+              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 text-brand-ink-800 mr-2 sm:mr-3 flex-shrink-0`} />
               Identificación temprana
             </li>
             <li className="flex items-center text-xs sm:text-sm text-brand-ink-800">
-              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 ${iconColor.includes('brand-teal-500') ? 'text-brand-teal-500' : iconColor.includes('brand-mint-200') ? 'text-brand-ink-800' : 'text-brand-olive-500'} mr-2 sm:mr-3 flex-shrink-0`} />
+              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 text-brand-ink-800 mr-2 sm:mr-3 flex-shrink-0`} />
               Acción inmediata
             </li>
             <li className="flex items-center text-xs sm:text-sm text-brand-ink-800">
-              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 ${iconColor.includes('brand-teal-500') ? 'text-brand-teal-500' : iconColor.includes('brand-mint-200') ? 'text-brand-ink-800' : 'text-brand-olive-500'} mr-2 sm:mr-3 flex-shrink-0`} />
+              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 text-brand-ink-800 mr-2 sm:mr-3 flex-shrink-0`} />
               Prevención activa
             </li>
             <li className="flex items-center text-xs sm:text-sm text-brand-ink-800">
-              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 ${iconColor.includes('brand-teal-500') ? 'text-brand-teal-500' : iconColor.includes('brand-mint-200') ? 'text-brand-ink-800' : 'text-brand-olive-500'} mr-2 sm:mr-3 flex-shrink-0`} />
+              <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 text-brand-ink-800 mr-2 sm:mr-3 flex-shrink-0`} />
               Edades: {risk.ageGroups.join(', ')}
             </li>
           </ul>
