@@ -21,9 +21,9 @@
 - [x] **Mejora #3+#9**: Tabla de Contraste AA - ✅ **COMPLETADO**
 
 ### 🟡 PRIORIDAD MEDIA: Strategic
-- [ ] **Mejora #2**: Tokens Semánticos
-- [ ] **Mejora #11**: Componentes para Quiz
-- [ ] **Mejora #13**: Tipografía Completa
+- [x] **Mejora #2**: Tokens Semánticos - ✅ **COMPLETADO**
+- [x] **Mejora #11**: Componentes para Quiz - ✅ **COMPLETADO**
+- [x] **Mejora #13**: Tipografía Completa - ✅ **COMPLETADO**
 
 ### 🟢 PRIORIDAD BAJA: Pulido y Documentación
 - [ ] **Mejora #15**: Snippets Canónicos
@@ -41,7 +41,7 @@
 |-----------|---------|-------------|
 | 🚨 **CRÍTICA** | 2 | Bugs activos que causan errores en producción |
 | 🔴 **ALTA** | 7 | Alto impacto, bajo esfuerzo (Quick Wins) |
-| 🟡 **MEDIA** | 4 | Alto impacto, esfuerzo medio (Strategic) |
+| 🟡 **MEDIA** | 3 | Alto impacto, esfuerzo medio (Strategic) |
 | 🟢 **BAJA** | 6 | Mejoras incrementales y documentación (+2 nuevas) |
 | ❌ **ELIMINADAS** | 3 | Ya implementadas correctamente |
 
@@ -696,7 +696,19 @@ La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode si
 
 ## 🟡 PRIORIDAD MEDIA: Strategic
 
-### 🎨 Mejora #2: Tokens Semánticos
+### ✅ Mejora #2: Tokens Semánticos - **COMPLETADO**
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Tokens agregados en `src/index.css`: success, warning, error, info, disabled
+- ✅ Colores agregados en `tailwind.config.ts` con estructura completa
+- ✅ Componente `InputEnhanced` creado con estados de error y helper text
+- ✅ Archivo de ejemplos `quiz-components-examples.tsx` creado
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Sin errores de linting detectados
+
+---
+
+### 🎨 Mejora #2: Tokens Semánticos (Documentación Original)
 
 **Agregar a src/index.css**:
 ```css
@@ -827,7 +839,20 @@ colors: {
 
 ---
 
-### 🧩 Mejora #11: Componentes para Quiz (Scope Reducido)
+### ✅ Mejora #11: Componentes para Quiz - **COMPLETADO**
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Componente `InputEnhanced` creado con accesibilidad completa
+- ✅ Archivo de ejemplos `quiz-components-examples.tsx` con todos los casos de uso
+- ✅ Estilos de marca documentados para Checkbox y Radio
+- ✅ Ejemplos de Alert con tokens semánticos (success, warning, error, info)
+- ✅ Estados disabled implementados con tokens semánticos
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Sin errores de linting detectados
+
+---
+
+### 🧩 Mejora #11: Componentes para Quiz (Documentación Original)
 
 **Solo implementar los 4 componentes que el quiz necesita**:
 
@@ -995,7 +1020,18 @@ Estados:
 
 ---
 
-### 📝 Mejora #13: Tipografía Completa
+### ✅ Mejora #13: Tipografía Completa - **COMPLETADO**
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Variables de tipografía agregadas en `src/index.css`: line-height y letter-spacing
+- ✅ Utility classes creadas: `.leading-heading-1`, `.leading-body`, `.tracking-tight`, etc.
+- ✅ Tokens de tipografía: `--lh-heading-1`, `--lh-body`, `--ls-tight`, `--ls-wide`
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Sin errores de linting detectados
+
+---
+
+### 📝 Mejora #13: Tipografía Completa (Documentación Original)
 
 **Agregar a src/index.css**:
 ```css
