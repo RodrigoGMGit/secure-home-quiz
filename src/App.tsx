@@ -55,6 +55,10 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        {/* Skip link para navegación por teclado */}
+        <a href="#main-content" className="skip-to-content">
+          Saltar al contenido principal
+        </a>
         <BrowserRouter basename={routerBase}>
           <Suspense fallback={<LoadingComponent />}>
             <Routes>

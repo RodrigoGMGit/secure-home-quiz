@@ -193,4 +193,17 @@ Based on official brand guidelines and tokens
   .scrollbar-thin::-webkit-scrollbar-track {
     background-color: transparent;
   }
+
+  /* Accessibility utilities */
+  .sr-only-focusable:focus {
+    @apply sr-only focus:not-sr-only;
+  }
+  
+  /* Skip link para navegación por teclado */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only;
+    @apply focus:fixed focus:top-4 focus:left-4 focus:z-50;
+    @apply focus:px-4 focus:py-2 focus:bg-brand-ink-800 focus:text-white;
+    @apply focus:rounded-md focus:shadow-lg;
+  }
 }

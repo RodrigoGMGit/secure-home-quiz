@@ -13,7 +13,7 @@
 
 ### 🔴 PRIORIDAD ALTA: Quick Wins
 - [x] **Mejora #8**: Safelist para Clases Dinámicas - ✅ **COMPLETADO**
-- [ ] **Mejora #20**: Utilidades de Accesibilidad
+- [x] **Mejora #20**: Utilidades de Accesibilidad - ✅ **COMPLETADO**
 - [ ] **Mejora #12**: Focus & Motion
 - [ ] **Mejora #18**: Sistema de Opacidades Documentado
 - [ ] **Mejora #4**: Corregir shadow-cta
@@ -257,7 +257,7 @@ export default {
 
 ---
 
-### ♿ Mejora #20: Utilidades de Accesibilidad
+### ✅ Mejora #20: Utilidades de Accesibilidad - **COMPLETADO**
 
 **Solución completa**:
 ```css
@@ -331,6 +331,14 @@ export default {
 - ✅ Usuarios de teclado pueden saltar al contenido principal rápidamente
 - 🎯 Target audience: Padres mexicanos con discapacidades visuales o motoras
 - 🎯 Cumplimiento: Ley Federal de Telecomunicaciones de México
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Utilidades agregadas en `src/index.css`: `.sr-only-focusable` y `.skip-to-content`
+- ✅ Skip-link agregado en `src/App.tsx` con enlace a `#main-content`
+- ✅ Elemento `<main id="main-content">` agregado en `src/pages/Index.tsx`
+- ✅ Verificación: GlobalHeader ya tiene `<span className="sr-only">Abrir menú</span>`
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Cumplimiento WCAG 2.1 AA para navegación por teclado
 
 ---
 
