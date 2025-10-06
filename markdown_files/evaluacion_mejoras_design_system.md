@@ -16,7 +16,7 @@
 - [x] **Mejora #20**: Utilidades de Accesibilidad - ✅ **COMPLETADO**
 - [x] **Mejora #12**: Focus & Motion - ✅ **COMPLETADO**
 - [x] **Mejora #18**: Sistema de Opacidades Documentado - ✅ **COMPLETADO**
-- [ ] **Mejora #4**: Corregir shadow-cta
+- [x] **Mejora #4**: Corregir shadow-cta - ✅ **COMPLETADO**
 - [ ] **Mejora #14**: Documentar Estrategia Dark Mode
 - [ ] **Mejora #3+#9**: Tabla de Contraste AA
 
@@ -487,7 +487,7 @@ export default {
 
 ---
 
-### 🖼️ Mejora #4: Corregir shadow-cta
+### ✅ Mejora #4: Corregir shadow-cta - **COMPLETADO**
 
 **Problema actual**:
 ```css
@@ -531,6 +531,13 @@ export default {
 - ✅ Hover en botones primarios mantiene sombra suave teal
 - ❌ Sin el fix: Sombra puede fallar en algunos navegadores (Safari antiguo)
 - 🎯 Afecta: Todos los botones con `shadow-cta` (CTAs principales)
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ `--shadow-cta` corregido: `0 8px 30px -8px rgba(57, 148, 178, 0.3)`
+- ✅ Comentario explicativo agregado: Equivalente a brand-teal-500 (#3994B2)
+- ✅ Valor RGBA directo: Mejor compatibilidad con box-shadow
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Sombra CTA funciona consistentemente en todos los navegadores
 
 ---
 

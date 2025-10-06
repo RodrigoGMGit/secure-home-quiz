@@ -79,7 +79,8 @@ Based on official brand guidelines and tokens
     /* Shadows */
     --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
     --shadow-soft: var(--shadow-card);
-    --shadow-cta: 0 8px 30px -8px hsl(var(--brand-teal-500) / 0.3);
+    --shadow-cta: 0 8px 30px -8px rgba(57, 148, 178, 0.3);
+    /* Equivalente a brand-teal-500 (#3994B2 = rgb(57, 148, 178)) con 30% opacidad */
 
     /* Gradients */
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background-subtle)) 100%);
