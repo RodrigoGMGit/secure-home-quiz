@@ -14,7 +14,7 @@
 ### 🔴 PRIORIDAD ALTA: Quick Wins
 - [x] **Mejora #8**: Safelist para Clases Dinámicas - ✅ **COMPLETADO**
 - [x] **Mejora #20**: Utilidades de Accesibilidad - ✅ **COMPLETADO**
-- [ ] **Mejora #12**: Focus & Motion
+- [x] **Mejora #12**: Focus & Motion - ✅ **COMPLETADO**
 - [ ] **Mejora #18**: Sistema de Opacidades Documentado
 - [ ] **Mejora #4**: Corregir shadow-cta
 - [ ] **Mejora #14**: Documentar Estrategia Dark Mode
@@ -342,7 +342,7 @@ export default {
 
 ---
 
-### 🎹 Mejora #12: Focus & Motion
+### ✅ Mejora #12: Focus & Motion - **COMPLETADO**
 
 **Solución completa**:
 ```css
@@ -414,6 +414,14 @@ export default {
 - ✅ Hover effects suaves en cards (scale, shadow)
 - 🎯 Afecta: Todos los botones, links, cards con hover
 - 🎯 Accesibilidad: Obligatorio para usuarios de teclado y personas con discapacidades vestibulares
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Utilidades agregadas en `src/index.css`: `.transition-smooth` y `.focus-visible-brand`
+- ✅ Media query `@media (prefers-reduced-motion)` agregada al final del archivo
+- ✅ Componente Button actualizado: `transition-smooth` y `focus-visible-brand` aplicados
+- ✅ Variante `primary-brand` actualizada con `transition-smooth`
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Cumplimiento WCAG 2.1 Criterio 2.3.3 para usuarios con vértigo/epilepsia
 
 ---
 

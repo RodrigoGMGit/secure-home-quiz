@@ -206,4 +206,24 @@ Based on official brand guidelines and tokens
     @apply focus:px-4 focus:py-2 focus:bg-brand-ink-800 focus:text-white;
     @apply focus:rounded-md focus:shadow-lg;
   }
+
+  /* Transición suave estándar */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  /* Focus visible consistente */
+  .focus-visible-brand {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal-500 focus-visible:ring-offset-2;
+  }
+}
+
+/* Respetar preferencias de movimiento reducido - Agregar al final del archivo */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
