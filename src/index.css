@@ -57,6 +57,31 @@ Based on official brand guidelines and tokens
     --destructive: 0 84% 60%;
     --destructive-foreground: var(--white);
 
+    /* Success tokens */
+    --success: 142 76% 36%;        /* #16A34A - Verde success */
+    --success-foreground: var(--white);
+    --success-subtle: 142 76% 95%; /* Fondo suave */
+
+    /* Warning tokens */
+    --warning: 38 92% 50%;         /* #F59E0B - Amarillo warning */
+    --warning-foreground: var(--brand-ink-900);
+    --warning-subtle: 38 92% 95%;
+
+    /* Error tokens (alias de destructive) */
+    --error: var(--destructive);
+    --error-foreground: var(--destructive-foreground);
+    --error-subtle: 0 84% 95%;
+
+    /* Info tokens */
+    --info: var(--brand-teal-500);
+    --info-foreground: var(--white);
+    --info-subtle: var(--brand-mint-200);
+
+    /* Disabled tokens */
+    --disabled-fg: var(--neutral-100);
+    --disabled-bg: 0 0% 95%;
+    --disabled-border: var(--neutral-100);
+
     --border: var(--neutral-100);
     --input: var(--neutral-100);
     --ring: var(--brand-teal-500);
@@ -88,6 +113,18 @@ Based on official brand guidelines and tokens
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Typography tokens */
+    --lh-heading-1: 1.1;  /* Títulos grandes hero */
+    --lh-heading-2: 1.2;  /* H1 */
+    --lh-heading-3: 1.3;  /* H2, H3 */
+    --lh-body: 1.6;       /* Texto de párrafos */
+    --lh-small: 1.5;       /* Texto pequeño */
+    
+    /* Letter-spacing */
+    --ls-tight: -0.02em;  /* Títulos grandes */
+    --ls-normal: 0;       /* Normal */
+    --ls-wide: 0.05em;    /* Labels uppercase */
 
     --sidebar-background: var(--neutral-100);
     --sidebar-foreground: var(--brand-ink-900);
@@ -217,6 +254,16 @@ Based on official brand guidelines and tokens
   .focus-visible-brand {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal-500 focus-visible:ring-offset-2;
   }
+
+  /* Typography utilities */
+  .leading-heading-1 { line-height: var(--lh-heading-1); }
+  .leading-heading-2 { line-height: var(--lh-heading-2); }
+  .leading-heading-3 { line-height: var(--lh-heading-3); }
+  .leading-body { line-height: var(--lh-body); }
+  .leading-small { line-height: var(--lh-small); }
+  
+  .tracking-tight { letter-spacing: var(--ls-tight); }
+  .tracking-wide { letter-spacing: var(--ls-wide); }
 }
 
 /* Respetar preferencias de movimiento reducido - Agregar al final del archivo */
