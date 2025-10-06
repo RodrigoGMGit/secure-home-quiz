@@ -17,7 +17,7 @@
 - [x] **Mejora #12**: Focus & Motion - ✅ **COMPLETADO**
 - [x] **Mejora #18**: Sistema de Opacidades Documentado - ✅ **COMPLETADO**
 - [x] **Mejora #4**: Corregir shadow-cta - ✅ **COMPLETADO**
-- [ ] **Mejora #14**: Documentar Estrategia Dark Mode
+- [x] **Mejora #14**: Documentar Estrategia Dark Mode - ✅ **COMPLETADO**
 - [ ] **Mejora #3+#9**: Tabla de Contraste AA
 
 ### 🟡 PRIORIDAD MEDIA: Strategic
@@ -541,7 +541,7 @@ export default {
 
 ---
 
-### 📚 Mejora #14: Documentar Estrategia Dark Mode
+### ✅ Mejora #14: Documentar Estrategia Dark Mode - **COMPLETADO**
 
 **Agregar al Design System** (`.cursor/rules/.cursor/rules/projectdesignsystem.mdc`):
 ```markdown
@@ -595,6 +595,14 @@ La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode si
 - ❌ Si alguien intenta activar dark mode sin esta documentación: UI se rompe (colores no diseñados para dark)
 - 🎯 Afecta: Decisiones de producto, no el código actual
 - 🎯 Beneficio: Claridad para equipo de desarrollo
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Nueva sección 23 agregada al Design System: "Dark Mode"
+- ✅ Estado declarado: ❌ NO SOPORTADO
+- ✅ Decisión técnica documentada: Tokens son herencia de shadcn/ui
+- ✅ Razón explicada: Identidad de marca no funciona en dark mode sin rediseño
+- ✅ Proceso futuro definido: 6 pasos para implementar dark mode si se requiere
+- ✅ Claridad para equipo de desarrollo sobre disponibilidad de dark mode
 
 ---
 

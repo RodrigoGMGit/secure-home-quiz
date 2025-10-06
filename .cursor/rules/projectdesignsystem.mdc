@@ -1177,6 +1177,32 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
+## 23. Dark Mode
+
+**Estado actual**: ❌ NO SOPORTADO
+
+### Decisión Técnica
+Los tokens dark mode en `index.css` (líneas 101-137) son **herencia de shadcn/ui**.  
+**NO implementar dark mode** sin aprobación del equipo de diseño.
+
+### Razón
+La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode sin un rediseño completo del sistema de color.
+
+### ¿Por qué hay código de dark mode en el CSS?
+- shadcn/ui incluye tokens dark mode por defecto
+- Se conservaron para evitar romper componentes de shadcn
+- `darkMode: ["class"]` en tailwind.config.ts está activo pero NO se usa
+
+### Si en el futuro se requiere Dark Mode
+1. Reunión con equipo de diseño
+2. Definir nuevos colores de marca para dark mode
+3. Crear tabla de contraste AA para dark mode
+4. Implementar toggle en UI
+5. Actualizar todos los componentes
+6. Probar accesibilidad completa en dark mode
+
+---
+
 **Última actualización**: Octubre 2025  
 **Estándar de referencia**: `/tu-familia`  
 **Objetivo**: Todas las páginas deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle.
