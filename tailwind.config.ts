@@ -4,6 +4,17 @@ import animate from "tailwindcss-animate";
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  safelist: [
+    // Solo las clases específicas que realmente se usan dinámicamente
+    {
+      pattern: /^(bg|border)-(brand-(teal|olive|mint)-(500|200))(\/(10|20|30|40))?$/,
+      variants: ['hover']
+    },
+    // Clases específicas para iconos circulares
+    {
+      pattern: /^(bg|text)-(brand-(teal|olive|mint)-(500|200))(\/(20|60))?$/,
+    }
+  ],
   prefix: "",
   theme: {
     container: {
