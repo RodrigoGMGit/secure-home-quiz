@@ -26,7 +26,7 @@ export default {
     },
     extend: {
       colors: {
-        // Brand colors from design system
+        // 🔗 Referencia: Ver valores HSL en src/index.css sección "PALETA DE COLORES DE MARCA"
         "brand-ink-900": "hsl(var(--brand-ink-900))",
         "brand-ink-800": "hsl(var(--brand-ink-800))",
         "brand-teal-500": "hsl(var(--brand-teal-500))",
@@ -34,7 +34,7 @@ export default {
         "brand-mint-200": "hsl(var(--brand-mint-200))",
         "neutral-100": "hsl(var(--neutral-100))",
         
-        // System colors
+        // 🔗 Referencia: Mapeos semánticos en src/index.css sección "MAPEO SEMÁNTICO DE COLORES"
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -107,6 +107,7 @@ export default {
         },
       },
       borderRadius: {
+        // 🔗 Referencia: Valores en src/index.css sección "TOKENS DE RADIUS"
         'sm': 'var(--radius-sm)',
         'md': 'var(--radius-md)', 
         'lg': 'var(--radius-lg)',
@@ -114,10 +115,12 @@ export default {
         DEFAULT: 'var(--radius)',
       },
       backgroundImage: {
+        // 🔗 Referencia: Valores en src/index.css sección "SOMBRAS Y GRADIENTES"
         "gradient-subtle": "var(--gradient-subtle)",
         "gradient-warm": "var(--gradient-warm)",
       },
       boxShadow: {
+        // 🔗 Referencia: Valores en src/index.css sección "SOMBRAS Y GRADIENTES"
         "soft": "var(--shadow-soft)",
         "cta": "var(--shadow-cta)",
       },
@@ -126,6 +129,7 @@ export default {
         "body": ["Uniform", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       spacing: {
+        // 🔗 Referencia: Valores en src/index.css sección "TOKENS DE ESPACIADO"
         '1': 'var(--space-1)',
         '2': 'var(--space-2)', 
         '3': 'var(--space-3)',

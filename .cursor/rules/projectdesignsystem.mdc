@@ -28,34 +28,39 @@ Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación 
 
 ### Paleta de Colores de Marca
 
-```css
-/* Colores oficiales de la marca Hogares Seguros */
---brand-ink-900: #002B36    /* PMS 547C - Texto principal, títulos */
---brand-ink-800: #003556    /* PMS 302C - Botones primarios, hover */
---brand-teal-500: #3994B2   /* PMS 7459C - Acentos, enlaces */
---brand-olive-500: #576D5B  /* PMS 5615C - Texto secundario */
---brand-mint-200: #B0E0D6   /* PMS 573C - Fondos suaves, acentos */
---neutral-100: #D5D6D5      /* Cool Gray 1C - Bordes, fondos neutros */
---white: #FFFFFF            /* Fondo principal */
-```
+**🔗 Fuente de verdad**: `src/index.css` sección "PALETA DE COLORES DE MARCA"
+
+| Color | Variable CSS | Valor HEX | Código PMS | Uso Recomendado |
+|-------|--------------|-----------|------------|-----------------|
+| Ink 900 | `--brand-ink-900` | #002B36 | PMS 547C | Texto principal, títulos |
+| Ink 800 | `--brand-ink-800` | #003556 | PMS 302C | Botones primarios, hover |
+| Teal 500 | `--brand-teal-500` | #3994B2 | PMS 7459C | Acentos, enlaces |
+| Olive 500 | `--brand-olive-500` | #576D5B | PMS 5615C | Texto secundario |
+| Mint 200 | `--brand-mint-200` | #B0E0D6 | PMS 573C | Fondos suaves, acentos |
+| Neutral 100 | `--neutral-100` | #D5D6D5 | Cool Gray 1C | Bordes, fondos neutros |
+| White | `--white` | #FFFFFF | - | Fondo principal |
+
+**Para modificar valores**: Editar únicamente `src/index.css` sección "PALETA DE COLORES DE MARCA".
+**Formato técnico**: Los valores se almacenan como tripletas HSL (ej: `200 50% 46%`).
 
 ### Mapeo Semántico de Colores
 
-```css
---primary: var(--brand-teal-500)           /* Acentos principales */
---primary-foreground: var(--white)         /* Texto sobre primario */
---primary-hover: var(--brand-ink-800)      /* Hover de primarios */
+**🔗 Fuente de verdad**: `src/index.css` sección "MAPEO SEMÁNTICO DE COLORES"
 
---secondary: var(--neutral-100)            /* Elementos secundarios */
---secondary-foreground: var(--brand-ink-800) /* Texto sobre secundario */
+| Token Semántico | Referencia CSS | Uso |
+|-----------------|----------------|-----|
+| `--primary` | `var(--brand-teal-500)` | Acentos principales |
+| `--primary-foreground` | `var(--white)` | Texto sobre primario |
+| `--primary-hover` | `var(--brand-ink-800)` | Hover de primarios |
+| `--secondary` | `var(--neutral-100)` | Elementos secundarios |
+| `--secondary-foreground` | `var(--brand-ink-800)` | Texto sobre secundario |
+| `--accent` | `var(--brand-mint-200)` | Acentos suaves |
+| `--accent-foreground` | `var(--brand-ink-800)` | Texto sobre acento |
+| `--background` | `var(--white)` | Fondo principal |
+| `--background-subtle` | `var(--brand-mint-200)` | Fondos sutiles |
+| `--foreground` | `var(--brand-ink-900)` | Texto principal |
 
---accent: var(--brand-mint-200)            /* Acentos suaves */
---accent-foreground: var(--brand-ink-800)  /* Texto sobre acento */
-
---background: var(--white)                 /* Fondo principal */
---background-subtle: var(--brand-mint-200) /* Fondos sutiles */
---foreground: var(--brand-ink-900)         /* Texto principal */
-```
+**Para modificar mapeos**: Editar únicamente `src/index.css` sección "MAPEO SEMÁNTICO DE COLORES".
 
 ### Sistema de Colores Rotativos (para Cards)
 
@@ -131,14 +136,20 @@ const iconColors = [
 
 ### Escala de Espaciado
 
-```css
---space-1: 4px    /* Espaciado mínimo */
---space-2: 8px    /* Espaciado pequeño */
---space-3: 12px   /* Espaciado mediano */
---space-4: 16px   /* Espaciado base */
---space-6: 24px   /* Espaciado grande */
---space-8: 32px   /* Espaciado extra grande */
-```
+**🔗 Fuente de verdad**: `src/index.css` sección "TOKENS DE ESPACIADO"
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--space-1` | 4px | Espaciado mínimo |
+| `--space-2` | 8px | Espaciado pequeño |
+| `--space-3` | 12px | Espaciado mediano |
+| `--space-4` | 16px | Espaciado base |
+| `--space-6` | 24px | Espaciado grande |
+| `--space-8` | 32px | Espaciado extra grande |
+
+**Para modificar valores**: Editar únicamente `src/index.css` sección "TOKENS DE ESPACIADO".
+
+**Nota sobre rem**: Usar rem en lugar de px permite que el espaciado escale con el font-size del usuario, mejorando la accesibilidad.
 
 ### Clases de Espaciado Responsivo
 
@@ -650,12 +661,28 @@ className={cn(
 .delay-1000  /* 1000ms animation delay */
 ```
 
+**⚠️ IMPORTANTE**: Los delays de animación son clases **nativas de Tailwind**, NO tokens custom.
+
+**Clases disponibles por defecto**:
+- `delay-75` (75ms)
+- `delay-100` (100ms)
+- `delay-150` (150ms)
+- `delay-200` (200ms)
+- `delay-300` (300ms)
+- `delay-500` (500ms) ← Usado en elementos decorativos
+- `delay-700` (700ms)
+- `delay-1000` (1000ms) ← Usado en elementos decorativos
+
 **Uso en elementos decorativos**:
 ```jsx
-<div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
-<div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-<div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+// Círculos animados de fondo
+<div className="animate-pulse delay-500">...</div>
+<div className="animate-pulse delay-1000">...</div>
 ```
+
+**❌ NO agregar al tailwind.config.ts** - Ya están disponibles por defecto en Tailwind.
+
+**❌ NO crear custom properties CSS** - Usar clases nativas directamente.
 
 ### Animaciones Escalonadas (Stagger)
 
@@ -1203,6 +1230,279 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
   </div>
 </>
 ```
+
+---
+
+## 24. Snippets Canónicos
+
+### Configuración Completa del Proyecto
+
+#### tailwind.config.ts (Configuración Canónica)
+
+```typescript
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate"; // ✅ Import directo, NO import()
+
+export default {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}"
+  ],
+  safelist: [
+    {
+      pattern: /^(bg|text|border|ring|fill|stroke)-(brand-(teal|olive|mint|ink)-(200|500|800|900))(\/\d+)?$/,
+      variants: ['hover', 'focus', 'focus-visible', 'active', 'group-hover', 'sm', 'md', 'lg']
+    }
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Brand colors (tripletas HSL)
+        "brand-ink-900": "hsl(var(--brand-ink-900))",
+        "brand-ink-800": "hsl(var(--brand-ink-800))",
+        "brand-teal-500": "hsl(var(--brand-teal-500))",
+        "brand-olive-500": "hsl(var(--brand-olive-500))",
+        "brand-mint-200": "hsl(var(--brand-mint-200))",
+        "neutral-100": "hsl(var(--neutral-100))",
+        
+        // System colors
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+          subtle: "hsl(var(--success-subtle))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          subtle: "hsl(var(--warning-subtle))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          foreground: "hsl(var(--error-foreground))",
+          subtle: "hsl(var(--error-subtle))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+          subtle: "hsl(var(--info-subtle))",
+        },
+        disabled: {
+          bg: "hsl(var(--disabled-bg))",
+          fg: "hsl(var(--disabled-fg))",
+          border: "hsl(var(--disabled-border))",
+        },
+      },
+      borderRadius: {
+        'sm': 'var(--radius-sm)',
+        'md': 'var(--radius-md)', 
+        'lg': 'var(--radius-lg)',
+        'xl': 'var(--radius-xl)',
+        DEFAULT: 'var(--radius)',
+      },
+      spacing: {
+        '1': 'var(--space-1)',
+        '2': 'var(--space-2)', 
+        '3': 'var(--space-3)',
+        '4': 'var(--space-4)',
+        '6': 'var(--space-6)',
+        '8': 'var(--space-8)',
+      },
+      boxShadow: {
+        "soft": "var(--shadow-soft)",
+        "cta": "var(--shadow-cta)",
+      },
+      backgroundImage: {
+        "gradient-subtle": "var(--gradient-subtle)",
+        "gradient-warm": "var(--gradient-warm)",
+      },
+    },
+  },
+  plugins: [animate], // ✅ Referencia directa, NO require()
+} satisfies Config;
+```
+
+#### src/index.css (Tokens Canónicos)
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand colors (tripletas HSL - SIN hsl()) */
+    --brand-ink-900: 195 100% 11%;
+    --brand-ink-800: 204 100% 17%;
+    --brand-teal-500: 200 50% 46%;
+    --brand-olive-500: 145 18% 38%;
+    --brand-mint-200: 162 56% 78%;
+    --neutral-100: 120 2% 84%;
+    --white: 0 0% 100%;
+    
+    /* Semantic tokens */
+    --primary: var(--brand-teal-500);
+    --primary-foreground: var(--white);
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    
+    /* Spacing */
+    --space-1: .25rem; /* 4px */
+    --space-2: .5rem;  /* 8px */
+    --space-4: 1rem;   /* 16px */
+    --space-6: 1.5rem; /* 24px */
+    --space-8: 2rem;   /* 32px */
+    
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius: var(--radius-md);
+    
+    /* Shadows (RGBA - NO hsl(var())) */
+    --shadow-soft: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-cta: 0 8px 30px -8px rgba(57, 148, 178, 0.3);
+    
+    /* Typography */
+    --lh-heading-1: 1.1;
+    --lh-body: 1.6;
+    --ls-tight: -0.02em;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .focus-visible-brand {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal-500 focus-visible:ring-offset-2;
+  }
+  
+  /* sr-only ya está disponible en Tailwind nativo */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+#### Puntos Críticos de la Configuración
+
+1. **Plugin Tailwind**: `import animate from "..."` NO `import("...")`
+2. **Safelist**: Protege colores rotativos dinámicos
+3. **Colors**: `hsl(var(--color))` CON hsl(), tokens SIN hsl()
+4. **Shadows**: RGBA directo, NO `hsl(var(...))`
+5. **Spacing**: Solo 1,2,3,4,6,8 (no 5 ni 10)
+
+---
+
+## 25. Convención de Nombres Estandarizada
+
+### En CSS (Custom Properties)
+```css
+/* ✅ CORRECTO - kebab-case */
+--shadow-soft
+--brand-teal-500
+--transition-smooth
+--lh-heading-1
+
+/* ❌ INCORRECTO - camelCase */
+--shadowSoft
+--brandTeal500
+--transitionSmooth
+```
+
+### En TypeScript/JavaScript (Referencias)
+```typescript
+// ✅ CORRECTO - kebab-case en strings
+const shadow = 'shadow-soft';
+const color = 'brand-teal-500';
+const className = 'bg-brand-teal-500/10';
+
+// ❌ INCORRECTO - intentar camelCase
+const shadow = 'shadowSoft'; // NO existe en CSS
+```
+
+### En Tailwind Config
+```typescript
+// ✅ CORRECTO - Match CSS (kebab-case)
+boxShadow: {
+  "soft": "var(--shadow-soft)",
+  "cta": "var(--shadow-cta)",
+}
+colors: {
+  "brand-teal-500": "hsl(var(--brand-teal-500))",
+}
+
+// ❌ INCORRECTO - camelCase no funciona
+boxShadow: {
+  soft: "var(--shadow-soft)", // Puede funcionar pero inconsistente
+}
+```
+
+### En Componentes JSX
+```tsx
+// ✅ CORRECTO - clases con kebab-case
+<div className="bg-brand-teal-500/10 shadow-soft transition-smooth">
+
+// ❌ INCORRECTO - no existe
+<div className="bg-brandTeal500-10"> // NO funciona
+```
+
+### Regla General
+**Mantener kebab-case en todo el sistema de diseño**:
+- CSS variables
+- Tailwind config
+- Clases en JSX
+- Referencias en código
+
+**Única excepción**: Variables JavaScript que NO son clases CSS pueden usar camelCase.
+
+---
+
+## 26. Arquitectura del Sistema de Diseño
+
+### Flujo de Información
+
+```
+src/index.css (Fuente de Verdad)
+    ↓
+    Valores técnicos: --brand-teal-500: 200 50% 46%
+    ↓
+tailwind.config.ts (Referencias)
+    ↓
+    Exposición: "brand-teal-500": "hsl(var(--brand-teal-500))"
+    ↓
+Componentes (Uso)
+    ↓
+    Clases: className="bg-brand-teal-500"
+```
+
+### Responsabilidades
+
+| Archivo | Rol | Contiene |
+|---------|-----|----------|
+| `src/index.css` | 🎨 Fuente de Verdad | Valores técnicos exactos |
+| `tailwind.config.ts` | ⚙️ Configuración | Solo referencias a CSS vars |
+| `.cursor/rules/projectdesignsystem.mdc` | 📚 Guía | Patrones de uso, ejemplos |
+
+**Regla de Oro**: Para cambiar un valor, editar SOLO `src/index.css`.
 
 ---
 
