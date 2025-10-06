@@ -789,18 +789,28 @@ className="space-y-4 sm:space-y-6 lg:space-y-8"
 
 ### Tabla de Combinaciones de Color con Contraste AA
 
-**⚠️ IMPORTANTE**: Los ratios de contraste deben calcularse automáticamente desde los valores HSL fuente. Esta tabla es una guía conceptual.
+**⚠️ IMPORTANTE**: Los ratios de contraste deben calcularse automáticamente desde los valores HSL fuente. Esta tabla es una guía conceptual basada en cálculos verificados.
+
+**Ratios verificados** (calculados desde valores HSL en `src/index.css`):
+- brand-ink-900 sobre white: 15.13:1
+- brand-ink-800 sobre white: 12.89:1  
+- brand-olive-500 sobre white: 5.38:1
+- brand-teal-500 sobre white: 3.90:1
+- brand-mint-200 sobre white: 1.41:1
+- brand-ink-800 sobre brand-mint-200: 9.15:1
+- brand-teal-500 sobre brand-mint-200: 2.76:1
+- brand-olive-500 sobre brand-mint-200: 3.82:1
 
 | Texto | Fondo | ¿Pasa AA? | Condiciones | Uso Recomendado |
 |-------|-------|-----------|-------------|-----------------|
 | `brand-ink-900` (#002B36) | `white` | ✅ SÍ | Cualquier tamaño | Títulos, párrafos principales |
 | `brand-ink-800` (#003556) | `white` | ✅ SÍ | Cualquier tamaño | Botones, CTAs |
 | `brand-olive-500` (#576D5B) | `white` | ✅ SÍ | Cualquier tamaño | Texto secundario |
-| `brand-teal-500` (#3994B2) | `white` | ❌ NO | Solo ≥18px + bold O con underline | Enlaces grandes, NO texto normal |
-| `brand-mint-200` (#B0E0D6) | `white` | ❌ NO | NUNCA para texto | Solo fondos |
-| `brand-ink-800` | `brand-mint-200` | ✅ SÍ | Texto normal | Texto sobre fondos acentuados |
-| `brand-teal-500` | `brand-mint-200` | ❌ NO | NUNCA | ❌ Evitar |
-| `brand-olive-500` | `brand-mint-200` | ❌ NO | NUNCA | ❌ Evitar |
+| `brand-teal-500` (#3994B2) | `white` | ⚠️ Solo texto grande | Solo ≥18px + bold (3.90:1) | Enlaces grandes, NO texto normal |
+| `brand-mint-200` (#B0E0D6) | `white` | ❌ NO | NUNCA para texto (1.41:1) | Solo fondos |
+| `brand-ink-800` | `brand-mint-200` | ✅ SÍ | Texto normal (9.15:1) | Texto sobre fondos acentuados |
+| `brand-teal-500` | `brand-mint-200` | ❌ NO | NUNCA (2.76:1) | ❌ Evitar |
+| `brand-olive-500` | `brand-mint-200` | ⚠️ Solo texto grande | Solo ≥18px + bold (3.82:1) | ⚠️ Usar con precaución |
 | `white` | `brand-ink-800` | ✅ SÍ | Cualquier tamaño | Botones, CTAs invertidos |
 
 **Para calcular ratios exactos**: Usar WebAIM Contrast Checker con valores HEX derivados de las tripletas HSL en `src/index.css`.
@@ -816,10 +826,10 @@ className="space-y-4 sm:space-y-6 lg:space-y-8"
 **Regla general**: Para texto normal (<18px), usar `brand-ink-900` o `brand-olive-500` sobre white.
 
 ### Combinaciones Prohibidas
-- ❌ `brand-olive-500` sobre `brand-mint-200` (insuficiente)
-- ❌ `brand-teal-500` sobre `brand-mint-200` (insuficiente)
-- ❌ `brand-teal-500` en texto normal sobre white (usar solo en títulos ≥18px bold)
-- ❌ `brand-mint-200` para cualquier texto (siempre es fondo únicamente)
+- ❌ `brand-teal-500` sobre `brand-mint-200` (2.76:1 - insuficiente)
+- ❌ `brand-teal-500` en texto normal sobre white (3.90:1 - usar solo en títulos ≥18px bold)
+- ❌ `brand-mint-200` para cualquier texto (1.41:1 - siempre es fondo únicamente)
+- ⚠️ `brand-olive-500` sobre `brand-mint-200` (3.82:1 - usar solo en texto grande)
 
 ### Cómo Verificar Contraste
 1. WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
