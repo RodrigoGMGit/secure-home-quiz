@@ -15,7 +15,7 @@
 - [x] **Mejora #8**: Safelist para Clases Dinámicas - ✅ **COMPLETADO**
 - [x] **Mejora #20**: Utilidades de Accesibilidad - ✅ **COMPLETADO**
 - [x] **Mejora #12**: Focus & Motion - ✅ **COMPLETADO**
-- [ ] **Mejora #18**: Sistema de Opacidades Documentado
+- [x] **Mejora #18**: Sistema de Opacidades Documentado - ✅ **COMPLETADO**
 - [ ] **Mejora #4**: Corregir shadow-cta
 - [ ] **Mejora #14**: Documentar Estrategia Dark Mode
 - [ ] **Mejora #3+#9**: Tabla de Contraste AA
@@ -425,7 +425,7 @@ export default {
 
 ---
 
-### 🎨 Mejora #18: Sistema de Opacidades Documentado
+### ✅ Mejora #18: Sistema de Opacidades Documentado - **COMPLETADO**
 
 **Documentar en Design System**:
 ```markdown
@@ -476,6 +476,14 @@ export default {
 - ✅ Facilita decisiones de diseño ("iconos siempre usan /60")
 - 🎯 Afecta: Futuras implementaciones, no el código actual
 - 🎯 Beneficio: Developer experience y mantenibilidad
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Nueva sección 18 agregada al Design System: "Sistema de Opacidades Estandarizado"
+- ✅ Tabla completa con escala de opacidades: `/5`, `/10`, `/20`, `/30`, `/40`, `/60`, `/80`
+- ✅ Combinaciones comunes documentadas: Sistema de colores rotativos para cards
+- ✅ Ejemplos de uso en componentes: cardColors, iconColors, elementos decorativos
+- ✅ Reglas de contraste: Iconos `/60` para alto contraste, cards `/10` o `/20` para sutileza
+- ✅ Secciones renumeradas correctamente: 19→20, 20→21, 21→22
 
 ---
 

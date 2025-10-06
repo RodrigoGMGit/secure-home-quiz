@@ -911,7 +911,62 @@ import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
 
 ---
 
-## 18. Patrones de React Comunes
+## 18. Sistema de Opacidades Estandarizado
+
+### Escala de Opacidades
+
+| Opacidad | Uso | Ejemplo |
+|----------|-----|---------|
+| `/5` | Fondos decorativos sutiles | `bg-brand-teal-500/5` (círculos animados) |
+| `/10` | Fondos muy sutiles | `bg-brand-teal-500/10` (cards, secciones) |
+| `/20` | Fondos sutiles estándar | `bg-brand-mint-200/20` (backgrounds) |
+| `/30` | Bordes sutiles | `border-brand-teal-500/30` |
+| `/40` | Bordes visibles | `border-brand-mint-200/40` |
+| `/60` | Fondos de iconos | `bg-brand-mint-200/60` (alto contraste) |
+| `/80` | Overlays semi-transparentes | `bg-black/80` (modales) |
+
+**Regla**: Evitar opacidades fuera de esta escala sin justificación de diseño.
+
+### Combinaciones Comunes
+
+```css
+/* Sistema de colores rotativos para cards */
+- Card teal: border-brand-teal-500/30 bg-brand-teal-500/10
+- Card mint: border-brand-mint-200/40 bg-brand-mint-200/20
+- Card olive: border-brand-olive-500/30 bg-brand-olive-500/10
+```
+
+### Uso en Componentes
+
+```jsx
+// Cards con colores rotativos
+const cardColors = [
+  "border-brand-teal-500/30 bg-brand-teal-500/10",
+  "border-brand-mint-200/40 bg-brand-mint-200/20", 
+  "border-brand-olive-500/30 bg-brand-olive-500/10"
+];
+
+// Iconos circulares con contraste mejorado
+const iconColors = [
+  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-mint-200/60 text-brand-ink-800",  // /60 para alto contraste
+  "bg-brand-olive-500/20 text-brand-olive-500"
+];
+
+// Elementos decorativos de fondo
+<div className="bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+```
+
+### Reglas de Contraste
+
+- **Iconos principales**: Usar `/60` para alto contraste (WCAG AA)
+- **Cards y secciones**: Usar `/10` o `/20` para sutileza
+- **Bordes**: Usar `/30` o `/40` para visibilidad sin agresividad
+- **Elementos decorativos**: Usar `/5` para máximo sutil
+
+---
+
+## 19. Patrones de React Comunes
 
 ### Hook: Auto-scroll al inicio de página
 
@@ -993,7 +1048,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 19. Checklist de Implementación
+## 20. Checklist de Implementación
 
 ### ✅ Estructura Básica (Obligatorio)
 
@@ -1037,7 +1092,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 20. Reglas de Implementación
+## 21. Reglas de Implementación
 
 ### SIEMPRE Hacer
 
@@ -1065,7 +1120,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 21. Ejemplos Rápidos
+## 22. Ejemplos Rápidos
 
 ### Layout de Página Completo
 
