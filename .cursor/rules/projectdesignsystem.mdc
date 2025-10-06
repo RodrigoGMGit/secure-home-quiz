@@ -787,6 +787,45 @@ className="space-y-4 sm:space-y-6 lg:space-y-8"
 .bg-brand-mint-200/30 /* ⚠️ EVITAR para iconos principales */
 ```
 
+### Tabla de Combinaciones de Color con Contraste AA
+
+**⚠️ IMPORTANTE**: Los ratios de contraste deben calcularse automáticamente desde los valores HSL fuente. Esta tabla es una guía conceptual.
+
+| Texto | Fondo | ¿Pasa AA? | Condiciones | Uso Recomendado |
+|-------|-------|-----------|-------------|-----------------|
+| `brand-ink-900` (#002B36) | `white` | ✅ SÍ | Cualquier tamaño | Títulos, párrafos principales |
+| `brand-ink-800` (#003556) | `white` | ✅ SÍ | Cualquier tamaño | Botones, CTAs |
+| `brand-olive-500` (#576D5B) | `white` | ✅ SÍ | Cualquier tamaño | Texto secundario |
+| `brand-teal-500` (#3994B2) | `white` | ❌ NO | Solo ≥18px + bold O con underline | Enlaces grandes, NO texto normal |
+| `brand-mint-200` (#B0E0D6) | `white` | ❌ NO | NUNCA para texto | Solo fondos |
+| `brand-ink-800` | `brand-mint-200` | ✅ SÍ | Texto normal | Texto sobre fondos acentuados |
+| `brand-teal-500` | `brand-mint-200` | ❌ NO | NUNCA | ❌ Evitar |
+| `brand-olive-500` | `brand-mint-200` | ❌ NO | NUNCA | ❌ Evitar |
+| `white` | `brand-ink-800` | ✅ SÍ | Cualquier tamaño | Botones, CTAs invertidos |
+
+**Para calcular ratios exactos**: Usar WebAIM Contrast Checker con valores HEX derivados de las tripletas HSL en `src/index.css`.
+
+### Excepciones Permitidas
+
+**brand-teal-500 sobre white**:
+- ✅ Títulos grandes (≥24px) con font-semibold
+- ✅ Enlaces con underline visible
+- ❌ Texto de párrafo normal (<18px)
+- ❌ Descripciones o contenido largo
+
+**Regla general**: Para texto normal (<18px), usar `brand-ink-900` o `brand-olive-500` sobre white.
+
+### Combinaciones Prohibidas
+- ❌ `brand-olive-500` sobre `brand-mint-200` (insuficiente)
+- ❌ `brand-teal-500` sobre `brand-mint-200` (insuficiente)
+- ❌ `brand-teal-500` en texto normal sobre white (usar solo en títulos ≥18px bold)
+- ❌ `brand-mint-200` para cualquier texto (siempre es fondo únicamente)
+
+### Cómo Verificar Contraste
+1. WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
+2. Chrome DevTools: Inspeccionar elemento > Contrast ratio en color picker
+3. Regla mínima: 4.5:1 para texto normal, 3:1 para texto grande (≥18px)
+
 ### Navegación por Teclado
 
 ```jsx

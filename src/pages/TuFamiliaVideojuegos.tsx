@@ -388,7 +388,7 @@ const TuFamiliaVideojuegos = () => {
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
               <div className="flex items-center justify-center mb-3">
                 <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
-                <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
+                <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
               </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "No se trata solo de bloquear, sino de acompañar. Conozcan a qué juegan niñas, niños y adolescentes"
@@ -637,7 +637,7 @@ const TuFamiliaVideojuegos = () => {
                                       <p className="font-body text-xs sm:text-sm text-brand-ink-800 mb-3 leading-relaxed">{step.description}</p>
                                       <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-3 sm:p-4">
                                         <p className="font-body text-xs sm:text-sm text-brand-ink-800">
-                                          <span className="font-semibold text-brand-teal-500">Instrucciones:</span> {step.details}
+                                          <span className="font-semibold text-brand-ink-900">Instrucciones:</span> {step.details}
                                         </p>
                                       </div>
                                     </div>
