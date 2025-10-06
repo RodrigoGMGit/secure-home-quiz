@@ -78,18 +78,12 @@ export default {
         DEFAULT: 'var(--radius)',
       },
       backgroundImage: {
-        "gradient-hero": "var(--gradient-hero)",
         "gradient-subtle": "var(--gradient-subtle)",
         "gradient-warm": "var(--gradient-warm)",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",
         "cta": "var(--shadow-cta)",
-        "green": "var(--shadow-green)",
-      },
-      transitionTimingFunction: {
-        "smooth": "var(--transition-smooth)",
-        "bounce": "var(--transition-bounce)",
       },
       fontFamily: {
         "heading": ["Brandon Grotesque", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],

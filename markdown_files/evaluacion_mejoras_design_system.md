@@ -9,7 +9,7 @@
 
 ### 🚨 PRIORIDAD CRÍTICA: Bugs Activos
 - [x] **Bug #1**: Plugin Tailwind Animate (Mejora #5) - ✅ **COMPLETADO**
-- [ ] **Bug #2**: Variables CSS Huérfanas (Mejora #16)
+- [x] **Bug #2**: Variables CSS Huérfanas (Mejora #16) - ✅ **COMPLETADO**
 
 ### 🔴 PRIORIDAD ALTA: Quick Wins
 - [ ] **Mejora #8**: Safelist para Clases Dinámicas
@@ -103,7 +103,7 @@ plugins: [animate],  // ✅ CORRECTO
 
 ---
 
-### 🐛 Bug #2: Variables CSS Huérfanas (Mejora #16)
+### ✅ Bug #2: Variables CSS Huérfanas (Mejora #16) - **COMPLETADO**
 
 **Problema actual**:
 ```typescript
@@ -177,6 +177,14 @@ transitionTimingFunction: {
 - ✅ Si se eliminan: Limpieza de configuración, sin cambios visuales (nadie las usa)
 - ✅ Si se definen: Nuevas utilidades disponibles (`shadow-green`, `bg-gradient-hero`, `transition-bounce`)
 - ❌ Si no se corrige: Confusión al intentar usar estas clases (existen en config pero no funcionan)
+
+**✅ IMPLEMENTACIÓN COMPLETADA**:
+- ✅ Verificación: No se encontraron usos de `shadow-green`, `gradient-hero`, `transition-bounce` en el código
+- ✅ Eliminado `"gradient-hero": "var(--gradient-hero)"` de backgroundImage
+- ✅ Eliminado `"green": "var(--shadow-green)"` de boxShadow
+- ✅ Eliminado `transitionTimingFunction` completo (usar `.transition-smooth` utility en su lugar)
+- ✅ Build exitoso: `npm run build` completado sin errores
+- ✅ Sin errores de linting detectados
 
 ---
 
