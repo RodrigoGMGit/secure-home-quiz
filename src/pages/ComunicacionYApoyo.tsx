@@ -5,6 +5,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Heart, MessageCircle, Shield, Users, AlertTriangle, Eye, Clock, BookOpen, Lightbulb, HandHeart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import GlobalHeader from '@/components/GlobalHeader';
 
 const ComunicacionYApoyo = () => {
@@ -167,7 +168,7 @@ const ComunicacionYApoyo = () => {
                 </div>
               </div>
               
-              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
                 Comunicación y Apoyo
               </h1>
               <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
@@ -179,7 +180,7 @@ const ComunicacionYApoyo = () => {
               <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
                 <div className="flex items-center justify-center mb-3">
                   <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
-                  <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
+                  <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
                 </div>
                 <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                   "El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
@@ -531,11 +532,15 @@ const ComunicacionYApoyo = () => {
                 mejores herramientas que podemos otorgarles.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-                <Button size="lg" variant="secondary" className="bg-background text-primary hover:bg-background/90">
-                  Ver Controles Parentales
+                <Button asChild size="lg" variant="secondary" className="bg-background text-primary hover:bg-background/90">
+                  <Link to="/aprende/controles">
+                    Ver Controles Parentales
+                  </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                  Conocer Riesgos Digitales
+                <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                  <Link to="/aprende/riesgos">
+                    Conocer Riesgos Digitales
+                  </Link>
                 </Button>
               </div>
             </section>

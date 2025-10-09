@@ -8,9 +8,53 @@ alwaysApply: true
 
 ## Estándar de Referencia
 
-**Página de referencia**: `/tu-familia`
+**Sistema de Diseño**: Todas las páginas y componentes del proyecto deben cumplir con los estándares documentados en este sistema de diseño, alcanzando un nivel alto de sofisticación visual, consistencia y atención al detalle.
 
-Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle que la página `/tu-familia`.
+**Objetivo**: Crear una experiencia visual cohesiva y profesional que refleje la identidad de marca "Secure Home Quiz" / "Hogares Seguros".
+
+---
+
+## 0. Arquitectura del Sistema de Diseño
+
+### Componentes Universales vs. Patrones de Página
+
+**Componentes Universales** (Secciones 1-7):
+- **Fundamentos**: Color, Tipografía, Espaciado y Layout
+- **Componentes**: Botones, Cards, Modales
+- **Aplican**: En TODO el proyecto
+- **Objetivo**: Consistencia visual global
+
+**Patrones de Página** (Secciones 8-12):
+- **Patrones específicos** por tipo de página
+- **Aplican**: Solo en páginas del tipo correspondiente
+- **Objetivo**: Estructura apropiada según contexto
+
+### Tipos de Página en el Proyecto
+
+#### 📚 Páginas de Contenido Educativo
+- **Rutas**: `/aprende/*`, `/recursos`, `/ayuda`
+- **Patrones**: Header principal, elementos decorativos, frase destacada, sección de introducción
+- **Ejemplos**: TuFamilia, RiesgosDigitales, ControlesParentales, Recursos, Ayuda
+
+#### 🏠 Páginas Hero
+- **Rutas**: `/` (Index)
+- **Patrones**: HeroSection, elementos decorativos, responsividad
+- **Ejemplos**: Index.tsx
+
+#### 🎮 Páginas Interactivas
+- **Rutas**: `/quiz`
+- **Patrones**: AppShellCard, StepHeader, OptionGrid
+- **Ejemplos**: Quiz.tsx
+
+#### ℹ️ Páginas Especiales
+- **Rutas**: `/about`
+- **Patrones**: Diseño consistente sin GlobalHeader
+- **Ejemplos**: About.tsx
+
+#### ⚠️ Páginas de Error
+- **Rutas**: `/*` (NotFound)
+- **Patrones**: Diseño consistente, mensaje claro
+- **Ejemplos**: NotFound.tsx, EnConstruccion.tsx
 
 ---
 
@@ -407,7 +451,7 @@ className={cn(
 
 ## 8. Patrones de Página: Elementos Decorativos de Fondo
 
-### **OBLIGATORIO** en todas las páginas principales
+### **APLICABLE** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 {/* Colocar después del tag de apertura del contenedor principal */}
@@ -418,18 +462,20 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 9. Patrones de Página: Header Principal
 
-### **OBLIGATORIO** en todas las páginas principales
+### **APLICABLE** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
   <div className="container mx-auto px-4 py-8 sm:py-12">
     <div className="max-w-4xl mx-auto text-center">
       
-      {/* Logo circular con gradiente - OBLIGATORIO */}
+      {/* Logo circular con gradiente - APLICABLE en páginas de contenido educativo */}
       <div className="flex justify-center mb-6">
         <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
           <IconComponent className="h-12 w-12 text-primary-foreground" />
@@ -446,7 +492,7 @@ className={cn(
         Subtítulo descriptivo que explica el contenido
       </p>
       
-      {/* Frase destacada - OBLIGATORIA */}
+      {/* Frase destacada - APLICABLE en páginas de contenido educativo */}
       <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
         <div className="flex items-center justify-center mb-3">
           <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
@@ -464,11 +510,13 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 10. Patrones de Página: Sección de Introducción
 
-### **OBLIGATORIO** después del header principal
+### **APLICABLE** después del header principal en páginas de contenido educativo
 
 ```jsx
 <motion.div 
@@ -541,11 +589,13 @@ className={cn(
 </motion.div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 11. Patrones de Página: Headers de Sección
 
-### Para cada sección principal del contenido
+### Para cada sección principal del contenido en páginas de contenido educativo
 
 ```jsx
 <div className="text-center mb-8">
@@ -563,11 +613,13 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 12. Patrones de Página: Sección de Puntos Clave
 
-### Para secciones con pasos, tips o conceptos numerados
+### Para secciones con pasos, tips o conceptos numerados en páginas de contenido educativo
 
 ```jsx
 <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-12 sm:mb-16">
@@ -625,6 +677,8 @@ className={cn(
   </div>
 </div>
 ```
+
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
 
 ---
 
@@ -1126,45 +1180,53 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ## 20. Checklist de Implementación
 
-### ✅ Estructura Básica (Obligatorio)
+### ✅ Componentes Universales (Aplican en TODO el proyecto)
 
+#### Fundamentos
+- [ ] Paleta de colores de marca implementada
+- [ ] Tipografía responsiva aplicada
+- [ ] Espaciado consistente utilizado
+- [ ] Border radius y sombras estandarizadas
+
+#### Componentes Base
+- [ ] Botones con variantes primary-brand, outline, asChild
+- [ ] Cards con sistema de colores rotativos
+- [ ] Modales con sistema estandarizado
+- [ ] Contraste WCAG AA en todos los elementos
+
+### ✅ Patrones de Página por Tipo
+
+#### 📚 Páginas de Contenido Educativo (/aprende, /recursos, /ayuda)
 - [ ] Elementos decorativos de fondo animados (3 círculos con blur)
 - [ ] Header con gradiente sutil y logo circular
 - [ ] Frase destacada con icono y etiqueta
 - [ ] Sección de introducción con layout de 2 columnas
 - [ ] Headers de sección con iconos circulares
-
-### ✅ Sistema Visual (Obligatorio)
-
-- [ ] Colores rotativos en cards (teal, mint, olive)
-- [ ] Contraste mejorado en iconos y texto (WCAG AA)
-- [ ] Hover effects en elementos interactivos
-- [ ] Transiciones suaves en todas las interacciones
-- [ ] Sombras sutiles para profundidad
-
-### ✅ Responsividad (Obligatorio)
-
-- [ ] Tipografía escalable por breakpoint
-- [ ] Espaciado responsivo en todos los elementos
-- [ ] Iconos que escalan correctamente
-- [ ] Grids que se adaptan a diferentes pantallas
-- [ ] Padding y márgenes responsivos
-
-### ✅ Contenido (Obligatorio)
-
 - [ ] Sección de puntos clave con números circulares
-- [ ] Cards con sistema de colores rotativos
-- [ ] Datos importantes destacados
-- [ ] Animaciones escalonadas en grids
-- [ ] Consistencia visual entre secciones
 
-### ✅ Accesibilidad (Obligatorio)
+#### 🏠 Páginas Hero (/)
+- [ ] HeroSection con elementos decorativos
+- [ ] Responsividad completa en Hero
+- [ ] Accesibilidad en elementos interactivos
+- [ ] Consistencia visual con sistema de diseño
 
-- [ ] Contraste mínimo 4.5:1 para texto normal
-- [ ] Navegación completa por teclado
-- [ ] ARIA labels en elementos interactivos
-- [ ] Focus visible en todos los elementos
-- [ ] Respeto a `prefers-reduced-motion`
+#### 🎮 Páginas Interactivas (/quiz)
+- [ ] AppShellCard con sistema de diseño
+- [ ] StepHeader consistente
+- [ ] OptionGrid responsivo
+- [ ] Accesibilidad WCAG AA en pasos
+
+#### ℹ️ Páginas Especiales (/about)
+- [ ] Diseño consistente sin GlobalHeader
+- [ ] Responsividad completa
+- [ ] Accesibilidad básica
+- [ ] Consistencia visual con sistema de diseño
+
+#### ⚠️ Páginas de Error (/*)
+- [ ] Diseño consistente
+- [ ] Mensaje claro
+- [ ] Navegación de retorno
+- [ ] Accesibilidad básica
 
 ---
 
@@ -1172,16 +1234,19 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ### SIEMPRE Hacer
 
-1. **Usar elementos decorativos de fondo** en páginas principales
-2. **Incluir logo circular con gradiente** en headers
-3. **Implementar frase destacada** con icono y etiqueta
-4. **Usar contraste mejorado** para iconos y números (WCAG AA)
-5. **Aplicar animaciones escalonadas** en grids
-6. **Usar hover effects** en elementos interactivos
-7. **Implementar responsividad completa** con breakpoints
-8. **Mantener consistencia visual** entre secciones
-9. **Rotar colores de cards** para evitar monotonía
-10. **Alcanzar el nivel de `/tu-familia`** en sofisticación
+1. **Usar elementos decorativos de fondo** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
+2. **Incluir logo circular con gradiente** en headers de páginas de contenido educativo
+3. **Implementar frase destacada** con icono y etiqueta en páginas de contenido educativo
+4. **Usar contraste mejorado** para iconos y números (WCAG AA) - UNIVERSAL
+5. **Aplicar animaciones escalonadas** en grids - UNIVERSAL
+6. **Usar hover effects** en elementos interactivos - UNIVERSAL
+7. **Implementar responsividad completa** con breakpoints - UNIVERSAL
+8. **Mantener consistencia visual** entre secciones - UNIVERSAL
+9. **Rotar colores de cards** para evitar monotonía - UNIVERSAL
+10. **Usar HeroSection** en página principal (/)
+11. **Usar AppShellCard** en página de quiz (/quiz)
+12. **Mantener diseño consistente** en páginas especiales (/about) sin GlobalHeader
+13. **Alcanzar el nivel de sofisticación** documentado en este sistema de diseño
 
 ### NUNCA Hacer
 
@@ -1198,21 +1263,23 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ## 22. Ejemplos Rápidos
 
-### Layout de Página Completo
+### Layout de Página Completo por Tipo
+
+#### 📚 Páginas de Contenido Educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 <>
   <GlobalHeader />
   
   <div className="min-h-screen bg-gradient-subtle">
-    {/* Elementos decorativos de fondo */}
+    {/* Elementos decorativos de fondo - APLICABLE en páginas de contenido educativo */}
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
     </div>
 
-    {/* Header Principal */}
+    {/* Header Principal - APLICABLE en páginas de contenido educativo */}
     <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
       {/* Ver sección 9 para código completo */}
     </div>
@@ -1220,7 +1287,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
     {/* Contenido Principal */}
     <div className="relative container mx-auto px-4 py-8 sm:py-12">
       <div className="max-w-6xl mx-auto">
-        {/* Sección de Introducción */}
+        {/* Sección de Introducción - APLICABLE en páginas de contenido educativo */}
         {/* Ver sección 10 para código completo */}
         
         {/* Secciones de Contenido */}
@@ -1228,6 +1295,30 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
       </div>
     </div>
   </div>
+</>
+```
+
+#### 🏠 Páginas Hero (/)
+
+```jsx
+<>
+  <GlobalHeader />
+  <main id="main-content">
+    <HeroSection />
+  </main>
+</>
+```
+
+#### 🎮 Páginas Interactivas (/quiz)
+
+```jsx
+<>
+  <GlobalHeader />
+  <main id="main-content">
+    <AppShellCard>
+      {/* Pasos del quiz */}
+    </AppShellCard>
+  </main>
 </>
 ```
 
@@ -1518,9 +1609,18 @@ Componentes (Uso)
 
 ### Archivos de Referencia en el Proyecto
 
-- **Página estándar**: `src/pages/TuFamilia.tsx`
+#### Páginas por Tipo
+- **Página de contenido educativo**: `src/pages/TuFamilia.tsx`
+- **Página hero**: `src/pages/Index.tsx`
+- **Página interactiva**: `src/pages/Quiz.tsx`
+- **Página especial**: `src/pages/About.tsx`
+
+#### Componentes Universales
 - **Componente modal**: `src/components/ui/dialog.tsx`
 - **Componente card**: `src/components/ui/card.tsx`
+- **Componente botón**: `src/components/ui/button.tsx`
+
+#### Configuración
 - **Estilos globales**: `src/index.css`
 - **Configuración Tailwind**: `tailwind.config.ts`
 
@@ -1553,6 +1653,6 @@ La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode si
 ---
 
 **Última actualización**: Octubre 2025  
-**Estándar de referencia**: `/tu-familia`  
-**Objetivo**: Todas las páginas deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle.
+**Sistema de Diseño**: Documentación completa y autosuficiente  
+**Objetivo**: Todas las páginas y componentes deben cumplir con los estándares documentados en este sistema de diseño.
 

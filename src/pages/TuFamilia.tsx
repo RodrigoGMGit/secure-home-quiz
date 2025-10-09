@@ -25,9 +25,9 @@ const TuFamilia = () => {
         "Estadísticas de México"
       ],
       color: "border-brand-teal-500/30 bg-brand-teal-500/10",
-      iconColor: "text-brand-ink-800",
+      iconColor: "text-brand-teal-500",
       iconBg: "bg-brand-teal-500/20",
-      checkmarkColor: "text-brand-ink-800"
+      checkmarkColor: "text-brand-teal-500"
     },
     {
       id: "redes-sociales",
@@ -87,18 +87,18 @@ const TuFamilia = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Tu Familia Digital
             </h1>
-            <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
+            <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
               Conoce los hábitos digitales de tu familia y aprende a crear un hogar digital más seguro
             </p>
             
             {/* Frase destacada mejorada */}
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
               <div className="flex items-center justify-center mb-3">
-                <Shield className="h-6 w-6 text-brand-ink-800 mr-2" />
-                <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
+                <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
+                <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
               </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "Proteger tu hogar digital es tan importante como cerrar la puerta con llave"
@@ -124,10 +124,10 @@ const TuFamilia = () => {
                   <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-brand-ink-900 mb-2">
                 ¿Por dónde empezamos?
               </h2>
-              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
+              <p className="font-body text-sm text-brand-olive-500">
                 Guía para padres y madres en el mundo digital
               </p>
             </div>
@@ -231,10 +231,10 @@ const TuFamilia = () => {
                   <CheckCircle className="h-8 w-8 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
                 Recuerda estos 3 elementos clave:
               </h3>
-              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
+              <p className="font-body text-sm text-brand-olive-500">
                 Fundamentos para un hogar digital seguro
               </p>
             </div>
@@ -242,7 +242,7 @@ const TuFamilia = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <div className="text-center group">
                 <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
-                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">1</span>
+                  <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
                 </div>
                 <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
                   Comunicación Familiar
@@ -266,7 +266,7 @@ const TuFamilia = () => {
                 </p>
               </div>
               
-              <div className="text-center group sm:col-span-2 lg:col-span-1">
+              <div className="text-center group">
                 <div className="bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10 rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth">
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
                 </div>

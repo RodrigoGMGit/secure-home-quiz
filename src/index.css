@@ -216,7 +216,7 @@ Based on official brand guidelines and tokens
   }
 
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 60s linear infinite;
   }
 
   @keyframes dash {

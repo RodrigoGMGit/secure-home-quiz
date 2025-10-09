@@ -34,7 +34,7 @@ const ControlesParentales: React.FC = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Controles Parentales
             </h1>
             <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
@@ -45,7 +45,7 @@ const ControlesParentales: React.FC = () => {
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
               <div className="flex items-center justify-center mb-3">
                 <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
-                <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
+                  <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
               </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
@@ -108,7 +108,7 @@ const ControlesParentales: React.FC = () => {
                 <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                      <AlertTriangle className="h-5 w-5 text-brand-teal-500" />
+                        <AlertTriangle className="h-5 w-5 text-brand-ink-800" />
                     </div>
                     <div>
                       <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
@@ -279,7 +279,7 @@ const ControlesParentales: React.FC = () => {
             </AccordionItem>
 
             {/* iPhone Section */}
-            <AccordionItem value="iphone" className="border rounded-lg">
+            <AccordionItem value="iphone" className="border-brand-mint-200/40 bg-brand-mint-200/20 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
                   <Smartphone className="h-6 w-6 text-gray-600" />
@@ -403,7 +403,7 @@ const ControlesParentales: React.FC = () => {
             </AccordionItem>
 
             {/* Qustodio Section */}
-            <AccordionItem value="qustodio" className="border rounded-lg">
+            <AccordionItem value="qustodio" className="border-brand-olive-500/30 bg-brand-olive-500/10 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
                   <Shield className="h-6 w-6 text-orange-600" />
@@ -493,7 +493,7 @@ const ControlesParentales: React.FC = () => {
             </AccordionItem>
 
             {/* Consoles Section */}
-            <AccordionItem value="consoles" className="border rounded-lg">
+            <AccordionItem value="consoles" className="border-brand-teal-500/30 bg-brand-teal-500/10 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
                   <Gamepad2 className="h-6 w-6 text-purple-600" />
@@ -620,7 +620,7 @@ const ControlesParentales: React.FC = () => {
             </AccordionItem>
 
             {/* Router/Wi-Fi Section */}
-            <AccordionItem value="router" className="border rounded-lg">
+            <AccordionItem value="router" className="border-brand-mint-200/40 bg-brand-mint-200/20 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
                   <Wifi className="h-6 w-6 text-indigo-600" />

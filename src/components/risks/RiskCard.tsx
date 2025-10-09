@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 interface RiskCardProps {
   risk: DigitalRisk;
   onViewDetails: (risk: DigitalRisk) => void;
+  index: number;
 }
 
 const severityColors = {
@@ -42,9 +43,9 @@ const iconColors = [
   "bg-brand-olive-500/20 text-brand-ink-800"
 ];
 
-export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails }) => {
-  // Rotar colores para evitar monotonía visual
-  const colorIndex = risk.id.charCodeAt(0) % cardColors.length;
+export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }) => {
+  // Rotar colores para evitar monotonía visual usando índice
+  const colorIndex = index % cardColors.length;
   const cardColor = cardColors[colorIndex];
   const iconColor = iconColors[colorIndex];
   const SeverityIcon = severityIcons[risk.severity];
