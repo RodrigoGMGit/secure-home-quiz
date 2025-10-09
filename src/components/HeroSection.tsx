@@ -1,9 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
 import LoadingComponent from "@/components/ui/loading-component";
 import { useNavigationLoading } from "@/hooks/useNavigationLoading";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import childGaming from "@/assets/hero/child-gaming-safely.png";
 import childrenLearning from "@/assets/hero/children-learning-together.png";
 import childTablet from "@/assets/hero/child-using-tablet.png";
@@ -16,13 +17,61 @@ const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+  const [marqueeTop, setMarqueeTop] = useState<number | null>(null);
   const { isLoading, loadingType, navigateWithLoading } = useNavigationLoading();
 
+  // Refs for dynamic positioning
+  const heroRef = useRef<HTMLDivElement>(null);
+  const highlightRef = useRef<HTMLSpanElement>(null);
+
   const totalImages = 7; // Número total de imágenes únicas en el marquee
+
+  // Function to compute marquee position based on "EN LÍNEA" center
+  const updateMarqueeTop = useCallback(() => {
+    const hero = heroRef.current;
+    const highlight = highlightRef.current;
+    if (!hero || !highlight) return;
+    
+    const heroRect = hero.getBoundingClientRect();
+    const highlightRect = highlight.getBoundingClientRect();
+    const centerY = highlightRect.top + highlightRect.height / 2 - heroRect.top;
+    setMarqueeTop(centerY);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Layout effect to set up dynamic positioning
+  useLayoutEffect(() => {
+    updateMarqueeTop();
+    
+    const resizeObserver = new ResizeObserver(updateMarqueeTop);
+    if (highlightRef.current) resizeObserver.observe(highlightRef.current);
+    if (heroRef.current) resizeObserver.observe(heroRef.current);
+    
+    const handleResize = () => updateMarqueeTop();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    
+    // Recompute after fonts load
+    if ((document as any).fonts?.ready) {
+      (document as any).fonts.ready.then(updateMarqueeTop).catch(() => {});
+    }
+    
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, [updateMarqueeTop]);
+
+  // Recompute when images load (affects layout)
+  useEffect(() => {
+    if (imagesLoaded) {
+      updateMarqueeTop();
+    }
+  }, [imagesLoaded, updateMarqueeTop]);
 
   const handleImageLoad = () => {
     setLoadedImagesCount(prev => {
@@ -48,7 +97,7 @@ const HeroSection = () => {
   );
 
   return (
-    <main className="min-h-screen bg-gradient-subtle overflow-hidden relative">
+    <main ref={heroRef} className="min-h-screen bg-gradient-subtle overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -69,9 +118,13 @@ const HeroSection = () => {
       )}
 
       {/* Image Marquee - Mobile optimized */}
-      <div className={`absolute top-1/2 left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0 transition-opacity duration-500 ${
-        imagesLoaded ? 'opacity-100' : 'opacity-0'
-      }`}>
+      <div 
+        className={cn(
+          "absolute left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0 transition-opacity duration-500",
+          imagesLoaded ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{ top: marqueeTop ?? '50%' }}
+      >
         <div className="flex animate-marquee gap-2 sm:gap-4">
           {/* Set 1 - with onLoad handlers */}
           <div className="flex gap-2 sm:gap-4 flex-shrink-0">
@@ -334,6 +387,7 @@ const HeroSection = () => {
                     className="justify-center"
                   >
                     <span
+                      ref={highlight ? highlightRef : undefined}
                       className={`block ${
                         highlight
                           ? "bg-gradient-to-r from-brand-teal-500 to-brand-olive-500 bg-clip-text text-transparent"
