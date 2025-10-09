@@ -98,7 +98,7 @@ const GlobalHeader = () => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="md:hidden hover:bg-brand-mint-200/30 transition-smooth"
+          className="lg:hidden hover:bg-brand-mint-200/30 transition-smooth"
         >
           <Menu className="h-6 w-6 text-brand-ink-800" />
           <span className="sr-only">Abrir menú</span>
@@ -219,13 +219,13 @@ const GlobalHeader = () => {
   );
 
   const DesktopMenu = () => (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="hidden lg:flex flex-1 justify-center min-w-0">
       <NavigationMenuList>
         {navigationItems.map((item) => {
           if (item.hasSubmenu && item.submenu) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuTrigger className="flex items-center space-x-1">
+                <NavigationMenuTrigger className="flex items-center space-x-1 px-3 py-2 lg:px-3 lg:py-2">
                   <item.icon className="h-4 w-4" />
                   <span>{item.title}</span>
                 </NavigationMenuTrigger>
@@ -261,7 +261,7 @@ const GlobalHeader = () => {
                 <Link
                   to={item.href!}
                   className={cn(
-                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-3 lg:px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                     isActive(item.href!) && "bg-accent text-accent-foreground"
                   )}
                 >
@@ -280,14 +280,14 @@ const GlobalHeader = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <Shield className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="hidden sm:inline-block text-lg font-semibold">
+            <span className="hidden lg:inline-block text-lg font-semibold truncate max-w-[40ch]">
               Hogares Digitales Seguros
             </span>
           </Link>
