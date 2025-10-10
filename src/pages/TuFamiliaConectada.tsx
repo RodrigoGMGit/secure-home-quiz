@@ -17,13 +17,13 @@ const TuFamiliaConectada = () => {
   const [showResults, setShowResults] = useState(false);
 
   const questions = [
-    "¿Tienes establecido un límite diario de tiempo frente a pantallas para tus hijos e hijas?",
-    "¿Supervisas regularmente el tipo de contenido que consumen en plataformas como YouTube, TikTok o videojuegos?",
-    "¿Has activado controles parentales en dispositivos como celulares, tablets, consolas o televisores inteligentes?",
-    "¿Conoces los riesgos de las aplicaciones y redes sociales que las niñas, niños y adolescentes utilizan y cómo funcionan?",
-    "¿Tienen reglas claras sobre el uso de dispositivos durante la noche o en momentos familiares (como comidas)?",
-    "¿Has enseñado a tus hijos o hijas a identificar y reportar contenido inapropiado o conductas sospechosas en línea?",
-    "¿Utilizas herramientas de monitoreo o informes de actividad digital para revisar su comportamiento en línea?"
+    "Tengo establecido un límite diario de tiempo frente a pantallas para mis hijos e hijas.",
+    "Superviso regularmente el tipo de contenido que consumen en plataformas como YouTube, TikTok o videojuegos.",
+    "He activado controles parentales en dispositivos como celulares, tablets, consolas o televisores inteligentes.",
+    "Conozco los riesgos de las aplicaciones y redes sociales que niñas, niños y adolescentes utilizan y cómo funcionan.",
+    "Tenemos reglas claras sobre el uso de dispositivos durante la noche o en momentos familiares (como comidas).",
+    "He enseñado a mis hijos e hijas a identificar y reportar contenido inapropiado o conductas sospechosas en línea.",
+    "Utilizo herramientas de monitoreo o informes de actividad digital para revisar su comportamiento en línea."
   ];
 
   const handleAnswerChange = (index: number, checked: boolean) => {
