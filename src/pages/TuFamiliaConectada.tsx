@@ -124,10 +124,6 @@ const TuFamiliaConectada = () => {
             
             {/* Frase destacada mejorada */}
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-              <div className="flex items-center justify-center mb-3">
-                <Shield className="h-6 w-6 text-brand-ink-800 mr-2" />
-                <span className="font-heading text-sm font-semibold text-brand-ink-900 uppercase tracking-wide">Frase clave</span>
-              </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "Un hogar digital seguro es aquel donde la tecnología conecta, no desconecta a la familia"
               </p>
