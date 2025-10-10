@@ -7,6 +7,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Heart, MessageCircle, Shield, Users, AlertTriangle, Eye, Clock, BookOpen, Lightbulb, HandHeart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GlobalHeader from '@/components/GlobalHeader';
+import { GlossaryTerm } from '@/components/ui/GlossaryTerm';
 
 const ComunicacionYApoyo = () => {
   const señalesAlerta = [
@@ -242,7 +243,7 @@ const ComunicacionYApoyo = () => {
                         </h4>
                         <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                           Los niños que tienen conversaciones regulares con sus padres sobre seguridad digital 
-                          tienen 3 veces menos probabilidades de experimentar ciberacoso o grooming.
+                          tienen 3 veces menos probabilidades de experimentar <GlossaryTerm termKey="ciberacoso">ciberacoso</GlossaryTerm> o <GlossaryTerm termKey="grooming">grooming</GlossaryTerm>.
                         </p>
                       </div>
                     </div>

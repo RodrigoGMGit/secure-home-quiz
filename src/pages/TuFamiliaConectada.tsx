@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
 
 const TuFamiliaConectada = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -70,18 +71,18 @@ const TuFamiliaConectada = () => {
   const risks = [
     "Acceso a desinformación o noticias falsas",
     "Sobreuso o adicción a pantallas y redes sociales",
-    "Uso de íconos o emojis con doble significado en chats grupales",
-    "Ciberacoso",
+    <>Uso de íconos o <GlossaryTerm termKey="emojis-doble">emojis con doble significado</GlossaryTerm> en chats grupales</>,
+    <GlossaryTerm termKey="ciberacoso">Ciberacoso</GlossaryTerm>,
     "Contacto con personas desconocidas en juegos en línea o en redes sociales",
-    "Deep Fakes o Ultra Falsos",
-    "Discurso de odio",
+    <><GlossaryTerm termKey="deepfakes">Deep Fakes</GlossaryTerm> o Ultra Falsos</>,
+    <GlossaryTerm termKey="discurso-odio">Discurso de odio</GlossaryTerm>,
     "Exposición a contenido violento o sexual",
-    "Grooming en línea o acoso",
+    <><GlossaryTerm termKey="grooming">Grooming</GlossaryTerm> en línea o acoso</>,
     "Retos virales peligrosos",
     "Robo o manipulación de imágenes personales",
-    "Sexting, sexteo o sextear",
-    "Suplantación de identidad",
-    "Uso de redes sociales anónimas",
+    <><GlossaryTerm termKey="sexting">Sexting</GlossaryTerm>, sexteo o sextear</>,
+    <GlossaryTerm termKey="suplantacion">Suplantación de identidad</GlossaryTerm>,
+    <>Uso de <GlossaryTerm termKey="redes-anonimas">redes sociales anónimas</GlossaryTerm></>,
     "Vulnerabilidad frente a desapariciones y/o trata de personas"
   ];
 

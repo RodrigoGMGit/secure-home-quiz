@@ -6,6 +6,7 @@ import { ChevronRight, Search, AlertTriangle, Shield, Eye, CheckCircle } from 'l
 import { DigitalRisk } from '../../types/risks';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
+import { GlossaryTerm } from '../ui/GlossaryTerm';
 
 interface RiskCardProps {
   risk: DigitalRisk;
@@ -50,6 +51,37 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }
   const iconColor = iconColors[colorIndex];
   const SeverityIcon = severityIcons[risk.severity];
 
+  // Función para renderizar títulos con términos del glosario
+  const renderTitleWithGlossary = (title: string) => {
+    const glossaryMappings: Record<string, string> = {
+      'Ciberacoso': 'ciberacoso',
+      'Grooming': 'grooming',
+      'Sexting': 'sexting',
+      'Deep Fakes': 'deepfakes',
+      'Suplantación de identidad': 'suplantacion',
+      'Discurso de odio': 'discurso-odio',
+      'Redes sociales anónimas': 'redes-anonimas',
+      'Emojis con doble significado': 'emojis-doble',
+      'Fandoms': 'fandoms'
+    };
+
+    // Buscar si el título contiene algún término del glosario
+    for (const [term, key] of Object.entries(glossaryMappings)) {
+      if (title.includes(term)) {
+        const parts = title.split(term);
+        return (
+          <>
+            {parts[0]}
+            <GlossaryTerm termKey={key}>{term}</GlossaryTerm>
+            {parts[1]}
+          </>
+        );
+      }
+    }
+    
+    return title;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -68,7 +100,7 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }
           </div>
           
           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
-            {risk.title}
+            {renderTitleWithGlossary(risk.title)}
           </CardTitle>
           
           <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500 mb-3">
