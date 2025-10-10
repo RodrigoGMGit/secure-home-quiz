@@ -28,7 +28,7 @@ const GlobalHeader = () => {
     },
     {
       title: "Conoce Más",
-      href: "/about",
+      href: "/en-construccion",
       icon: BookOpen,
     },
     {
