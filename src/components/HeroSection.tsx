@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, useCallback, useLayoutEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Wifi, Lock, CheckCircle } from "lucide-react";
 import LoadingComponent from "@/components/ui/loading-component";
@@ -17,61 +17,13 @@ const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImagesCount, setLoadedImagesCount] = useState(0);
-  const [marqueeTop, setMarqueeTop] = useState<number | null>(null);
   const { isLoading, loadingType, navigateWithLoading } = useNavigationLoading();
 
-  // Refs for dynamic positioning
-  const heroRef = useRef<HTMLDivElement>(null);
-  const highlightRef = useRef<HTMLSpanElement>(null);
-
   const totalImages = 7; // Número total de imágenes únicas en el marquee
-
-  // Function to compute marquee position based on "EN LÍNEA" center
-  const updateMarqueeTop = useCallback(() => {
-    const hero = heroRef.current;
-    const highlight = highlightRef.current;
-    if (!hero || !highlight) return;
-    
-    const heroRect = hero.getBoundingClientRect();
-    const highlightRect = highlight.getBoundingClientRect();
-    const centerY = highlightRect.top + highlightRect.height / 2 - heroRect.top;
-    setMarqueeTop(centerY);
-  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  // Layout effect to set up dynamic positioning
-  useLayoutEffect(() => {
-    updateMarqueeTop();
-    
-    const resizeObserver = new ResizeObserver(updateMarqueeTop);
-    if (highlightRef.current) resizeObserver.observe(highlightRef.current);
-    if (heroRef.current) resizeObserver.observe(heroRef.current);
-    
-    const handleResize = () => updateMarqueeTop();
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', handleResize);
-    
-    // Recompute after fonts load
-    if ((document as any).fonts?.ready) {
-      (document as any).fonts.ready.then(updateMarqueeTop).catch(() => {});
-    }
-    
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('orientationchange', handleResize);
-    };
-  }, [updateMarqueeTop]);
-
-  // Recompute when images load (affects layout)
-  useEffect(() => {
-    if (imagesLoaded) {
-      updateMarqueeTop();
-    }
-  }, [imagesLoaded, updateMarqueeTop]);
 
   const handleImageLoad = () => {
     setLoadedImagesCount(prev => {
@@ -97,7 +49,7 @@ const HeroSection = () => {
   );
 
   return (
-    <main ref={heroRef} className="min-h-screen bg-gradient-subtle overflow-hidden relative">
+    <main className="min-h-screen bg-gradient-subtle overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -117,261 +69,6 @@ const HeroSection = () => {
         </div>
       )}
 
-      {/* Image Marquee - Mobile optimized */}
-      <div 
-        className={cn(
-          "absolute left-0 right-0 transform -translate-y-1/2 overflow-hidden pointer-events-none z-0 transition-opacity duration-500",
-          imagesLoaded ? 'opacity-100' : 'opacity-0'
-        )}
-        style={{ top: marqueeTop ?? '50%' }}
-      >
-        <div className="flex animate-marquee gap-2 sm:gap-4">
-          {/* Set 1 - with onLoad handlers */}
-          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childGaming}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childTablet}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childrenLearning}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={child1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia3}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familyReunited}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-                onLoad={handleImageLoad}
-              />
-            </div>
-          </div>
-          {/* Set 2 - duplicate without onLoad */}
-          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childGaming}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childTablet}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childrenLearning}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={child1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia3}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familyReunited}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-          </div>
-          {/* Set 3 - duplicate without onLoad */}
-          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childGaming}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childTablet}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childrenLearning}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={child1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia3}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familyReunited}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-          </div>
-          {/* Set 4 - duplicate without onLoad */}
-          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childGaming}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childTablet}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={childrenLearning}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={child1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia3}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familia1}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-              <img
-                src={familyReunited}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="relative container mx-auto px-4 py-8 sm:py-12 lg:py-8 z-10">
         <div className="flex justify-center items-center min-h-[60vh] sm:min-h-[70vh] md:min-h-[70vh] lg:min-h-[75vh]">
           {/* Content Section */}
@@ -379,15 +76,14 @@ const HeroSection = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}>
             {/* Headline - Mobile optimized, desktop reduced */}
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 sm:mb-8 md:mb-6 lg:mb-6 leading-tight">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold uppercase tracking-tight text-brand-ink-900 mb-6 sm:mb-8 md:mb-6 lg:mb-6 leading-tight relative z-10">
               <div className="flex flex-col gap-4 sm:gap-5">
                 {headlineLines.map(({ text, highlight }) => (
                   <div
                     key={text}
-                    className="justify-center"
+                    className="justify-center relative"
                   >
                     <span
-                      ref={highlight ? highlightRef : undefined}
                       className={`block ${
                         highlight
                           ? "bg-gradient-to-r from-brand-teal-500 to-brand-olive-500 bg-clip-text text-transparent"
@@ -396,6 +92,262 @@ const HeroSection = () => {
                     >
                       {text}
                     </span>
+                    
+                    {/* Marquee anchored to highlighted line */}
+                    {highlight && (
+                      <div
+                        className={cn(
+                          "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-screen overflow-hidden z-0 transition-opacity duration-500",
+                          imagesLoaded ? "opacity-100" : "opacity-0"
+                        )}
+                      >
+                        <div className="flex animate-marquee gap-2 sm:gap-4">
+                          {/* Set 1 - with onLoad handlers */}
+                          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childGaming}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childTablet}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childrenLearning}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={child1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia3}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familyReunited}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                                onLoad={handleImageLoad}
+                              />
+                            </div>
+                          </div>
+                          {/* Set 2 - duplicate without onLoad */}
+                          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childGaming}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childTablet}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childrenLearning}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={child1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia3}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familyReunited}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                          </div>
+                          {/* Set 3 - duplicate without onLoad */}
+                          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childGaming}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childTablet}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childrenLearning}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={child1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia3}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familyReunited}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                          </div>
+                          {/* Set 4 - duplicate without onLoad */}
+                          <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childGaming}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childTablet}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={childrenLearning}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={child1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia3}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familia1}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
+                              <img
+                                src={familyReunited}
+                                alt=""
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
