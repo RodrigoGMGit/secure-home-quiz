@@ -12,7 +12,6 @@ const About = lazy(() => import("./pages/About"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const TuFamilia = lazy(() => import("./pages/TuFamilia"));
-const TuFamiliaConectada = lazy(() => import("./pages/TuFamiliaConectada"));
 const TuFamiliaRedesSociales = lazy(() => import("./pages/TuFamiliaRedesSociales"));
 const TuFamiliaVideojuegos = lazy(() => import("./pages/TuFamiliaVideojuegos"));
 const RiesgosDigitales = lazy(() => import("./pages/RiesgosDigitales"));
@@ -67,7 +66,6 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/aprende/tu-familia" element={<TuFamilia />} />
-              <Route path="/aprende/tu-familia/conectada" element={<TuFamiliaConectada />} />
               <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
               <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
               <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />

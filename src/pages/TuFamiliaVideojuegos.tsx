@@ -757,7 +757,7 @@ const TuFamiliaVideojuegos = () => {
               <CardContent className="p-4 sm:p-6 pt-0">
                 <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                   <Button asChild variant="secondary-brand" className="h-auto p-3 sm:p-4 hover:scale-105 transition-smooth w-full min-h-[120px] text-left whitespace-normal break-words">
-                    <Link to="/aprende/tu-familia/conectada" className="w-full h-full flex flex-col justify-center">
+                    <Link to="/aprende/tu-familia" className="w-full h-full flex flex-col justify-center">
                       <div className="font-heading font-semibold text-sm sm:text-base text-brand-ink-900 mb-2">Tu Familia Conectada</div>
                       <div className="font-body text-xs sm:text-sm text-brand-olive-500 leading-relaxed">Evalúa la seguridad digital de tu hogar con nuestro checklist interactivo</div>
                     </Link>

@@ -13,23 +13,6 @@ const TuFamilia = () => {
 
   const sections = [
     {
-      id: "conectada",
-      title: "Tu Familia Conectada",
-      description: "Evalúa los hábitos digitales de tu hogar con nuestro checklist interactivo",
-      icon: Users,
-      href: "/aprende/tu-familia/conectada",
-      features: [
-        "Checklist de 7 preguntas clave",
-        "Evaluación de riesgos en el hogar",
-        "Resultados dinámicos con colores",
-        "Estadísticas de México"
-      ],
-      color: "border-brand-teal-500/30 bg-brand-teal-500/10",
-      iconColor: "text-brand-teal-500",
-      iconBg: "bg-brand-teal-500/20",
-      checkmarkColor: "text-brand-teal-500"
-    },
-    {
       id: "redes-sociales",
       title: "Tu Familia y las Redes Sociales",
       description: "Conoce las plataformas más populares y cómo proteger a tu familia",
@@ -174,8 +157,30 @@ const TuFamilia = () => {
             </div>
           </motion.div>
 
+          {/* CTA Banner to Quiz */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12 sm:mb-16"
+          >
+            <div id="diagnostico" className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
+                  ¿Qué tan seguro es tu hogar digital?
+                </h2>
+                <p className="font-body text-sm sm:text-base text-brand-olive-500 mb-6">
+                  Obtén un diagnóstico rápido y un plan personalizado para tu familia.
+                </p>
+                <Button asChild variant="primary-brand" className="px-8 py-3">
+                  <Link to="/quiz">Hacer el diagnóstico</Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Sections Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
             {sections.map((section, index) => (
               <motion.div
                 key={section.id}
