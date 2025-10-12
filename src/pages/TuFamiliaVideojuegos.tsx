@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
 
 const TuFamiliaVideojuegos = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -278,7 +279,7 @@ const TuFamiliaVideojuegos = () => {
           {
             title: "Evaluar Edad Apropiada",
             description: "GTA es para mayores de 18 años únicamente",
-            details: "Revisar clasificación ESRB: M (Maduro) 17+"
+            details: "Revisar clasificación <GlossaryTerm termKey=\"esrb\">ESRB</GlossaryTerm>: M (Maduro) 17+"
           },
           {
             title: "Configurar Controles Parentales",
@@ -310,7 +311,7 @@ const TuFamiliaVideojuegos = () => {
         "Chat con lenguaje ofensivo",
         "Donaciones con dinero real",
         "Contacto con streamers desconocidos",
-        "Contenido NSFW en algunos canales"
+        <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
       controls: [
         "Configurar filtros de contenido",
@@ -437,7 +438,7 @@ const TuFamiliaVideojuegos = () => {
                       Clasificación de edad
                     </h3>
                     <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
-                      Siempre revisa la clasificación de edad (ESRB) antes de permitir que tu hijo juegue. 
+                      Siempre revisa la clasificación de edad (<GlossaryTerm termKey="esrb">ESRB</GlossaryTerm>) antes de permitir que tu hijo juegue. 
                       Cada juego tiene una clasificación específica según su contenido.
                     </p>
                   </div>

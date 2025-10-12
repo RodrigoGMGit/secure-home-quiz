@@ -4,6 +4,7 @@ import { StepHeader } from '../StepHeader';
 import { OptionGrid } from '../OptionGrid';
 import { AgeBand } from '@/types/quiz';
 import { AlertTriangle, Users, Clock, Shield, Camera, HelpCircle } from 'lucide-react';
+import { GlossaryTerm } from '@/components/ui/GlossaryTerm';
 
 interface ConcernsStepProps {
   initialConcerns?: string[];
@@ -22,7 +23,7 @@ const baseConcernOptions = [
   },
   { 
     value: 'grooming', 
-    label: 'Contacto con extraños', 
+    label: <>Contacto con extraños (<GlossaryTerm termKey="grooming">grooming</GlossaryTerm>)</>, 
     icon: <Users />,
     description: 'Personas desconocidas que buscan contacto'
   },
@@ -55,7 +56,7 @@ const baseConcernOptions = [
 const ageConcernOptions = [
   { 
     value: 'sexting', 
-    label: 'Sexting o contenido sexual', 
+    label: <><GlossaryTerm termKey="sexting">Sexting</GlossaryTerm> o contenido sexual</>, 
     icon: <Camera />,
     description: 'Intercambio de contenido sexual',
     ageRestricted: true,
@@ -94,13 +95,12 @@ export function ConcernsStep({
       <StepHeader
         title="¿Qué te preocupa más ahora?"
         subtitle="Selecciona todas las opciones que te generen inquietud. Esto nos ayuda a priorizar tu plan."
+        descriptionSlot={
+          <span className="text-sm font-medium text-brand-olive-500">
+            Campo requerido <span className="text-brand-teal-500">*</span>
+          </span>
+        }
       />
-
-      <div className="text-center mb-2">
-        <span className="text-sm font-medium text-brand-olive-500">
-          Campo requerido <span className="text-destructive">*</span>
-        </span>
-      </div>
 
       <OptionGrid
         options={concernOptions}

@@ -12,6 +12,8 @@ import child1 from "@/assets/hero/child1.png";
 import familia3 from "@/assets/hero/familia-3.png";
 import familia1 from "@/assets/hero/familia1.png";
 import familyReunited from "@/assets/hero/family_reunited.png";
+import logoGob from "@/assets/logos/Logo_Gob.png";
+import logoFE from "@/assets/logos/LogosFE_Colores-18.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -409,6 +411,28 @@ const HeroSection = () => {
             <p className="text-xs sm:text-sm text-brand-olive-500 mt-3 sm:mt-4 opacity-80 font-body px-2">
               Sin registros • 100% confidencial • Toma solo 3 minutos
             </p>
+
+            {/* Trust Badge Section */}
+            <div className={`mt-8 sm:mt-10 transition-all duration-1000 transform ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`} style={{ transitionDelay: "1400ms" }}>
+              <div className="flex justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <motion.img 
+                  src={logoGob}
+                  alt="Gobierno de México" 
+                  className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+                <motion.img 
+                  src={logoFE}
+                  alt="Fundación en Movimiento" 
+                  className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+              </div>
+            </div>
           </div>
 
         </div>

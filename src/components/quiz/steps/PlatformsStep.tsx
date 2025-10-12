@@ -125,13 +125,12 @@ export function PlatformsStep({
       <StepHeader
         title="¿Qué plataformas usa con más frecuencia?"
         subtitle="Selecciona todas las que apliquen. Esto nos ayuda a dar recomendaciones más específicas."
+        descriptionSlot={
+          <span className="text-sm font-medium text-brand-olive-500">
+            Campo requerido <span className="text-brand-teal-500">*</span>
+          </span>
+        }
       />
-
-      <div className="text-center mb-2">
-        <span className="text-sm font-medium text-brand-olive-500">
-          Campo requerido <span className="text-destructive">*</span>
-        </span>
-      </div>
 
       {!showingHelp && (
         <>

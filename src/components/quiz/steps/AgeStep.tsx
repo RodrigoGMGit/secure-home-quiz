@@ -32,15 +32,14 @@ export function AgeStep({ initialAge, onNext, onPrevious }: AgeStepProps) {
       <StepHeader
         title="¿En qué rango de edad está?"
         subtitle="La edad nos permite adaptar mejor las acciones recomendadas."
+        descriptionSlot={
+          <span className="text-sm font-medium text-brand-olive-500">
+            Campo requerido <span className="text-brand-teal-500">*</span>
+          </span>
+        }
       />
 
       <div className="space-y-6">
-        <div className="text-center mb-2">
-          <span className="text-sm font-medium text-brand-olive-500">
-            Campo requerido <span className="text-destructive">*</span>
-          </span>
-        </div>
-        
         <OptionGrid
           options={ageOptions}
           selectedValues={selectedAge ? [selectedAge] : []}

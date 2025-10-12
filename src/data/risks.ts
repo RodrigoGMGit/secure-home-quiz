@@ -309,7 +309,8 @@ export const digitalRisks: DigitalRisk[] = [
         'Se muestra callado o diferente después de usar dispositivos',
         'Evita hablar sobre lo que vio en internet',
         'Cambia de comportamiento o humor',
-        'Hace preguntas inusuales sobre temas adultos'
+        'Hace preguntas inusuales sobre temas adultos',
+        'Manifestación de acciones, movimientos o conductas de índole sexual o violento no acorde a su edad'
       ]
     },
     whatToDo: {

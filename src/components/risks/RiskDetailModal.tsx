@@ -256,13 +256,16 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <div className="flex flex-wrap gap-2 sm:gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
                   {risk.platforms.map((platform) => (
                     <Badge key={platform} variant="outline" className="text-xs sm:text-sm px-3 py-1 bg-brand-mint-200/40 text-brand-ink-800 border-brand-mint-200/50 hover:bg-brand-teal-500/20 hover:border-brand-teal-500/30 transition-smooth">
                       {platform.charAt(0).toUpperCase() + platform.slice(1)}
                     </Badge>
                   ))}
                 </div>
+                <p className="font-body text-xs sm:text-sm text-brand-olive-500 italic">
+                  Estas son las más comunes; sin embargo, puede ocurrir en cualquier plataforma.
+                </p>
               </CardContent>
             </Card>
           </motion.div>

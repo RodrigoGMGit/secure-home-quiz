@@ -133,5 +133,33 @@ export const glossaryTerms: Record<string, GlossaryEntry> = {
         "Pérdida de tiempo excesivo"
       ]
     }
+  },
+  nsfw: {
+    term: "NSFW",
+    definition: "Not Safe For Work (No seguro para el trabajo). Contenido que puede ser inadecuado para su visualización en el trabajo, generalmente por ser subido de tono, pornográfico, sangriento, violento u ofensivo.",
+    additionalInfo: {
+      title: "Tipos de contenido NSFW:",
+      items: [
+        "Contenido sexual explícito",
+        "Violencia gráfica o sangrienta",
+        "Lenguaje ofensivo o discriminatorio",
+        "Contenido que promueve actividades ilegales",
+        "Material que puede ser perturbador para menores"
+      ]
+    }
+  },
+  esrb: {
+    term: "ESRB",
+    definition: "Entertainment Software Rating Board (Consejo de Clasificación de Software de Entretenimiento). Sistema de clasificación por edades para videojuegos que indica qué contenido es apropiado para cada edad.",
+    additionalInfo: {
+      title: "Clasificaciones ESRB principales:",
+      items: [
+        "E (Everyone) - Para todos (6+)",
+        "E10+ (Everyone 10+) - Para mayores de 10 años",
+        "T (Teen) - Para adolescentes (13+)",
+        "M (Mature) - Para adultos (17+)",
+        "AO (Adults Only) - Solo para adultos (18+)"
+      ]
+    }
   }
 };

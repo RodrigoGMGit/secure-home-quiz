@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
 
 const TuFamiliaRedesSociales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -30,19 +31,19 @@ const TuFamiliaRedesSociales = () => {
         "Compartir información sensible"
       ],
       controls: [
-        "Activar Family Pairing",
+        "Activar Family Pairing (emparejamiento familiar)",
         "Restringir contenido para adultos",
         "Configurar perfil privado",
-        "Desactivar lives y compras",
+        "Desactivar lives (transmisiones en vivo) y compras",
         "Usar alias en lugar del nombre real"
       ],
       tutorial: {
         title: "Configuración de TikTok para Familias",
         steps: [
           {
-            title: "Activar Family Pairing",
+            title: "Activar Family Pairing (emparejamiento familiar)",
             description: "Vincula la cuenta de tu hijo con la tuya para supervisar su actividad",
-            details: "Ve a Configuración > Privacidad y seguridad > Family Pairing y sigue las instrucciones"
+            details: "Ve a Configuración > Privacidad y seguridad > Family Pairing (emparejamiento familiar) y sigue las instrucciones"
           },
           {
             title: "Configurar Privacidad",
@@ -55,7 +56,7 @@ const TuFamiliaRedesSociales = () => {
             details: "Configuración > Privacidad y seguridad > Contenido > Modo restringido"
           },
           {
-            title: "Desactivar Mensajes Directos",
+            title: "Desactivar Mensajes Directos (DMs)",
             description: "Evita que extraños contacten a tu hijo",
             details: "Configuración > Privacidad y seguridad > Seguridad > Mensajes directos"
           }
@@ -118,11 +119,11 @@ const TuFamiliaRedesSociales = () => {
         "Falsa sensación de privacidad",
         "Capturas de pantalla sin consentimiento",
         "Contenido editorial no filtrado",
-        "Snap Map revela ubicación",
+        "Snap Map (mapa de ubicación) revela ubicación",
         "Compartir contenido inapropiado"
       ],
       controls: [
-        "Desactivar Snap Map",
+        "Desactivar Snap Map (mapa de ubicación)",
         "Configurar privacidad de historias",
         "Revisar configuración de mensajes",
         "Activar modo fantasma",
@@ -132,7 +133,7 @@ const TuFamiliaRedesSociales = () => {
         title: "Configuración de Snapchat para Familias",
         steps: [
           {
-            title: "Desactivar Snap Map",
+            title: "Desactivar Snap Map (mapa de ubicación)",
             description: "Evita que se comparta la ubicación en tiempo real",
             details: "Perfil > Configuración > Ver mi ubicación > Modo fantasma"
           },
@@ -302,7 +303,7 @@ const TuFamiliaRedesSociales = () => {
         "Contacto con personas desconocidas",
         "Compartir información personal",
         "Llamadas de voz con extraños",
-        "Contenido NSFW en algunos servidores"
+        <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos servidores</>
       ],
       controls: [
         "Configurar privacidad estricta",
@@ -348,7 +349,7 @@ const TuFamiliaRedesSociales = () => {
         "Chat con lenguaje ofensivo",
         "Donaciones con dinero real",
         "Contacto con streamers desconocidos",
-        "Contenido NSFW en algunos canales"
+        <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
       controls: [
         "Configurar filtros de contenido",

@@ -83,8 +83,8 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium">
-              Correo electrónico <span className="text-red-500">*</span>
+            <Label htmlFor="email" className="text-sm font-medium text-brand-ink-800">
+              Correo electrónico <span className="text-brand-teal-500">*</span>
             </Label>
             <Input
               id="email"
@@ -93,10 +93,10 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="text-base"
+              className="text-base border-brand-mint-200/30 focus:border-brand-teal-500"
             />
             {email && !isValidEmail(email) && (
-              <p className="text-sm text-red-500">
+              <p className="text-sm text-brand-ink-800 font-body">
                 Por favor ingresa un correo válido
               </p>
             )}
@@ -123,18 +123,34 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
               )}
             </Button>
 
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                onRestart();
-              }}
-              className="w-full text-base font-medium"
-              size="lg"
-            >
-              <FileText className="w-4 h-4 mr-2" />
-              Hacer el quiz de nuevo
-            </Button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  onRestart();
+                }}
+                className="w-full text-base font-medium"
+                size="lg"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Hacer el quiz de nuevo
+              </Button>
+              
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  // Navigate to resources page
+                  window.location.href = '/recursos';
+                }}
+                className="w-full text-base font-medium"
+                size="lg"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Ver recursos generales
+              </Button>
+            </div>
           </div>
         </form>
 

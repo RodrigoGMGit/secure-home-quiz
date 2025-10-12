@@ -1652,6 +1652,209 @@ La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode si
 
 ---
 
+## 27. Componentes: Tooltips Educativos (Sistema Estandarizado)
+
+### Patrón Base para Tooltips de Términos Técnicos
+
+**Uso**: Para términos técnicos, acrónimos en inglés, o conceptos que requieren explicación adicional.
+
+```jsx
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
+
+// Uso básico
+<GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm>
+
+// Con texto personalizado
+<GlossaryTerm termKey="grooming">proceso de grooming</GlossaryTerm>
+
+// En arrays de strings (convertir a JSX)
+risks: [
+  "Contenido gráfico",
+  <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos servidores</>,
+  "Contacto con desconocidos"
+]
+```
+
+### Configuración del Glosario
+
+**Archivo**: `src/data/glossary.ts`
+
+```typescript
+export const glossaryTerms: Record<string, GlossaryEntry> = {
+  nsfw: {
+    term: "NSFW",
+    definition: "Not Safe For Work (No seguro para el trabajo). Contenido que puede ser inadecuado para su visualización en el trabajo, generalmente por ser subido de tono, pornográfico, sangriento, violento u ofensivo.",
+    additionalInfo: {
+      title: "Tipos de contenido NSFW:",
+      items: [
+        "Contenido sexual explícito",
+        "Violencia gráfica o sangrienta",
+        "Lenguaje ofensivo o discriminatorio",
+        "Contenido que promueve actividades ilegales",
+        "Material que puede ser perturbador para menores"
+      ]
+    }
+  }
+};
+```
+
+### Características Visuales del Tooltip
+
+**Estilo del término**:
+- Color: `text-brand-teal-500` (azul de marca)
+- Subrayado: `decoration-dotted` (punteado)
+- Hover: `hover:decoration-solid` (línea sólida)
+- Icono: `<Info className="ml-1 h-3 w-3" />` (ícono de información)
+- Interactivo: Click para abrir/cerrar
+
+**Contenido del tooltip**:
+- Fondo: `bg-white` con `border-brand-mint-200/30`
+- Sombra: `shadow-lg`
+- Padding: `p-4`
+- Ancho máximo: `max-w-xs`
+- Posición: `side="top"` `align="center"`
+
+### Estructura del Contenido del Tooltip
+
+```jsx
+<TooltipContent className="max-w-xs bg-white border border-brand-mint-200/30 shadow-lg p-4">
+  <div className="space-y-3">
+    {/* Título del término */}
+    <h4 className="font-heading font-semibold text-sm text-brand-ink-900">
+      {glossaryEntry.term}
+    </h4>
+    
+    {/* Definición principal */}
+    <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+      {glossaryEntry.definition}
+    </p>
+    
+    {/* Información adicional (opcional) */}
+    {glossaryEntry.additionalInfo && (
+      <div className="bg-brand-mint-200/20 p-3 rounded-lg border border-brand-mint-200/30">
+        <h5 className="font-heading font-semibold text-xs mb-2 text-brand-ink-900">
+          {glossaryEntry.additionalInfo.title}
+        </h5>
+        <ul className="space-y-1">
+          {glossaryEntry.additionalInfo.items.map((item, index) => (
+            <li key={index} className="font-body text-xs text-brand-ink-800 flex items-start">
+              <span className="w-1 h-1 bg-brand-teal-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</TooltipContent>
+```
+
+### Términos que Requieren Tooltips
+
+**Términos técnicos en inglés**:
+- `nsfw` - Not Safe For Work
+- `grooming` - Proceso de manipulación
+- `sexting` - Envío de contenido sexual
+- `deepfakes` - Videos falsos con IA
+- `ciberacoso` - Acoso digital
+- `suplantacion` - Robo de identidad
+
+**Acrónimos y siglas**:
+- `DMs` - Mensajes directos
+- `NSFW` - Not Safe For Work
+- `ESRB` - Entertainment Software Rating Board
+- `AI` - Inteligencia Artificial
+- `VPN` - Red privada virtual
+
+### Reglas de Implementación
+
+#### ✅ SIEMPRE Usar Tooltips Para:
+
+1. **Términos técnicos en inglés** que aparecen en interfaces de plataformas
+2. **Acrónimos** que pueden no ser familiares para padres
+3. **Conceptos de seguridad digital** que requieren explicación
+4. **Términos de redes sociales** específicos de plataformas
+
+#### ❌ NUNCA Usar Tooltips Para:
+
+1. **Términos comunes** en español (ej: "privacidad", "seguridad")
+2. **Nombres de plataformas** (ej: "TikTok", "Instagram")
+3. **Términos ya explicados** en el contexto inmediato
+4. **Palabras simples** que no requieren aclaración
+
+### Patrones de Uso Común
+
+#### En Arrays de Strings (Riesgos/Controles)
+
+```jsx
+// ❌ INCORRECTO - String con HTML
+risks: [
+  "Contenido <GlossaryTerm termKey=\"nsfw\">NSFW</GlossaryTerm> en servidores"
+]
+
+// ✅ CORRECTO - JSX Element
+risks: [
+  <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en servidores</>
+]
+```
+
+#### En Texto de Párrafos
+
+```jsx
+// ✅ CORRECTO - Uso directo
+<p>
+  Algunas plataformas permiten contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> 
+  que puede ser inapropiado para menores.
+</p>
+```
+
+#### En Títulos y Subtítulos
+
+```jsx
+// ✅ CORRECTO - Uso en títulos
+<h3>
+  Protección contra <GlossaryTerm termKey="grooming">grooming</GlossaryTerm>
+</h3>
+```
+
+### Accesibilidad
+
+**Características de accesibilidad**:
+- `aria-label` descriptivo para lectores de pantalla
+- Navegación por teclado funcional
+- Contraste adecuado en todos los estados
+- Información disponible sin hover (click para abrir)
+
+```jsx
+<button 
+  aria-label={`Ver definición de ${glossaryEntry.term}`}
+  className="inline-flex items-center text-brand-teal-500 underline decoration-dotted hover:decoration-solid active:bg-brand-mint-200/20 px-1 py-0.5 rounded transition-colors cursor-pointer"
+>
+  {children || glossaryEntry.term}
+  <Info className="ml-1 h-3 w-3" />
+</button>
+```
+
+### Checklist de Implementación
+
+#### ✅ Para Nuevos Términos:
+
+- [ ] Agregar entrada al `src/data/glossary.ts`
+- [ ] Definición clara y concisa en español mexicano
+- [ ] Información adicional con ejemplos específicos
+- [ ] Verificar que el término se use consistentemente
+- [ ] Probar tooltip en diferentes contextos
+
+#### ✅ Para Términos Existentes:
+
+- [ ] Identificar todas las instancias del término
+- [ ] Reemplazar strings con `<GlossaryTerm termKey="...">`
+- [ ] Convertir arrays de strings a JSX cuando sea necesario
+- [ ] Verificar imports de `GlossaryTerm` en archivos
+- [ ] Probar funcionalidad del tooltip
+
+---
+
 **Última actualización**: Octubre 2025  
 **Sistema de Diseño**: Documentación completa y autosuficiente  
 **Objetivo**: Todas las páginas y componentes deben cumplir con los estándares documentados en este sistema de diseño.

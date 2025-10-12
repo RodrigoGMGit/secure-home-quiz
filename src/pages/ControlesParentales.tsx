@@ -330,7 +330,7 @@ const ControlesParentales: React.FC = () => {
                       <div className="bg-blue-50 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">Requisitos:</h4>
                         <ul className="space-y-1 text-sm">
-                          <li>• iOS 11 o posterior (preferiblemente la versión más reciente)</li>
+                          <li>• iOS 16 o posterior (recomendado para todas las funciones)</li>
                           <li>• Apple ID válido</li>
                           <li>• Método de pago familiar configurado</li>
                           <li>• Hasta 5 personas más en el grupo familiar</li>
@@ -656,19 +656,23 @@ const ControlesParentales: React.FC = () => {
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>1. Accede a la configuración de tu router (IP del router)</span>
+                            <span>1. Busca en tu módem la dirección IP (generalmente 192.168.0.1 o 192.168.1.1), que suele estar en la etiqueta de la parte de abajo del dispositivo. Si no la encuentras, puedes usar el comando "ipconfig" en Windows o verificar en Configuración de red en tu dispositivo.</span>
                           </div>
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>2. Busca la sección de "Filtros de contenido" o "Control parental"</span>
+                            <span>2. Abre un navegador web (Chrome, Edge, Safari, etc.) y escribe la dirección IP en la barra de direcciones. Cuando se solicite usuario y contraseña, prueba con "admin" en ambos campos (las credenciales más comunes). Si no funciona, revisa la etiqueta del router o contacta a tu proveedor de servicio de internet.</span>
                           </div>
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>3. Activa los filtros de contenido inapropiado</span>
+                            <span>3. Busca la sección de "Filtros de contenido" o "Control parental"</span>
                           </div>
                           <div className="flex items-start space-x-3">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>4. Configura horarios de acceso si es necesario</span>
+                            <span>4. Activa los filtros de contenido inapropiado</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>5. Configura horarios de acceso si es necesario</span>
                           </div>
                         </div>
                       </div>

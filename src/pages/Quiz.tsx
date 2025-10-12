@@ -9,8 +9,13 @@ import { HabitsSignalsStep } from '@/components/quiz/steps/HabitsSignalsStep';
 import { ConcernsStep } from '@/components/quiz/steps/ConcernsStep';
 import { DoneStep } from '@/components/quiz/steps/DoneStep';
 import { Platform } from '@/types/quiz';
+import GlobalHeader from '@/components/GlobalHeader';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Quiz = () => {
+  // Scroll automático al inicio de la página al cambiar de ruta
+  useScrollToTop();
+  
   const { 
     state, 
     updateAnswers, 
@@ -132,13 +137,18 @@ const Quiz = () => {
   const showProgress = currentStepNumber > 0 && currentStepNumber < totalSteps;
 
   return (
-    <AppShellCard
-      showProgress={showProgress}
-      currentStep={currentStepNumber}
-      totalSteps={totalSteps}
-    >
-      {renderStep()}
-    </AppShellCard>
+    <>
+      <GlobalHeader />
+      <main id="main-content">
+        <AppShellCard
+          showProgress={showProgress}
+          currentStep={currentStepNumber}
+          totalSteps={totalSteps}
+        >
+          {renderStep()}
+        </AppShellCard>
+      </main>
+    </>
   );
 };
 

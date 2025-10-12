@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface Option {
   value: string;
-  label: string;
+  label: ReactNode;
   icon?: ReactNode;
-  description?: string;
+  description?: ReactNode;
   ageRestricted?: boolean;
   currentAge?: string;
 }
@@ -51,25 +52,31 @@ export function OptionGrid({
 
   return (
     <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6", className)}>
-      {options.map((option) => {
+      {options.map((option, index) => {
         const isSelected = selectedValues.includes(option.value);
         const isDisabled = isOptionDisabled(option);
         
         return (
-          <button
+          <motion.button
             key={option.value}
             onClick={() => !isDisabled && handleOptionClick(option.value)}
             disabled={isDisabled}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
             className={cn(
-              "relative p-4 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm",
-              "focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2",
-              "min-h-[40px] sm:min-h-[120px] flex flex-col items-center justify-center text-center",
+              "relative p-4 rounded-xl border-2 transition-smooth backdrop-blur-sm",
+              "focus-visible-brand",
+              "min-h-[44px] sm:min-h-[120px] flex flex-col items-center justify-center text-center",
               "hover:shadow-soft hover:scale-[1.02] active:scale-[0.98]",
               isSelected
                 ? "border-brand-teal-500 bg-brand-mint-200/50 shadow-cta"
                 : "border-brand-mint-200 bg-white/60 hover:border-brand-teal-500/60 hover:bg-brand-mint-200/30",
               isDisabled && "opacity-50 cursor-not-allowed hover:border-brand-mint-200 hover:shadow-none hover:scale-100"
             )}
+            aria-pressed={isSelected}
+            aria-disabled={isDisabled}
+            aria-describedby={isDisabled ? `${option.value}-age-restriction` : undefined}
           >
             {/* Selection indicator */}
             {isSelected && (
@@ -109,11 +116,14 @@ export function OptionGrid({
             
             {/* Age restriction notice */}
             {isDisabled && (
-              <div className="text-sm text-destructive mt-2 font-body font-medium">
+              <div 
+                id={`${option.value}-age-restriction`}
+                className="text-sm text-brand-ink-800 mt-2 font-body font-medium"
+              >
                 13+ años
               </div>
             )}
-          </button>
+          </motion.button>
         );
       })}
     </div>

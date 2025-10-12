@@ -39,7 +39,7 @@ const platformMeasures: Record<Platform, { id: string; label: string; descriptio
   minecraft: [
     { id: 'private_server', label: 'Juega en servidor privado/familiar', description: 'Entorno controlado y seguro' },
     { id: 'chat_disabled', label: 'Chat desactivado en multijugador', description: 'Evita comunicación con extraños' },
-    { id: 'realms_family', label: 'Usa Minecraft Realms familiar', description: 'Servidor privado oficial' },
+    { id: 'realms_family', label: 'Usa Minecraft Realms (servidores privados) familiar', description: 'Servidor privado oficial' },
     { id: 'no_mods', label: 'No descarga mods de fuentes desconocidas', description: 'Evita malware y contenido inapropiado' }
   ],
   tiktok: [
@@ -47,7 +47,7 @@ const platformMeasures: Record<Platform, { id: string; label: string; descriptio
     { id: 'dm_limited', label: 'Mensajes directos limitados', description: 'Solo amigos pueden enviar mensajes' },
     { id: 'word_filter', label: 'Filtro de palabras configurado', description: 'Bloquea contenido inapropiado' },
     { id: 'time_limit', label: 'Control de tiempo activado', description: 'Limita el uso diario' },
-    { id: 'live_off', label: 'Transmisiones en vivo desactivadas', description: 'Evita exposición pública' }
+    { id: 'live_off', label: 'Transmisiones en vivo (lives) desactivadas', description: 'Evita exposición pública' }
   ],
   otros: [
     { id: 'parental_controls', label: 'Controles parentales configurados', description: 'Supervisión activa' },
@@ -80,16 +80,21 @@ export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChan
 
         return (
           <div key={platform} className="space-y-4">
-            <h3 className="font-heading text-lg font-semibold text-brand-ink-800 capitalize">
-              {platform.replace('_', ' ')}
-            </h3>
+            <div className="flex items-center justify-between">
+              <h3 className="font-heading text-lg font-semibold text-brand-ink-800 capitalize">
+                {platform.replace('_', ' ')}
+              </h3>
+              <span className="text-sm font-body text-brand-olive-500">
+                {selectedForPlatform.length} de {measures.length} medidas
+              </span>
+            </div>
             
             <div className="grid gap-3">
               {measures.map(measure => (
                 <label
                   key={measure.id}
                   htmlFor={`${platform}-${measure.id}`}
-                  className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer block"
+                  className="flex items-start space-x-3 p-3 rounded-lg border border-brand-mint-200/30 hover:bg-brand-mint-200/20 transition-smooth cursor-pointer block min-h-[44px]"
                 >
                   <Checkbox
                     id={`${platform}-${measure.id}`}
@@ -98,11 +103,11 @@ export function ChecklistByPlatform({ platforms, selectedMeasures, onMeasureChan
                     className="mt-1"
                   />
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-foreground">
+                    <div className="text-sm font-medium text-brand-ink-800">
                       {measure.label}
                     </div>
                     {measure.description && (
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-brand-olive-500 mt-1">
                         {measure.description}
                       </p>
                     )}

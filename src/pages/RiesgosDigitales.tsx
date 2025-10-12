@@ -484,6 +484,11 @@ const RiesgosDigitales: React.FC = () => {
                         Policía Cibernética: 088
                       </a>
                     </Button>
+                  </div>
+                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                    Si no deseas reportar de manera anónima material de abuso sexual, infantil, ciberacoso u otras situaciones de violencia digital, contacta a
+                  </p>
+                  <div className="flex justify-center">
                     <Button asChild variant="secondary-brand" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
                       <a href="https://teprotejomexico.org/" target="_blank" rel="noopener noreferrer">
                         Te Protejo México

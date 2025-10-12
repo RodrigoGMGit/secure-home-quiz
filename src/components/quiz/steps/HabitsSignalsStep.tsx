@@ -110,18 +110,17 @@ export function HabitsSignalsStep({
       <StepHeader
         title="En casa..."
         subtitle="Esto nos ayuda a entender mejor tu situación actual y personalizar las recomendaciones."
+        descriptionSlot={
+          <span className="text-sm font-medium text-brand-olive-500">
+            Campo requerido <span className="text-brand-teal-500">*</span>
+          </span>
+        }
       />
-
-      <div className="text-center mb-2">
-        <span className="text-sm font-medium text-brand-olive-500">
-          Campo requerido <span className="text-destructive">*</span>
-        </span>
-      </div>
 
       <div className="space-y-6">
         {/* Positive habits */}
         <div className="space-y-4">
-          <h3 className="font-medium text-foreground flex items-center gap-2">
+          <h3 className="font-medium text-brand-ink-800 flex items-center gap-2">
             <Shield className="w-5 h-5 text-green-600" />
             Prácticas que ya tenemos
           </h3>
@@ -130,7 +129,7 @@ export function HabitsSignalsStep({
               <label
                 key={option.id}
                 htmlFor={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
+                className="flex items-start space-x-3 p-3 rounded-lg border border-brand-mint-200/30 hover:bg-brand-mint-200/20 transition-smooth cursor-pointer min-h-[44px]"
               >
                 <Checkbox
                   id={option.id}
@@ -142,7 +141,7 @@ export function HabitsSignalsStep({
                   <div className="text-green-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <div className="text-sm font-medium text-foreground leading-relaxed">
+                  <div className="text-sm font-medium text-brand-ink-800 leading-relaxed">
                     {option.label}
                   </div>
                 </div>
@@ -153,7 +152,7 @@ export function HabitsSignalsStep({
 
         {/* Challenges */}
         <div className="space-y-4">
-          <h3 className="font-medium text-foreground flex items-center gap-2">
+          <h3 className="font-medium text-brand-ink-800 flex items-center gap-2">
             <Clock className="w-5 h-5 text-amber-600" />
             Desafíos que enfrentamos
           </h3>
@@ -162,7 +161,7 @@ export function HabitsSignalsStep({
               <label
                 key={option.id}
                 htmlFor={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
+                className="flex items-start space-x-3 p-3 rounded-lg border border-brand-mint-200/30 hover:bg-brand-mint-200/20 transition-smooth cursor-pointer min-h-[44px]"
               >
                 <Checkbox
                   id={option.id}
@@ -174,7 +173,7 @@ export function HabitsSignalsStep({
                   <div className="text-amber-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <div className="text-sm font-medium text-foreground leading-relaxed">
+                  <div className="text-sm font-medium text-brand-ink-800 leading-relaxed">
                     {option.label}
                   </div>
                 </div>
@@ -185,7 +184,7 @@ export function HabitsSignalsStep({
 
         {/* Warning signals */}
         <div className="space-y-4">
-          <h3 className="font-medium text-foreground flex items-center gap-2">
+          <h3 className="font-medium text-brand-ink-800 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-red-600" />
             Señales que hemos notado
           </h3>
@@ -194,7 +193,7 @@ export function HabitsSignalsStep({
               <label
                 key={option.id}
                 htmlFor={option.id}
-                className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer"
+                className="flex items-start space-x-3 p-3 rounded-lg border border-brand-mint-200/30 hover:bg-brand-mint-200/20 transition-smooth cursor-pointer min-h-[44px]"
               >
                 <Checkbox
                   id={option.id}
@@ -206,7 +205,7 @@ export function HabitsSignalsStep({
                   <div className="text-red-600 mt-0.5">
                     {option.icon}
                   </div>
-                  <div className="text-sm font-medium text-foreground leading-relaxed">
+                  <div className="text-sm font-medium text-brand-ink-800 leading-relaxed">
                     {option.label}
                   </div>
                 </div>
