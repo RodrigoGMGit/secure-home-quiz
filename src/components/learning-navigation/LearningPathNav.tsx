@@ -12,15 +12,7 @@ interface LearningPathNavProps {
 const LearningPathNav: React.FC<LearningPathNavProps> = ({ currentRoute }) => {
   const navigation = getLearningPathNavigation(currentRoute);
 
-  // Debug logging
-  console.log('LearningPathNav Debug:', {
-    currentRoute,
-    navigation,
-    config: learningPathConfig
-  });
-
   if (!navigation) {
-    console.log('Navigation is null for route:', currentRoute);
     return null;
   }
 

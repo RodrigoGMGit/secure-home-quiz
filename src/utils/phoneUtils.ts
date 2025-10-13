@@ -105,3 +105,27 @@ export const initiateEmail = async (email: string): Promise<void> => {
     window.open(mailtoLink, '_self');
   }
 };
+
+/**
+ * Maneja una llamada telefónica de forma estandarizada
+ * Usado en componentes de contacto de emergencia
+ * @param phoneNumber - Número de teléfono a llamar
+ * @param contactName - Nombre del contacto para logging/analytics
+ */
+export const handlePhoneCall = (phoneNumber: string, contactName?: string): void => {
+  const cleaned = cleanPhoneNumber(phoneNumber);
+  const telLink = createTelLink(cleaned);
+  
+  // Log para analytics (opcional)
+  if (contactName && process.env.NODE_ENV === 'development') {
+    console.log(`Initiating call to ${contactName}: ${cleaned}`);
+  }
+  
+  // Intentar abrir el marcador telefónico
+  try {
+    window.open(telLink, '_self');
+  } catch (error) {
+    // Fallback: usar location.href
+    window.location.href = telLink;
+  }
+};

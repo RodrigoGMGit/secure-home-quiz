@@ -280,7 +280,7 @@ const TuFamiliaVideojuegos = () => {
           {
             title: "Evaluar Edad Apropiada",
             description: "GTA es para mayores de 18 años únicamente",
-            details: "Revisar clasificación <GlossaryTerm termKey=\"esrb\">ESRB</GlossaryTerm>: M (Maduro) 17+"
+            details: <>Revisar clasificación <GlossaryTerm termKey="esrb">ESRB</GlossaryTerm>: M (Maduro) 17+</>
           },
           {
             title: "Configurar Controles Parentales",
@@ -379,7 +379,7 @@ const TuFamiliaVideojuegos = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Tu Familia y los Videojuegos
             </h1>
             <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">

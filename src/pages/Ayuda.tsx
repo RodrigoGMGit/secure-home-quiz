@@ -161,14 +161,12 @@ const Ayuda = () => {
   const handleTallerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aquí iría la lógica de envío
-    console.log("Formulario de taller:", tallerForm);
     alert("Gracias por tu interés. Te contactaremos pronto.");
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aquí iría la lógica de envío
-    console.log("Formulario de contacto:", contactForm);
     alert("Mensaje enviado. Te responderemos pronto.");
   };
 
@@ -331,6 +329,7 @@ const Ayuda = () => {
                                     window.open(`tel:${contacto.contactos[0].valor}`);
                                   }
                                 }}
+                                aria-label={`Llamar a ${contacto.titulo} al ${contacto.contactos?.[0]?.valor || 'número disponible'}`}
                               >
                                 <Phone className="mr-2 h-4 w-4" />
                                 {contacto.esUrgente ? "Llamar ahora" : "Contactar"}
@@ -343,7 +342,12 @@ const Ayuda = () => {
                                 variant="outline" 
                                 className="w-full text-sm sm:text-base border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20"
                               >
-                                <a href={contacto.url} target="_blank" rel="noopener noreferrer">
+                                <a 
+                                  href={contacto.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  aria-label={`Visitar sitio web de ${contacto.titulo} para reportar en línea`}
+                                >
                                   <ExternalLink className="mr-2 h-4 w-4" />
                                   Reportar en línea
                                 </a>

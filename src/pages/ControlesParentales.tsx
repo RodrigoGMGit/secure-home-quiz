@@ -232,12 +232,12 @@ const ControlesParentales: React.FC = () => {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <Shield className="h-5 w-5 text-green-600" />
+                        <Shield className="h-5 w-5 text-brand-teal-500" />
                         <span>Google SafeSearch</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Herramienta gratuita que filtra contenido explícito o inapropiado de los 
                         resultados de búsqueda en Google.
                       </p>
@@ -279,7 +279,7 @@ const ControlesParentales: React.FC = () => {
             <AccordionItem value="iphone" className="border-brand-mint-200/40 bg-brand-mint-200/20 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
-                  <Smartphone className="h-6 w-6 text-gray-600" />
+                  <Smartphone className="h-6 w-6 text-brand-teal-500" />
                   <div className="text-left">
                     <h3 className="font-heading text-lg sm:text-xl font-semibold">iPhone y iPad</h3>
                     <p className="text-sm text-gray-600">Configuración en Familia + Tiempo en Pantalla</p>
@@ -292,12 +292,12 @@ const ControlesParentales: React.FC = () => {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <Shield className="h-5 w-5 text-blue-600" />
+                        <Shield className="h-5 w-5 text-brand-teal-500" />
                         <span>Configuración en Familia</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Permite que varios miembros de la familia compartan compras, suscripciones 
                         y almacenamiento en iCloud, cada uno con su cuenta personal.
                       </p>
@@ -306,23 +306,23 @@ const ControlesParentales: React.FC = () => {
                         <h4 className="font-semibold">Pasos para configurar:</h4>
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>1. Abre la app de Configuración en el iPhone o iPad</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>2. Toca tu nombre (Apple ID)</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>3. Selecciona "En Familia"</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>4. Toca "Configurar En Familia"</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>5. Sigue las instrucciones para invitar a los miembros</span>
                           </div>
                         </div>
@@ -344,12 +344,12 @@ const ControlesParentales: React.FC = () => {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
-                        <Clock className="h-5 w-5 text-purple-600" />
+                        <Clock className="h-5 w-5 text-brand-teal-500" />
                         <span>Tiempo en Pantalla</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Sistema de control parental de Apple que ayuda a establecer buenos hábitos 
                         digitales y controlar el tiempo de uso de dispositivos.
                       </p>
@@ -359,25 +359,25 @@ const ControlesParentales: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="bg-purple-50 p-4 rounded-lg">
                             <h5 className="font-medium mb-2">Actividad en apps y sitios</h5>
-                            <p className="text-sm text-gray-600">Muestra cuánto tiempo se usa el dispositivo y qué apps son las más utilizadas</p>
+                            <p className="text-sm text-brand-olive-500">Muestra cuánto tiempo se usa el dispositivo y qué apps son las más utilizadas</p>
                           </div>
                           <div className="bg-purple-50 p-4 rounded-lg">
                             <h5 className="font-medium mb-2">Límites de apps</h5>
-                            <p className="text-sm text-gray-600">Establece un máximo diario de uso por categoría o app específica</p>
+                            <p className="text-sm text-brand-olive-500">Establece un máximo diario de uso por categoría o app específica</p>
                           </div>
                           <div className="bg-purple-50 p-4 rounded-lg">
                             <h5 className="font-medium mb-2">Tiempo desactivado</h5>
-                            <p className="text-sm text-gray-600">Define horarios en los que el dispositivo queda bloqueado</p>
+                            <p className="text-sm text-brand-olive-500">Define horarios en los que el dispositivo queda bloqueado</p>
                           </div>
                           <div className="bg-purple-50 p-4 rounded-lg">
                             <h5 className="font-medium mb-2">Siempre permitido</h5>
-                            <p className="text-sm text-gray-600">Decide qué apps estarán disponibles todo el tiempo</p>
+                            <p className="text-sm text-brand-olive-500">Decide qué apps estarán disponibles todo el tiempo</p>
                           </div>
                         </div>
                       </div>
 
                       <div className="bg-red-50 p-4 rounded-lg">
-                        <p className="text-sm text-red-800">
+                        <p className="text-sm text-brand-ink-800">
                           <strong>¡Atención!</strong> Al activar "Tiempo en Pantalla", el sistema pedirá establecer 
                           un código de 4 dígitos. Este código es esencial y solo debe conocerlo la persona adulta responsable.
                         </p>
@@ -420,7 +420,7 @@ const ControlesParentales: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Aplicación de control parental que se instala tanto en el dispositivo de la persona adulta 
                         como en el de la niña, niño o adolescente, permitiendo visualizar sus hábitos digitales.
                       </p>
@@ -429,19 +429,19 @@ const ControlesParentales: React.FC = () => {
                         <h4 className="font-semibold">Cómo instalarlo:</h4>
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>1. Crea una cuenta gratuita en su sitio oficial</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>2. Descarga la app "Qustodio Control Parental" desde App Store o Google Play</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>3. Configura la cuenta e instala "Qustodio para niños" en el dispositivo del menor</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>4. Otorga los permisos especiales que solicita la app</span>
                           </div>
                         </div>
@@ -511,7 +511,7 @@ const ControlesParentales: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Se necesita una cuenta de adulto y otra para la persona menor de edad, 
                         gestionadas dentro de un grupo familiar de Microsoft.
                       </p>
@@ -545,7 +545,7 @@ const ControlesParentales: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Se configura desde la consola, navegador o PlayStation App, 
                         creando un grupo familiar con una cuenta de adulto como administrador.
                       </p>
@@ -579,7 +579,7 @@ const ControlesParentales: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Se gestiona con la app gratuita "Nintendo Switch Parental Controls" 
                         que se instala en el celular del padre, madre o persona cuidadora.
                       </p>
@@ -637,7 +637,7 @@ const ControlesParentales: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-gray-700">
+                      <p className="text-brand-ink-800">
                         Muchas compañías de internet ofrecen herramientas para filtrar contenidos 
                         directamente desde el módem o la red wifi de tu hogar.
                       </p>
@@ -656,23 +656,23 @@ const ControlesParentales: React.FC = () => {
                         <h4 className="font-semibold">Pasos generales:</h4>
                         <div className="space-y-2">
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>1. Busca en tu módem la dirección IP (generalmente 192.168.0.1 o 192.168.1.1), que suele estar en la etiqueta de la parte de abajo del dispositivo. Si no la encuentras, puedes usar el comando "ipconfig" en Windows o verificar en Configuración de red en tu dispositivo.</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>2. Abre un navegador web (Chrome, Edge, Safari, etc.) y escribe la dirección IP en la barra de direcciones. Cuando se solicite usuario y contraseña, prueba con "admin" en ambos campos (las credenciales más comunes). Si no funciona, revisa la etiqueta del router o contacta a tu proveedor de servicio de internet.</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>3. Busca la sección de "Filtros de contenido" o "Control parental"</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>4. Activa los filtros de contenido inapropiado</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
                             <span>5. Configura horarios de acceso si es necesario</span>
                           </div>
                         </div>
