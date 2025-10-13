@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import GlobalHeader from "@/components/GlobalHeader";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import constructionImage from "@/assets/illustrations/construction/Gemini_Generated_Image_gd4fxggd4fxggd4f.png";
 
 const EnConstruccion: React.FC = () => {
   useScrollToTop();
@@ -24,7 +25,7 @@ const EnConstruccion: React.FC = () => {
             <div className="flex justify-center mb-8">
               <div className="relative">
                 <img
-                  src="/assets/illustrations/construction/Gemini_Generated_Image_gd4fxggd4fxggd4f.png"
+                  src={constructionImage}
                   alt="Sección en construcción"
                   className="max-w-full h-auto max-h-96 w-auto shadow-soft rounded-lg"
                 />
