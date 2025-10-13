@@ -37,7 +37,7 @@ const HeroSection = () => {
     });
   };
 
-  const handleConoceMas = () => {
+  const handleComencemos = () => {
     navigateWithLoading('/en-construccion', 'default');
   };
 
@@ -357,12 +357,12 @@ const HeroSection = () => {
 
             {/* Subtitle - Mobile optimized, desktop reduced */}
             <p className="font-body text-xl sm:text-2xl md:text-2xl lg:text-2xl text-brand-olive-500 mb-8 sm:mb-10 md:mb-8 lg:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
-              Evalúa en minutos qué tan protegida está tu familia en internet y descubre cómo mejorar paso a paso.
+              Un espacio creado por y para familias mexicanas para aprender a cuidar a nuestros niños, niñas y adolescentes
             </p>
 
             {/* Trust indicators - Compact mobile sizing */}
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-4 lg:mb-4 px-2">
-              {["Evaluación gratuita", "Resultados inmediatos", "Guía personalizada"].map((item, index) => (
+              {["Contenido educativo", "Guías prácticas", "Evaluación personalizada"].map((item, index) => (
                 <div
                   key={index}
                   className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-mint-200/50 rounded-lg transition-all duration-500 ${
@@ -383,12 +383,11 @@ const HeroSection = () => {
               <Button 
                 variant="primary-brand" 
                 size="lg" 
-                className="uppercase tracking-wide shadow-cta text-sm sm:text-base h-12 sm:h-14 w-full sm:w-auto"
-                onClick={() => navigateWithLoading('/quiz', 'quiz')}
+                className="uppercase tracking-wide shadow-cta text-sm sm:text-base h-12 sm:h-14 w-64 sm:w-72"
+                onClick={handleComencemos}
                 disabled={isLoading}
               >
-                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                {isLoading ? 'Cargando...' : 'Haz el quiz ahora'}
+                {isLoading ? 'Cargando...' : 'Comencemos'}
               </Button>
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -399,17 +398,17 @@ const HeroSection = () => {
                 <Button 
                   variant="secondary-brand" 
                   size="lg" 
-                  className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-full"
-                  onClick={handleConoceMas}
-                  data-button="conoce-mas"
+                  className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-64 sm:w-72"
+                  onClick={handleComencemos}
+                  data-button="evaluar-situacion"
                 >
-                  Conoce más
+                  Evaluar mi situación
                 </Button>
               </motion.div>
             </div>
 
             <p className="text-xs sm:text-sm text-brand-olive-500 mt-3 sm:mt-4 opacity-80 font-body px-2">
-              Sin registros • 100% confidencial • Toma solo 3 minutos
+              100% confidencial • Toma solo 3 minutos
             </p>
 
             {/* Trust Badge Section */}
