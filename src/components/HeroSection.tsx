@@ -377,13 +377,13 @@ const HeroSection = () => {
             </div>
 
             {/* CTA Buttons - Mobile optimized */}
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center transition-all duration-700 transform px-2 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center transition-all duration-700 transform px-2 ${
               isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
             }`} style={{ transitionDelay: "1200ms" }}>
               <Button 
                 variant="primary-brand" 
                 size="lg" 
-                className="uppercase tracking-wide shadow-cta text-sm sm:text-base h-12 sm:h-14 w-64 sm:w-72"
+                className="uppercase tracking-wide shadow-cta text-sm sm:text-base h-12 sm:h-14 w-full max-w-64 sm:w-72"
                 onClick={handleComencemos}
                 disabled={isLoading}
               >
@@ -398,7 +398,7 @@ const HeroSection = () => {
                 <Button 
                   variant="secondary-brand" 
                   size="lg" 
-                  className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-64 sm:w-72"
+                  className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-full max-w-64 sm:w-72"
                   onClick={handleComencemos}
                   data-button="evaluar-situacion"
                 >
