@@ -7,6 +7,7 @@ import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi,
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
+import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
 
 const ControlesParentales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -280,7 +281,7 @@ const ControlesParentales: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   <Smartphone className="h-6 w-6 text-gray-600" />
                   <div className="text-left">
-                    <h3 className="text-xl font-semibold">iPhone y iPad</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-semibold">iPhone y iPad</h3>
                     <p className="text-sm text-gray-600">Configuración en Familia + Tiempo en Pantalla</p>
                   </div>
                 </div>
@@ -404,7 +405,7 @@ const ControlesParentales: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   <Shield className="h-6 w-6 text-orange-600" />
                   <div className="text-left">
-                    <h3 className="text-xl font-semibold">Qustodio</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-semibold">Qustodio</h3>
                     <p className="text-sm text-gray-600">Dispositivos híbridos (Android, iOS, Windows, Mac)</p>
                   </div>
                 </div>
@@ -494,7 +495,7 @@ const ControlesParentales: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   <Gamepad2 className="h-6 w-6 text-purple-600" />
                   <div className="text-left">
-                    <h3 className="text-xl font-semibold">Consolas de Videojuegos</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-semibold">Consolas de Videojuegos</h3>
                     <p className="text-sm text-gray-600">Xbox, PlayStation, Nintendo Switch</p>
                   </div>
                 </div>
@@ -621,7 +622,7 @@ const ControlesParentales: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   <Wifi className="h-6 w-6 text-indigo-600" />
                   <div className="text-left">
-                    <h3 className="text-xl font-semibold">Router/Wi-Fi</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-semibold">Router/Wi-Fi</h3>
                     <p className="text-sm text-gray-600">Configuraciones de seguridad en el hogar</p>
                   </div>
                 </div>
@@ -759,6 +760,13 @@ const ControlesParentales: React.FC = () => {
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Learning Path Navigation */}
+      <div className="relative container mx-auto px-4 pb-8 sm:pb-12">
+        <div className="max-w-6xl mx-auto">
+          <LearningPathNav currentRoute="/aprende/controles" />
         </div>
       </div>
       </div>

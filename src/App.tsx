@@ -3,8 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LoadingComponent from "@/components/ui/loading-component";
+import EmergencyButton from "@/components/EmergencyButton";
 
 // Route-level code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -27,6 +28,40 @@ const routerBase =
   import.meta.env.BASE_URL === "/"
     ? undefined
     : import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const AppContent = () => {
+  const location = useLocation();
+  
+  // No mostrar EmergencyButton en la página /about
+  const shouldShowEmergencyButton = location.pathname !== "/about";
+
+  return (
+    <>
+      <Suspense fallback={<LoadingComponent />}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/aprende/tu-familia" element={<TuFamilia />} />
+          <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
+          <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
+          <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />
+          <Route path="/aprende/controles" element={<ControlesParentales />} />
+          <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
+          <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
+          <Route path="/recursos" element={<Recursos />} />
+          <Route path="/ayuda" element={<Ayuda />} />
+          <Route path="/en-construccion" element={<EnConstruccion />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      
+      {/* Botón de emergencia flotante - no se muestra en /about */}
+      {shouldShowEmergencyButton && <EmergencyButton />}
+    </>
+  );
+};
 
 const App = () => {
   // Global scroll reset on page load/refresh
@@ -60,25 +95,7 @@ const App = () => {
           Saltar al contenido principal
         </a>
         <BrowserRouter basename={routerBase}>
-          <Suspense fallback={<LoadingComponent />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/quiz" element={<Quiz />} />
-              <Route path="/aprende/tu-familia" element={<TuFamilia />} />
-              <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
-              <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
-              <Route path="/aprende/riesgos" element={<RiesgosDigitales />} />
-              <Route path="/aprende/controles" element={<ControlesParentales />} />
-              <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
-              <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
-              <Route path="/recursos" element={<Recursos />} />
-              <Route path="/ayuda" element={<Ayuda />} />
-              <Route path="/en-construccion" element={<EnConstruccion />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          <AppContent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

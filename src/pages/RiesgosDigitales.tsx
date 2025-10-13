@@ -9,14 +9,19 @@ import { RiskCard } from '../components/risks/RiskCard';
 import { RiskDetailModal } from '../components/risks/RiskDetailModal';
 import { digitalRisks, riskCategories } from '../data/risks';
 import { DigitalRisk } from '../types/risks';
-import { Search, Filter, AlertTriangle, Shield, Search as SearchIcon, Eye, Users, CheckCircle } from 'lucide-react';
+import { Search, Filter, AlertTriangle, Shield, Search as SearchIcon, Eye, Users, CheckCircle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
+import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
+import { useMobileDetection, useTelephoneCapability } from '@/hooks/useMobileDetection';
+import { initiatePhoneCall } from '@/utils/phoneUtils';
 
 const RiesgosDigitales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
+  
+  const canCall = useTelephoneCapability();
 
   const [selectedRisk, setSelectedRisk] = useState<DigitalRisk | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,6 +55,14 @@ const RiesgosDigitales: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedRisk(null);
+  };
+
+  const handleEmergencyCall = async (telefono: string) => {
+    try {
+      await initiatePhoneCall(telefono, canCall);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : 'Error al intentar hacer la llamada');
+    }
   };
 
   const getSeverityStats = () => {
@@ -467,29 +480,32 @@ const RiesgosDigitales: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Card className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border-brand-teal-500/20 shadow-soft">
-                <CardContent className="p-6 sm:p-8 text-center">
-                  <div className="p-3 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-4">
-                    <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-ink-800" />
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <div className="p-2 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-3">
+                    <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-brand-ink-800" />
                   </div>
-                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                     ¿Necesitas ayuda inmediata?
                   </h3>
-                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
                     Si tu hijo está en peligro inmediato o has detectado una situación grave, 
                     no dudes en contactar a las autoridades correspondientes.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                    <Button asChild variant="destructive" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
-                      <a href="tel:088" target="_blank" rel="noopener noreferrer">
-                        Policía Cibernética: 088
-                      </a>
+                  <div className="flex justify-center mb-3">
+                    <Button 
+                      onClick={() => handleEmergencyCall('33 3837 6000')}
+                      variant="destructive" 
+                      className="text-sm sm:text-base px-4 sm:px-6 shadow-soft"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      Policía Cibernética: 33 3837 6000
                     </Button>
                   </div>
-                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
                     Si no deseas reportar de manera anónima material de abuso sexual, infantil, ciberacoso u otras situaciones de violencia digital, contacta a
                   </p>
                   <div className="flex justify-center">
-                    <Button asChild variant="secondary-brand" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
+                    <Button asChild variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
                       <a href="https://teprotejomexico.org/" target="_blank" rel="noopener noreferrer">
                         Te Protejo México
                       </a>
@@ -498,6 +514,9 @@ const RiesgosDigitales: React.FC = () => {
                 </CardContent>
               </Card>
             </motion.div>
+
+            {/* Learning Path Navigation */}
+            <LearningPathNav currentRoute="/aprende/riesgos" />
           </div>
         </div>
 

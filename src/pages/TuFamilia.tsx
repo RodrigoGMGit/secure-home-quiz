@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
+import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
 
 const TuFamilia = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -281,6 +282,13 @@ const TuFamilia = () => {
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Learning Path Navigation */}
+      <div className="relative container mx-auto px-4 pb-8 sm:pb-12">
+        <div className="max-w-6xl mx-auto">
+          <LearningPathNav currentRoute="/aprende/tu-familia" />
         </div>
       </div>
       </div>

@@ -24,3 +24,12 @@ dist-ssr
 *.sw?
 AGENTS.md
 .vercel
+
+# Screenshots and documentation images
+screenshots/
+screenshots.zip
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp

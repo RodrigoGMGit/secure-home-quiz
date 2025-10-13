@@ -24,7 +24,7 @@ const EnConstruccion: React.FC = () => {
             <div className="flex justify-center mb-8">
               <div className="relative">
                 <img
-                  src="/src/assets/illustrations/construction/Gemini_Generated_Image_gd4fxggd4fxggd4f.png"
+                  src="/assets/illustrations/construction/Gemini_Generated_Image_gd4fxggd4fxggd4f.png"
                   alt="Sección en construcción"
                   className="max-w-full h-auto max-h-96 w-auto shadow-soft rounded-lg"
                 />

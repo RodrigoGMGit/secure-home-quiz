@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
+import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
 
 const TuFamiliaRedesSociales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -764,51 +765,8 @@ const TuFamiliaRedesSociales = () => {
             </div>
           </motion.div>
 
-          {/* Additional Resources */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
-                  <ExternalLink className="h-8 w-8 text-primary-foreground" />
-                </div>
-              </div>
-              <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
-                Recursos Adicionales
-              </h2>
-              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
-                Herramientas y guías oficiales para proteger a tu familia
-              </p>
-            </div>
-            
-            <Card className="border-brand-teal-500/30 bg-brand-teal-500/10 hover:shadow-soft transition-smooth">
-              <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="font-heading text-lg sm:text-xl md:text-2xl text-brand-ink-900 text-center">Continúa tu Aprendizaje</CardTitle>
-                <CardDescription className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 text-center">
-                  Explora estas secciones para profundizar en la seguridad digital familiar
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-4 sm:p-6 pt-0">
-                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
-                  <Button asChild variant="secondary-brand" className="h-auto p-3 sm:p-4 hover:scale-105 transition-smooth w-full min-h-[120px] text-left whitespace-normal break-words">
-                    <Link to="/aprende/tu-familia/videojuegos" className="w-full h-full flex flex-col justify-center">
-                      <div className="font-heading font-semibold text-sm sm:text-base text-brand-ink-900 mb-2">Videojuegos</div>
-                      <div className="font-body text-xs sm:text-sm text-brand-olive-500 leading-relaxed">Aprende sobre los juegos más populares y sus configuraciones de seguridad</div>
-                    </Link>
-                  </Button>
-                  <Button asChild variant="secondary-brand" className="h-auto p-3 sm:p-4 hover:scale-105 transition-smooth w-full min-h-[120px] text-left whitespace-normal break-words">
-                    <Link to="/aprende/controles" className="w-full h-full flex flex-col justify-center">
-                      <div className="font-heading font-semibold text-sm sm:text-base text-brand-ink-900 mb-2">Controles Parentales</div>
-                      <div className="font-body text-xs sm:text-sm text-brand-olive-500 leading-relaxed">Configura controles parentales en todos los dispositivos</div>
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {/* Learning Path Navigation */}
+          <LearningPathNav currentRoute="/aprende/tu-familia/redes-sociales" />
         </div>
       </div>
       </div>

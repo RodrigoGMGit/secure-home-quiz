@@ -76,19 +76,19 @@ Asegurate de leer y considerar estas Instrucciones de implementación:
 * ✅ Añadir **carrusel de historias reales** extraídas del manual con CTA: "Cómo actuar en este caso".
 * ✅ UI de estilo cálido (colores suaves, tipografía legible) para transmitir cercanía y confianza.
 
-### 1.5 Acciones Legales y Apoyo
+### 1.5 Acciones Legales y Apoyo ✅ FINALIZADO
 
-* Implementar **grid de accesos rápidos** (2x2) con contactos oficiales:
+* ✅ Implementar **grid de accesos rápidos** (2x2) con contactos oficiales:
   * 📞 Policía Cibernética.
   * ⚖️ Fiscalía.
   * 🛡️ Te Protejo México.
   * 🌍 Organismos internacionales.
-* Implementar **timeline visual paso a paso**:
+* ✅ Implementar **timeline visual paso a paso**:
   1. Recopilar evidencias.
   2. Presentar denuncia.
   3. Seguir proceso legal.
-* Botón de acción destacado en cada recurso: “Llamar ahora” o “Enviar reporte”.
-* Incluir **sección de preguntas frecuentes** sobre lo legal.
+* ✅ Botón de acción destacado en cada recurso: "Llamar ahora" o "Enviar reporte".
+* ✅ Incluir **sección de preguntas frecuentes** sobre lo legal.
 
 ### 1.6 Lineamientos comunes
 
@@ -101,25 +101,33 @@ Asegurate de leer y considerar estas Instrucciones de implementación:
 
 ---
 
-## 2. Recursos
+## 2. Recursos ✅ FINALIZADO
 
-* Implementar página dedicada con:
-  * **Decálogo para padres digitales**.
-  * **Acuerdos digitales familiares** (PDF descargable editable).
-  * **Guía de preguntas básicas** antes de abrir redes o videojuegos.
-  * **Glosario interactivo** con tooltips en todo el sitio.
-  * Ligas externas a recursos confiables (Common Sense Media, ESRB, guías oficiales de apps/juegos).
-* Implementar botones de **descarga en PDF** en cada recurso.
+* ✅ Implementar página dedicada con:
+  * ✅ **Decálogo para padres digitales** con botones de visualizar y descargar PDF.
+  * ✅ **Acuerdos digitales familiares** con enlaces a Google Docs.
+  * ✅ **Guía de preguntas básicas** antes de abrir redes o videojuegos.
+  * ✅ **Glosario interactivo** con acordeón expandible y términos del manual.
+  * ✅ Ligas externas a recursos confiables (Common Sense Media, ESRB, Te Protejo México).
+* ✅ Implementar botones de **visualizar y descargar PDF** en cada recurso.
+* ✅ Aplicar sistema de diseño completo con elementos decorativos, colores rotativos y responsividad.
 
 ---
 
-## 3. Ayuda / Contacto
+## 3. Ayuda / Contacto ✅ FINALIZADO
 
-* Implementar **botón de emergencia siempre visible** en el sitio → abre contactos inmediatos:
+* ✅ Implementar **botón de emergencia siempre visible** en el sitio → abre contactos inmediatos:
   * Policía Cibernética.
   * Te Protejo México.
-* Sección con **información sobre talleres y charlas** (texto + CTA de contacto).
-* Implementar **formulario simple de contacto** (nombre, correo, mensaje).
+* ✅ Sección con **información sobre talleres y charlas** (texto + CTA de contacto).
+* ✅ Implementar **formulario simple de contacto** (nombre, correo, mensaje).
+* ✅ Implementar **formulario específico para talleres** (7 campos: nombre, institución, email, teléfono, tipo de taller, número de asistentes, mensaje).
+* ✅ Implementar **sección de FAQs** con acordeón expandible (7 preguntas frecuentes).
+* ✅ Implementar **sección de contactos de emergencia** con grid 2x2 y datos del manual.
+* ✅ Crear **componente EmergencyButton.tsx** flotante con modal de emergencia.
+* ✅ Integrar **EmergencyButton en App.tsx** (excepto en /about).
+* ✅ Agregar **ruta /ayuda** en src/main.tsx.
+* ✅ Verificar **responsividad completa** en móvil, tablet y desktop.
 
 ---
 

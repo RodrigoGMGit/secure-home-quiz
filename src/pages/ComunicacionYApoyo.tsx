@@ -8,8 +8,13 @@ import { Heart, MessageCircle, Shield, Users, AlertTriangle, Eye, Clock, BookOpe
 import { Link } from 'react-router-dom';
 import GlobalHeader from '@/components/GlobalHeader';
 import { GlossaryTerm } from '@/components/ui/GlossaryTerm';
+import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const ComunicacionYApoyo = () => {
+  // Scroll automático al inicio de la página al cambiar de ruta
+  useScrollToTop();
+
   const señalesAlerta = [
     {
       icon: <AlertTriangle className="h-8 w-8 text-brand-ink-800" />,
@@ -274,7 +279,7 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${señal.iconBg} rounded-full w-fit shadow-soft`}>
                         {señal.icon}
                       </div>
-                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                         {señal.title}
                       </CardTitle>
                     </CardHeader>
@@ -310,7 +315,7 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${categoria.iconBg} rounded-full w-fit shadow-soft`}>
                         <MessageCircle className={`h-6 w-6 sm:h-8 sm:w-8 ${categoria.iconColor}`} />
                       </div>
-                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                         {categoria.categoria}
                       </CardTitle>
                     </CardHeader>
@@ -437,7 +442,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Elige un momento de tranquilidad
                     </CardTitle>
                   </CardHeader>
@@ -454,7 +459,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Users className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Escucha más de lo que hablas
                     </CardTitle>
                   </CardHeader>
@@ -471,7 +476,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-olive-500/20 rounded-full w-fit shadow-soft">
                       <HandHeart className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Valida sus emociones
                     </CardTitle>
                   </CardHeader>
@@ -488,7 +493,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Lightbulb className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Comparte tus experiencias
                     </CardTitle>
                   </CardHeader>
@@ -505,7 +510,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Enfócate en el aprendizaje
                     </CardTitle>
                   </CardHeader>
@@ -518,32 +523,16 @@ const ComunicacionYApoyo = () => {
                 </Card>
               </div>
             </section>
-
-            {/* CTA Final */}
-            <section className="text-center bg-gradient-to-r from-primary to-primary-hover rounded-2xl p-8 text-primary-foreground shadow-cta">
-              <h2 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-                Recuerda: La Comunicación es la Mejor Protección
-              </h2>
-              <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl mb-6 opacity-90 leading-relaxed">
-                Acompañar a nuestros hijos e hijas en su vida digital es un acto de amor y una de las 
-                mejores herramientas que podemos otorgarles.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-                <Button asChild size="lg" variant="secondary" className="bg-background text-primary hover:bg-background/90">
-                  <Link to="/aprende/controles">
-                    Ver Controles Parentales
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                  <Link to="/aprende/riesgos">
-                    Conocer Riesgos Digitales
-                  </Link>
-                </Button>
-              </div>
-            </section>
-          </div>
         </div>
       </div>
+
+      {/* Learning Path Navigation */}
+      <div className="relative container mx-auto px-4 pb-8 sm:pb-12">
+        <div className="max-w-6xl mx-auto">
+          <LearningPathNav currentRoute="/aprende/comunicacion" />
+        </div>
+      </div>
+    </div>
     </>
   );
 };
