@@ -41,6 +41,12 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
   };
 
   const areasToImprove = getAreasToImprove(result.answers);
+  
+  // Determinar el tipo de resultado
+  const totalQuestions = 7; // Total de preguntas en el quiz express
+  const allAnswersYes = areasToImprove.length === 0;
+  const allAnswersNo = areasToImprove.length === totalQuestions;
+  const someAnswersNo = areasToImprove.length > 0 && areasToImprove.length < totalQuestions;
 
   // Funciones de navegación del carrusel
   const goToPrevious = () => {
@@ -112,22 +118,26 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
        >
          {/* Main Title */}
          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-ink-900 leading-tight">
-           {areasToImprove.length === 0 
+           {allAnswersYes 
              ? "¡Excelente! Tu familia está bien encaminada"
+             : allAnswersNo 
+             ? "Entendemos tu preocupación, y eso es el primer paso"
              : "¡Muy bien! Solo necesitamos fortalecer algunas áreas"
            }
          </h2>
          
          {/* Subtitle */}
          <p className="font-body text-base sm:text-lg text-brand-olive-500 leading-relaxed max-w-2xl mx-auto">
-           {areasToImprove.length === 0 
+           {allAnswersYes 
              ? "Tienes buenas prácticas digitales establecidas. Te ayudaremos a mantenerlas y fortalecerlas aún más."
+             : allAnswersNo 
+             ? "Cada familia puede construir un entorno digital seguro. Te acompañaremos paso a paso para proteger lo que más quieres."
              : "Ya tienes una base sólida. Con pequeños ajustes, tu familia estará aún más protegida."
            }
          </p>
        </motion.div>
 
-       {/* NUEVA SECCIÓN: Áreas de Oportunidad */}
+       {/* SECCIÓN: Áreas de Oportunidad (solo si hay áreas que mejorar) */}
        {areasToImprove.length > 0 && (
          <motion.div
            initial={{ opacity: 0, y: 20 }}
@@ -218,85 +228,105 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
               </div>
             )}
           </div>
-
-          {/* CTA Consolidado */}
-          <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 text-center">
-            <div className="space-y-6">
-              {/* Título principal */}
-              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900">
-                ¿Quieres un plan específico para tu familia?
-              </h3>
-              
-              {/* Subtítulo */}
-              <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium">
-                Obtén un plan de protección digital diseñado solo para ti
-              </p>
-              
-              {/* Descripción */}
-              <p className="font-body text-sm sm:text-base text-brand-olive-500 max-w-2xl mx-auto">
-                Cada familia enfrenta retos únicos. Realiza la evaluación personalizada y obtén acciones específicas adaptadas a la edad de tus hijos, las plataformas que usan y tus preocupaciones particulares.
-              </p>
-              
-              {/* Badges informativos */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-brand-teal-500/10 rounded-full">
-                    <Clock className="h-5 w-5 text-brand-teal-500" />
-                  </div>
-                  <span className="font-body text-sm sm:text-base text-brand-ink-800 font-medium">
-                    Menos de 5 minutos
-                  </span>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-brand-teal-500/10 rounded-full">
-                    <CheckCircle className="h-5 w-5 text-brand-teal-500" />
-                  </div>
-                  <span className="font-body text-sm sm:text-base text-brand-ink-800 font-medium">
-                    Completamente gratis
-                  </span>
-                </div>
-              </div>
-              
-              {/* Botones */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-2 sm:px-0">
-                {/* Botón primario - Más personalizado */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="w-full sm:w-auto"
-                >
-                   <Button
-                     asChild
-                     variant="primary-brand"
-                     size="lg"
-                     className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-heading font-semibold shadow-cta"
-                     onClick={handlePersonalizedQuiz}
-                   >
-                     <Link to="/quiz/personalizado?from=express">
-                       Quiero mi plan personalizado
-                     </Link>
-                   </Button>
-                </motion.div>
-
-                 {/* Botón secundario - Empezar aprendizaje */}
-                 <Button
-                   asChild
-                   variant="outline"
-                   size="lg"
-                   className="w-full sm:w-auto border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-4 sm:px-6 py-3 text-sm sm:text-base font-heading font-medium"
-                   onClick={handleTuFamiliaClick}
-                 >
-                   <Link to="/aprende/tu-familia">
-                     Empezar aprendizaje
-                   </Link>
-                 </Button>
-              </div>
-            </div>
-          </div>
         </motion.div>
       )}
+
+      {/* SECCIÓN: CTA para Plan Personalizado (SIEMPRE visible) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: areasToImprove.length > 0 ? 0.6 : 0.4 }}
+        className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 text-center"
+      >
+        <div className="space-y-6">
+          {/* Título principal */}
+          <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900">
+            {allAnswersYes 
+              ? "¿Quieres un plan específico para mantener tu excelente trabajo?"
+              : allAnswersNo 
+              ? "¿Listo para crear un plan de protección digital desde cero?"
+              : "¿Quieres un plan específico para tu familia?"
+            }
+          </h3>
+          
+          {/* Subtítulo */}
+          <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium">
+            {allAnswersYes 
+              ? "Obtén un plan de protección digital avanzado diseñado para familias como la tuya"
+              : allAnswersNo 
+              ? "Obtén un plan de protección digital completo diseñado específicamente para tu familia"
+              : "Obtén un plan de protección digital diseñado solo para ti"
+            }
+          </p>
+          
+          {/* Descripción */}
+          <p className="font-body text-sm sm:text-base text-brand-olive-500 max-w-2xl mx-auto">
+            {allAnswersYes 
+              ? "Aunque ya tienes excelentes prácticas, cada familia enfrenta retos únicos. Realiza la evaluación personalizada y obtén estrategias avanzadas adaptadas específicamente a la edad de tus hijos, las plataformas que usan y tus preocupaciones particulares."
+              : allAnswersNo 
+              ? "No estás solo en esto. Realiza la evaluación personalizada y obtén un plan completo paso a paso, con acciones específicas adaptadas a la edad de tus hijos, las plataformas que usan y tus preocupaciones particulares."
+              : "Cada familia enfrenta retos únicos. Realiza la evaluación personalizada y obtén acciones específicas adaptadas a la edad de tus hijos, las plataformas que usan y tus preocupaciones particulares."
+            }
+          </p>
+          
+          {/* Badges informativos */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-brand-teal-500/10 rounded-full">
+                <Clock className="h-5 w-5 text-brand-teal-500" />
+              </div>
+              <span className="font-body text-sm sm:text-base text-brand-ink-800 font-medium">
+                Menos de 5 minutos
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-brand-teal-500/10 rounded-full">
+                <CheckCircle className="h-5 w-5 text-brand-teal-500" />
+              </div>
+              <span className="font-body text-sm sm:text-base text-brand-ink-800 font-medium">
+                Completamente gratis
+              </span>
+            </div>
+          </div>
+          
+          {/* Botones */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-2 sm:px-0">
+            {/* Botón primario - Más personalizado */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="w-full sm:w-auto"
+            >
+               <Button
+                 asChild
+                 variant="primary-brand"
+                 size="lg"
+                 className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-heading font-semibold shadow-cta"
+                 onClick={handlePersonalizedQuiz}
+               >
+                 <Link to="/quiz/personalizado?from=express">
+                   Quiero mi plan personalizado
+                 </Link>
+               </Button>
+            </motion.div>
+
+             {/* Botón secundario - Empezar aprendizaje */}
+             <Button
+               asChild
+               variant="outline"
+               size="lg"
+               className="w-full sm:w-auto border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-4 sm:px-6 py-3 text-sm sm:text-base font-heading font-medium"
+               onClick={handleTuFamiliaClick}
+             >
+               <Link to="/aprende/tu-familia">
+                 Empezar aprendizaje
+               </Link>
+             </Button>
+          </div>
+        </div>
+      </motion.div>
 
        {/* Botón de reinicio */}
        <div className="text-center">
