@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { StepHeader } from '../StepHeader';
 import { Notice } from '../Notice';
-import { Shield, Clock, UserCheck, ArrowLeft } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Shield, Clock, UserCheck } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 interface WelcomeStepProps {
   onNext: () => void;
@@ -29,19 +29,6 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
             <p className="font-body text-sm sm:text-base text-brand-ink-800">
               Ahora vamos a profundizar en tu situación específica para crear un plan personalizado que realmente funcione para tu familia.
             </p>
-            <div className="pt-2">
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="text-brand-teal-500 hover:text-brand-ink-800 text-sm"
-              >
-                <Link to="/quiz">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Volver al diagnóstico rápido
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       )}
