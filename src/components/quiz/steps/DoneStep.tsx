@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { StepHeader } from '../StepHeader';
-import { Notice } from '../Notice';
 import { SpecificMeasures } from '../SpecificMeasures';
 import { ABVariant, QuizAnswers } from '@/types/quiz';
 import { generateSpecificMeasures } from '@/utils/planGenerator';
-import { CheckCircle, Mail, FileText, Send } from 'lucide-react';
+import { CheckCircle, Mail, FileText, Send, Trophy, Shield } from 'lucide-react';
+import { motion } from "framer-motion";
 
 interface DoneStepProps {
   abVariant: ABVariant;
@@ -54,37 +53,89 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-8 h-8 text-green-600" />
+    <div className="space-y-8">
+      {/* Banner de Diagnóstico Completado con animación */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative flex justify-center mb-8"
+      >
+        <div className="bg-gradient-to-r from-brand-mint-200/60 via-brand-mint-200/40 to-brand-teal-500/10 rounded-lg p-3 sm:p-4 shadow-soft border border-brand-mint-200/30 max-w-md mx-auto">
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex-shrink-0">
+              <div className="p-2 bg-gradient-to-br from-brand-teal-500/30 to-brand-teal-500/20 rounded-full shadow-soft">
+                <Trophy className="h-6 w-6 text-brand-teal-500" />
+              </div>
+            </div>
+            <div className="flex-1 text-center">
+              <h2 className="font-heading text-base sm:text-lg font-bold text-brand-teal-500 uppercase tracking-wide">
+                ¡EVALUACIÓN COMPLETADA!
+              </h2>
+            </div>
+          </div>
         </div>
+      </motion.div>
+
+      {/* Título y Subtítulo con Animaciones */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-center space-y-4 sm:space-y-6 mb-8"
+      >
+        <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-ink-900 leading-tight">
+          Tu Plan Personalizado Está Listo
+        </h1>
         
-        <StepHeader
-          title="¡Listo!"
-          subtitle="Tu diagnóstico está completo. Aquí tienes las medidas específicas para tu familia:"
-        />
-      </div>
+        <p className="font-body text-base sm:text-lg text-brand-olive-500 leading-relaxed max-w-2xl mx-auto">
+          Hemos creado {specificMeasures.length} recomendaciones específicas basadas en las necesidades de tu familia
+        </p>
+        
+        {/* Trust indicators inline */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 pt-2">
+          <div className="flex items-center justify-center gap-2 text-sm text-brand-ink-800">
+            <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
+            <span className="font-medium">{specificMeasures.length} Recomendaciones</span>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-sm text-brand-ink-800">
+            <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
+            <span className="font-medium">100% Personalizado</span>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Medidas específicas */}
       <SpecificMeasures measures={specificMeasures} />
 
-      {/* Formulario de email obligatorio */}
-      <div className="bg-brand-mint-200/20 rounded-lg p-6">
-        <div className="text-center mb-4">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Mail className="w-5 h-5 text-brand-teal-500" />
-            <h3 className="font-semibold text-brand-ink-800">Recibe tu plan completo</h3>
+      {/* Formulario de Email Rediseñado */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30"
+      >
+        {/* Header del formulario con icono circular */}
+        <div className="text-center mb-6">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+              <Mail className="h-6 w-6 text-primary-foreground" />
+            </div>
           </div>
-          <p className="text-sm text-brand-olive-600">
-            Para enviarte el diagnóstico completo y plan de protección personalizado
+          <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-3">
+            Recibe tu Plan Completo por Email
+          </h3>
+          <p className="font-body text-sm sm:text-base text-brand-olive-500">
+            Te enviaremos una guía PDF con pasos detallados, scripts de conversación y herramientas recomendadas
           </p>
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+        
+        {/* Formulario */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Input con mejor diseño */}
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-brand-ink-800">
-              Correo electrónico <span className="text-brand-teal-500">*</span>
+            <Label htmlFor="email" className="font-heading text-sm font-semibold text-brand-ink-900">
+              Tu correo electrónico
             </Label>
             <Input
               id="email"
@@ -93,7 +144,7 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="text-base border-brand-mint-200/30 focus:border-brand-teal-500"
+              className="h-12 text-base border-2 border-brand-mint-200/30 focus:border-brand-teal-500 transition-colors"
             />
             {email && !isValidEmail(email) && (
               <p className="text-sm text-brand-ink-800 font-body">
@@ -101,66 +152,54 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
               </p>
             )}
           </div>
-
-          <div className="space-y-3">
+          
+          {/* Botón principal con animación */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <Button
               type="submit"
               variant="primary-brand"
               disabled={!canSubmit() || isSubmitting}
-              className="w-full text-base font-medium"
               size="lg"
+              className="w-full text-base sm:text-lg font-heading font-semibold shadow-cta"
             >
               {isSubmitting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                  Enviando tu plan...
-                </>
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Enviando...
+                </div>
               ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Enviar mi plan completo
-                </>
+                <div className="flex items-center justify-center gap-2">
+                  <Send className="w-5 h-5" />
+                  Enviar Mi Plan Completo
+                </div>
               )}
             </Button>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  onRestart();
-                }}
-                className="w-full text-base font-medium"
-                size="lg"
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Hacer el quiz de nuevo
-              </Button>
-              
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  // Navigate to resources page
-                  window.location.href = '/recursos';
-                }}
-                className="w-full text-base font-medium"
-                size="lg"
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Ver recursos generales
-              </Button>
-            </div>
+          </motion.div>
+          
+          {/* Botones secundarios */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Button type="button" variant="outline" onClick={onRestart} size="lg">
+              <FileText className="w-4 h-4 mr-2" />
+              Hacer el quiz de nuevo
+            </Button>
+            <Button type="button" variant="outline" onClick={() => window.location.href = '/recursos'} size="lg">
+              <FileText className="w-4 h-4 mr-2" />
+              Ver recursos generales
+            </Button>
           </div>
         </form>
-
-        <Notice type="info" className="mt-4">
-          <p className="text-xs">
-            Tu plan incluye: Guías paso a paso, scripts de conversación, herramientas recomendadas 
-            y cronograma de implementación. Solo usamos tu correo para enviarte el plan personalizado.
+        
+        {/* Microcopy con iconos */}
+        <div className="mt-6 flex items-start gap-3 bg-brand-mint-200/20 p-4 rounded-lg">
+          <Shield className="w-5 h-5 text-brand-teal-500 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-brand-ink-800 leading-relaxed">
+            <strong>100% privado.</strong> Solo usamos tu correo para enviarte el plan. No compartimos tu información.
           </p>
-        </Notice>
-      </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
