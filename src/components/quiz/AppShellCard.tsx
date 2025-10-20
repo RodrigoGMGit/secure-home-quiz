@@ -6,6 +6,7 @@ interface AppShellCardProps {
   showProgress?: boolean;
   currentStep?: number;
   totalSteps?: number;
+  progressLabel?: string;
   stickyFooter?: ReactNode;
 }
 
@@ -14,6 +15,7 @@ export function AppShellCard({
   showProgress = false, 
   currentStep = 0, 
   totalSteps = 7,
+  progressLabel = "Paso",
   stickyFooter
 }: AppShellCardProps) {
   const progressPercentage = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
@@ -35,7 +37,7 @@ export function AppShellCard({
                   className="flex items-center justify-between text-sm font-body text-brand-olive-500 mb-2"
                   aria-label={`Progreso del cuestionario: ${Math.round(progressPercentage)}% completado`}
                 >
-                  <span>Paso {currentStep} de {totalSteps}</span>
+                  <span>{progressLabel} {currentStep} de {totalSteps}</span>
                   <span className="font-heading font-bold">{Math.round(progressPercentage)}%</span>
                 </div>
                 <div 

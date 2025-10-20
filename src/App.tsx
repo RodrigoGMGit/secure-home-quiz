@@ -10,7 +10,8 @@ import EmergencyButton from "@/components/EmergencyButton";
 // Route-level code splitting
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
-const Quiz = lazy(() => import("./pages/Quiz"));
+const QuizExpress = lazy(() => import("./pages/QuizExpress"));
+const QuizPersonalizado = lazy(() => import("./pages/QuizPersonalizado"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const TuFamilia = lazy(() => import("./pages/TuFamilia"));
 const TuFamiliaRedesSociales = lazy(() => import("./pages/TuFamiliaRedesSociales"));
@@ -41,7 +42,8 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
-          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz" element={<QuizExpress />} />
+          <Route path="/quiz/personalizado" element={<QuizPersonalizado />} />
           <Route path="/aprende/tu-familia" element={<TuFamilia />} />
           <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
           <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />

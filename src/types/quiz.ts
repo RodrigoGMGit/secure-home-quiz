@@ -8,6 +8,33 @@ export type QuizStep =
   | 'concerns' 
   | 'done';
 
+export type ExpressQuizStep = 'welcome' | 'questions' | 'results';
+
+export interface ExpressQuizAnswers {
+  q1_time_limits: boolean | undefined;      // Límite diario de tiempo frente a pantallas
+  q2_content_supervision: boolean | undefined; // Supervisión de contenido
+  q3_parental_controls: boolean | undefined;   // Controles parentales activados
+  q4_platform_knowledge: boolean | undefined;  // Conocimiento de riesgos
+  q5_device_rules: boolean | undefined;        // Reglas durante comidas/noche
+  q6_report_training: boolean | undefined;     // Enseñanza sobre reportar contenido
+  q7_monitoring_tools: boolean | undefined;    // Herramientas de monitoreo
+}
+
+export type ProtectionLevel = 'protected' | 'in-process' | 'at-risk';
+
+export interface ExpressQuizState {
+  currentStep: ExpressQuizStep;
+  currentQuestionIndex: number; // Track which question (0-6)
+  answers: ExpressQuizAnswers;
+  visitorId: string;
+  startTime: number;
+}
+
+export interface ExpressQuizResult {
+  score: number;
+  answers: ExpressQuizAnswers; // NUEVO: incluir answers para análisis
+}
+
 export type ChildGender = 'Niño' | 'Niña' | 'Prefiero no especificar';
 
 export type AgeBand = '6-8' | '9-12' | '13-15' | '16-17';
