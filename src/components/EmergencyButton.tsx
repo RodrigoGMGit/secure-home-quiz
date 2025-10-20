@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Phone, Mail, ExternalLink, Shield, Building, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useMobileDetection, useTelephoneCapability } from "@/hooks/useMobileDetection";
 import { initiatePhoneCall, initiateEmail } from "@/utils/phoneUtils";
 
@@ -106,47 +106,30 @@ const EmergencyButton = () => {
         <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
           
           {/* Header con diseño sofisticado */}
-          <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
-            
-            {/* Elementos decorativos de fondo */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute top-4 left-4 w-16 h-16 bg-red-500/5 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute bottom-4 right-4 w-20 h-20 bg-brand-mint-200/10 rounded-full blur-xl animate-pulse delay-500"></div>
-            </div>
-            
-            <div className="relative">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                {/* Logo circular con gradiente */}
-                <div className="flex justify-center sm:justify-start">
-                  <div className="p-3 bg-gradient-to-r from-red-500 to-red-600 rounded-full shadow-soft">
-                    <Phone className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex-1 min-w-0 text-center sm:text-left">
-                  <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
-                    Contactos de Emergencia
-                  </DialogTitle>
-                  
-                  {/* Badge de urgencia */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 border border-red-200">
-                      <Phone className="w-3 h-3 mr-1" />
-                      Situaciones urgentes
-                    </span>
-                  </div>
-                  
-                  {/* Descripción */}
-                  <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed">
-                    Recursos oficiales para situaciones de emergencia digital
-                  </p>
-                </div>
+          <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
+            <div className="flex justify-center mb-3 sm:mb-4">
+              <div className="p-2 sm:p-3 bg-gradient-to-r from-red-500 to-red-600 rounded-full shadow-soft">
+                <Phone className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
               </div>
+            </div>
+            <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">
+              Contactos de Emergencia
+            </DialogTitle>
+            <DialogDescription className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 px-2">
+              Recursos oficiales para situaciones de emergencia digital
+            </DialogDescription>
+            
+            {/* Badge de urgencia */}
+            <div className="flex justify-center mt-4">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 border border-red-200">
+                <Phone className="w-3 h-3 mr-1" />
+                Situaciones urgentes
+              </span>
             </div>
           </DialogHeader>
 
           {/* Contenido del modal con animaciones */}
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
             {emergencyContacts.map((contacto, index) => {
               const IconComponent = contacto.icon;
               
@@ -164,7 +147,7 @@ const EmergencyButton = () => {
                   } hover:shadow-soft transition-smooth`}>
                     <CardHeader className="p-4 sm:p-6">
                       <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-full ${
+                        <div className={`p-3 rounded-full flex-shrink-0 ${
                           contacto.esUrgente 
                             ? "bg-red-500/20 text-red-500" 
                             : "bg-brand-teal-500/20 text-brand-teal-500"
@@ -172,7 +155,7 @@ const EmergencyButton = () => {
                           <IconComponent className="h-6 w-6" />
                         </div>
                         
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
                             {contacto.titulo}
                           </CardTitle>
@@ -183,31 +166,37 @@ const EmergencyButton = () => {
                           {/* Información de contacto */}
                           <div className="space-y-2">
                             {contacto.telefono && (
-                              <div className="flex items-center text-sm text-brand-ink-800">
-                                <Phone className="w-4 h-4 mr-2 text-brand-teal-500" />
-                                <span className="font-medium">{contacto.telefono}</span>
-                                {contacto.extensiones && (
-                                  <span className="text-brand-olive-500 ml-2">({contacto.extensiones})</span>
-                                )}
+                              <div className="flex items-start text-sm text-brand-ink-800">
+                                <Phone className="w-4 h-4 mr-2 text-brand-teal-500 flex-shrink-0 mt-0.5" />
+                                <div className="min-w-0">
+                                  <span className="font-medium">{contacto.telefono}</span>
+                                  {contacto.extensiones && (
+                                    <div className="text-brand-olive-500 text-xs mt-1 break-words">
+                                      {contacto.extensiones}
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             )}
                             
                             {contacto.email && (
-                              <div className="flex items-center text-sm text-brand-ink-800">
-                                <Mail className="w-4 h-4 mr-2 text-brand-teal-500" />
-                                <span className="font-medium">{contacto.email}</span>
+                              <div className="flex items-start text-sm text-brand-ink-800">
+                                <Mail className="w-4 h-4 mr-2 text-brand-teal-500 flex-shrink-0 mt-0.5" />
+                                <span className="font-medium break-all">{contacto.email}</span>
                               </div>
                             )}
                             
                             {contacto.direccion && (
                               <div className="text-sm text-brand-ink-800">
-                                <span className="font-medium">Dirección:</span> {contacto.direccion}
+                                <span className="font-medium">Dirección:</span> 
+                                <div className="text-brand-olive-500 break-words">{contacto.direccion}</div>
                               </div>
                             )}
                             
                             {contacto.horario && (
                               <div className="text-sm text-brand-ink-800">
-                                <span className="font-medium">Horario:</span> {contacto.horario}
+                                <span className="font-medium">Horario:</span> 
+                                <div className="text-brand-olive-500 break-words">{contacto.horario}</div>
                               </div>
                             )}
                           </div>
@@ -269,11 +258,11 @@ const EmergencyButton = () => {
             >
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                <div>
+                <div className="min-w-0">
                   <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
                     Información importante
                   </h4>
-                  <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed break-words">
                     En situaciones de emergencia, guarda todas las evidencias (capturas de pantalla, enlaces, mensajes) 
                     antes de contactar a las autoridades. Esto facilitará el proceso de investigación.
                   </p>
@@ -283,10 +272,10 @@ const EmergencyButton = () => {
           </div>
 
           {/* Botón de cierre */}
-          <div className="flex justify-center px-4 sm:px-0 pt-4">
+          <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0">
             <Button 
               onClick={() => setIsOpen(false)} 
-              className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
+              className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth w-full"
             >
               Cerrar
             </Button>

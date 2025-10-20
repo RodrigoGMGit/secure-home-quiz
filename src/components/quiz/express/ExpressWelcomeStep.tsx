@@ -10,14 +10,8 @@ interface ExpressWelcomeStepProps {
 const ExpressWelcomeStep = ({ onNext }: ExpressWelcomeStepProps) => {
   return (
     <div className="text-center space-y-6 sm:space-y-8">
-      {/* Header with icon */}
+      {/* Header */}
       <div className="space-y-4 sm:space-y-6">
-        <div className="flex justify-center">
-          <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-            <Shield className="h-12 w-12 text-primary-foreground" />
-          </div>
-        </div>
-        
         <div className="space-y-3 sm:space-y-4">
           <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-ink-900 leading-tight">
             Empecemos por conocer qué tan protegida está tu familia

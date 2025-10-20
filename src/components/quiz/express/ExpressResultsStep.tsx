@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronLeft, ChevronRight, Clock, Users, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -15,6 +15,8 @@ interface ExpressResultsStepProps {
 
 const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Función helper para obtener áreas de mejora
   const getAreasToImprove = (answers: ExpressQuizAnswers) => {
@@ -47,6 +49,33 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === areasToImprove.length - 1 ? 0 : prev + 1));
+  };
+
+  // Funciones para manejo de swipe en móvil
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && areasToImprove.length > 1) {
+      goToNext();
+    }
+    if (isRightSwipe && areasToImprove.length > 1) {
+      goToPrevious();
+    }
   };
 
   const handlePersonalizedQuiz = () => {
@@ -110,11 +139,21 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
                En este sitio aprenderás acerca de
              </h3>
+             {areasToImprove.length > 1 && (
+               <p className="text-sm text-brand-olive-500 font-body sm:hidden">
+                 Desliza para ver más recomendaciones
+               </p>
+             )}
            </div>
 
           <div className="relative">
             {/* Carrusel container */}
-            <div className="flex items-center gap-4">
+            <div 
+              className="flex items-center gap-4"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {/* Botón anterior */}
               {areasToImprove.length > 1 && (
                 <button
@@ -227,23 +266,23 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
               </div>
               
               {/* Botones */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-2 sm:px-0">
                 {/* Botón primario - Más personalizado */}
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="w-full sm:w-auto"
                 >
                    <Button
                      asChild
                      variant="primary-brand"
                      size="lg"
-                     className="px-8 py-4 text-base sm:text-lg font-heading font-semibold shadow-cta"
+                     className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-heading font-semibold shadow-cta"
                      onClick={handlePersonalizedQuiz}
                    >
                      <Link to="/quiz/personalizado?from=express">
                        Quiero mi plan personalizado
-                       <ArrowRight className="ml-2 h-5 w-5" />
                      </Link>
                    </Button>
                 </motion.div>
@@ -253,7 +292,7 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
                    asChild
                    variant="outline"
                    size="lg"
-                   className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-6 py-3 text-sm sm:text-base font-heading font-medium"
+                   className="w-full sm:w-auto border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-4 sm:px-6 py-3 text-sm sm:text-base font-heading font-medium"
                    onClick={handleTuFamiliaClick}
                  >
                    <Link to="/aprende/tu-familia">
