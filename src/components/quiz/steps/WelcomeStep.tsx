@@ -18,11 +18,6 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
       {fromExpress && (
         <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-4 sm:p-6 shadow-soft">
           <div className="text-center space-y-3">
-            <div className="flex justify-center">
-              <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
-                <Shield className="h-6 w-6 text-primary-foreground" />
-              </div>
-            </div>
             <h3 className="font-heading text-lg sm:text-xl font-bold text-brand-ink-900">
               ¡Excelente decisión!
             </h3>

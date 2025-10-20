@@ -61,9 +61,9 @@ export function OptionGrid({
             key={option.value}
             onClick={() => !isDisabled && handleOptionClick(option.value)}
             disabled={isDisabled}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
             className={cn(
               "relative p-4 rounded-xl border-2 transition-smooth backdrop-blur-sm",
               "focus-visible-brand",

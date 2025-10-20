@@ -23,7 +23,7 @@ const baseConcernOptions = [
   },
   { 
     value: 'grooming', 
-    label: <>Contacto con extraños (<GlossaryTerm termKey="grooming">grooming</GlossaryTerm>)</>, 
+    label: <>Contacto con extraños (<GlossaryTerm termKey="grooming" asButton={false}>grooming</GlossaryTerm>)</>, 
     icon: <Users />,
     description: 'Personas desconocidas que buscan contacto'
   },
@@ -56,7 +56,7 @@ const baseConcernOptions = [
 const ageConcernOptions = [
   { 
     value: 'sexting', 
-    label: <><GlossaryTerm termKey="sexting">Sexting</GlossaryTerm> o contenido sexual</>, 
+    label: <><GlossaryTerm termKey="sexting" asButton={false}>Sexting</GlossaryTerm> o contenido sexual</>, 
     icon: <Camera />,
     description: 'Intercambio de contenido sexual',
     ageRestricted: true,

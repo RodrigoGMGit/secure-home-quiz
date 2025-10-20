@@ -27,7 +27,7 @@ export function AppShellCard({
       <div className="absolute top-20 left-10 w-32 h-32 bg-brand-mint-200 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-teal-500 rounded-full blur-3xl opacity-20"></div>
       
-      <div className="w-full max-w-2xl relative z-10">
+      <div className="w-full max-w-2xl relative z-20">
         <Card className="bg-card border-0 rounded-xl shadow-soft overflow-hidden backdrop-blur-sm">
           {/* Header */}
           <div className="px-6 pt-4 pb-3 border-b border-brand-mint-200/30">
