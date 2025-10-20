@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Clock, Users } from "lucide-react";
+import { Shield, Clock, Users, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -34,6 +34,10 @@ const ExpressWelcomeStep = ({ onNext }: ExpressWelcomeStepProps) => {
         <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-brand-ink-800">
           <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
           <span className="font-medium">Menos de 1 minuto</span>
+        </div>
+        <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-brand-ink-800">
+          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
+          <span className="font-medium">Totalmente Gratuito</span>
         </div>
         <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-brand-ink-800">
           <Users className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />

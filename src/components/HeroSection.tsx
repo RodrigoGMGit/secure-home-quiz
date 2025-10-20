@@ -41,6 +41,10 @@ const HeroSection = () => {
     navigateWithLoading('/en-construccion', 'default');
   };
 
+  const handleEvaluarSituacion = () => {
+    navigateWithLoading('/quiz', 'default');
+  };
+
   const headlineLines = useMemo(
     () => [
       { text: "UN HOGAR SEGURO", highlight: false },
@@ -399,7 +403,7 @@ const HeroSection = () => {
                   variant="secondary-brand" 
                   size="lg" 
                   className="uppercase tracking-wide text-sm sm:text-base h-12 sm:h-14 w-full max-w-64 sm:w-72"
-                  onClick={handleComencemos}
+                  onClick={handleEvaluarSituacion}
                   data-button="evaluar-situacion"
                 >
                   Evaluar mi situación

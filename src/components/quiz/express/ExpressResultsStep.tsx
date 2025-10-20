@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExpressQuizResult, ExpressQuizAnswers } from "@/types/quiz";
 import { questionMapping } from "@/data/expressQuizMapping";
+import DiagnosisCompletedBanner from "./DiagnosisCompletedBanner";
 
 interface ExpressResultsStepProps {
   result: ExpressQuizResult;
@@ -62,45 +63,54 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
     });
   };
 
+  const handleRestart = () => {
+    // Scroll hacia arriba antes de reiniciar
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onRestart();
+  };
+
   return (
     <div className="space-y-8 sm:space-y-12">
-      {/* Main Title Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center space-y-6 sm:space-y-8"
-      >
-        {/* Main Title */}
-        <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-ink-900 leading-tight">
-          {areasToImprove.length === 0 
-            ? "¡Excelente! Tu familia está bien encaminada"
-            : `Juntos podemos mejorar esas ${areasToImprove.length} área${areasToImprove.length > 1 ? 's' : ''} para proteger a tu familia`
-          }
-        </h2>
-        
-        {/* Subtitle */}
-        <p className="font-body text-base sm:text-lg text-brand-olive-500 leading-relaxed max-w-2xl mx-auto">
-          {areasToImprove.length === 0 
-            ? "Tienes buenas prácticas digitales establecidas. Te ayudaremos a mantenerlas y fortalecerlas aún más."
-            : ""
-          }
-        </p>
-      </motion.div>
+      {/* Banner de Diagnóstico Completado */}
+      <DiagnosisCompletedBanner />
 
-      {/* NUEVA SECCIÓN: Áreas de Oportunidad */}
-      {areasToImprove.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-6"
-        >
-          <div className="text-center">
-            <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
-              En nuestro sitio aprenderás
-            </h3>
-          </div>
+       {/* Main Title Section */}
+       <motion.div
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 0.6, delay: 0.2 }}
+         className="text-center space-y-6 sm:space-y-8"
+       >
+         {/* Main Title */}
+         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-ink-900 leading-tight">
+           {areasToImprove.length === 0 
+             ? "¡Excelente! Tu familia está bien encaminada"
+             : "¡Muy bien! Solo necesitamos fortalecer algunas áreas"
+           }
+         </h2>
+         
+         {/* Subtitle */}
+         <p className="font-body text-base sm:text-lg text-brand-olive-500 leading-relaxed max-w-2xl mx-auto">
+           {areasToImprove.length === 0 
+             ? "Tienes buenas prácticas digitales establecidas. Te ayudaremos a mantenerlas y fortalecerlas aún más."
+             : "Ya tienes una base sólida. Con pequeños ajustes, tu familia estará aún más protegida."
+           }
+         </p>
+       </motion.div>
+
+       {/* NUEVA SECCIÓN: Áreas de Oportunidad */}
+       {areasToImprove.length > 0 && (
+         <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.6, delay: 0.4 }}
+           className="space-y-4"
+         >
+           <div className="text-center">
+             <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+               En este sitio aprenderás acerca de
+             </h3>
+           </div>
 
           <div className="relative">
             {/* Carrusel container */}
@@ -224,49 +234,49 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <Button
-                    asChild
-                    variant="primary-brand"
-                    size="lg"
-                    className="px-8 py-4 text-base sm:text-lg font-heading font-semibold shadow-cta"
-                    onClick={handlePersonalizedQuiz}
-                  >
-                    <Link to="/quiz/personalizado?from=express">
-                      Quiero algo más personalizado
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
+                   <Button
+                     asChild
+                     variant="primary-brand"
+                     size="lg"
+                     className="px-8 py-4 text-base sm:text-lg font-heading font-semibold shadow-cta"
+                     onClick={handlePersonalizedQuiz}
+                   >
+                     <Link to="/quiz/personalizado?from=express">
+                       Quiero mi plan personalizado
+                       <ArrowRight className="ml-2 h-5 w-5" />
+                     </Link>
+                   </Button>
                 </motion.div>
 
-                {/* Botón secundario - Comencemos */}
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-6 py-3 text-sm sm:text-base font-heading font-medium"
-                  onClick={handleTuFamiliaClick}
-                >
-                  <Link to="/aprende/tu-familia">
-                    Comencemos
-                  </Link>
-                </Button>
+                 {/* Botón secundario - Empezar aprendizaje */}
+                 <Button
+                   asChild
+                   variant="outline"
+                   size="lg"
+                   className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-6 py-3 text-sm sm:text-base font-heading font-medium"
+                   onClick={handleTuFamiliaClick}
+                 >
+                   <Link to="/aprende/tu-familia">
+                     Empezar aprendizaje
+                   </Link>
+                 </Button>
               </div>
             </div>
           </div>
         </motion.div>
       )}
 
-      {/* Botón de reinicio */}
-      <div className="text-center">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-brand-olive-500 hover:text-brand-ink-800 text-sm"
-          onClick={onRestart}
-        >
-          Volver a realizar el diagnóstico
-        </Button>
-      </div>
+       {/* Botón de reinicio */}
+       <div className="text-center">
+         <Button
+           variant="ghost"
+           size="sm"
+           className="text-brand-olive-500 hover:text-brand-ink-800 text-sm"
+           onClick={handleRestart}
+         >
+           Volver a realizar el diagnóstico
+         </Button>
+       </div>
     </div>
   );
 };
