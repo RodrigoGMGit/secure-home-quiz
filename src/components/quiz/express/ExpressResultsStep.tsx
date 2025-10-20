@@ -175,20 +175,13 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
                   transition={{ duration: 0.3 }}
                   className="bg-white border border-brand-mint-200/30 rounded-xl p-4 sm:p-6 shadow-soft"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-brand-teal-500/10 rounded-full flex-shrink-0">
-                      {React.createElement(areasToImprove[currentIndex].icon, {
-                        className: "h-5 w-5 sm:h-6 sm:w-6 text-brand-teal-500"
-                      })}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-2">
-                        {areasToImprove[currentIndex].title}
-                      </h4>
-                      <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
-                        {areasToImprove[currentIndex].learnHow}
-                      </p>
-                    </div>
+                  <div className="text-center">
+                    <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-2">
+                      {areasToImprove[currentIndex].title}
+                    </h4>
+                    <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
+                      {areasToImprove[currentIndex].learnHow}
+                    </p>
                   </div>
                 </motion.div>
               </div>
