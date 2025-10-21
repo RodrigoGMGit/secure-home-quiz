@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SpecificMeasures } from '../SpecificMeasures';
-import { ABVariant, QuizAnswers } from '@/types/quiz';
+import { ABVariant, QuizAnswers, PlanInput } from '@/types/quiz';
 import { generateSpecificMeasures } from '@/utils/planGenerator';
-import { CheckCircle, Mail, FileText, Send, Trophy, Shield } from 'lucide-react';
+import { buildPlan } from '@/data/plan/rules';
+import { CheckCircle, Mail, FileText, Send, Trophy, Shield, Eye } from 'lucide-react';
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 interface DoneStepProps {
   abVariant: ABVariant;
@@ -19,9 +21,40 @@ interface DoneStepProps {
 export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }: DoneStepProps) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   // Generar medidas específicas basadas en las respuestas
   const specificMeasures = generateSpecificMeasures(answers);
+
+  // Convertir respuestas del quiz a PlanInput para generar el plan
+  const planInput: PlanInput = {
+    age_band: answers.age_band,
+    platforms: answers.platforms,
+    other_platforms: answers.other_platforms || '',
+    unknown_platforms: answers.unknown_platforms || false,
+    measures: answers.measures || {},
+    habits: answers.habits,
+    signals: answers.signals,
+    concerns: answers.concerns,
+    ab_variant_plan_email: abVariant
+  };
+
+  const handleViewPlan = () => {
+    // Generar el plan usando el motor de reglas
+    const plan = buildPlan(planInput);
+    
+    // Trackear el evento
+    onTrack('plan_viewed', {
+      variant: abVariant,
+      age_band: answers.age_band,
+      platforms: answers.platforms,
+      total_actions: plan.summary.total_actions,
+      urgent_actions: plan.summary.urgent_actions
+    });
+    
+    // Navegar a la página de impresión con el plan en el estado
+    navigate('/print/plan', { state: { plan } });
+  };
 
   const isValidEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -107,6 +140,27 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
 
       {/* Medidas específicas */}
       <SpecificMeasures measures={specificMeasures} />
+
+      {/* Botón para ver el plan completo */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="text-center"
+      >
+        <Button
+          onClick={handleViewPlan}
+          variant="outline"
+          size="lg"
+          className="border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-8 py-3 text-base font-heading font-semibold"
+        >
+          <Eye className="mr-2 h-5 w-5" />
+          Ver mi Plan Completo
+        </Button>
+        <p className="text-sm text-brand-olive-500 mt-2">
+          Ve todas las recomendaciones organizadas por prioridad
+        </p>
+      </motion.div>
 
       {/* Formulario de Email Rediseñado */}
       <motion.div

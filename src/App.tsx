@@ -23,6 +23,7 @@ const Recursos = lazy(() => import("./pages/Recursos"));
 const Ayuda = lazy(() => import("./pages/Ayuda"));
 const AccionesLegales = lazy(() => import("./pages/AccionesLegales"));
 const EnConstruccion = lazy(() => import("./pages/EnConstruccion"));
+const PlanPage = lazy(() => import("./pages/print/Plan"));
 
 const queryClient = new QueryClient();
 const routerBase =
@@ -54,6 +55,7 @@ const AppContent = () => {
           <Route path="/recursos" element={<Recursos />} />
           <Route path="/ayuda" element={<Ayuda />} />
           <Route path="/en-construccion" element={<EnConstruccion />} />
+          <Route path="/print/plan" element={<PlanPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
