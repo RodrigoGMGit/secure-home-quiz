@@ -90,11 +90,19 @@ export function PlatformsStep({
   };
 
   const handleUnsureClick = () => {
-    setShowingHelp(true);
-    setIsUnsure(true);
-    setSelectedPlatforms([]);
-    setOtherPlatforms('');
-    onTrack('platform_select', { unknown_platforms: true });
+    if (isUnsure) {
+      // Si ya está en modo "no estoy seguro", deseleccionarlo
+      setIsUnsure(false);
+      setShowingHelp(false);
+      onTrack('platform_select', { unknown_platforms: false });
+    } else {
+      // Activar modo "no estoy seguro"
+      setShowingHelp(true);
+      setIsUnsure(true);
+      setSelectedPlatforms([]);
+      setOtherPlatforms('');
+      onTrack('platform_select', { unknown_platforms: true });
+    }
   };
 
   const handleContinueUnsure = () => {
@@ -136,22 +144,30 @@ export function PlatformsStep({
       <div className="flex justify-center">
         <button
           onClick={handleUnsureClick}
-          className="group relative p-4 rounded-xl border-2 border-dashed border-brand-teal-500/50 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2 min-h-[44px] sm:min-h-[100px] flex flex-col items-center justify-center text-center hover:border-brand-teal-500 hover:bg-brand-mint-200/30 hover:shadow-soft hover:scale-[1.02] active:scale-[0.98] bg-white/60 w-full max-w-sm"
+          className={`group relative p-4 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-brand-teal-500/50 focus:ring-offset-2 min-h-[44px] sm:min-h-[100px] flex flex-col items-center justify-center text-center hover:scale-[1.02] active:scale-[0.98] w-full max-w-sm ${
+            isUnsure 
+              ? 'border-brand-teal-500 bg-brand-teal-500/10 shadow-soft' 
+              : 'border-dashed border-brand-teal-500/50 hover:border-brand-teal-500 hover:bg-brand-mint-200/30 hover:shadow-soft bg-white/60'
+          }`}
           aria-expanded={showingHelp}
         >
           {/* Icon */}
-          <div className="mb-2 text-2xl transition-all duration-300 text-brand-teal-500 group-hover:text-brand-teal-500">
+          <div className={`mb-2 text-2xl transition-all duration-300 ${
+            isUnsure 
+              ? 'text-brand-teal-500' 
+              : 'text-brand-teal-500 group-hover:text-brand-teal-500'
+          }`}>
             <HelpCircle className="w-6 h-6" />
           </div>
           
           {/* Label */}
           <div className="font-body font-semibold text-sm mb-1 text-brand-ink-800">
-            No estoy seguro/a
+            {isUnsure ? 'No estoy seguro/a (seleccionado)' : 'No estoy seguro/a'}
           </div>
           
           {/* Description */}
           <div className="text-xs font-body text-brand-olive-500">
-            ¿Cómo puedo descubrirlo?
+            {isUnsure ? 'Haz clic para seleccionar plataformas' : '¿Cómo puedo descubrirlo?'}
           </div>
         </button>
       </div>
