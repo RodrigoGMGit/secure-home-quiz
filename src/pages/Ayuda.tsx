@@ -15,7 +15,10 @@ import {
   ExternalLink,
   Send,
   Clock,
-  Building
+  Building,
+  Scale,
+  Settings,
+  BookOpen
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,9 +29,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import GlobalHeader from "@/components/GlobalHeader";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { getFAQLinkInfo } from "@/data/faqLinks";
 
 const Ayuda = () => {
   useScrollToTop();
+
+  // Función helper para obtener el icono correcto
+  const getIconComponent = (iconName: string) => {
+    const iconMap: Record<string, any> = {
+      Shield,
+      MessageCircle,
+      Scale,
+      Settings,
+      Users,
+      BookOpen
+    };
+    return iconMap[iconName] || Shield;
+  };
 
   // Estados para formularios
   const [tallerForm, setTallerForm] = useState({
@@ -689,25 +706,47 @@ const Ayuda = () => {
                                 </p>
                                 
                                 {faq.enlaces && faq.enlaces.length > 0 && (
-                                  <div className="bg-brand-mint-200/20 p-3 rounded-lg border border-brand-mint-200/30">
-                                    <h4 className="font-heading font-semibold text-xs mb-2 text-brand-ink-900">
+                                  <div className="bg-brand-mint-200/20 p-4 rounded-lg border border-brand-mint-200/30">
+                                    <h4 className="font-heading font-semibold text-sm mb-3 text-brand-ink-900 flex items-center">
+                                      <BookOpen className="h-4 w-4 mr-2 text-brand-teal-500" />
                                       Más información:
                                     </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                      {faq.enlaces.map((enlace, i) => (
-                                        <Button
-                                          key={i}
-                                          asChild
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-xs border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20"
-                                        >
-                                          <a href={enlace}>
-                                            Ver sección
-                                            <ExternalLink className="ml-1 h-3 w-3" />
-                                          </a>
-                                        </Button>
-                                      ))}
+                                    <div className="space-y-3">
+                                      {faq.enlaces.map((enlace, i) => {
+                                        const linkInfo = getFAQLinkInfo(enlace);
+                                        if (!linkInfo) return null;
+                                        
+                                        const IconComponent = getIconComponent(linkInfo.icon);
+                                        
+                                        return (
+                                          <div key={i} className="bg-white/60 p-3 rounded-lg border border-brand-mint-200/20 hover:shadow-soft transition-smooth">
+                                            <div className="flex items-start gap-3">
+                                              <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
+                                                <IconComponent className="h-4 w-4 text-brand-teal-500" />
+                                              </div>
+                                              <div className="flex-1 min-w-0">
+                                                <h5 className="font-heading font-semibold text-sm text-brand-ink-900 mb-1">
+                                                  {linkInfo.title}
+                                                </h5>
+                                                <p className="font-body text-xs text-brand-olive-500 mb-2 leading-relaxed">
+                                                  {linkInfo.description}
+                                                </p>
+                                                <Button
+                                                  asChild
+                                                  variant="outline"
+                                                  size="sm"
+                                                  className="text-xs border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 w-full sm:w-auto"
+                                                >
+                                                  <a href={enlace}>
+                                                    Ver sección completa
+                                                    <ExternalLink className="ml-1 h-3 w-3" />
+                                                  </a>
+                                                </Button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 )}
