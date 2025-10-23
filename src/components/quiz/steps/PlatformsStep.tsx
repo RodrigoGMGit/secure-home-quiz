@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { StepHeader } from '../StepHeader';
 import { OptionGrid } from '../OptionGrid';
 import { Notice } from '../Notice';
+import { TikTokAgeWarningModal } from '../TikTokAgeWarningModal';
 import { Platform, AgeBand } from '@/types/quiz';
 import { MessageCircle, Video, Gamepad2, HelpCircle, Plus } from 'lucide-react';
 import { WhatsAppIcon, YouTubeIcon, InstagramIcon, RobloxIcon, MinecraftIcon, TikTokIcon } from '@/components/icons/platforms';
@@ -77,6 +78,7 @@ export function PlatformsStep({
   const [otherPlatforms, setOtherPlatforms] = useState<string>(initialOtherPlatforms);
   const [showingHelp, setShowingHelp] = useState(false);
   const [isUnsure, setIsUnsure] = useState(initialUnknownPlatforms);
+  const [showTikTokWarning, setShowTikTokWarning] = useState(false);
 
   const handlePlatformSelection = (values: string[]) => {
     setSelectedPlatforms(values as Platform[]);
@@ -88,6 +90,26 @@ export function PlatformsStep({
     }
     
     onTrack('platform_select', { platforms: values });
+  };
+
+  const handleTikTokProceed = () => {
+    // Add TikTok to selected platforms
+    const newPlatforms = [...selectedPlatforms, 'tiktok' as Platform];
+    setSelectedPlatforms(newPlatforms);
+    setShowTikTokWarning(false);
+    onTrack('tiktok_age_warning_proceeded', { ageband });
+  };
+
+  const handleTikTokClose = () => {
+    setShowTikTokWarning(false);
+    onTrack('tiktok_age_warning_dismissed', { ageband });
+  };
+
+  const handleAgeRestrictedClick = (platform: string) => {
+    if (platform === 'tiktok') {
+      setShowTikTokWarning(true);
+      onTrack('tiktok_age_warning_shown', { ageband });
+    }
   };
 
   const handleUnsureClick = () => {
@@ -179,6 +201,7 @@ export function PlatformsStep({
             options={optionsWithAge}
             selectedValues={selectedPlatforms}
             onSelectionChange={handlePlatformSelection}
+            onAgeRestrictedClick={handleAgeRestrictedClick}
             multiSelect={true}
           />
 
@@ -246,6 +269,14 @@ export function PlatformsStep({
           Continuar
         </Button>
       </div>
+
+      {/* TikTok Age Warning Modal */}
+      <TikTokAgeWarningModal
+        isOpen={showTikTokWarning}
+        onClose={handleTikTokClose}
+        onProceed={handleTikTokProceed}
+        ageband={ageband}
+      />
     </div>
   );
 }

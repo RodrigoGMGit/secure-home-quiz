@@ -16,6 +16,7 @@ interface OptionGridProps {
   options: Option[];
   selectedValues: string[];
   onSelectionChange: (values: string[]) => void;
+  onAgeRestrictedClick?: (value: string) => void;
   multiSelect?: boolean;
   className?: string;
 }
@@ -24,43 +25,46 @@ export function OptionGrid({
   options, 
   selectedValues, 
   onSelectionChange, 
+  onAgeRestrictedClick,
   multiSelect = false,
   className 
 }: OptionGridProps) {
   
-  const handleOptionClick = (value: string) => {
-    if (multiSelect) {
-      const newValues = selectedValues.includes(value)
-        ? selectedValues.filter(v => v !== value)
-        : [...selectedValues, value];
-      onSelectionChange(newValues);
-    } else {
-      onSelectionChange([value]);
-    }
-  };
-
-  const isOptionDisabled = (option: Option) => {
+  const isAgeRestricted = (option: Option) => {
     if (!option.ageRestricted || !option.currentAge) return false;
-    
-    // TikTok is restricted for users under 13
     if (option.value === 'tiktok') {
       return option.currentAge === '6-8' || option.currentAge === '9-12';
     }
-    
     return false;
   };
+
+  const handleOptionClick = (option: Option) => {
+    if (isAgeRestricted(option) && onAgeRestrictedClick) {
+      onAgeRestrictedClick(option.value);
+      return;
+    }
+    
+    if (multiSelect) {
+      const newValues = selectedValues.includes(option.value)
+        ? selectedValues.filter(v => v !== option.value)
+        : [...selectedValues, option.value];
+      onSelectionChange(newValues);
+    } else {
+      onSelectionChange([option.value]);
+    }
+  };
+
 
   return (
     <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6", className)}>
       {options.map((option, index) => {
         const isSelected = selectedValues.includes(option.value);
-        const isDisabled = isOptionDisabled(option);
+        const isAgeRestrictedOption = isAgeRestricted(option);
         
         return (
           <motion.button
             key={option.value}
-            onClick={() => !isDisabled && handleOptionClick(option.value)}
-            disabled={isDisabled}
+            onClick={() => handleOptionClick(option)}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -71,12 +75,10 @@ export function OptionGrid({
               "hover:shadow-soft hover:scale-[1.02] active:scale-[0.98]",
               isSelected
                 ? "border-brand-teal-500 bg-brand-mint-200/50 shadow-cta"
-                : "border-brand-mint-200 bg-white/60 hover:border-brand-teal-500/60 hover:bg-brand-mint-200/30",
-              isDisabled && "opacity-50 cursor-not-allowed hover:border-brand-mint-200 hover:shadow-none hover:scale-100"
+                : "border-brand-mint-200 bg-white/60 hover:border-brand-teal-500/60 hover:bg-brand-mint-200/30"
             )}
             aria-pressed={isSelected}
-            aria-disabled={isDisabled}
-            aria-describedby={isDisabled ? `${option.value}-age-restriction` : undefined}
+            aria-describedby={isAgeRestrictedOption ? `${option.value}-age-restriction` : undefined}
           >
             {/* Selection indicator */}
             {isSelected && (
@@ -90,7 +92,7 @@ export function OptionGrid({
               <div className={cn(
                 "mb-4 text-3xl transition-all duration-300",
                 isSelected ? "text-brand-teal-500 scale-110" : "text-brand-olive-500",
-                !isDisabled && "group-hover:text-brand-teal-500"
+                "group-hover:text-brand-teal-500"
               )}>
                 {option.icon}
               </div>
@@ -115,7 +117,7 @@ export function OptionGrid({
             )}
             
             {/* Age restriction notice */}
-            {isDisabled && (
+            {isAgeRestrictedOption && (
               <div 
                 id={`${option.value}-age-restriction`}
                 className="text-sm text-brand-ink-800 mt-2 font-body font-medium"
