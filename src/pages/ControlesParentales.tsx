@@ -7,6 +7,7 @@ import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi,
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
+import { AndroidIcon, AppleIcon } from "@/components/icons/platforms";
 import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
 
 const ControlesParentales: React.FC = () => {
@@ -150,7 +151,7 @@ const ControlesParentales: React.FC = () => {
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
                   <div className="p-2 bg-brand-teal-500/20 rounded-full">
-                    <Smartphone className="h-6 w-6 text-brand-teal-500" />
+                    <AndroidIcon className="h-6 w-6 text-brand-teal-500" />
                   </div>
                   <div className="text-left">
                     <h3 className="font-heading text-lg sm:text-xl font-semibold text-brand-ink-900">Android</h3>
@@ -279,7 +280,9 @@ const ControlesParentales: React.FC = () => {
             <AccordionItem value="iphone" className="border-brand-mint-200/40 bg-brand-mint-200/20 border rounded-lg hover:shadow-soft transition-smooth">
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center space-x-4">
-                  <Smartphone className="h-6 w-6 text-brand-teal-500" />
+                  <div className="p-2 bg-brand-mint-200/60 rounded-full">
+                    <AppleIcon className="h-6 w-6 text-brand-ink-800" />
+                  </div>
                   <div className="text-left">
                     <h3 className="font-heading text-lg sm:text-xl font-semibold">iPhone y iPad</h3>
                     <p className="text-sm text-gray-600">Configuración en Familia + Tiempo en Pantalla</p>

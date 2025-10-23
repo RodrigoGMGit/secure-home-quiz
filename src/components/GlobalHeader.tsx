@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Home, BookOpen, HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import logoHogaresDigitales from "@/assets/logos/Logo Hogares Digitales.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -112,7 +113,11 @@ const GlobalHeader = () => {
         <div className="flex-shrink-0 p-6 border-b border-brand-mint-200/30 bg-gradient-to-r from-white to-brand-mint-200/10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-              <Shield className="h-6 w-6 text-primary-foreground" />
+              <img 
+                src={logoHogaresDigitales} 
+                alt="Hogares Digitales Seguros" 
+                className="h-6 w-6 object-contain"
+              />
             </div>
             <div>
               <div className="text-lg font-heading font-bold text-brand-ink-900">
@@ -284,8 +289,12 @@ const GlobalHeader = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Shield className="h-5 w-5 text-primary-foreground" />
+            <div className="h-8 w-8 rounded-lg overflow-hidden flex items-center justify-center">
+              <img 
+                src={logoHogaresDigitales} 
+                alt="Hogares Digitales Seguros" 
+                className="h-full w-full object-contain"
+              />
             </div>
             <span className="hidden lg:inline-block text-lg font-semibold truncate max-w-[40ch]">
               Hogares Digitales Seguros

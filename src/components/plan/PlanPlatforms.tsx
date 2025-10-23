@@ -4,6 +4,15 @@ import { Smartphone, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ReferenceLink from './ReferenceLink';
 import React from 'react';
+import { 
+  YouTubeIcon, 
+  TikTokIcon, 
+  WhatsAppIcon, 
+  InstagramIcon, 
+  FacebookIcon, 
+  RobloxIcon, 
+  MinecraftIcon 
+} from '@/components/icons/platforms';
 
 interface PlanPlatformsProps {
   plan: Plan;
@@ -40,43 +49,43 @@ export default function PlanPlatforms({ plan }: PlanPlatformsProps) {
   const platformInfo: Record<string, { name: string; icon: React.ComponentType<{ className?: string }>; route: string; pathText: string }> = {
     youtube: {
       name: 'YouTube',
-      icon: Smartphone,
+      icon: YouTubeIcon,
       route: '/aprende/tu-familia/redes-sociales',
       pathText: 'Ruta: Aprende > Tu familia > Redes sociales'
     },
     tiktok: {
       name: 'TikTok',
-      icon: Smartphone,
+      icon: TikTokIcon,
       route: '/aprende/tu-familia/redes-sociales',
       pathText: 'Ruta: Aprende > Tu familia > Redes sociales'
     },
     whatsapp: {
       name: 'WhatsApp',
-      icon: Smartphone,
+      icon: WhatsAppIcon,
       route: '/aprende/tu-familia/redes-sociales',
       pathText: 'Ruta: Aprende > Tu familia > Redes sociales'
     },
     instagram: {
       name: 'Instagram',
-      icon: Smartphone,
+      icon: InstagramIcon,
       route: '/aprende/tu-familia/redes-sociales',
       pathText: 'Ruta: Aprende > Tu familia > Redes sociales'
     },
     facebook: {
       name: 'Facebook',
-      icon: Smartphone,
+      icon: FacebookIcon,
       route: '/aprende/tu-familia/redes-sociales',
       pathText: 'Ruta: Aprende > Tu familia > Redes sociales'
     },
     roblox: {
       name: 'Roblox',
-      icon: Users,
+      icon: RobloxIcon,
       route: '/aprende/tu-familia/videojuegos',
       pathText: 'Ruta: Aprende > Tu familia > Videojuegos'
     },
     minecraft: {
       name: 'Minecraft',
-      icon: Users,
+      icon: MinecraftIcon,
       route: '/aprende/tu-familia/videojuegos',
       pathText: 'Ruta: Aprende > Tu familia > Videojuegos'
     }

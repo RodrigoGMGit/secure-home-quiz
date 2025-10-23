@@ -10,6 +10,15 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { 
+  TikTokIcon, 
+  InstagramIcon, 
+  SnapchatIcon, 
+  YouTubeIcon, 
+  WhatsAppIcon, 
+  DiscordIcon, 
+  TwitchIcon 
+} from "@/components/icons/platforms";
 
 const TuFamiliaRedesSociales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -22,7 +31,7 @@ const TuFamiliaRedesSociales = () => {
       id: "tiktok",
       name: "TikTok",
       description: "Red social para grabar, ver y compartir videos cortos",
-      logo: "🎵",
+      logo: TikTokIcon,
       age: "13+ años",
       risks: [
         "Contenido gráfico, sexual o violento",
@@ -68,7 +77,7 @@ const TuFamiliaRedesSociales = () => {
       id: "instagram",
       name: "Instagram",
       description: "Red social para compartir fotos, videos e historias",
-      logo: "📸",
+      logo: InstagramIcon,
       age: "13+ años",
       risks: [
         "Mapa de ubicación en tiempo real",
@@ -114,7 +123,7 @@ const TuFamiliaRedesSociales = () => {
       id: "snapchat",
       name: "Snapchat",
       description: "App para compartir fotos y videos que desaparecen",
-      logo: "👻",
+      logo: SnapchatIcon,
       age: "13+ años",
       risks: [
         "Falsa sensación de privacidad",
@@ -160,7 +169,7 @@ const TuFamiliaRedesSociales = () => {
       id: "youtube",
       name: "YouTube",
       description: "Plataforma de videos más popular del mundo",
-      logo: "📺",
+      logo: YouTubeIcon,
       age: "13+ años",
       risks: [
         "Contenido inapropiado difícil de filtrar",
@@ -206,7 +215,7 @@ const TuFamiliaRedesSociales = () => {
       id: "youtube-kids",
       name: "YouTube Kids",
       description: "Versión segura de YouTube para niños",
-      logo: "🧒",
+      logo: YouTubeIcon,
       age: "4+ años",
       risks: [
         "Algunos videos pueden no ser apropiados",
@@ -251,7 +260,7 @@ const TuFamiliaRedesSociales = () => {
       id: "whatsapp",
       name: "WhatsApp",
       description: "Aplicación de mensajería instantánea",
-      logo: "💬",
+      logo: WhatsAppIcon,
       age: "16+ años",
       risks: [
         "Grupos con personas desconocidas",
@@ -297,7 +306,7 @@ const TuFamiliaRedesSociales = () => {
       id: "discord",
       name: "Discord",
       description: "Plataforma de comunicación para comunidades",
-      logo: "🎮",
+      logo: DiscordIcon,
       age: "13+ años",
       risks: [
         "Servidores con contenido inapropiado",
@@ -343,7 +352,7 @@ const TuFamiliaRedesSociales = () => {
       id: "twitch",
       name: "Twitch",
       description: "Plataforma de streaming de videojuegos",
-      logo: "📡",
+      logo: TwitchIcon,
       age: "13+ años",
       risks: [
         "Contenido de streaming inapropiado",
@@ -529,7 +538,7 @@ const TuFamiliaRedesSociales = () => {
                   <Card className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
                   <CardHeader className="text-center p-4 sm:p-6">
                     <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
-                      <span className="text-2xl sm:text-3xl">{platform.logo}</span>
+                      <platform.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                     </div>
                     <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">{platform.name}</CardTitle>
                     <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
@@ -604,7 +613,7 @@ const TuFamiliaRedesSociales = () => {
                         <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
                           <div className="flex justify-center mb-3 sm:mb-4">
                             <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                              <span className="text-2xl sm:text-3xl">{platform.logo}</span>
+                              <platform.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                             </div>
                           </div>
                           <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">

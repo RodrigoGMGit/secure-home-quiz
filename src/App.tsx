@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LoadingComponent from "@/components/ui/loading-component";
 import EmergencyButton from "@/components/EmergencyButton";
+import FEInfoButton from "@/components/FEInfoButton";
 
 // Route-level code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -67,8 +68,13 @@ const AppContent = () => {
         </Routes>
       </Suspense>
       
-      {/* Botón de emergencia flotante - no se muestra en /about */}
-      {shouldShowEmergencyButton && <EmergencyButton />}
+      {/* Botones flotantes - no se muestran en /about */}
+      {shouldShowEmergencyButton && (
+        <>
+          <FEInfoButton />
+          <EmergencyButton />
+        </>
+      )}
     </>
   );
 };

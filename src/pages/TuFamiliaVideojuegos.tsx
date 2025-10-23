@@ -10,6 +10,7 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { MinecraftIcon, RobloxIcon, FortniteIcon, KickIcon, GenericGameIcon } from "@/components/icons/platforms";
 
 const TuFamiliaVideojuegos = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -22,7 +23,7 @@ const TuFamiliaVideojuegos = () => {
       id: "minecraft",
       name: "Minecraft",
       description: "Juego de construcción y supervivencia en mundos infinitos",
-      logo: "🧱",
+      logo: MinecraftIcon,
       age: "7+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
@@ -69,7 +70,7 @@ const TuFamiliaVideojuegos = () => {
       id: "free-fire",
       name: "Free Fire",
       description: "Battle royale móvil con 50 jugadores en tiempo real",
-      logo: "🔫",
+      logo: GenericGameIcon,
       age: "13+ años",
       platform: "Móvil",
       risks: [
@@ -116,7 +117,7 @@ const TuFamiliaVideojuegos = () => {
       id: "call-of-duty",
       name: "Call of Duty",
       description: "FPS militar con multijugador online",
-      logo: "🎯",
+      logo: GenericGameIcon,
       age: "17+ años",
       platform: "PC, Consolas",
       risks: [
@@ -163,7 +164,7 @@ const TuFamiliaVideojuegos = () => {
       id: "fortnite",
       name: "Fortnite",
       description: "Battle royale con construcción y elementos creativos",
-      logo: "🏗️",
+      logo: FortniteIcon,
       age: "12+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
@@ -210,7 +211,7 @@ const TuFamiliaVideojuegos = () => {
       id: "roblox",
       name: "Roblox",
       description: "Plataforma de juegos creados por usuarios",
-      logo: "🎮",
+      logo: RobloxIcon,
       age: "8+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
@@ -257,7 +258,7 @@ const TuFamiliaVideojuegos = () => {
       id: "gta",
       name: "Grand Theft Auto (GTA)",
       description: "Juego de mundo abierto con temática criminal",
-      logo: "🚗",
+      logo: GenericGameIcon,
       age: "18+ años",
       platform: "PC, Consolas",
       risks: [
@@ -304,7 +305,7 @@ const TuFamiliaVideojuegos = () => {
       id: "kick",
       name: "Kick.com",
       description: "Plataforma de streaming de videojuegos",
-      logo: "👾",
+      logo: KickIcon,
       age: "13+ años",
       platform: "Web, Móvil",
       risks: [
@@ -491,7 +492,7 @@ const TuFamiliaVideojuegos = () => {
                   <Card className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
                   <CardHeader className="text-center p-4 sm:p-6">
                     <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
-                      <span className="text-2xl sm:text-3xl">{game.logo}</span>
+                      <game.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                     </div>
                     <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">{game.name}</CardTitle>
                     <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
@@ -567,7 +568,7 @@ const TuFamiliaVideojuegos = () => {
                         <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
                           <div className="flex justify-center mb-3 sm:mb-4">
                             <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                              <span className="text-2xl sm:text-3xl">{game.logo}</span>
+                              <game.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                             </div>
                           </div>
                           <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">

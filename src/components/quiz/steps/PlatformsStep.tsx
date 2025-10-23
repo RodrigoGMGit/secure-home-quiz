@@ -6,6 +6,7 @@ import { OptionGrid } from '../OptionGrid';
 import { Notice } from '../Notice';
 import { Platform, AgeBand } from '@/types/quiz';
 import { MessageCircle, Video, Gamepad2, HelpCircle, Plus } from 'lucide-react';
+import { WhatsAppIcon, YouTubeIcon, InstagramIcon, RobloxIcon, MinecraftIcon, TikTokIcon } from '@/components/icons/platforms';
 
 interface PlatformsStepProps {
   initialPlatforms?: Platform[];
@@ -21,44 +22,44 @@ const platformOptions = [
   { 
     value: 'whatsapp', 
     label: 'WhatsApp', 
-    icon: <MessageCircle />, 
+    icon: <WhatsAppIcon className="h-5 w-5" />, 
     description: 'Mensajería' 
   },
   { 
     value: 'youtube', 
     label: 'YouTube', 
-    icon: <Video />, 
+    icon: <YouTubeIcon className="h-5 w-5" />, 
     description: 'Videos' 
   },
   { 
     value: 'instagram', 
     label: 'Instagram', 
-    icon: <Video />, 
+    icon: <InstagramIcon className="h-5 w-5" />, 
     description: 'Red social de fotos y videos' 
   },
   { 
     value: 'roblox', 
     label: 'Roblox', 
-    icon: <Gamepad2 />, 
+    icon: <RobloxIcon className="h-5 w-5" />, 
     description: 'Juegos en línea' 
   },
   { 
     value: 'minecraft', 
     label: 'Minecraft', 
-    icon: <Gamepad2 />, 
+    icon: <MinecraftIcon className="h-5 w-5" />, 
     description: 'Juego de construcción' 
   },
   { 
     value: 'tiktok', 
     label: 'TikTok', 
-    icon: <Video />, 
+    icon: <TikTokIcon className="h-5 w-5" />, 
     description: 'Videos cortos',
     ageRestricted: true
   },
   { 
     value: 'otros', 
     label: 'Otro(s)', 
-    icon: <Plus />, 
+    icon: <Plus className="h-5 w-5" />, 
     description: 'Otras plataformas' 
   }
 ];
