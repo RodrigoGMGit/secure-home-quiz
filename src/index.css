@@ -301,14 +301,407 @@ Based on official brand guidelines and tokens
    ======================================== */
 
 @media print {
-  /* Configuración básica de página */
+  /* 1. Forzar impresión de colores y fondos */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* 2. Optimizar márgenes de página para A4 con headers/footers */
   @page {
-    margin: 1in;
+    margin: 20mm 16mm 25mm 16mm; /* Top: 20mm, Right: 16mm, Bottom: 25mm, Left: 16mm */
     size: A4;
+    /* Mejorar control de saltos de página */
+    orphans: 2;
+    widows: 2;
+    
+    /* Header discreto */
+    @top-center {
+      content: "Plan de Seguridad Digital";
+      font-family: 'Inter', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #666;
+      font-weight: 500;
+    }
+    
+    /* Footer con número de página y fecha */
+    @bottom-right {
+      content: "Página " counter(page) " de " counter(pages);
+      font-family: 'Inter', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #666;
+    }
+    
+    @bottom-left {
+      content: attr(data-generated-date);
+      font-family: 'Inter', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #666;
+    }
+  }
+  
+  /* Inicializar contador de páginas */
+  body {
+    counter-reset: page;
+  }
+
+  /* 3. Mapear gradientes a colores sólidos con alta especificidad */
+  .bg-gradient-to-br {
+    background: #f7fbfc !important; /* Teal sutil */
+    border: 1pt solid #d9eff0 !important;
+  }
+
+  .bg-gradient-to-r {
+    background: #f0f8f6 !important; /* Mint sutil */
+    border: 1pt solid #d0e8e3 !important;
+  }
+  
+  /* Especificidad alta para elementos del plan */
+  .print-container .bg-gradient-to-br,
+  .print-section .bg-gradient-to-br {
+    background: #f7fbfc !important;
+    border: 1pt solid #d9eff0 !important;
+  }
+  
+  .print-container .bg-gradient-to-r,
+  .print-section .bg-gradient-to-r {
+    background: #f0f8f6 !important;
+    border: 1pt solid #d0e8e3 !important;
+  }
+  
+  /* Iconos circulares con especificidad alta */
+  .print-container [class*="rounded-full"],
+  .print-section [class*="rounded-full"] {
+    print-color-adjust: exact !important;
+  }
+  
+  /* Cards y contenedores - optimizar para A4 */
+  .card {
+    border: 1.5pt solid #d9eff0 !important; /* Reforzado para mejor contraste */
+    box-shadow: 0 1pt 2pt rgba(0,0,0,0.05) !important;
+    margin-bottom: 6pt !important; /* Reducido para mejor aprovechamiento */
+    page-break-inside: avoid;
+    padding: 12pt !important; /* Reducido para más contenido */
+    break-inside: avoid;
+  }
+  
+  /* Padding específico para elementos del plan - optimizado para A4 */
+  .print-container .card,
+  .print-section .card {
+    padding: 12pt !important; /* Reducido para mejor densidad */
+    margin-bottom: 8pt !important; /* Reducido para mejor aprovechamiento */
+  }
+  
+  /* Padding para elementos con clases específicas - optimizado para A4 */
+  .print-container .p-6,
+  .print-section .p-6 {
+    padding: 10pt !important; /* Reducido para mejor densidad */
+  }
+  
+  .print-container .p-8,
+  .print-section .p-8 {
+    padding: 12pt !important; /* Reducido para mejor densidad */
+  }
+  
+  .print-container .px-4,
+  .print-section .px-4 {
+    padding-left: 8pt !important; /* Reducido para mejor densidad */
+    padding-right: 8pt !important;
+  }
+  
+  .print-container .py-8,
+  .print-section .py-8 {
+    padding-top: 10pt !important; /* Reducido para mejor densidad */
+    padding-bottom: 10pt !important;
+  }
+
+  /* Colores específicos con opacidad */
+  .bg-brand-mint-200\/10,
+  [class*="bg-brand-mint-200/10"] {
+    background: #e6f4f8 !important;
+  }
+
+  .bg-brand-teal-500\/10,
+  [class*="bg-brand-teal-500/10"] {
+    background: #f0f8f6 !important;
+  }
+
+  .bg-brand-mint-200\/20,
+  [class*="bg-brand-mint-200/20"] {
+    background: #d9eff0 !important;
+  }
+
+  .bg-brand-mint-200\/5,
+  [class*="bg-brand-mint-200/5"] {
+    background: #f0f8f6 !important;
+  }
+
+  .bg-brand-olive-500\/10,
+  [class*="bg-brand-olive-500/10"] {
+    background: #f0f8f6 !important;
+  }
+
+  .bg-brand-teal-500\/5,
+  [class*="bg-brand-teal-500/5"] {
+    background: #f0f8f6 !important;
+  }
+  
+  /* Fondos para iconos circulares con mejor visibilidad */
+  .bg-brand-teal-500\/20,
+  [class*="bg-brand-teal-500/20"] {
+    background: #c8e6ed !important;
+  }
+  
+  .bg-brand-mint-200\/60,
+  [class*="bg-brand-mint-200/60"] {
+    background: #d0e8e3 !important;
+  }
+  
+  .bg-brand-olive-500\/20,
+  [class*="bg-brand-olive-500/20"] {
+    background: #dce3de !important;
+  }
+  
+  /* Especificidad alta para iconos del plan */
+  .print-container .bg-brand-teal-500\/20,
+  .print-section .bg-brand-teal-500\/20,
+  .print-container [class*="bg-brand-teal-500/20"],
+  .print-section [class*="bg-brand-teal-500/20"] {
+    background: #c8e6ed !important;
+  }
+  
+  .print-container .bg-brand-mint-200\/60,
+  .print-section .bg-brand-mint-200\/60,
+  .print-container [class*="bg-brand-mint-200/60"],
+  .print-section [class*="bg-brand-mint-200/60"] {
+    background: #d0e8e3 !important;
+  }
+  
+  .print-container .bg-brand-olive-500\/20,
+  .print-section .bg-brand-olive-500\/20,
+  .print-container [class*="bg-brand-olive-500/20"],
+  .print-section [class*="bg-brand-olive-500/20"] {
+    background: #dce3de !important;
+  }
+
+  /* 4. Mejorar tipografía - optimizada para densidad y legibilidad */
+  /* Texto del cuerpo - optimizado para A4 */
+  body {
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif !important;
+    font-size: 10pt !important; /* Mantener legibilidad crítica */
+    line-height: 1.3 !important; /* Compacto para mejor densidad */
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Tamaños específicos para elementos del plan - optimizados para A4 */
+  .print-container {
+    font-size: 10pt !important; /* Mantener legibilidad crítica */
+    line-height: 1.3 !important; /* Compacto para mejor densidad */
+  }
+  
+  .print-container p {
+    font-size: 10pt !important; /* Mantener legibilidad crítica */
+    line-height: 1.3 !important; /* Compacto para mejor densidad */
+    margin-bottom: 6pt !important; /* Reducido para mejor aprovechamiento */
+    orphans: 2 !important; /* Reducido para mejor aprovechamiento */
+    widows: 2 !important; /* Reducido para mejor aprovechamiento */
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .print-container .text-sm {
+    font-size: 9pt !important; /* Optimizado para A4 */
+  }
+  
+  .print-container .text-base {
+    font-size: 10pt !important; /* Optimizado para A4 */
+  }
+  
+  .print-container .text-lg {
+    font-size: 12pt !important; /* Optimizado para A4 */
+  }
+
+  /* 5. Controlar saltos de página inteligentes */
+  .print-section {
+    page-break-inside: avoid;
+  }
+
+  /* Clase para saltos manuales estratégicos */
+  .print-page-break {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Evitar saltos automáticos entre secciones consecutivas */
+  .print-container .print-section + .print-section,
+  .print-section + .print-section {
+    break-before: auto !important;
+    page-break-before: auto !important;
+  }
+
+  /* Mantener checkmarks y pasos juntos */
+  ul li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Mejorar control de huérfanas y viudas */
+  p {
+    orphans: 2; /* Reducido para mejor densidad */
+    widows: 2; /* Reducido para mejor densidad */
+    margin-bottom: 6pt; /* Reducido para mejor densidad */
+  }
+
+  /* Iconos y elementos decorativos - mantener tamaños web */
+  .lucide {
+    print-color-adjust: exact !important;
+  }
+
+  /* Iconos circulares mantener fondos y tamaños */
+  [class*="rounded-full"] {
+    print-color-adjust: exact !important;
+  }
+  
+  /* Tamaños específicos para iconos del plan - optimizados para densidad */
+  .print-container .lucide {
+    print-color-adjust: exact !important;
+  }
+  
+  .print-container .h-5,
+  .print-section .h-5 {
+    height: 16pt !important; /* Mantener para checkmarks (legibilidad crítica) */
+  }
+  
+  .print-container .w-5,
+  .print-section .w-5 {
+    width: 16pt !important; /* Mantener para checkmarks (legibilidad crítica) */
+  }
+  
+  .print-container .h-6,
+  .print-section .h-6 {
+    height: 18pt !important; /* Mantener para elementos pequeños */
+  }
+  
+  .print-container .w-6,
+  .print-section .w-6 {
+    width: 18pt !important; /* Mantener para elementos pequeños */
+  }
+  
+  .print-container .h-8,
+  .print-section .h-8 {
+    height: 18pt !important; /* Reducido de 24pt para mejor densidad */
+  }
+  
+  .print-container .w-8,
+  .print-section .w-8 {
+    width: 18pt !important; /* Reducido de 24pt para mejor densidad */
+  }
+  
+  .print-container .h-12,
+  .print-section .h-12 {
+    height: 28pt !important; /* Reducido de 36pt para mejor densidad */
+  }
+  
+  .print-container .w-12,
+  .print-section .w-12 {
+    width: 28pt !important; /* Reducido de 36pt para mejor densidad */
+  }
+
+  /* 7. Bordes y sombras */
+  .shadow-soft {
+    box-shadow: 0 1pt 3pt rgba(0,0,0,0.1) !important;
+  }
+
+  [class*="border-brand"] {
+    border-width: 1pt !important;
+    border-style: solid !important;
+  }
+  
+  /* Preservar bordes de marca específicos */
+  .border-brand-mint-200\/30,
+  [class*="border-brand-mint-200/30"] {
+    border-color: #d9eff0 !important;
+  }
+  
+  .border-brand-teal-500\/30,
+  [class*="border-brand-teal-500/30"] {
+    border-color: #b3dce5 !important;
+  }
+  
+  .border-brand-teal-500\/20,
+  [class*="border-brand-teal-500/20"] {
+    border-color: #d0e8ed !important;
+  }
+
+  /* 8. Sticky y Fixed */
+  .fixed, .sticky { 
+    position: static !important; 
+    inset: auto !important; 
+  }
+
+  /* 9. Alturas de viewport y overflow */
+  .min-h-screen, .h-screen, .h-full, .min-h-full { 
+    min-height: auto !important; 
+    height: auto !important; 
+  }
+  
+  .overflow-hidden { 
+    overflow: visible !important; 
+  }
+
+  /* 10. Ancho del documento (contenedor) - optimizado para mejor balance */
+  .print-container { 
+    max-width: 180mm; /* Reducido de 190mm para mejor balance */
+    margin: 0 auto; 
+    padding: 0; 
+  }
+
+  /* 11. Partición de secciones */
+  .card, .section, .print-section { 
+    break-inside: avoid; 
+    page-break-inside: avoid; 
+  }
+
+  /* Refuerzo: evitar cortes dentro de una sección completa */
+  .print-container .print-section,
+  .print-section {
+    break-inside: avoid-page;      /* moderno */
+    page-break-inside: avoid;      /* legado */
+  }
+
+  /* 12. Guionado y saltos de línea */
+  p, li { 
+    hyphens: auto; 
+    overflow-wrap: break-word; 
+  }
+
+  /* 13. Fuentes (@font-face opcional) */
+  @font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* 14. Imágenes y SVG */
+  img { 
+    image-rendering: auto; 
+    max-width: 100% !important; 
+    height: auto !important; 
   }
 
   /* Ocultar elementos no necesarios para impresión */
-  .print\\:hidden {
+  .print\\:hidden,
+  .no-print,
+  .print\\:hide {
+    display: none !important;
+  }
+
+  /* Asegurar que la sección Próximos Pasos esté oculta */
+  .no-print * {
     display: none !important;
   }
 
@@ -317,7 +710,21 @@ Based on official brand guidelines and tokens
   .global-header,
   .emergency-button,
   button:not(.print\\:show),
-  .print\\:hide {
+  /* GlobalHeader específico */
+  header[class*="sticky"],
+  header[class*="top-0"],
+  header[class*="z-50"],
+  /* EmergencyButton específico */
+  [class*="EmergencyButton"],
+  /* Sheet/Modal components */
+  [data-radix-sheet-content],
+  [data-radix-dialog-content],
+  /* Navigation Menu */
+  [data-radix-navigation-menu-content],
+  [data-radix-navigation-menu-trigger],
+  /* Accordion */
+  [data-radix-accordion-content],
+  [data-radix-accordion-trigger] {
     display: none !important;
   }
 
@@ -328,66 +735,74 @@ Based on official brand guidelines and tokens
     transform: none !important;
   }
 
-  /* Configuración de fondo para impresión */
-  body {
-    background: white !important;
-    color: black !important;
-    font-size: 12pt;
-    line-height: 1.4;
-  }
-
-  /* Títulos principales */
+  /* Títulos principales - optimizados para A4 */
   h1 {
-    font-size: 18pt;
+    font-size: 18pt !important; /* Optimizado para A4 */
     font-weight: bold;
-    margin-bottom: 12pt;
+    margin-bottom: 12pt !important; /* Reducido para mejor aprovechamiento */
     page-break-after: avoid;
+    break-after: avoid;
   }
 
   h2 {
-    font-size: 16pt;
+    font-size: 14pt !important; /* Optimizado para A4 */
     font-weight: bold;
-    margin-top: 16pt;
-    margin-bottom: 8pt;
+    margin-top: 12pt !important; /* Reducido para mejor aprovechamiento */
+    margin-bottom: 8pt !important; /* Reducido para mejor aprovechamiento */
     page-break-after: avoid;
+    break-after: avoid;
   }
 
   h3 {
-    font-size: 14pt;
+    font-size: 12pt !important; /* Optimizado para A4 */
     font-weight: bold;
-    margin-top: 12pt;
-    margin-bottom: 6pt;
+    margin-top: 10pt !important; /* Reducido para mejor aprovechamiento */
+    margin-bottom: 6pt !important; /* Reducido para mejor aprovechamiento */
     page-break-after: avoid;
+    break-after: avoid;
+  }
+  
+  /* Tamaños específicos para elementos del plan - optimizados para A4 */
+  .print-container h1 {
+    font-size: 20pt !important; /* Optimizado para A4 */
+    margin-bottom: 14pt !important; /* Reducido para mejor aprovechamiento */
+  }
+  
+  .print-container h2 {
+    font-size: 16pt !important; /* Optimizado para A4 */
+    margin-top: 16pt !important; /* Reducido para mejor aprovechamiento */
+    margin-bottom: 10pt !important; /* Reducido para mejor aprovechamiento */
+  }
+  
+  .print-container h3 {
+    font-size: 14pt !important; /* Optimizado para A4 */
+    margin-top: 14pt !important; /* Reducido para mejor aprovechamiento */
+    margin-bottom: 8pt !important; /* Reducido para mejor aprovechamiento */
   }
 
-  /* Párrafos */
-  p {
-    margin-bottom: 8pt;
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* Listas */
+  /* Listas - optimizadas para A4 */
   ul, ol {
-    margin-bottom: 8pt;
-    padding-left: 20pt;
+    margin-bottom: 6pt !important; /* Reducido para mejor aprovechamiento */
+    padding-left: 16pt !important; /* Reducido para mejor aprovechamiento */
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   li {
-    margin-bottom: 4pt;
+    margin-bottom: 3pt !important; /* Reducido para mejor aprovechamiento */
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  /* Cards y contenedores */
-  .card,
-  .bg-gradient-to-br,
-  .bg-gradient-to-r {
-    background: white !important;
-    border: 1pt solid #ccc !important;
-    box-shadow: none !important;
+  /* Cards y contenedores - preservar fondos mapeados */
+  .card {
+    border: 1pt solid #d9eff0 !important;
+    box-shadow: 0 1pt 2pt rgba(0,0,0,0.05) !important;
     margin-bottom: 12pt;
     page-break-inside: avoid;
   }
+  
+  /* NO forzar white en gradientes - dejar que mapeos anteriores funcionen */
 
   /* Utilidades de corte de página */
   .page-break-before {
@@ -429,57 +844,174 @@ Based on official brand guidelines and tokens
     font-size: 10pt;
   }
 
-  /* Espaciado optimizado para impresión */
+  /* Espaciado optimizado para A4 - reducir espacios en blanco */
   .print\\:space-y-4 > * + * {
-    margin-top: 8pt;
+    margin-top: 8pt !important; /* Reducido para mejor aprovechamiento */
   }
 
   .print\\:space-y-6 > * + * {
-    margin-top: 12pt;
+    margin-top: 10pt !important; /* Reducido para mejor aprovechamiento */
   }
 
   .print\\:space-y-8 > * + * {
-    margin-top: 16pt;
+    margin-top: 12pt !important; /* Reducido para mejor aprovechamiento */
+  }
+  
+  /* Espaciado específico para elementos del plan - optimizado para A4 */
+  .print-container .space-y-8 > * + * {
+    margin-top: 12pt !important; /* Reducido para mejor aprovechamiento */
+  }
+  
+  /* En impresión, eliminar espacios verticales entre secciones; usamos saltos de página explícitos */
+  .print-container .space-y-8 > .print-section + .print-section,
+  .print-container .space-y-12 > .print-section + .print-section {
+    margin-top: 0 !important;
+  }
+  
+  /* Control específico de saltos de página para secciones del plan */
+  .print-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 8pt !important;
+  }
+  
+  /* Evitar cortes en listas de acciones */
+  ul, ol {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  /* Mantener elementos relacionados juntos */
+  .action-item,
+  .priority-item,
+  .step-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 6pt !important;
+  }
+  
+  .print-container .space-y-6 > * + * {
+    margin-top: 16pt !important;
+  }
+  
+  .print-container .space-y-4 > * + * {
+    margin-top: 12pt !important;
   }
 
-  /* Contenedores principales */
+  /* Contenedores principales - optimizados para A4 */
   .container {
     max-width: none !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  
+  /* Contenedor específico para impresión A4 */
+  .print-container {
+    max-width: 180mm !important; /* Optimizado para A4 con márgenes */
+    margin: 0 auto !important;
     padding: 0 !important;
   }
 
-  /* Grids para impresión */
+  /* Grids para impresión - mantener estructura cuando sea posible */
   .grid {
-    display: block !important;
+    display: grid !important; /* Mantener grid en lugar de block */
   }
 
-  .grid > * {
-    margin-bottom: 12pt;
+  /* Solo convertir a block si es necesario para evitar cortes */
+  .grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr !important;
   }
 
-  /* Flexbox para impresión */
+  /* Flexbox para impresión - mantener cuando sea apropiado */
   .flex {
-    display: block !important;
+    display: flex !important; /* Mantener flex en lugar de block */
+  }
+  
+  .flex-col {
+    flex-direction: column !important;
+  }
+  
+  .items-center {
+    align-items: center !important;
+  }
+  
+  .justify-center {
+    justify-content: center !important;
+  }
+
+  /* Ocultar elementos específicos de navegación */
+  .NavigationMenu,
+  .NavigationMenuList,
+  .NavigationMenuItem,
+  .NavigationMenuTrigger,
+  .NavigationMenuContent,
+  .NavigationMenuLink,
+  .Sheet,
+  .SheetContent,
+  .SheetTrigger,
+  .Accordion,
+  .AccordionItem,
+  .AccordionTrigger,
+  .AccordionContent {
+    display: none !important;
+  }
+  
+  /* Ocultar elementos con clases específicas del GlobalHeader */
+  [class*="NavigationMenu"],
+  [class*="Sheet"],
+  [class*="Accordion"],
+  [class*="Menu"],
+  [class*="mobile-menu"],
+  [class*="desktop-menu"] {
+    display: none !important;
+  }
+  
+  /* Ocultar botones de menú específicos */
+  button[aria-label*="menú"],
+  button[aria-label*="menu"],
+  button[aria-label*="Abrir"],
+  button[aria-label*="abrir"] {
+    display: none !important;
+  }
+  
+  /* Ocultar elementos con z-index alto (overlays) */
+  [style*="z-index: 50"],
+  [style*="z-index: 999"],
+  [style*="z-index: 1000"] {
+    display: none !important;
   }
 
   /* Ocultar elementos decorativos */
   .absolute,
   .animate-pulse,
   .blur-3xl,
-  .blur-2xl {
+  .blur-2xl,
+  /* Elementos flotantes */
+  .fixed,
+  .sticky,
+  /* Backdrop blur */
+  [class*="backdrop-blur"],
+  [class*="backdrop-filter"],
+  /* Elementos con posición absoluta */
+  [style*="position: fixed"],
+  [style*="position: sticky"],
+  [style*="position: absolute"] {
     display: none !important;
+  }
+  
+  /* Excepción: mantener elementos absolutos dentro del contenido del plan */
+  .print-container .absolute,
+  .print-section .absolute {
+    display: block !important;
   }
 
   /* Mostrar solo elementos esenciales */
   .print\\:show {
     display: block !important;
-  }
-
-  /* Optimización de imágenes */
-  img {
-    max-width: 100% !important;
-    height: auto !important;
   }
 
   /* Enlaces */

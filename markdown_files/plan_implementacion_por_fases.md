@@ -48,30 +48,44 @@
 
 ---
 
-## División de Fase 2: Enfoque Incremental
+---
 
-### Justificación de la División
-La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2B** (envío por email) por las siguientes ventajas:
+## Fase 2 — Optimización de CSS para Impresión
 
-#### **Ventajas de Desarrollo:**
-- ✅ **Desarrollo más rápido** - enfoque en una funcionalidad por vez
-- ✅ **Debugging más fácil** - problemas aislados y específicos
-- ✅ **Iteración más ágil** - probar PDF antes de agregar complejidad de email
-- ✅ **Rollback más fácil** - volver a versión anterior si hay problemas
+### Resultado esperado
+- CSS de impresión optimizado que produce resultados visualmente consistentes y de alta calidad al imprimir desde el navegador.
 
-#### **Ventajas de Testing:**
-- ✅ **Pruebas independientes** - PDF y Email por separado
-- ✅ **Validación incremental** - confirmar PDF antes de email
-- ✅ **Casos de prueba más simples** - menos variables por fase
+### Especificaciones
+- **Objetivo principal**: Lograr que la impresión desde navegador (`Ctrl+P`) produzca un resultado idéntico al diseño web.
+- **Optimizaciones críticas**:
+  - Forzar impresión de colores y fondos con `print-color-adjust: exact`
+  - Optimizar márgenes de página (`@page` margin: 16mm)
+  - Mapear gradientes a colores sólidos equivalentes
+  - Configurar tipografías para impresión con fallbacks
+  - Controlar saltos de página y cortes de secciones
+- **Elementos a optimizar**:
+  - Fondos de cards y contenedores
+  - Colores de marca (teal, mint, olive, ink)
+  - Iconos y elementos decorativos
+  - Espaciado y márgenes
+  - Tipografía y legibilidad
+- **Testing**: Validación mediante vista previa de impresión del navegador
 
-#### **Ventajas de Deployment:**
-- ✅ **Deploy gradual** - funcionalidad PDF primero, email después
-- ✅ **Menor riesgo** - cambios más pequeños y controlables
-- ✅ **Feedback temprano** - usuarios pueden probar PDF mientras se desarrolla email
+### Entregables de la fase
+- CSS de impresión optimizado en `src/index.css`
+- Documentación de cambios realizados
+- Checklist de elementos verificados en impresión
+
+### Criterios de aceptación
+- La impresión desde navegador (`Ctrl+P`) muestra todos los colores y fondos correctamente
+- Los márgenes y espaciado son apropiados para formato A4
+- Las tipografías se renderizan correctamente
+- Los elementos decorativos mantienen su apariencia visual
+- No hay cortes feos de secciones o contenido
 
 ---
 
-## Fase 2A — Generación de PDF con Playwright
+## Fase 3 — Generación de PDF con Playwright
 
 ### Resultado esperado
 - Endpoint backend que convierte la ruta HTML imprimible en un PDF de alta fidelidad para descarga directa.
@@ -105,10 +119,11 @@ La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2
 - El archivo respeta el sistema de diseño (colores, tipografías, iconos, espaciado) y cortes de página.
 - Manejo de errores controlado (respuestas 4xx/5xx predecibles).
 - No se persisten datos en base de datos; todo es temporal.
+- **Dependencia**: Requiere que la Fase 2 (CSS optimizado) esté completada.
 
 ---
 
-## Fase 2B — Envío por Correo del PDF
+## Fase 4 — Envío por Correo del PDF
 
 ### Resultado esperado
 - Capacidad de enviar el PDF generado al correo proporcionado por la persona usuaria usando Resend.
@@ -123,7 +138,7 @@ La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2
   - Configurar `noreply@hogares-seguros.mx` como dirección de envío.
   - Implementar plantilla HTML profesional con branding del proyecto.
 - Flujo:
-  - Generar PDF usando la funcionalidad de Fase 2A.
+  - Generar PDF usando la funcionalidad de Fase 3.
   - Adjuntar PDF al email con nombre descriptivo.
   - Enviar email con plantilla personalizada en ES-MX.
 - Métricas: registrar eventos de "PDF generado", "email enviado" usando analytics de Resend.
@@ -138,31 +153,11 @@ La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2
 - El adjunto abre correctamente y corresponde a los datos del quiz solicitado.
 - No se almacenan datos del usuario; todo es temporal.
 - Analytics básicos funcionando (entregas, aperturas).
+- **Dependencia**: Requiere que la Fase 3 (Playwright) esté completada.
 
 ---
 
-## Fase 3 — Almacenamiento del PDF (NO RECOMENDADO)
-
-### Resultado esperado
-- ~~Guardar el PDF en almacenamiento para re-descarga, compartir o auditoría, con control de acceso.~~
-
-### Especificaciones
-- **NOTA**: Esta fase NO se recomienda para el enfoque temporal sin persistencia.
-- **Alternativa**: Si se requiere almacenamiento futuro, considerar:
-  - Opción: Supabase Storage (bucket dedicado, p. ej., `plans`).
-  - Seguridad: Acceso por URLs firmadas con expiración.
-  - Retención: Política de borrado (p. ej., 30–90 días), proceso de limpieza.
-  - Privacidad: Evitar nombres de archivo con PII; usar IDs opacos.
-
-### Entregables de la fase
-- **OMITIR** en la implementación inicial.
-
-### Criterios de aceptación
-- **OMITIR** en la implementación inicial.
-
----
-
-## Fase 4 — Analytics y conversión
+## Fase 5 — Analytics y conversión
 
 ### Resultado esperado
 - Medición clara del funnel: fin de quiz → vista del plan → generación PDF → email/descarga.
@@ -179,7 +174,7 @@ La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2
 
 ---
 
-## Fase 5 — Despliegue multi-plataforma
+## Fase 6 — Despliegue multi-plataforma
 
 ### Resultado esperado
 - Capacidad de operar en Vercel (actual), Netlify (alternativa) y Azure (futuro) con cambios mínimos.
@@ -252,10 +247,10 @@ La Fase 2 original se ha dividido en **Fase 2A** (generación de PDF) y **Fase 2
 
 ## Roadmap sugerido
 1. F1: Implementar `print/plan` con 6 casos de prueba representativos (datos en memoria).
-2. F2A: Implementar Express server local con Playwright para generación de PDF.
-3. F2B: Integrar Resend para envío por email con plantilla profesional.
-4. ~~F3 (opcional): Persistencia en Supabase Storage con URLs firmadas y retención.~~ **OMITIR**.
-5. F4: Instrumentar analytics básicos del funnel (sin PII).
-6. F5: Pruebas de despliegue y performance; checklist final de accesibilidad.
+2. F2: Optimizar CSS de impresión para lograr resultados perfectos desde navegador.
+3. F3: Implementar Express server local con Playwright para generación de PDF.
+4. F4: Integrar Resend para envío por email con plantilla profesional.
+5. F5: Instrumentar analytics básicos del funnel (sin PII).
+6. F6: Pruebas de despliegue y performance; checklist final de accesibilidad.
 
 

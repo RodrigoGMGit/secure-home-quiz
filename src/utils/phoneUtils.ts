@@ -8,7 +8,7 @@
  * @returns Número limpio solo con dígitos
  */
 export const cleanPhoneNumber = (phoneNumber: string): string => {
-  return phoneNumber.replace(/[\s\-\(\)]/g, '');
+  return phoneNumber.replace(/[\s\-()]/g, '');
 };
 
 /**

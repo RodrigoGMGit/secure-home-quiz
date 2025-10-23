@@ -160,24 +160,27 @@ export function getTestCase(name: string): PlanInput | undefined {
 }
 
 // Helper para validar que un plan generado tiene la estructura esperada
-export function validatePlanStructure(plan: any): boolean {
+export function validatePlanStructure(plan: unknown): boolean {
   if (!plan || typeof plan !== 'object') return false;
   
+  const planObj = plan as Record<string, unknown>;
+  
   // Validar summary
-  if (!plan.summary || typeof plan.summary !== 'object') return false;
-  if (!plan.summary.age_band || !plan.summary.platforms || !Array.isArray(plan.summary.platforms)) return false;
-  if (typeof plan.summary.total_actions !== 'number' || typeof plan.summary.urgent_actions !== 'number') return false;
+  if (!planObj.summary || typeof planObj.summary !== 'object') return false;
+  const summary = planObj.summary as Record<string, unknown>;
+  if (!summary.age_band || !summary.platforms || !Array.isArray(summary.platforms)) return false;
+  if (typeof summary.total_actions !== 'number' || typeof summary.urgent_actions !== 'number') return false;
   
   // Validar sections
-  if (!plan.sections || !Array.isArray(plan.sections)) return false;
+  if (!planObj.sections || !Array.isArray(planObj.sections)) return false;
   
   // Validar cada sección
-  for (const section of plan.sections) {
+  for (const section of planObj.sections as Record<string, unknown>[]) {
     if (!section.id || !section.title || !Array.isArray(section.actions)) return false;
-    if (!['urgent', 'high', 'medium', 'low'].includes(section.priority)) return false;
+    if (!['urgent', 'high', 'medium', 'low'].includes(section.priority as string)) return false;
     
     // Validar cada acción
-    for (const action of section.actions) {
+    for (const action of section.actions as Record<string, unknown>[]) {
       if (!action.id || !action.title || !action.description) return false;
       if (!Array.isArray(action.tags)) return false;
     }

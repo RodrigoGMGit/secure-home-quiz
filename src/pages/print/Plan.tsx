@@ -133,7 +133,7 @@ export default function PlanPage() {
 
       <main id="main-content" className="min-h-screen bg-gradient-subtle">
         {/* Contenedor principal con clases de impresión */}
-        <div className="print-container">
+        <div className="print-container" data-generated-date={plan.generated_at}>
           <PrintPlanLayout>
             {/* Portada y resumen */}
             <PlanCover plan={plan} />

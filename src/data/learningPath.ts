@@ -1,10 +1,11 @@
+import React from 'react';
 import { Users, Shield, Gamepad2, Settings, MessageCircle, Scale, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export interface LearningPathPage {
   id: string;
   title: string;
   route: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   invitationText: string;
 }
 

@@ -1,6 +1,5 @@
 import { Plan } from '@/types/plan';
 import { motion } from 'framer-motion';
-import { MessageCircle, Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface PlanScriptsProps {
@@ -8,16 +7,36 @@ interface PlanScriptsProps {
 }
 
 export default function PlanScripts({ plan }: PlanScriptsProps) {
-  // Recopilar todos los scripts de conversación de las acciones
-  const conversationScripts = plan.sections
+  // Obtener acciones prioritarias con scripts (urgent + high priority)
+  const priorityScripts = plan.sections
+    .filter(section => section.priority === 'urgent' || section.priority === 'high')
     .flatMap(section => section.actions)
     .filter(action => action.conversationScript)
     .map(action => ({
       id: action.id,
       title: action.title,
       script: action.conversationScript!,
-      context: action.description
+      context: action.description,
+      priority: 'high'
     }));
+
+  // Si hay menos de 3, agregar de medium priority
+  const mediumScripts = plan.sections
+    .filter(section => section.priority === 'medium')
+    .flatMap(section => section.actions)
+    .filter(action => action.conversationScript)
+    .map(action => ({
+      id: action.id,
+      title: action.title,
+      script: action.conversationScript!,
+      context: action.description,
+      priority: 'medium'
+    }));
+
+  const allScripts = [...priorityScripts, ...mediumScripts];
+
+  // Tomar mínimo 3, máximo 5
+  const conversationScripts = allScripts.slice(0, Math.max(3, Math.min(5, allScripts.length)));
 
   if (conversationScripts.length === 0) {
     return null;
@@ -33,11 +52,6 @@ export default function PlanScripts({ plan }: PlanScriptsProps) {
       <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30">
         {/* Header de la sección */}
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
-              <MessageCircle className="h-8 w-8 text-primary-foreground" />
-            </div>
-          </div>
           <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
             Scripts de Conversación
           </h2>
@@ -68,18 +82,13 @@ export default function PlanScripts({ plan }: PlanScriptsProps) {
 
               {/* Script de conversación */}
               <div className="bg-white rounded-lg p-4 border border-brand-mint-200/30">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                    <Quote className="h-4 w-4 text-brand-teal-500" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
-                      Qué decir:
-                    </h4>
-                    <blockquote className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed">
-                      "{script.script}"
-                    </blockquote>
-                  </div>
+                <div className="flex-1">
+                  <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
+                    Qué decir:
+                  </h4>
+                  <blockquote className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed">
+                    "{script.script}"
+                  </blockquote>
                 </div>
               </div>
 
@@ -113,17 +122,14 @@ export default function PlanScripts({ plan }: PlanScriptsProps) {
 
         {/* Nota general sobre comunicación */}
         <div className="mt-8 p-4 bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg">
-          <div className="flex items-start gap-3">
-            <MessageCircle className="h-5 w-5 text-brand-teal-500 flex-shrink-0 mt-0.5" />
-            <div>
-              <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
-                La comunicación es clave
-              </h4>
-              <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
-                Mantén conversaciones regulares sobre el uso de internet. La confianza y el diálogo abierto 
-                son las mejores herramientas para proteger a tu familia en el mundo digital.
-              </p>
-            </div>
+          <div>
+            <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
+              La comunicación es clave
+            </h4>
+            <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+              Mantén conversaciones regulares sobre el uso de internet. La confianza y el diálogo abierto 
+              son las mejores herramientas para proteger a tu familia en el mundo digital.
+            </p>
           </div>
         </div>
       </div>

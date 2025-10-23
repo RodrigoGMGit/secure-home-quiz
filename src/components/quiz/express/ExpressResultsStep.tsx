@@ -10,7 +10,7 @@ import DiagnosisCompletedBanner from "./DiagnosisCompletedBanner";
 interface ExpressResultsStepProps {
   result: ExpressQuizResult;
   onRestart: () => void;
-  onTrack: (event: string, data?: any) => void;
+  onTrack: (event: string, data?: Record<string, unknown>) => void;
 }
 
 const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepProps) => {
@@ -24,7 +24,7 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
       key: keyof ExpressQuizAnswers;
       title: string;
       learnHow: string;
-      icon: any;
+      icon: React.ComponentType<{ className?: string }>;
     }> = [];
 
     Object.entries(answers).forEach(([key, value]) => {

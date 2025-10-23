@@ -1,10 +1,11 @@
+import React from 'react';
 import { Shield, Users, MessageCircle, BookOpen, ExternalLink, Globe, Gamepad2 } from "lucide-react";
 
 export interface RecursoDescargable {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   colorIndex: number;
   viewUrl: string;
   downloadUrl: string;
@@ -21,7 +22,7 @@ export interface PlataformaExterna {
   id: string;
   nombre: string;
   descripcion: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   url: string;
   esUrgente?: boolean;
 }

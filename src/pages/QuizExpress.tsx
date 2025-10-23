@@ -60,7 +60,7 @@ const QuizExpress = () => {
       case 'welcome':
         return <ExpressWelcomeStep onNext={nextStep} />;
       
-      case 'questions':
+      case 'questions': {
         const currentQuestionIndex = state.currentQuestionIndex;
         
         // Check if we've answered all questions
@@ -88,6 +88,7 @@ const QuizExpress = () => {
             canProceed={canProceed(currentQuestion.key)}
           />
         );
+      }
       
       case 'results':
         return (

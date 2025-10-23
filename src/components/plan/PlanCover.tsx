@@ -1,6 +1,6 @@
 import { Plan } from '@/types/plan';
 import { motion } from 'framer-motion';
-import { Calendar, Users, Shield, Target } from 'lucide-react';
+import { Calendar, Users, Target } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface PlanCoverProps {
@@ -51,27 +51,20 @@ export default function PlanCover({ plan }: PlanCoverProps) {
       transition={{ duration: 0.6 }}
       className="print-section"
     >
-      {/* Portada principal */}
-      <div className="text-center mb-12 sm:mb-16">
-        {/* Logo/Icono principal */}
-        <div className="flex justify-center mb-6">
-          <div className="p-4 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-            <Shield className="h-12 w-12 text-primary-foreground" />
-          </div>
-        </div>
-
-        {/* Título principal */}
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+      {/* Portada principal - compacta para impresión */}
+      <div className="text-center mb-8 sm:mb-12 print:mb-6">
+        {/* Título principal - compacto para impresión */}
+        <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl print:text-3xl font-bold text-brand-ink-900 mb-3 sm:mb-4 print:mb-2">
           Plan de Seguridad Digital
         </h1>
         
-        <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-semibold text-brand-teal-500 mb-6 sm:mb-8">
+        <h2 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl print:text-xl font-semibold text-brand-teal-500 mb-4 sm:mb-6 print:mb-3">
           Para tu Familia
         </h2>
 
-        {/* Información del plan */}
-        <div className="bg-gradient-to-br from-white via-brand-mint-200/20 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30 max-w-2xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-left">
+        {/* Información del plan - compacta para impresión */}
+        <div className="bg-gradient-to-br from-white via-brand-mint-200/20 to-white rounded-xl shadow-soft p-4 sm:p-6 print:p-3 border border-brand-mint-200/30 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 print:gap-2 text-left">
             {/* Edad */}
             <div className="flex items-center gap-3">
               <div className="p-2 bg-brand-teal-500/20 rounded-full">
@@ -108,27 +101,27 @@ export default function PlanCover({ plan }: PlanCoverProps) {
         </div>
       </div>
 
-      {/* Resumen accionable */}
-      <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30">
-        <div className="text-center mb-6">
-          <h3 className="font-heading text-lg sm:text-xl font-bold text-brand-ink-900 mb-3">
+      {/* Resumen accionable - integrado en la misma página */}
+      <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-4 sm:p-6 print:p-3 border border-brand-mint-200/30">
+        <div className="text-center mb-4 sm:mb-6 print:mb-3">
+          <h3 className="font-heading text-base sm:text-lg print:text-base font-bold text-brand-ink-900 mb-2 print:mb-1">
             Resumen de tu Plan
           </h3>
-          <p className="font-body text-sm sm:text-base text-brand-olive-500">
+          <p className="font-body text-xs sm:text-sm print:text-xs text-brand-olive-500">
             {summary.total_actions} acciones personalizadas para proteger a tu familia
           </p>
         </div>
 
-        {/* Prioridades principales */}
-        <div className="space-y-4">
-          <h4 className="font-heading text-base font-semibold text-brand-ink-900">
+        {/* Prioridades principales - compactas */}
+        <div className="space-y-2 print:space-y-1">
+          <h4 className="font-heading text-sm print:text-xs font-semibold text-brand-ink-900">
             Prioridades principales:
           </h4>
-          <ul className="space-y-2">
+          <ul className="space-y-1 print:space-y-0.5">
             {summary.top_priorities.map((priority, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-brand-teal-500 rounded-full mt-2 flex-shrink-0"></div>
-                <span className="font-body text-sm sm:text-base text-brand-ink-800">
+              <li key={index} className="flex items-start gap-2 print:gap-1">
+                <div className="w-1.5 h-1.5 print:w-1 print:h-1 bg-brand-teal-500 rounded-full mt-1.5 print:mt-1 flex-shrink-0"></div>
+                <span className="font-body text-xs sm:text-sm print:text-xs text-brand-ink-800">
                   {priority}
                 </span>
               </li>
@@ -136,25 +129,25 @@ export default function PlanCover({ plan }: PlanCoverProps) {
           </ul>
         </div>
 
-        {/* Estadísticas del plan */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-brand-mint-200/30">
+        {/* Estadísticas del plan - compactas */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 print:gap-2 mt-4 print:mt-3 pt-4 print:pt-2 border-t border-brand-mint-200/30">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-heading font-bold text-brand-teal-500">
+            <div className="text-lg sm:text-2xl print:text-lg font-heading font-bold text-brand-teal-500">
               {summary.total_actions}
             </div>
-            <div className="text-xs sm:text-sm text-brand-olive-500">Acciones totales</div>
+            <div className="text-xs print:text-xs text-brand-olive-500">Acciones totales</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-heading font-bold text-brand-ink-800">
+            <div className="text-lg sm:text-2xl print:text-lg font-heading font-bold text-brand-ink-800">
               {summary.urgent_actions}
             </div>
-            <div className="text-xs sm:text-sm text-brand-olive-500">Acciones urgentes</div>
+            <div className="text-xs print:text-xs text-brand-olive-500">Acciones urgentes</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-heading font-bold text-brand-olive-500">
+            <div className="text-lg sm:text-2xl print:text-lg font-heading font-bold text-brand-olive-500">
               {summary.platforms.length}
             </div>
-            <div className="text-xs sm:text-sm text-brand-olive-500">Plataformas</div>
+            <div className="text-xs print:text-xs text-brand-olive-500">Plataformas</div>
           </div>
         </div>
       </div>

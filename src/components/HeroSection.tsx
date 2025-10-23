@@ -13,7 +13,7 @@ import familia3 from "@/assets/hero/familia-3.png";
 import familia1 from "@/assets/hero/familia1.png";
 import familyReunited from "@/assets/hero/family_reunited.png";
 import logoGob from "@/assets/logos/Logo_Gob.png";
-import logoFE from "@/assets/logos/LogosFE_Colores-18.png";
+import logoFE from "@/assets/logos/LogosFE_Colores 2.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);

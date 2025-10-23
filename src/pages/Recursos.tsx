@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   FileText, 
@@ -26,8 +26,90 @@ import {
   terminosGlosario, 
   plataformasExternas,
   cardColors,
-  iconColors
+  iconColors,
+  TerminoGlosario
 } from "@/data/recursos";
+
+// Componente para términos del glosario
+const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  return (
+    <motion.div
+      key={termino.termino}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      <Card className="border-brand-mint-200/30 bg-white/50 hover:shadow-soft transition-smooth">
+        <CardHeader 
+          className="p-4 cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <CardTitle className="font-heading text-base sm:text-lg text-brand-ink-900 mb-1">
+                {termino.termino}
+              </CardTitle>
+              <Badge variant="outline" className="text-xs">
+                {termino.categoria}
+              </Badge>
+            </div>
+            <div className="ml-3">
+              {isExpanded ? (
+                <ChevronDown className="h-5 w-5 text-brand-teal-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-brand-teal-500" />
+              )}
+            </div>
+          </div>
+        </CardHeader>
+        
+        {isExpanded && (
+          <CardContent className="p-4 pt-0">
+            <div className="space-y-3">
+              <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+                {termino.definicion}
+              </p>
+              
+              {termino.ejemplos && termino.ejemplos.length > 0 && (
+                <div>
+                  <h4 className="font-heading text-sm font-semibold text-brand-ink-900 mb-2">
+                    Ejemplos:
+                  </h4>
+                  <ul className="space-y-1">
+                    {termino.ejemplos.map((ejemplo: string, i: number) => (
+                      <li key={i} className="font-body text-xs text-brand-olive-500 flex items-start">
+                        <span className="w-1 h-1 bg-brand-teal-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                        {ejemplo}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {termino.consejos && (
+                <div className="bg-brand-mint-200/20 p-3 rounded-lg border border-brand-mint-200/30">
+                  <div className="flex items-start gap-2">
+                    <Info className="h-4 w-4 text-brand-teal-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-heading text-xs font-semibold text-brand-ink-900 mb-1">
+                        Consejo para padres:
+                      </h4>
+                      <p className="font-body text-xs text-brand-ink-800 leading-relaxed">
+                        {termino.consejos}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        )}
+      </Card>
+    </motion.div>
+  );
+};
 
 const Recursos = () => {
   useScrollToTop();
@@ -202,67 +284,9 @@ const Recursos = () => {
                   
                   {/* Grid de términos */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {terminosGlosario.map((termino, index) => {
-                      const [isExpanded, setIsExpanded] = React.useState(false);
-                      
-                      return (
-                        <motion.div
-                          key={termino.termino}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                        >
-                          <Card className="border-brand-mint-200/30 bg-white/50 hover:shadow-soft transition-smooth">
-                            <CardHeader 
-                              className="p-4 cursor-pointer"
-                              onClick={() => setIsExpanded(!isExpanded)}
-                            >
-                              <div className="flex items-center justify-between">
-                                <div className="flex-1">
-                                  <CardTitle className="font-heading text-base sm:text-lg text-brand-ink-900 mb-1">
-                                    {termino.termino}
-                                  </CardTitle>
-                                  <Badge variant="outline" className="text-xs">
-                                    {termino.categoria}
-                                  </Badge>
-                                </div>
-                                <div className="ml-3">
-                                  {isExpanded ? (
-                                    <ChevronDown className="h-5 w-5 text-brand-teal-500" />
-                                  ) : (
-                                    <ChevronRight className="h-5 w-5 text-brand-teal-500" />
-                                  )}
-                                </div>
-                              </div>
-                            </CardHeader>
-                            
-                            {isExpanded && (
-                              <CardContent className="p-4 pt-0">
-                                <p className="font-body text-sm text-brand-ink-800 leading-relaxed mb-3">
-                                  {termino.definicion}
-                                </p>
-                                
-                                {termino.ejemplos && (
-                                  <div className="bg-brand-mint-200/20 p-3 rounded-lg border border-brand-mint-200/30">
-                                    <h4 className="font-heading font-semibold text-xs mb-2 text-brand-ink-900">
-                                      Ejemplos:
-                                    </h4>
-                                    <ul className="space-y-1">
-                                      {termino.ejemplos.map((ejemplo, i) => (
-                                        <li key={i} className="font-body text-xs text-brand-ink-800 flex items-start">
-                                          <span className="w-1 h-1 bg-brand-teal-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
-                                          {ejemplo}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                              </CardContent>
-                            )}
-                          </Card>
-                        </motion.div>
-                      );
-                    })}
+                    {terminosGlosario.map((termino, index) => (
+                      <GlosarioTermino key={termino.termino} termino={termino} index={index} />
+                    ))}
                   </div>
                 </div>
               </div>
