@@ -45,50 +45,33 @@ const FEInfoButton = () => {
         <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
           
           {/* Header con diseño sofisticado */}
-          <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
-            
-            {/* Elementos decorativos de fondo */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute top-4 left-4 w-16 h-16 bg-brand-teal-500/5 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute bottom-4 right-4 w-20 h-20 bg-brand-mint-200/10 rounded-full blur-xl animate-pulse delay-500"></div>
-            </div>
-            
-            <div className="relative">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                {/* Logo circular con gradiente */}
-                <div className="flex justify-center sm:justify-start">
-                  <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                    <img 
-                      src={logoFE} 
-                      alt="FIN de la Esclavitud" 
-                      className="h-8 w-8 object-contain" 
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex-1 min-w-0 text-center sm:text-left">
-                  <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
-                    FIN de la Esclavitud
-                  </DialogTitle>
-                  
-                  {/* Badge informativo */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                    <Badge variant="outline" className="text-xs sm:text-sm w-fit px-3 py-1">
-                      Fundación en Movimiento
-                    </Badge>
-                  </div>
-                  
-                  {/* Descripción */}
-                  <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed">
-                    Organización dedicada a la prevención y erradicación de la trata de personas y la esclavitud moderna en México.
-                  </p>
-                </div>
+          <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
+            <div className="flex justify-center mb-3 sm:mb-4">
+              <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
+                <img 
+                  src={logoFE} 
+                  alt="FIN de la Esclavitud" 
+                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain" 
+                />
               </div>
+            </div>
+            <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">
+              FIN de la Esclavitud
+            </DialogTitle>
+            <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 px-2">
+              Organización dedicada a la prevención y erradicación de la trata de personas y la esclavitud moderna en México.
+            </p>
+            
+            {/* Badge informativo */}
+            <div className="flex justify-center mt-4">
+              <Badge variant="outline" className="text-xs sm:text-sm px-3 py-1">
+                Fundación en Movimiento
+              </Badge>
             </div>
           </DialogHeader>
 
-          {/* Contenido del modal */}
-          <div className="space-y-6 sm:space-y-8">
+          {/* Contenido del modal con animaciones */}
+          <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
             {/* Información adicional */}
             <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 border border-brand-mint-200/30">
               <div className="max-w-4xl mx-auto">
@@ -165,10 +148,10 @@ const FEInfoButton = () => {
           </div>
 
           {/* Botón de cierre */}
-          <div className="flex justify-center px-4 sm:px-0 mt-4">
+          <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0">
             <Button 
               onClick={() => setIsOpen(false)} 
-              className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
+              className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth w-full"
             >
               Cerrar
             </Button>

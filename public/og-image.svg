@@ -1,0 +1,47 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente sutil -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B0E0D6;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3994B2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003556;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Elementos decorativos de fondo -->
+  <circle cx="200" cy="150" r="80" fill="#3994B2" opacity="0.05"/>
+  <circle cx="1000" cy="480" r="120" fill="#B0E0D6" opacity="0.1"/>
+  <circle cx="600" cy="100" r="60" fill="#576D5B" opacity="0.05"/>
+  
+  <!-- Contenedor principal -->
+  <g transform="translate(600, 315)">
+    <!-- Logo circular -->
+    <circle cx="0" cy="-80" r="60" fill="url(#logoGradient)"/>
+    <text x="0" y="-70" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="24" font-weight="bold">HD</text>
+    
+    <!-- Título principal -->
+    <text x="0" y="20" text-anchor="middle" fill="#002B36" font-family="Inter, sans-serif" font-size="48" font-weight="bold">
+      Hogares Digitales Seguros
+    </text>
+    
+    <!-- Subtítulo -->
+    <text x="0" y="70" text-anchor="middle" fill="#576D5B" font-family="Inter, sans-serif" font-size="24" font-weight="400">
+      Protege a tu familia en el mundo digital
+    </text>
+    
+    <!-- Línea decorativa -->
+    <line x1="-200" y1="100" x2="200" y2="100" stroke="#3994B2" stroke-width="3" opacity="0.3"/>
+    
+    <!-- Texto inferior -->
+    <text x="0" y="140" text-anchor="middle" fill="#576D5B" font-family="Inter, sans-serif" font-size="18" font-weight="400">
+      Quiz gratuito • Guía personalizada • Recursos para padres
+    </text>
+  </g>
+</svg>

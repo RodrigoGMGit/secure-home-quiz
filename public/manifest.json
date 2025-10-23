@@ -1,0 +1,41 @@
+{
+  "id": "/",
+  "name": "Hogares Responsables y Seguros",
+  "short_name": "Hogares Seguros",
+  "description": "Evalúa la seguridad digital de tu familia en minutos. Quiz gratuito y guía personalizada para proteger a tus hijos en internet.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "background_color": "#ffffff",
+  "theme_color": "#3994B2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-hogares-digitales.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-hogares-digitales.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-hogares-digitales.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-hogares-digitales.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["education", "family", "safety"],
+  "lang": "es-MX"
+}
