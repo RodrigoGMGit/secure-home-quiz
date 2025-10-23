@@ -6,7 +6,8 @@ import { SpecificMeasures } from '../SpecificMeasures';
 import { ABVariant, QuizAnswers, PlanInput } from '@/types/quiz';
 import { generateSpecificMeasures } from '@/utils/planGenerator';
 import { buildPlan } from '@/data/plan/rules';
-import { CheckCircle, Mail, FileText, Send, Trophy, Shield, Eye } from 'lucide-react';
+import { CheckCircle, Mail, FileText, Send, Trophy, Shield, Eye, AlertTriangle } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
     platforms: answers.platforms,
     other_platforms: answers.other_platforms || '',
     unknown_platforms: answers.unknown_platforms || false,
+    inappropriatePlatforms: answers.inappropriatePlatforms,
     measures: answers.measures || {},
     habits: answers.habits,
     signals: answers.signals,
@@ -109,6 +111,28 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
           </div>
         </div>
       </motion.div>
+
+      {/* Advertencia sobre plataformas inapropiadas */}
+      {answers.inappropriatePlatforms && answers.inappropriatePlatforms.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8"
+        >
+          <Alert className="border-brand-teal-500/30 bg-brand-teal-500/10">
+            <AlertTriangle className="h-4 w-4 text-brand-teal-500" />
+            <AlertTitle className="text-brand-ink-900 font-heading font-semibold">
+              Atención: Plataformas no recomendadas para esta edad
+            </AlertTitle>
+            <AlertDescription className="text-brand-ink-800 font-body leading-relaxed mt-2">
+              Tu hijo/a usa <strong>{answers.inappropriatePlatforms.length} plataforma(s)</strong> no 
+              recomendadas para su edad ({answers.age_band} años). Te proporcionaremos 
+              <strong> recomendaciones especiales de supervisión</strong> para estas plataformas en tu plan personalizado.
+            </AlertDescription>
+          </Alert>
+        </motion.div>
+      )}
 
       {/* Título y Subtítulo con Animaciones */}
       <motion.div

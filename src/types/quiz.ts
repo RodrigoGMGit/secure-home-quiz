@@ -39,7 +39,20 @@ export type ChildGender = 'Niño' | 'Niña' | 'Prefiero no especificar';
 
 export type AgeBand = '6-8' | '9-12' | '13-15' | '16-17';
 
-export type Platform = 'whatsapp' | 'youtube' | 'instagram' | 'roblox' | 'minecraft' | 'tiktok' | 'otros';
+export type Platform = 
+  | 'whatsapp' 
+  | 'youtube' 
+  | 'youtube-kids'
+  | 'instagram' 
+  | 'roblox' 
+  | 'minecraft' 
+  | 'tiktok' 
+  | 'snapchat'
+  | 'facebook'
+  | 'discord'
+  | 'fortnite'
+  | 'free-fire'
+  | 'otros';
 
 export type ABVariant = 'A' | 'B' | 'C';
 
@@ -49,6 +62,7 @@ export interface QuizAnswers {
   platforms: Platform[];
   other_platforms?: string;
   unknown_platforms?: boolean;
+  inappropriatePlatforms?: Platform[];
   measures?: {
     [key in Platform]?: string[];
   };
@@ -62,6 +76,7 @@ export interface PlanInput {
   platforms: Platform[];
   other_platforms?: string;
   unknown_platforms: boolean;
+  inappropriatePlatforms?: Platform[];
   measures: {
     [key in Platform]?: string[];
   };

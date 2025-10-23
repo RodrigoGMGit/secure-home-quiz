@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Home, BookOpen, HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import logoHogaresDigitales from "@/assets/logos/Logo Hogares Digitales.png";
+import OptimizedLogo from "@/components/OptimizedLogo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -113,10 +113,10 @@ const GlobalHeader = () => {
         <div className="flex-shrink-0 p-6 border-b border-brand-mint-200/30 bg-gradient-to-r from-white to-brand-mint-200/10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-              <img 
-                src={logoHogaresDigitales} 
-                alt="Hogares Digitales Seguros" 
+              <OptimizedLogo 
                 className="h-6 w-6 object-contain"
+                alt="Hogares Digitales Seguros"
+                priority={true}
               />
             </div>
             <div>
@@ -290,10 +290,10 @@ const GlobalHeader = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg overflow-hidden flex items-center justify-center">
-              <img 
-                src={logoHogaresDigitales} 
-                alt="Hogares Digitales Seguros" 
+              <OptimizedLogo 
                 className="h-full w-full object-contain"
+                alt="Hogares Digitales Seguros"
+                priority={true}
               />
             </div>
             <span className="hidden lg:inline-block text-lg font-semibold truncate max-w-[40ch]">

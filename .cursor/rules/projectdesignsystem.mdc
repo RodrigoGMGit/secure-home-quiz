@@ -998,7 +998,249 @@ import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
 
 ---
 
-## 17. Gradientes y Fondos
+## 17. Optimización de Imágenes (Sistema Estandarizado)
+
+### **OBLIGATORIO** para todas las imágenes del proyecto
+
+**Regla de Oro**: TODAS las imágenes deben ser optimizadas antes de usar en producción. No se permite usar imágenes sin optimizar.
+
+### Proceso de Optimización Obligatorio
+
+#### 1. Preparación de Imágenes
+```bash
+# 1. Colocar imagen original en src/assets/
+# 2. Ejecutar script de optimización
+npm run optimize-images
+
+# 3. Usar componentes optimizados en el código
+```
+
+#### 2. Componentes de Imagen Optimizados
+
+**Para imágenes del HeroSection**:
+```jsx
+import HeroImage from "@/components/HeroImage";
+
+<HeroImage
+  src="nombre-imagen.png"
+  alt="Descripción de la imagen"
+  className="w-full h-full object-cover"
+  priority={true} // Solo para imágenes críticas
+/>
+```
+
+**Para logos principales**:
+```jsx
+import OptimizedLogo from "@/components/OptimizedLogo";
+
+<OptimizedLogo
+  className="h-8 w-auto"
+  alt="Nombre del logo"
+  priority={true} // Solo para logos críticos
+/>
+```
+
+**Para logos de confianza/partners**:
+```jsx
+import TrustLogo from "@/components/TrustLogo";
+
+<TrustLogo
+  src="logo-partner.png"
+  alt="Nombre del partner"
+  className="h-8 sm:h-10 w-auto"
+  priority={false} // Lazy loading por defecto
+/>
+```
+
+**Para imágenes genéricas**:
+```jsx
+import OptimizedImage from "@/components/OptimizedImage";
+
+<OptimizedImage
+  src="imagen-generica.png"
+  alt="Descripción"
+  className="w-full h-auto"
+  sizes="(max-width: 768px) 100vw, 50vw"
+  priority={false}
+/>
+```
+
+### Configuración de Optimización por Tipo
+
+#### Favicons e Iconos PWA
+- **Formato**: PNG optimizado
+- **Tamaños**: 16w, 32w, 48w, 64w, 96w, 128w, 192w, 256w, 512w
+- **Calidad**: Máxima compresión (nivel 9)
+- **Ubicación**: `/public/optimized/favicon/`
+
+#### Imágenes del HeroSection
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 400w, 600w, 800w, 1200w
+- **Calidad**: 85%
+- **Ubicación**: `/public/optimized/hero/`
+
+#### Logos y Marcas
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 100w, 200w, 400w
+- **Calidad**: 90%
+- **Ubicación**: `/public/optimized/logos/`
+
+#### Imágenes de Contenido
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 300w, 600w, 900w, 1200w
+- **Calidad**: 80-85%
+- **Ubicación**: `/public/optimized/content/`
+
+### Características Técnicas Obligatorias
+
+#### Lazy Loading Inteligente
+```jsx
+// ✅ CORRECTO - Solo imágenes críticas con priority
+<HeroImage priority={true} />
+
+// ✅ CORRECTO - Lazy loading por defecto
+<OptimizedImage priority={false} />
+
+// ❌ INCORRECTO - Usar img HTML directamente
+<img src="imagen.png" />
+```
+
+#### Responsive Images
+```jsx
+// ✅ CORRECTO - srcSet automático
+<OptimizedImage 
+  src="imagen.png"
+  sizes="(max-width: 768px) 100vw, 50vw"
+/>
+
+// ❌ INCORRECTO - Sin srcSet
+<img src="imagen.png" />
+```
+
+#### Fallbacks y Manejo de Errores
+```jsx
+// ✅ CORRECTO - Fallback automático
+<OptimizedImage 
+  src="imagen.png"
+  alt="Descripción obligatoria"
+/>
+
+// ❌ INCORRECTO - Sin alt text
+<OptimizedImage src="imagen.png" />
+```
+
+### Preload Hints para Imágenes Críticas
+
+#### En index.html
+```html
+<!-- ✅ CORRECTO - Solo imágenes críticas -->
+<link rel="preload" as="image" href="/optimized/hero/familia1-original.webp">
+<link rel="preload" as="image" href="/optimized/logos/Logo Hogares Digitales-original.webp">
+
+<!-- ❌ INCORRECTO - Preload de todas las imágenes -->
+<link rel="preload" as="image" href="/optimized/hero/*">
+```
+
+### Reglas de Implementación
+
+#### ✅ SIEMPRE Hacer
+
+1. **Optimizar TODAS las imágenes** antes de usar en producción
+2. **Usar componentes optimizados** (HeroImage, OptimizedLogo, TrustLogo, OptimizedImage)
+3. **Incluir alt text descriptivo** en todas las imágenes
+4. **Usar priority={true}** solo para imágenes críticas (hero, logos principales)
+5. **Definir sizes apropiados** para responsive images
+6. **Ejecutar npm run optimize-images** después de agregar nuevas imágenes
+7. **Verificar que se generen todos los tamaños** en `/public/optimized/`
+
+#### ❌ NUNCA Hacer
+
+1. ❌ Usar `<img>` HTML directamente sin optimización
+2. ❌ Importar imágenes grandes desde `src/assets/` sin optimizar
+3. ❌ Usar `priority={true}` en imágenes no críticas
+4. ❌ Omitir alt text en imágenes
+5. ❌ Usar imágenes sin fallback WebP/PNG
+6. ❌ Preload todas las imágenes (solo críticas)
+7. ❌ Usar imágenes sin lazy loading en contenido no crítico
+
+### Checklist de Implementación
+
+#### ✅ Para Nuevas Imágenes:
+
+- [ ] Colocar imagen original en `/src/assets/`
+- [ ] Ejecutar `npm run optimize-images`
+- [ ] Verificar generación en `/public/optimized/`
+- [ ] Usar componente optimizado apropiado
+- [ ] Incluir alt text descriptivo
+- [ ] Definir priority correctamente
+- [ ] Especificar sizes para responsive
+- [ ] Probar en diferentes dispositivos
+- [ ] Verificar lazy loading funciona
+- [ ] Comprobar fallbacks en caso de error
+
+#### ✅ Para Imágenes Existentes:
+
+- [ ] Identificar todas las instancias de `<img>` HTML
+- [ ] Reemplazar con componentes optimizados
+- [ ] Actualizar imports de imágenes
+- [ ] Ejecutar script de optimización
+- [ ] Verificar que no se rompan estilos
+- [ ] Probar funcionalidad completa
+- [ ] Verificar rendimiento mejorado
+
+### Métricas de Rendimiento Esperadas
+
+#### Antes de Optimización:
+- **Favicon**: 1MB+ (inaceptable)
+- **Imagen Hero**: 1.5MB+ (lenta)
+- **Logo**: 1MB+ (pesado)
+
+#### Después de Optimización:
+- **Favicon**: <10KB (instantáneo)
+- **Imagen Hero**: <100KB (rápida)
+- **Logo**: <50KB (ligero)
+
+### Herramientas y Scripts
+
+#### Script Principal
+```bash
+# Optimizar todas las imágenes
+npm run optimize-images
+```
+
+#### Verificación Manual
+```bash
+# Verificar tamaños de archivos optimizados
+ls -la public/optimized/*/
+```
+
+#### Testing de Rendimiento
+```bash
+# Usar Lighthouse para verificar mejoras
+npm run build
+npm run preview
+# Abrir http://localhost:4173 en Chrome DevTools > Lighthouse
+```
+
+### Archivos de Referencia
+
+#### Componentes Optimizados
+- **`src/components/HeroImage.tsx`** - Imágenes del hero
+- **`src/components/OptimizedLogo.tsx`** - Logos principales
+- **`src/components/TrustLogo.tsx`** - Logos de partners
+- **`src/components/OptimizedImage.tsx`** - Imágenes genéricas
+
+#### Scripts de Optimización
+- **`scripts/optimize-images.js`** - Script principal de optimización
+- **`IMAGE_OPTIMIZATION_REPORT.md`** - Documentación completa
+
+#### Configuración
+- **`package.json`** - Script `optimize-images`
+- **`index.html`** - Preload hints para imágenes críticas
+
+---
+
+## 18. Gradientes y Fondos
 
 ### Clase Utility Principal
 
@@ -1041,7 +1283,7 @@ import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
 
 ---
 
-## 18. Sistema de Opacidades Estandarizado
+## 19. Sistema de Opacidades Estandarizado
 
 ### Escala de Opacidades
 
@@ -1096,7 +1338,7 @@ const iconColors = [
 
 ---
 
-## 19. Patrones de React Comunes
+## 20. Patrones de React Comunes
 
 ### Hook: Auto-scroll al inicio de página
 
@@ -1178,7 +1420,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 20. Checklist de Implementación
+## 21. Checklist de Implementación
 
 ### ✅ Componentes Universales (Aplican en TODO el proyecto)
 
@@ -1193,6 +1435,9 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 - [ ] Cards con sistema de colores rotativos
 - [ ] Modales con sistema estandarizado
 - [ ] Contraste WCAG AA en todos los elementos
+- [ ] Imágenes optimizadas con componentes especializados
+- [ ] Lazy loading implementado en imágenes no críticas
+- [ ] Preload hints para imágenes críticas
 
 ### ✅ Patrones de Página por Tipo
 
@@ -1230,7 +1475,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 21. Reglas de Implementación
+## 22. Reglas de Implementación
 
 ### SIEMPRE Hacer
 
@@ -1247,6 +1492,9 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 11. **Usar AppShellCard** en página de quiz (/quiz)
 12. **Mantener diseño consistente** en páginas especiales (/about) sin GlobalHeader
 13. **Alcanzar el nivel de sofisticación** documentado en este sistema de diseño
+14. **Optimizar TODAS las imágenes** antes de usar en producción - UNIVERSAL
+15. **Usar componentes optimizados** (HeroImage, OptimizedLogo, TrustLogo, OptimizedImage) - UNIVERSAL
+16. **Ejecutar npm run optimize-images** después de agregar nuevas imágenes - UNIVERSAL
 
 ### NUNCA Hacer
 
@@ -1258,10 +1506,16 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 6. ❌ Sobrescribir clases de `DialogContent` base para modales
 7. ❌ Crear tap targets menores a 44px
 8. ❌ Olvidar ARIA labels en iconos sin texto
+9. ❌ Usar `<img>` HTML directamente sin optimización - UNIVERSAL
+10. ❌ Importar imágenes grandes desde `src/assets/` sin optimizar - UNIVERSAL
+11. ❌ Usar `priority={true}` en imágenes no críticas - UNIVERSAL
+12. ❌ Omitir alt text en imágenes - UNIVERSAL
+13. ❌ Usar imágenes sin fallback WebP/PNG - UNIVERSAL
+14. ❌ Preload todas las imágenes (solo críticas) - UNIVERSAL
 
 ---
 
-## 22. Ejemplos Rápidos
+## 23. Ejemplos Rápidos
 
 ### Layout de Página Completo por Tipo
 
@@ -1324,7 +1578,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 24. Snippets Canónicos
+## 25. Snippets Canónicos
 
 ### Configuración Completa del Proyecto
 
@@ -1503,7 +1757,7 @@ export default {
 
 ---
 
-## 25. Convención de Nombres Estandarizada
+## 26. Convención de Nombres Estandarizada
 
 ### En CSS (Custom Properties)
 ```css
@@ -1567,7 +1821,7 @@ boxShadow: {
 
 ---
 
-## 26. Arquitectura del Sistema de Diseño
+## 27. Arquitectura del Sistema de Diseño
 
 ### Flujo de Información
 
@@ -1626,7 +1880,7 @@ Componentes (Uso)
 
 ---
 
-## 23. Dark Mode
+## 24. Dark Mode
 
 **Estado actual**: ❌ NO SOPORTADO
 
@@ -1652,7 +1906,7 @@ La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode si
 
 ---
 
-## 27. Componentes: Tooltips Educativos (Sistema Estandarizado)
+## 28. Componentes: Tooltips Educativos (Sistema Estandarizado)
 
 ### Patrón Base para Tooltips de Términos Técnicos
 

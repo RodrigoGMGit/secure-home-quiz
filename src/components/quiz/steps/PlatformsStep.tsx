@@ -1,69 +1,198 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { StepHeader } from '../StepHeader';
 import { OptionGrid } from '../OptionGrid';
 import { Notice } from '../Notice';
-import { TikTokAgeWarningModal } from '../TikTokAgeWarningModal';
+import { AgeWarningModal } from '../AgeWarningModal';
 import { Platform, AgeBand } from '@/types/quiz';
 import { MessageCircle, Video, Gamepad2, HelpCircle, Plus } from 'lucide-react';
-import { WhatsAppIcon, YouTubeIcon, InstagramIcon, RobloxIcon, MinecraftIcon, TikTokIcon } from '@/components/icons/platforms';
+import { 
+  WhatsAppIcon, 
+  YouTubeIcon, 
+  InstagramIcon, 
+  RobloxIcon, 
+  MinecraftIcon, 
+  TikTokIcon,
+  SnapchatIcon,
+  FacebookIcon,
+  DiscordIcon,
+  FortniteIcon
+} from '@/components/icons/platforms';
 
 interface PlatformsStepProps {
   initialPlatforms?: Platform[];
   initialOtherPlatforms?: string;
   initialUnknownPlatforms?: boolean;
   ageband?: AgeBand;
-  onNext: (data: { platforms?: Platform[]; otherPlatforms?: string; unknownPlatforms?: boolean }) => void;
+  onNext: (data: { platforms?: Platform[]; otherPlatforms?: string; unknownPlatforms?: boolean; inappropriatePlatforms?: Platform[] }) => void;
   onPrevious: () => void;
   onTrack: (event: string, data: Record<string, unknown>) => void;
 }
 
 const platformOptions = [
   { 
+    value: 'youtube-kids', 
+    label: 'YouTube Kids', 
+    icon: <YouTubeIcon className="h-5 w-5" />, 
+    description: 'Videos para niños',
+    minAge: 3
+  },
+  { 
     value: 'whatsapp', 
     label: 'WhatsApp', 
     icon: <WhatsAppIcon className="h-5 w-5" />, 
-    description: 'Mensajería' 
+    description: 'Mensajería',
+    minAge: 13
   },
   { 
     value: 'youtube', 
     label: 'YouTube', 
     icon: <YouTubeIcon className="h-5 w-5" />, 
-    description: 'Videos' 
-  },
-  { 
-    value: 'instagram', 
-    label: 'Instagram', 
-    icon: <InstagramIcon className="h-5 w-5" />, 
-    description: 'Red social de fotos y videos' 
-  },
-  { 
-    value: 'roblox', 
-    label: 'Roblox', 
-    icon: <RobloxIcon className="h-5 w-5" />, 
-    description: 'Juegos en línea' 
+    description: 'Videos',
+    minAge: 13
   },
   { 
     value: 'minecraft', 
     label: 'Minecraft', 
     icon: <MinecraftIcon className="h-5 w-5" />, 
-    description: 'Juego de construcción' 
+    description: 'Juego de construcción',
+    minAge: 10
+  },
+  { 
+    value: 'roblox', 
+    label: 'Roblox', 
+    icon: <RobloxIcon className="h-5 w-5" />, 
+    description: 'Juegos en línea',
+    minAge: 13
   },
   { 
     value: 'tiktok', 
     label: 'TikTok', 
     icon: <TikTokIcon className="h-5 w-5" />, 
     description: 'Videos cortos',
-    ageRestricted: true
+    ageRestricted: true,
+    minAge: 13
   },
   { 
-    value: 'otros', 
-    label: 'Otro(s)', 
-    icon: <Plus className="h-5 w-5" />, 
-    description: 'Otras plataformas' 
+    value: 'instagram', 
+    label: 'Instagram', 
+    icon: <InstagramIcon className="h-5 w-5" />, 
+    description: 'Red social de fotos y videos',
+    ageRestricted: true,
+    minAge: 13
+  },
+  { 
+    value: 'snapchat', 
+    label: 'Snapchat', 
+    icon: <SnapchatIcon className="h-5 w-5" />, 
+    description: 'Fotos que desaparecen',
+    ageRestricted: true,
+    minAge: 13
+  },
+  { 
+    value: 'discord', 
+    label: 'Discord', 
+    icon: <DiscordIcon className="h-5 w-5" />, 
+    description: 'Chat para gamers',
+    ageRestricted: true,
+    minAge: 13
+  },
+  { 
+    value: 'facebook', 
+    label: 'Facebook', 
+    icon: <FacebookIcon className="h-5 w-5" />, 
+    description: 'Red social',
+    ageRestricted: true,
+    minAge: 13
+  },
+  { 
+    value: 'fortnite', 
+    label: 'Fortnite', 
+    icon: <FortniteIcon className="h-5 w-5" />, 
+    description: 'Juego de batalla',
+    ageRestricted: true,
+    minAge: 13
+  },
+  { 
+    value: 'free-fire', 
+    label: 'Free Fire', 
+    icon: <Gamepad2 className="h-5 w-5" />, 
+    description: 'Juego de supervivencia',
+    ageRestricted: true,
+    minAge: 13
   }
 ];
+
+// Función para ordenar plataformas según la edad
+const sortPlatformsByAge = (platforms: typeof platformOptions, ageband?: AgeBand) => {
+  if (!ageband) return platforms;
+
+  const ageOrder: Record<AgeBand, string[]> = {
+    '6-8': [
+      'youtube-kids',
+      'minecraft', 
+      'youtube',
+      'whatsapp',
+      'roblox',
+      'tiktok',
+      'instagram',
+      'snapchat',
+      'discord',
+      'facebook',
+      'fortnite',
+      'free-fire'
+    ],
+    '9-12': [
+      'youtube-kids',
+      'youtube',
+      'minecraft',
+      'roblox',
+      'whatsapp',
+      'tiktok',
+      'instagram',
+      'snapchat',
+      'discord',
+      'facebook',
+      'fortnite',
+      'free-fire'
+    ],
+    '13-15': [
+      'tiktok',
+      'instagram',
+      'youtube',
+      'whatsapp',
+      'snapchat',
+      'roblox',
+      'minecraft',
+      'discord',
+      'facebook',
+      'fortnite',
+      'free-fire',
+      'youtube-kids'
+    ],
+    '16-17': [
+      'tiktok',
+      'instagram',
+      'snapchat',
+      'discord',
+      'whatsapp',
+      'youtube',
+      'facebook',
+      'fortnite',
+      'roblox',
+      'minecraft',
+      'free-fire',
+      'youtube-kids'
+    ]
+  };
+
+  const order = ageOrder[ageband];
+  return [...platforms].sort((a, b) => {
+    const indexA = order.indexOf(a.value);
+    const indexB = order.indexOf(b.value);
+    return indexA - indexB;
+  });
+};
 
 export function PlatformsStep({ 
   initialPlatforms = [], 
@@ -75,40 +204,47 @@ export function PlatformsStep({
   onTrack 
 }: PlatformsStepProps) {
   const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>(initialPlatforms);
-  const [otherPlatforms, setOtherPlatforms] = useState<string>(initialOtherPlatforms);
   const [showingHelp, setShowingHelp] = useState(false);
   const [isUnsure, setIsUnsure] = useState(initialUnknownPlatforms);
-  const [showTikTokWarning, setShowTikTokWarning] = useState(false);
+  const [showAgeWarning, setShowAgeWarning] = useState(false);
+  const [hasSeenAgeWarning, setHasSeenAgeWarning] = useState(false);
+  const [pendingPlatform, setPendingPlatform] = useState<string | null>(null);
 
   const handlePlatformSelection = (values: string[]) => {
     setSelectedPlatforms(values as Platform[]);
     setIsUnsure(false);
     
-    // Limpiar el campo de texto si se deselecciona "otros"
-    if (!values.includes('otros')) {
-      setOtherPlatforms('');
-    }
-    
     onTrack('platform_select', { platforms: values });
   };
 
-  const handleTikTokProceed = () => {
-    // Add TikTok to selected platforms
-    const newPlatforms = [...selectedPlatforms, 'tiktok' as Platform];
-    setSelectedPlatforms(newPlatforms);
-    setShowTikTokWarning(false);
-    onTrack('tiktok_age_warning_proceeded', { ageband });
+  const handleAgeRestrictedProceed = () => {
+    if (pendingPlatform) {
+      const newPlatforms = [...selectedPlatforms, pendingPlatform as Platform];
+      setSelectedPlatforms(newPlatforms);
+      setHasSeenAgeWarning(true); // Marcar que ya vieron la advertencia
+      setPendingPlatform(null);
+      setShowAgeWarning(false);
+      onTrack('age_warning_proceeded', { platform: pendingPlatform, ageband });
+    }
   };
 
-  const handleTikTokClose = () => {
-    setShowTikTokWarning(false);
-    onTrack('tiktok_age_warning_dismissed', { ageband });
+  const handleAgeRestrictedClose = () => {
+    setShowAgeWarning(false);
+    setPendingPlatform(null);
+    onTrack('age_warning_dismissed', { platform: pendingPlatform, ageband });
   };
 
   const handleAgeRestrictedClick = (platform: string) => {
-    if (platform === 'tiktok') {
-      setShowTikTokWarning(true);
-      onTrack('tiktok_age_warning_shown', { ageband });
+    if (!hasSeenAgeWarning) {
+      // Primera vez: mostrar modal de advertencia general para cualquier plataforma
+      setPendingPlatform(platform);
+      setShowAgeWarning(true);
+      onTrack('age_warning_shown', { platform, ageband });
+    } else {
+      // Ya vieron la advertencia: permitir selección directa
+      const newPlatforms = [...selectedPlatforms, platform as Platform];
+      setSelectedPlatforms(newPlatforms);
+      onTrack('platform_select', { platforms: newPlatforms });
     }
   };
 
@@ -123,7 +259,6 @@ export function PlatformsStep({
       setShowingHelp(true);
       setIsUnsure(true);
       setSelectedPlatforms([]);
-      setOtherPlatforms('');
       onTrack('platform_select', { unknown_platforms: true });
     }
   };
@@ -132,21 +267,38 @@ export function PlatformsStep({
     onNext({ unknownPlatforms: true });
   };
 
+  const getInappropriatePlatforms = () => {
+    if (!ageband) return [];
+    
+    const ageLimits: Record<AgeBand, number> = {
+      '6-8': 10,
+      '9-12': 13,
+      '13-15': 13,
+      '16-17': 18
+    };
+    
+    return selectedPlatforms.filter(platform => {
+      const option = platformOptions.find(opt => opt.value === platform);
+      return option && option.minAge && option.minAge > ageLimits[ageband];
+    });
+  };
+
   const handleNext = () => {
     if (isUnsure) {
       onNext({ unknownPlatforms: true });
     } else {
       onNext({ 
         platforms: selectedPlatforms,
-        otherPlatforms: selectedPlatforms.includes('otros') ? otherPlatforms : undefined
+        inappropriatePlatforms: getInappropriatePlatforms()
       });
     }
   };
 
   const canProceed = isUnsure || selectedPlatforms.length > 0;
 
-  // Add current age to options for age restriction checking
-  const optionsWithAge = platformOptions.map(option => ({
+  // Sort platforms by age and add current age to options for age restriction checking
+  const sortedPlatforms = sortPlatformsByAge(platformOptions, ageband);
+  const optionsWithAge = sortedPlatforms.map(option => ({
     ...option,
     currentAge: ageband
   }));
@@ -155,7 +307,7 @@ export function PlatformsStep({
     <div className="space-y-6">
       <StepHeader
         title="¿Qué plataformas usa con más frecuencia?"
-        subtitle="Selecciona todas las que apliquen. Esto nos ayuda a dar recomendaciones más específicas."
+        subtitle="Plataformas más usadas ordenadas según su edad. Selecciona todas las que apliquen."
         descriptionSlot={
           <span className="text-sm font-medium text-brand-olive-500">
             Campo requerido <span className="text-brand-teal-500">*</span>
@@ -204,23 +356,6 @@ export function PlatformsStep({
             onAgeRestrictedClick={handleAgeRestrictedClick}
             multiSelect={true}
           />
-
-          {/* Campo de texto para otras plataformas */}
-          {selectedPlatforms.includes('otros') && (
-            <div className="space-y-2">
-              <label htmlFor="other-platforms" className="text-sm font-medium text-brand-ink-800">
-                ¿Cuáles otras plataformas usa? (opcional)
-              </label>
-              <Input
-                id="other-platforms"
-                type="text"
-                placeholder="Ej: Instagram, Discord, Fortnite, etc."
-                value={otherPlatforms}
-                onChange={(e) => setOtherPlatforms(e.target.value)}
-                className="w-full"
-              />
-            </div>
-          )}
         </>
       )}
 
@@ -270,12 +405,15 @@ export function PlatformsStep({
         </Button>
       </div>
 
-      {/* TikTok Age Warning Modal */}
-      <TikTokAgeWarningModal
-        isOpen={showTikTokWarning}
-        onClose={handleTikTokClose}
-        onProceed={handleTikTokProceed}
+      {/* General Age Warning Modal */}
+      <AgeWarningModal
+        isOpen={showAgeWarning}
+        onClose={handleAgeRestrictedClose}
+        onProceed={handleAgeRestrictedProceed}
+        platformName={pendingPlatform ? platformOptions.find(p => p.value === pendingPlatform)?.label || '' : ''}
+        platformIcon={pendingPlatform ? platformOptions.find(p => p.value === pendingPlatform)?.icon || <></> : <></>}
         ageband={ageband}
+        minAge={pendingPlatform ? platformOptions.find(p => p.value === pendingPlatform)?.minAge || 13 : 13}
       />
     </div>
   );

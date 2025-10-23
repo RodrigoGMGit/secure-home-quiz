@@ -10,6 +10,7 @@ interface Option {
   description?: ReactNode;
   ageRestricted?: boolean;
   currentAge?: string;
+  minAge?: number;
 }
 
 interface OptionGridProps {
@@ -31,15 +32,24 @@ export function OptionGrid({
 }: OptionGridProps) {
   
   const isAgeRestricted = (option: Option) => {
-    if (!option.ageRestricted || !option.currentAge) return false;
-    if (option.value === 'tiktok') {
-      return option.currentAge === '6-8' || option.currentAge === '9-12';
-    }
-    return false;
+    if (!option.ageRestricted || !option.currentAge || !option.minAge) return false;
+    
+    const ageLimits: Record<string, number> = {
+      '6-8': 10,
+      '9-12': 13,
+      '13-15': 13,
+      '16-17': 18
+    };
+    
+    const currentAgeLimit = ageLimits[option.currentAge];
+    return currentAgeLimit && option.minAge > currentAgeLimit;
   };
 
   const handleOptionClick = (option: Option) => {
-    if (isAgeRestricted(option) && onAgeRestrictedClick) {
+    const isSelected = selectedValues.includes(option.value);
+    
+    if (isAgeRestricted(option) && onAgeRestrictedClick && !isSelected) {
+      // Solo mostrar advertencia cuando se está SELECCIONANDO (no deseleccionando)
       onAgeRestrictedClick(option.value);
       return;
     }
@@ -122,7 +132,7 @@ export function OptionGrid({
                 id={`${option.value}-age-restriction`}
                 className="text-sm text-brand-ink-800 mt-2 font-body font-medium"
               >
-                13+ años
+                {option.minAge}+ años
               </div>
             )}
           </motion.button>

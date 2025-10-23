@@ -5,15 +5,9 @@ import LoadingComponent from "@/components/ui/loading-component";
 import { useNavigationLoading } from "@/hooks/useNavigationLoading";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import childGaming from "@/assets/hero/child-gaming-safely.png";
-import childrenLearning from "@/assets/hero/children-learning-together.png";
-import childTablet from "@/assets/hero/child-using-tablet.png";
-import child1 from "@/assets/hero/child1.png";
-import familia3 from "@/assets/hero/familia-3.png";
-import familia1 from "@/assets/hero/familia1.png";
-import familyReunited from "@/assets/hero/family_reunited.png";
-import logoGob from "@/assets/logos/Logo_Gob.png";
-import logoFE from "@/assets/logos/LogosFE_Colores 2.png";
+import HeroImage from "@/components/HeroImage";
+import OptimizedLogo from "@/components/OptimizedLogo";
+import TrustLogo from "@/components/TrustLogo";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -111,243 +105,222 @@ const HeroSection = () => {
                           {/* Set 1 - with onLoad handlers */}
                           <div className="flex gap-2 sm:gap-4 flex-shrink-0">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childGaming}
+                              <HeroImage
+                                src="child-gaming-safely.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childTablet}
+                              <HeroImage
+                                src="child-using-tablet.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childrenLearning}
+                              <HeroImage
+                                src="children-learning-together.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={child1}
+                              <HeroImage
+                                src="child1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia3}
+                              <HeroImage
+                                src="familia-3.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia1}
+                              <HeroImage
+                                src="familia1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familyReunited}
+                              <HeroImage
+                                src="family_reunited.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                                 onLoad={handleImageLoad}
+                                priority={true}
                               />
                             </div>
                           </div>
                           {/* Set 2 - duplicate without onLoad */}
                           <div className="flex gap-2 sm:gap-4 flex-shrink-0">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childGaming}
+                              <HeroImage
+                                src="child-gaming-safely.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childTablet}
+                              <HeroImage
+                                src="child-using-tablet.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childrenLearning}
+                              <HeroImage
+                                src="children-learning-together.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={child1}
+                              <HeroImage
+                                src="child1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia3}
+                              <HeroImage
+                                src="familia-3.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia1}
+                              <HeroImage
+                                src="familia1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familyReunited}
+                              <HeroImage
+                                src="family_reunited.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                           </div>
                           {/* Set 3 - duplicate without onLoad */}
                           <div className="flex gap-2 sm:gap-4 flex-shrink-0">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childGaming}
+                              <HeroImage
+                                src="child-gaming-safely.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childTablet}
+                              <HeroImage
+                                src="child-using-tablet.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childrenLearning}
+                              <HeroImage
+                                src="children-learning-together.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={child1}
+                              <HeroImage
+                                src="child1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia3}
+                              <HeroImage
+                                src="familia-3.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia1}
+                              <HeroImage
+                                src="familia1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familyReunited}
+                              <HeroImage
+                                src="family_reunited.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                           </div>
                           {/* Set 4 - duplicate without onLoad */}
                           <div className="flex gap-2 sm:gap-4 flex-shrink-0">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childGaming}
+                              <HeroImage
+                                src="child-gaming-safely.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childTablet}
+                              <HeroImage
+                                src="child-using-tablet.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={childrenLearning}
+                              <HeroImage
+                                src="children-learning-together.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={child1}
+                              <HeroImage
+                                src="child1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia3}
+                              <HeroImage
+                                src="familia-3.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familia1}
+                              <HeroImage
+                                src="familia1.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden shadow-md opacity-15 sm:opacity-20">
-                              <img
-                                src={familyReunited}
+                              <HeroImage
+                                src="family_reunited.png"
                                 alt=""
                                 className="w-full h-full object-cover"
-                                loading="eager"
                               />
                             </div>
                           </div>
@@ -420,19 +393,17 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`} style={{ transitionDelay: "1400ms" }}>
               <div className="flex justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                <motion.img 
-                  src={logoGob}
+                <TrustLogo 
+                  src="Logo_Gob.png"
                   alt="Gobierno de México" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  priority={true}
                 />
-                <motion.img 
-                  src={logoFE}
+                <TrustLogo 
+                  src="LogosFE_Colores 2.png"
                   alt="Fundación en Movimiento" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  priority={true}
                 />
               </div>
             </div>

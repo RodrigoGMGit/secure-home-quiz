@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useMobileDetection, useTelephoneCapability } from "@/hooks/useMobileDetection";
 import { initiatePhoneCall } from "@/utils/phoneUtils";
-import logoFE from "@/assets/logos/LogosFE_Colores 2.png";
+import TrustLogo from "@/components/TrustLogo";
 
 const FEInfoButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,10 +46,11 @@ const FEInfoButton = () => {
           aria-label="Información de FIN de la Esclavitud"
         >
           {/* Logo que ocupa casi todo el espacio */}
-          <img 
-            src={logoFE} 
+          <TrustLogo 
+            src="LogosFE_Colores 2.png"
             alt="FIN de la Esclavitud" 
-            className="w-[78%] h-[78%] object-contain mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-110 transition-transform duration-300" 
+            className="w-[78%] h-[78%] object-contain mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-110 transition-transform duration-300"
+            priority={true}
           />
         </button>
       </motion.div>
@@ -62,10 +63,11 @@ const FEInfoButton = () => {
           <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
             <div className="flex justify-center mb-3 sm:mb-4">
               <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                <img 
-                  src={logoFE} 
+                <TrustLogo 
+                  src="LogosFE_Colores 2.png"
                   alt="FIN de la Esclavitud" 
-                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain" 
+                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
+                  priority={true}
                 />
               </div>
             </div>
