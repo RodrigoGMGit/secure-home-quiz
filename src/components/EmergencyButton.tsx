@@ -63,43 +63,29 @@ const EmergencyButton = () => {
 
   return (
     <>
-      {/* Botón flotante de contacto rediseñado */}
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 300, 
-          damping: 25,
-          delay: 1.5 
-        }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      {/* Botón de emergencia (posicionado por contenedor externo) */}
+      <Button
+        onClick={() => setIsOpen(true)}
+        className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white/20"
+        aria-label="Contactos de emergencia"
       >
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white/20"
-          aria-label="Contactos de emergencia"
-        >
-          {/* Efecto de pulso sutil */}
-          <motion.div
-            className="absolute inset-0 rounded-full bg-red-400/30"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.5, 0, 0.5]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Icono principal - Phone para indicar contacto */}
-          <Phone className="h-7 w-7 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-        </Button>
-      </motion.div>
+        {/* Efecto de pulso sutil */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-red-400/30"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0, 0.5]
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        {/* Icono principal - Phone para indicar contacto */}
+        <Phone className="h-7 w-7 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+      </Button>
 
       {/* Modal de emergencia */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>

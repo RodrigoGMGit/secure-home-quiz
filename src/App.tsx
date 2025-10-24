@@ -70,10 +70,14 @@ const AppContent = () => {
       
       {/* Botones flotantes - no se muestran en /about */}
       {shouldShowEmergencyButton && (
-        <>
-          <FEInfoButton />
-          <EmergencyButton />
-        </>
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 pointer-events-none">
+          <div className="pointer-events-auto">
+            <FEInfoButton />
+          </div>
+          <div className="pointer-events-auto">
+            <EmergencyButton />
+          </div>
+        </div>
       )}
     </>
   );

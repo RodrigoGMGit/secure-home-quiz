@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import HeroImage from "@/components/HeroImage";
 import OptimizedLogo from "@/components/OptimizedLogo";
-import TrustLogo from "@/components/TrustLogo";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -393,17 +392,18 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`} style={{ transitionDelay: "1400ms" }}>
               <div className="flex justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                <TrustLogo 
-                  src="Logo_Gob.png"
+                {/* Logo Gobierno - desde src/assets/logos */}
+                <img 
+                  src="/src/assets/logos/Logo_Gob.png"
                   alt="Gobierno de México" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                  priority={true}
                 />
-                <TrustLogo 
-                  src="LogosFE_Colores 2.png"
+                
+                {/* Logo Fundación - desde src/assets/logos */}
+                <img 
+                  src="/src/assets/logos/LogosFE_Colores 2.png"
                   alt="Fundación en Movimiento" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                  priority={true}
                 />
               </div>
             </div>
@@ -419,3 +419,5 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+

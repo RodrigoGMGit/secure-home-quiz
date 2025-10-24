@@ -86,7 +86,7 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 - Tiempo estimado claro
 - Beneficios específicos del quiz
 
-### Paso 1: Perfil del Hijo/a
+### Paso 1: Perfil del {Hijo/Hija}
 
 **1.1 Género** ✅ mantener actual
 - Niño
@@ -99,10 +99,10 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 - 13-15 años
 - 16-17 años
 
-**1.3 Número de hijos/as** **NUEVO**
-- Solo tengo un hijo/a
-- Tengo 2 hijos/as
-- Tengo 3 o más hijos/as
+**1.3 Número de {hijos/hijas}** **NUEVO**
+- Solo tengo un {hijo/hija}
+- Tengo 2 {hijos/hijas}
+- Tengo 3 o más {hijos/hijas}
 - Prefiero no especificar
 
 *Nota: Para futuro multi-perfil, pero por ahora enfocarse en uno*
@@ -138,7 +138,7 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 - [ ] Call of Duty **NUEVO**
 - [ ] GTA (Grand Theft Auto) **NUEVO**
 
-#### Plataformas de Alto Riesgo (solo mostrar si edad 13+)
+#### Plataformas de Alto Riesgo
 - [ ] Kick.com **NUEVO**
 - [ ] Omegle / OmeTV / Monkey App **NUEVO**
 - [ ] OnlyFans **NUEVO** (con advertencia crítica 18+)
@@ -179,7 +179,7 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 #### Reglas familiares
 - [ ] Horarios establecidos sin pantallas (comidas, noche)
 - [ ] Dispositivos se cargan fuera del cuarto
-- [ ] Acuerdo digital firmado con hijo/a
+- [ ] Acuerdo digital firmado con {hijo/hija}
 - [ ] Ninguna regla formal establecida
 
 **Por qué es importante:**
@@ -190,44 +190,37 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 
 ### Paso 4: Comunicación Familiar (MEJORADO)
 
-#### 4.1 Frecuencia de conversaciones ✅ mantener actual
-- Diariamente
-- Algunas veces por semana
-- Una vez al mes
-- Raramente
-- Nunca
+#### 4.1 Frecuencia de conversaciones ✅ cambiar a sí/no
+**Pregunta:** "¿Con qué frecuencia hablas con tu {hijo/hija} sobre su vida digital y las plataformas que usa?"
+- [ ] Sí, hablamos regularmente sobre su vida digital
+- [ ] No, raramente o nunca hablamos de estos temas
 
-#### 4.2 Nivel de confianza ✅ mantener actual
-- Siempre me cuenta
-- Frecuentemente
-- A veces
-- Raramente
-- Nunca
+#### 4.2 Nivel de confianza ✅ cambiar a sí/no (dinámico según género)
+**Pregunta:** "¿Tu {hijo/hija} te cuenta cuando algo le incomoda o preocupa en línea?"
+- [ ] Sí, mi {hijo/hija} me cuenta cuando algo le incomoda o preocupa
+- [ ] No, mi {hijo/hija} no me cuenta sus problemas digitales
 
-#### 4.3 Conocimiento parental ✅ mantener actual
-- Las conozco muy bien
-- Las conozco bastante
-- Conozco lo básico
-- Conozco muy poco
-- No las conozco
+#### 4.3 Conocimiento parental ✅ cambiar a sí/no
+**Pregunta:** "¿Qué tan bien conoces las plataformas digitales que usa tu {hijo/hija}?"
+- [ ] Sí, conozco bien las plataformas que usa
+- [ ] No, conozco poco o nada de sus plataformas
 
-#### 4.4 Diálogo familiar ✅ mantener actual
-- Muy abiertas y naturales
-- Abiertas la mayoría del tiempo
-- Neutrales, sin problemas
-- A veces difíciles
-- Muy difíciles o evadidas
+#### 4.4 Diálogo familiar ✅ cambiar a sí/no
+**Pregunta:** "¿Cómo describirías las conversaciones que tienes con tu {hijo/hija} sobre tecnología y seguridad digital?"
+- [ ] Sí, nuestras conversaciones son abiertas y naturales
+- [ ] No, nuestras conversaciones son difíciles o evadidas
 
 #### 4.5 Señales de alerta ✅ mantener actual + agregar nuevas
+**Pregunta:** "¿Has notado alguna de estas señales en el comportamiento de tu {hijo/hija} relacionado con el uso de dispositivos?"
 
 **Señales existentes:**
-- Se vuelve defensivo/a cuando preguntas
-- Es muy reservado/a con dispositivos
-- Cambios de humor después de usar dispositivos
-- Problemas para dormir
-- Se aleja de actividades familiares
-- Cambios en rendimiento escolar
-- No he notado ninguna señal
+- [ ] Se vuelve defensivo/a cuando preguntas
+- [ ] Es muy reservado/a con dispositivos
+- [ ] Cambios de humor después de usar dispositivos
+- [ ] Problemas para dormir
+- [ ] Se aleja de actividades familiares
+- [ ] Cambios en rendimiento escolar
+- [ ] No he notado ninguna señal
 
 **Señales NUEVAS del manual:**
 - [ ] Evita conectarse o deja de usar redes repentinamente (señal de ciberacoso)
@@ -235,8 +228,8 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 - [ ] Tiene gastos o compras no autorizadas
 - [ ] Menciona "amigos online" que no conoces
 
-#### 4.6 Educación sobre seguridad (NUEVO)
-"¿Tu hijo/a sabe cómo...?"
+#### 4.6 Educación sobre seguridad (NUEVO) (dinámico según género)
+"¿Tu {hijo/hija} sabe cómo...?"
 
 - [ ] Bloquear y reportar personas en sus plataformas
 - [ ] Identificar contenido inapropiado
@@ -244,6 +237,18 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 - [ ] Qué es grooming y cómo detectarlo
 - [ ] Qué hacer si ve algo que le incomoda
 - [ ] No sabe / No estoy seguro/a
+
+**Nota técnica:** Las siguientes preguntas deben usar texto dinámico basado en `child_gender` del paso 1:
+- **Paso 1**: Título "Perfil del {Hijo/Hija}" y opciones de número de hijos
+- **Paso 3**: "Acuerdo digital firmado con {hijo/hija}"
+- **Paso 4**: Preguntas 4.1, 4.2, 4.3, 4.4, 4.5 y 4.6
+- **Paso 5**: "Mi {hijo/hija} se molesta..." y otras referencias
+- **Paso 7**: "Mi {hijo/hija} está siendo contactado/a..."
+
+**Lógica de implementación:**
+- Si `child_gender === 'niño'` → mostrar "hijo", "mi hijo", "mi hijo está"
+- Si `child_gender === 'niña'` → mostrar "hija", "mi hija", "mi hija está"  
+- Si `child_gender === 'prefiero_no_especificar'` → mostrar "hijo/a", "mi hijo/a", "mi hijo/a está"
 
 ### Paso 5: Situación Actual en Casa (MEJORADO)
 
@@ -257,7 +262,7 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 
 #### 5.2 Desafíos que enfrentamos ✅ expandir
 - Nos cuesta poner límites de tiempo
-- [ ] Mi hijo/a se molesta o se pone agresivo/a cuando le quito el dispositivo **NUEVO** (señal de adicción)
+- [ ] Mi {hijo/hija} se molesta o se pone agresivo/a cuando le quito el dispositivo **NUEVO** (señal de adicción)
 - [ ] Usa dispositivos en secreto o en horarios prohibidos **NUEVO**
 - [ ] Comparte contraseñas con amigos **NUEVO**
 
@@ -321,7 +326,7 @@ Tus respuestas son privadas y se usan solo para generar tu plan personalizado.
 #### 7.1 Situaciones Actuales Críticas
 "¿Alguna de estas situaciones está ocurriendo AHORA?"
 
-- [ ] Mi hijo/a está siendo contactado/a por un extraño de manera insistente
+- [ ] Mi {hijo/hija} está siendo contactado/a por un extraño de manera insistente
 - [ ] Alguien le ha pedido fotos o videos íntimos
 - [ ] Está siendo acosado/a o amenazado/a en línea
 - [ ] Ha compartido contenido íntimo que ahora circula
