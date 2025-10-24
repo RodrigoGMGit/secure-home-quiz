@@ -32,17 +32,18 @@ export function OptionGrid({
 }: OptionGridProps) {
   
   const isAgeRestricted = (option: Option) => {
-    if (!option.ageRestricted || !option.currentAge || !option.minAge) return false;
+    if (!option.currentAge || !option.minAge) return false;
     
-    const ageLimits: Record<string, number> = {
-      '6-8': 10,
-      '9-12': 13,
-      '13-15': 13,
-      '16-17': 18
+    // Mapear edad del niño a edad máxima recomendada para esa banda
+    const maxRecommendedAge: Record<string, number> = {
+      '6-8': 10,    // Para niños 6-8, máximo recomendado 10 años
+      '9-12': 12,   // Para niños 9-12, máximo recomendado 12 años  
+      '13-15': 15,  // Para niños 13-15, máximo recomendado 15 años
+      '16-17': 17   // Para niños 16-17, máximo recomendado 17 años
     };
     
-    const currentAgeLimit = ageLimits[option.currentAge];
-    return currentAgeLimit && option.minAge > currentAgeLimit;
+    const childMaxAge = maxRecommendedAge[option.currentAge];
+    return childMaxAge && option.minAge > childMaxAge;
   };
 
   const handleOptionClick = (option: Option) => {

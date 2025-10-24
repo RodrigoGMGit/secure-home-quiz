@@ -1,6 +1,7 @@
 import { PlanInput, Plan, PlanSection, PlanAction, PlanSummary } from '@/types/plan';
 import { contentBlocks, measureToActionMap } from './blocks';
-import { AlertTriangle, Shield, Users, Clock, Home, Heart, MessageCircle, Eye, Smartphone } from 'lucide-react';
+import { AlertTriangle, Shield, Users, Clock, Home, Heart, MessageCircle, Eye, Smartphone, Phone } from 'lucide-react';
+import { analyzeSecurity, analyzeEmergencyPreparedness, SecurityAnalysis, EmergencyAnalysis } from '@/utils/planGenerator';
 
 // Iconos para secciones - mapeo por string para evitar problemas de serialización
 const sectionIconMap: Record<string, string> = {
@@ -8,12 +9,17 @@ const sectionIconMap: Record<string, string> = {
   parental_controls: 'Shield',
   family_rules: 'Home',
   communication: 'MessageCircle',
+  emergency_resources: 'Phone',
   concerns: 'Heart'
 };
 
 export function buildPlan(input: PlanInput): Plan {
   const seenActionIds = new Set<string>();
   const sections: PlanSection[] = [];
+  
+  // Analizar configuración de seguridad y recursos de emergencia
+  const securityAnalysis = analyzeSecurity(input.securityConfig);
+  const emergencyAnalysis = analyzeEmergencyPreparedness(input.emergencyResources);
   
   // 1. ACCIONES URGENTES - Señales de alerta
   const urgentActions = getUrgentActions(input);
@@ -29,8 +35,8 @@ export function buildPlan(input: PlanInput): Plan {
     urgentActions.forEach(action => seenActionIds.add(action.id));
   }
 
-  // 2. CONTROLES PARENTALES POR PLATAFORMA
-  const parentalControlActions = getParentalControlActions(input);
+  // 2. CONTROLES PARENTALES POR PLATAFORMA (prioridad alta si hay gaps de supervisión)
+  const parentalControlActions = getParentalControlActions(input, securityAnalysis);
   if (parentalControlActions.length > 0) {
     sections.push({
       id: 'parental_controls',
@@ -38,13 +44,13 @@ export function buildPlan(input: PlanInput): Plan {
       description: 'Configura estas herramientas de protección para las plataformas que usa tu hijo.',
       actions: parentalControlActions,
       icon: sectionIconMap.parental_controls,
-      priority: 'high'
+      priority: securityAnalysis.gaps.includes('supervision') ? 'urgent' : 'high'
     });
     parentalControlActions.forEach(action => seenActionIds.add(action.id));
   }
 
-  // 3. REGLAS FAMILIARES Y RUTINAS
-  const familyRuleActions = getFamilyRuleActions(input);
+  // 3. REGLAS FAMILIARES Y RUTINAS (prioridad alta si hay gaps de reglas familiares)
+  const familyRuleActions = getFamilyRuleActions(input, securityAnalysis);
   if (familyRuleActions.length > 0) {
     sections.push({
       id: 'family_rules',
@@ -52,13 +58,13 @@ export function buildPlan(input: PlanInput): Plan {
       description: 'Establece estas reglas para crear un ambiente digital saludable en casa.',
       actions: familyRuleActions,
       icon: sectionIconMap.family_rules,
-      priority: 'high'
+      priority: securityAnalysis.gaps.includes('family_rules') ? 'urgent' : 'high'
     });
     familyRuleActions.forEach(action => seenActionIds.add(action.id));
   }
 
-  // 4. COMUNICACIÓN Y ACOMPAÑAMIENTO
-  const communicationActions = getCommunicationActions(input);
+  // 4. COMUNICACIÓN Y ACOMPAÑAMIENTO (prioridad alta si hay gaps de comunicación)
+  const communicationActions = getCommunicationActions(input, securityAnalysis, emergencyAnalysis);
   if (communicationActions.length > 0) {
     sections.push({
       id: 'communication',
@@ -66,12 +72,26 @@ export function buildPlan(input: PlanInput): Plan {
       description: 'La comunicación abierta es la base de la protección digital.',
       actions: communicationActions,
       icon: sectionIconMap.communication,
-      priority: 'medium'
+      priority: securityAnalysis.gaps.includes('communication') || emergencyAnalysis.missing_resources.includes('preventive_prep') ? 'urgent' : 'medium'
     });
     communicationActions.forEach(action => seenActionIds.add(action.id));
   }
 
-  // 5. PREOCUPACIONES ESPECÍFICAS
+  // 5. RECURSOS DE EMERGENCIA (prioridad alta si hay gaps de preparación)
+  const emergencyResourceActions = getEmergencyResourceActions(input, emergencyAnalysis);
+  if (emergencyResourceActions.length > 0) {
+    sections.push({
+      id: 'emergency_resources',
+      title: 'Recursos de Emergencia y Reporte',
+      description: 'Conoce estos recursos para actuar rápidamente en caso de emergencia digital.',
+      actions: emergencyResourceActions,
+      icon: sectionIconMap.emergency_resources,
+      priority: emergencyAnalysis.preparedness === 'low' ? 'urgent' : 'high'
+    });
+    emergencyResourceActions.forEach(action => seenActionIds.add(action.id));
+  }
+
+  // 6. PREOCUPACIONES ESPECÍFICAS
   const concernActions = getConcernActions(input);
   if (concernActions.length > 0) {
     sections.push({
@@ -105,37 +125,14 @@ function getUrgentActions(input: PlanInput): PlanAction[] {
   const actions: PlanAction[] = [];
   
   // Si hay señales de alerta, incluir acciones urgentes
-  if (input.signals && input.signals.length > 0) {
-    const urgentBlock = contentBlocks.find(block => block.id === 'urgent_signals');
-    if (urgentBlock) {
-      // Filtrar acciones según las señales específicas
-      const relevantActions = urgentBlock.actions.filter(action => {
-        return input.signals.some(signal => 
-          action.tags.some(tag => tag.includes(`signal:${signal.toLowerCase()}`))
-        );
-      });
-      actions.push(...relevantActions);
-    }
-  }
+  // TODO: Implementar lógica de señales urgentes basada en SecurityConfig y EmergencyResources
+  // Por ahora, retornar acciones vacías ya que no tenemos signals en el nuevo formato
   
   return actions;
 }
 
-function getParentalControlActions(input: PlanInput): PlanAction[] {
+function getParentalControlActions(input: PlanInput, securityAnalysis: SecurityAnalysis): PlanAction[] {
   const actions: PlanAction[] = [];
-  
-  // Filtrar acciones ya implementadas
-  const implementedActions = new Set<string>();
-  if (input.measures) {
-    Object.entries(input.measures).forEach(([platform, measures]) => {
-      if (Array.isArray(measures)) {
-        measures.forEach(measure => {
-          const actionIds = measureToActionMap[`${platform}_${measure}`] || [];
-          actionIds.forEach(id => implementedActions.add(id));
-        });
-      }
-    });
-  }
   
   // Obtener acciones por plataforma
   input.platforms.forEach(platform => {
@@ -150,10 +147,7 @@ function getParentalControlActions(input: PlanInput): PlanAction[] {
           tag === `age:${input.age_band}` || tag === 'age:all'
         );
         
-        // Excluir acciones ya implementadas
-        const notImplemented = !implementedActions.has(action.id);
-        
-        return ageMatch && notImplemented;
+        return ageMatch;
       });
       
       actions.push(...relevantActions);
@@ -163,21 +157,8 @@ function getParentalControlActions(input: PlanInput): PlanAction[] {
   return actions;
 }
 
-function getFamilyRuleActions(input: PlanInput): PlanAction[] {
+function getFamilyRuleActions(input: PlanInput, securityAnalysis: SecurityAnalysis): PlanAction[] {
   const actions: PlanAction[] = [];
-  
-  // Filtrar acciones ya implementadas
-  const implementedActions = new Set<string>();
-  if (input.measures) {
-    Object.entries(input.measures).forEach(([platform, measures]) => {
-      if (Array.isArray(measures)) {
-        measures.forEach(measure => {
-          const actionIds = measureToActionMap[`${platform}_${measure}`] || [];
-          actionIds.forEach(id => implementedActions.add(id));
-        });
-      }
-    });
-  }
   
   const familyRuleBlocks = contentBlocks.filter(block => 
     block.tags.includes('family_rules')
@@ -188,8 +169,7 @@ function getFamilyRuleActions(input: PlanInput): PlanAction[] {
       const ageMatch = action.tags.some(tag => 
         tag === `age:${input.age_band}` || tag === 'age:all'
       );
-      const notImplemented = !implementedActions.has(action.id);
-      return ageMatch && notImplemented;
+      return ageMatch;
     });
     
     actions.push(...relevantActions);
@@ -198,7 +178,7 @@ function getFamilyRuleActions(input: PlanInput): PlanAction[] {
   return actions;
 }
 
-function getCommunicationActions(input: PlanInput): PlanAction[] {
+function getCommunicationActions(input: PlanInput, securityAnalysis: SecurityAnalysis, emergencyAnalysis: EmergencyAnalysis): PlanAction[] {
   const actions: PlanAction[] = [];
   
   const communicationBlocks = contentBlocks.filter(block => 
@@ -206,6 +186,28 @@ function getCommunicationActions(input: PlanInput): PlanAction[] {
   );
   
   communicationBlocks.forEach(block => {
+    const relevantActions = block.actions.filter(action => {
+      const ageMatch = action.tags.some(tag => 
+        tag === `age:${input.age_band}` || tag === 'age:all'
+      );
+      return ageMatch;
+    });
+    
+    actions.push(...relevantActions);
+  });
+  
+  return actions;
+}
+
+function getEmergencyResourceActions(input: PlanInput, emergencyAnalysis: EmergencyAnalysis): PlanAction[] {
+  const actions: PlanAction[] = [];
+  
+  // Obtener acciones de recursos de emergencia
+  const emergencyBlocks = contentBlocks.filter(block => 
+    block.tags.includes('emergency_resources')
+  );
+  
+  emergencyBlocks.forEach(block => {
     const relevantActions = block.actions.filter(action => {
       const ageMatch = action.tags.some(tag => 
         tag === `age:${input.age_band}` || tag === 'age:all'

@@ -24,8 +24,8 @@ export function useQuizState() {
         child_gender: undefined as ChildGender,
         age_band: undefined as AgeBand,
         platforms: [],
-        habits: [],
-        signals: [],
+        securityConfig: {},
+        emergencyResources: {},
         concerns: []
       },
       visitorId: getOrCreateVisitorId(),
@@ -76,63 +76,42 @@ export function useQuizState() {
   }, []);
 
   const nextStep = useCallback(() => {
-    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'security_config', 'emergency_resources', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
     
     if (currentIndex < stepOrder.length - 1) {
       const nextStep = stepOrder[currentIndex + 1];
-      
-      // Skip measures if no platforms selected
-      if (nextStep === 'measures' && !state.answers.platforms?.length) {
-        goToStepWithDelay('habits_signals');
-      } else {
-        goToStep(nextStep);
-      }
+      goToStep(nextStep);
     }
-  }, [state.currentStep, state.answers.platforms, goToStep, goToStepWithDelay]);
+  }, [state.currentStep, goToStep]);
 
   const nextStepWithData = useCallback((data: Partial<QuizAnswers>) => {
-    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'security_config', 'emergency_resources', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
     
     if (currentIndex < stepOrder.length - 1) {
       const nextStep = stepOrder[currentIndex + 1];
-      
-      // Skip measures if no platforms selected (using fresh data)
-      if (nextStep === 'measures' && !data.platforms?.length) {
-        goToStepWithDelay('habits_signals');
-      } else {
-        goToStep(nextStep);
-      }
+      goToStep(nextStep);
     }
-  }, [state.currentStep, goToStep, goToStepWithDelay]);
+  }, [state.currentStep, goToStep]);
 
   const previousStep = useCallback(() => {
-    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'measures', 'habits_signals', 'concerns', 'done'];
+    const stepOrder: QuizStep[] = ['welcome', 'gender', 'age', 'platforms', 'security_config', 'emergency_resources', 'concerns', 'done'];
     const currentIndex = stepOrder.indexOf(state.currentStep);
     
     if (currentIndex > 0) {
-      let prevStep = stepOrder[currentIndex - 1];
-      
-      // Skip measures if no platforms selected when going back
-      if (prevStep === 'measures' && !state.answers.platforms?.length) {
-        prevStep = stepOrder[currentIndex - 2];
-      }
-      
-      if (prevStep) {
-        goToStep(prevStep);
-      }
+      const prevStep = stepOrder[currentIndex - 1];
+      goToStep(prevStep);
     }
-  }, [state.currentStep, state.answers.platforms, goToStep]);
+  }, [state.currentStep, goToStep]);
 
   const completeQuiz = useCallback(() => {
     const planInput: PlanInput = {
       age_band: state.answers.age_band || '9-12',
       platforms: state.answers.platforms || [],
       unknown_platforms: !!state.answers.unknown_platforms,
-      measures: state.answers.measures || {},
-      habits: state.answers.habits || [],
-      signals: state.answers.signals || [],
+      securityConfig: state.answers.securityConfig || {},
+      emergencyResources: state.answers.emergencyResources || {},
       concerns: state.answers.concerns || [],
       ab_variant_plan_email: state.abVariant
     };
@@ -157,10 +136,10 @@ export function useQuizState() {
         return !!state.answers.age_band; // Age is required
       case 'platforms':
         return (state.answers.platforms?.length || 0) > 0 || !!state.answers.unknown_platforms; // At least one platform or unknown
-      case 'measures':
-        return true; // Measures step is optional (can be skipped)
-      case 'habits_signals':
-        return (state.answers.habits?.length || 0) > 0 || (state.answers.signals?.length || 0) > 0; // At least one habit or signal
+      case 'security_config':
+        return true; // Optional step
+      case 'emergency_resources':
+        return true; // Optional step
       case 'concerns':
         return (state.answers.concerns?.length || 0) > 0; // At least one concern
       default:
@@ -174,8 +153,8 @@ export function useQuizState() {
       'gender': 1,
       'age': 2,
       'platforms': 3,
-      'measures': 4,
-      'habits_signals': 5,
+      'security_config': 4,
+      'emergency_resources': 5,
       'concerns': 6,
       'done': 7
     };
@@ -193,8 +172,8 @@ export function useQuizState() {
         child_gender: undefined as ChildGender,
         age_band: undefined as AgeBand,
         platforms: [],
-        habits: [],
-        signals: [],
+        securityConfig: {},
+        emergencyResources: {},
         concerns: []
       },
       visitorId: getOrCreateVisitorId(),

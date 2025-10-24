@@ -4,8 +4,8 @@ import { WelcomeStep } from '@/components/quiz/steps/WelcomeStep';
 import { GenderStep } from '@/components/quiz/steps/GenderStep';
 import { AgeStep } from '@/components/quiz/steps/AgeStep';
 import { PlatformsStep } from '@/components/quiz/steps/PlatformsStep';
-import { MeasuresStep } from '@/components/quiz/steps/MeasuresStep';
-import { HabitsSignalsStep } from '@/components/quiz/steps/HabitsSignalsStep';
+import { SecurityConfigStep } from '@/components/quiz/steps/SecurityConfigStep';
+import { EmergencyResourcesStep } from '@/components/quiz/steps/EmergencyResourcesStep';
 import { ConcernsStep } from '@/components/quiz/steps/ConcernsStep';
 import { DoneStep } from '@/components/quiz/steps/DoneStep';
 import { Platform } from '@/types/quiz';
@@ -75,13 +75,13 @@ const Quiz = () => {
           />
         );
       
-      case 'measures':
+      case 'security_config':
         return (
-          <MeasuresStep
-            platforms={state.answers.platforms || []}
-            initialMeasures={state.answers.measures}
-            onNext={(measures) => {
-              updateAnswers({ measures });
+          <SecurityConfigStep
+            initialConfig={state.answers.securityConfig}
+            childGender={state.answers.child_gender}
+            onNext={(config) => {
+              updateAnswers({ securityConfig: config });
               nextStep();
             }}
             onPrevious={previousStep}
@@ -89,16 +89,17 @@ const Quiz = () => {
           />
         );
       
-      case 'habits_signals':
+      case 'emergency_resources':
         return (
-          <HabitsSignalsStep
-            initialHabits={state.answers.habits}
-            initialSignals={state.answers.signals}
-            onNext={(data) => {
-              updateAnswers(data);
+          <EmergencyResourcesStep
+            initialResources={state.answers.emergencyResources}
+            childGender={state.answers.child_gender}
+            onNext={(resources) => {
+              updateAnswers({ emergencyResources: resources });
               nextStep();
             }}
             onPrevious={previousStep}
+            onTrack={track}
           />
         );
       

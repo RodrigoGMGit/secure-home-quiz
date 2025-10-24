@@ -270,16 +270,18 @@ export function PlatformsStep({
   const getInappropriatePlatforms = () => {
     if (!ageband) return [];
     
-    const ageLimits: Record<AgeBand, number> = {
-      '6-8': 10,
-      '9-12': 13,
-      '13-15': 13,
-      '16-17': 18
+    // Mapear edad del niño a edad máxima recomendada para esa banda
+    const maxRecommendedAge: Record<AgeBand, number> = {
+      '6-8': 10,    // Para niños 6-8, máximo recomendado 10 años
+      '9-12': 12,   // Para niños 9-12, máximo recomendado 12 años  
+      '13-15': 15,  // Para niños 13-15, máximo recomendado 15 años
+      '16-17': 17   // Para niños 16-17, máximo recomendado 17 años
     };
     
+    const childMaxAge = maxRecommendedAge[ageband];
     return selectedPlatforms.filter(platform => {
       const option = platformOptions.find(opt => opt.value === platform);
-      return option && option.minAge && option.minAge > ageLimits[ageband];
+      return option && option.minAge && option.minAge > childMaxAge;
     });
   };
 

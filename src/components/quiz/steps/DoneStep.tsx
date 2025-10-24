@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SpecificMeasures } from '../SpecificMeasures';
 import { ABVariant, QuizAnswers, PlanInput } from '@/types/quiz';
-import { generateSpecificMeasures } from '@/utils/planGenerator';
 import { buildPlan } from '@/data/plan/rules';
 import { CheckCircle, Mail, FileText, Send, Trophy, Shield, Eye, AlertTriangle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -25,7 +24,7 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
   const navigate = useNavigate();
 
   // Generar medidas específicas basadas en las respuestas
-  const specificMeasures = generateSpecificMeasures(answers);
+  const specificMeasures = []; // TODO: Implementar nueva lógica de medidas específicas
 
   // Convertir respuestas del quiz a PlanInput para generar el plan
   const planInput: PlanInput = {
@@ -34,9 +33,8 @@ export function DoneStep({ abVariant, answers, onComplete, onRestart, onTrack }:
     other_platforms: answers.other_platforms || '',
     unknown_platforms: answers.unknown_platforms || false,
     inappropriatePlatforms: answers.inappropriatePlatforms,
-    measures: answers.measures || {},
-    habits: answers.habits,
-    signals: answers.signals,
+    securityConfig: answers.securityConfig || {},
+    emergencyResources: answers.emergencyResources || {},
     concerns: answers.concerns,
     ab_variant_plan_email: abVariant
   };

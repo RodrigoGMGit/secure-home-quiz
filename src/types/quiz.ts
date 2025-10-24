@@ -3,8 +3,8 @@ export type QuizStep =
   | 'gender' 
   | 'age'
   | 'platforms' 
-  | 'measures' 
-  | 'habits_signals' 
+  | 'security_config' 
+  | 'emergency_resources' 
   | 'concerns' 
   | 'done';
 
@@ -35,6 +35,21 @@ export interface ExpressQuizResult {
   answers: ExpressQuizAnswers; // NUEVO: incluir answers para análisis
 }
 
+export interface SecurityConfig {
+  supervision?: 'yes_supervised' | 'no_unsupervised' | 'not_sure';
+  communication?: 'yes_regular' | 'no_rarely';
+  safesearch?: 'yes_active' | 'no_inactive' | 'dont_know';
+  family_rules?: 'yes_clear' | 'some_inconsistent' | 'no_formal';
+  legal_knowledge?: 'yes_know' | 'heard_dont_use' | 'no_idea';
+}
+
+export interface EmergencyResources {
+  emergency_action?: 'know_exactly' | 'general_idea' | 'no_idea';
+  report_resources?: 'yes_know' | 'heard_dont_use' | 'no_idea';
+  emotional_support?: 'yes_know_resources' | 'general_idea' | 'dont_know';
+  preventive_prep?: 'yes_specific' | 'general_talk' | 'no_conversation';
+}
+
 export type ChildGender = 'Niño' | 'Niña' | 'Prefiero no especificar';
 
 export type AgeBand = '6-8' | '9-12' | '13-15' | '16-17';
@@ -63,11 +78,8 @@ export interface QuizAnswers {
   other_platforms?: string;
   unknown_platforms?: boolean;
   inappropriatePlatforms?: Platform[];
-  measures?: {
-    [key in Platform]?: string[];
-  };
-  habits: string[];
-  signals: string[];
+  securityConfig?: SecurityConfig;
+  emergencyResources?: EmergencyResources;
   concerns: string[];
 }
 
@@ -77,11 +89,8 @@ export interface PlanInput {
   other_platforms?: string;
   unknown_platforms: boolean;
   inappropriatePlatforms?: Platform[];
-  measures: {
-    [key in Platform]?: string[];
-  };
-  habits: string[];
-  signals: string[];
+  securityConfig?: SecurityConfig;
+  emergencyResources?: EmergencyResources;
   concerns: string[];
   ab_variant_plan_email: ABVariant;
 }
