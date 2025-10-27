@@ -69,6 +69,9 @@ const ScrollamaSection = () => {
   useEffect(() => {
     console.log('ScrollamaSection mounted - resetting state');
     
+    // Capture ref value at the beginning
+    const video = videoRef.current;
+    
     // Reset all states
     setActiveStep(0);
     setIsVideoPlaying(false);
@@ -78,20 +81,20 @@ const ScrollamaSection = () => {
     document.body.style.overflow = 'auto';
     
     // Reset video if it exists
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.pause();
-      videoRef.current.playbackRate = 3; // Set faster playback speed
-      videoRef.current.load(); // Force reload for Safari
+    if (video) {
+      video.currentTime = 0;
+      video.pause();
+      video.playbackRate = 3; // Set faster playback speed
+      video.load(); // Force reload for Safari
     }
     
     return () => {
       console.log('ScrollamaSection unmounting - cleaning up');
       // Cleanup on unmount
       document.body.style.overflow = 'auto';
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
       }
     };
   }, []);
@@ -285,7 +288,7 @@ const ScrollamaSection = () => {
         observer.disconnect();
       }
     };
-  }, []);
+  }, [isMobile, userInteracted]);
 
   // Effect to handle video playback and completion
   useEffect(() => {

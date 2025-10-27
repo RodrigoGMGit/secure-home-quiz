@@ -36,7 +36,7 @@ const Ayuda = () => {
 
   // Función helper para obtener el icono correcto
   const getIconComponent = (iconName: string) => {
-    const iconMap: Record<string, any> = {
+    const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
       Shield,
       MessageCircle,
       Scale,

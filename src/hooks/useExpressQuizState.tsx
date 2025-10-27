@@ -131,7 +131,7 @@ export function useExpressQuizState() {
       track('express_quiz_step_view', { step: nextStepValue });
       scrollToTop();
     }
-  }, [state.currentStep, track]);
+  }, [state.currentStep]);
 
   const answerQuestion = useCallback((questionKey: keyof ExpressQuizAnswers, answer: boolean) => {
     setState(prev => ({
@@ -144,7 +144,7 @@ export function useExpressQuizState() {
       answer,
       currentQuestion: state.currentQuestionIndex + 1
     });
-  }, [state.currentQuestionIndex, track]);
+  }, [state.currentQuestionIndex]);
 
   const completeQuiz = useCallback(() => {
     const result = calculateResult(state.answers);
@@ -173,7 +173,7 @@ export function useExpressQuizState() {
       startTime: Date.now()
     }));
     track('express_quiz_restarted');
-  }, [track]);
+  }, []);
 
   const getResult = useCallback((): ExpressQuizResult => {
     return calculateResult(state.answers);

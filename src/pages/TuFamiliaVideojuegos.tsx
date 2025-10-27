@@ -16,7 +16,7 @@ const TuFamiliaVideojuegos = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
 
-  const [selectedGame, setSelectedGame] = useState<any>(null);
+  const [selectedGame, setSelectedGame] = useState<typeof games[0] | null>(null);
 
   const games = [
     {

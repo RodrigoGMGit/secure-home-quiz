@@ -28,13 +28,15 @@ const TrustLogo: React.FC<TrustLogoProps> = ({
   // Generar srcSet para diferentes tamaños
   const generateSrcSet = (baseSrc: string) => {
     const sizes = [100, 200, 400];
+    const baseName = baseSrc.replace(/\.(png|jpg|jpeg)$/i, '');
     return sizes
-      .map(size => `/optimized/logos/${baseSrc.replace('.png', `-${size}w.webp`)} ${size}w`)
+      .map(size => `/optimized/logos/${baseName}-${size}w.webp ${size}w`)
       .join(', ');
   };
 
+  const baseName = src.replace(/\.(png|jpg|jpeg)$/i, '');
   const srcSet = generateSrcSet(src);
-  const webpSrc = `/optimized/logos/${src.replace('.png', '-original.webp')}`;
+  const webpSrc = `/optimized/logos/${baseName}-original.webp`;
 
   return (
     <div className={cn('relative overflow-hidden', className)}>

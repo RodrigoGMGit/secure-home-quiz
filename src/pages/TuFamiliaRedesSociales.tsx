@@ -24,7 +24,7 @@ const TuFamiliaRedesSociales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
 
-  const [selectedPlatform, setSelectedPlatform] = useState<any>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<typeof platforms[0] | null>(null);
 
   const platforms = [
     {

@@ -392,16 +392,16 @@ const HeroSection = () => {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`} style={{ transitionDelay: "1400ms" }}>
               <div className="flex justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                {/* Logo Gobierno - desde src/assets/logos */}
+                {/* Logo Gobierno */}
                 <img 
-                  src="/src/assets/logos/Logo_Gob.png"
+                  src="/optimized/logos/Logo_Gob-original.webp"
                   alt="Gobierno de México" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
                 />
                 
-                {/* Logo Fundación - desde src/assets/logos */}
+                {/* Logo Fundación */}
                 <img 
-                  src="/src/assets/logos/LogosFE_Colores 2.png"
+                  src="/optimized/logos/LogosFE_Colores 2-original.webp"
                   alt="Fundación en Movimiento" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
                 />
