@@ -335,8 +335,17 @@ const RiesgosDigitales: React.FC = () => {
                       Policía Cibernética: 33 3837 6000
                     </Button>
                   </div>
+                  <div className="flex justify-center mb-3">
+                    <img 
+                      src="/optimized/logos/te-protejo-mexico-200w.webp" 
+                      alt="Te Protejo México" 
+                      className="h-12 sm:h-16 w-auto"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                   <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
-                    Si no deseas reportar de manera anónima material de abuso sexual, infantil, ciberacoso u otras situaciones de violencia digital, contacta a
+                    Si deseas reportar de manera anónima material de abuso sexual infantil, ciberacoso u otras situaciones de violencia digital, o solicitar que bajen del internet imágenes o videos de tus hijas o hijos publicados sin autorización, contacta a
                   </p>
                   <div className="flex justify-center">
                     <Button asChild variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
