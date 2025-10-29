@@ -9,6 +9,11 @@ import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
 import { AndroidIcon, AppleIcon } from "@/components/icons/platforms";
 import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
+import { DecorativeBackground } from '@/components/shared/DecorativeBackground';
+import { PhraseHighlightBox } from '@/components/shared/PhraseHighlightBox';
+import { SectionHeader } from '@/components/shared/SectionHeader';
+import { PageHeader } from '@/components/shared/PageHeader';
+import { InfoHighlightBox } from '@/components/shared/InfoHighlightBox';
 
 const ControlesParentales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -19,39 +24,15 @@ const ControlesParentales: React.FC = () => {
       <GlobalHeader />
       <div className="min-h-screen bg-gradient-subtle">
       {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
-      </div>
+      <DecorativeBackground />
 
       {/* Header Section */}
-      <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
-        <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Logo circular con gradiente */}
-            <div className="flex justify-center mb-6">
-              <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                <Settings className="h-12 w-12 text-primary-foreground" />
-              </div>
-            </div>
-            
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
-              Controles Parentales
-            </h1>
-            <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
-              Más que restringir, se trata de acompañar
-            </p>
-            
-            {/* Frase destacada mejorada */}
-            <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-              <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
-                "El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        icon={Settings}
+        title="Controles Parentales"
+        subtitle="Más que restringir, se trata de acompañar"
+        highlightQuote="El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
+      />
 
       {/* Main Content */}
       <div className="relative container mx-auto px-4 py-8 sm:py-12">
@@ -63,19 +44,13 @@ const ControlesParentales: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <div className="p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full">
-                  <Settings className="h-8 w-8 text-primary-foreground" />
-                </div>
-              </div>
-              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2">
-                ¿Qué son los controles parentales?
-              </h2>
-              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
-                Herramientas de acompañamiento y protección digital
-              </p>
-            </div>
+            <SectionHeader
+              icon={Settings}
+              title="¿Qué son los controles parentales?"
+              subtitle="Herramientas de acompañamiento y protección digital"
+              gradientFrom="from-brand-olive-500"
+              gradientTo="to-brand-teal-500"
+            />
             
             <div className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30">
               <div className="max-w-4xl mx-auto">
@@ -103,22 +78,11 @@ const ControlesParentales: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                        <AlertTriangle className="h-5 w-5 text-brand-ink-800" />
-                    </div>
-                    <div>
-                      <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
-                        Dato importante
-                      </h4>
-                      <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
-                        No hay herramienta que sustituya al diálogo, pero sin herramientas, 
-                        el diálogo llega cuando ya es tarde.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <InfoHighlightBox
+                  title="Dato importante"
+                  description="No hay herramienta que sustituya al diálogo, pero sin herramientas, el diálogo llega cuando ya es tarde."
+                  icon={AlertTriangle}
+                />
               </div>
             </div>
           </motion.div>
@@ -216,12 +180,12 @@ const ControlesParentales: React.FC = () => {
                         </ul>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Descargar guía PDF</span>
                         </Button>
-                        <Button variant="outline" className="flex items-center space-x-2">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Play className="h-4 w-4" />
                           <span>Ver video corto</span>
                         </Button>
@@ -386,12 +350,12 @@ const ControlesParentales: React.FC = () => {
                         </p>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Descargar guía PDF</span>
                         </Button>
-                        <Button variant="outline" className="flex items-center space-x-2">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Play className="h-4 w-4" />
                           <span>Ver video corto</span>
                         </Button>
@@ -476,12 +440,12 @@ const ControlesParentales: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Descargar guía PDF</span>
                         </Button>
-                        <Button variant="outline" className="flex items-center space-x-2">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Play className="h-4 w-4" />
                           <span>Ver video corto</span>
                         </Button>
@@ -530,8 +494,8 @@ const ControlesParentales: React.FC = () => {
                         </ul>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Guía Xbox</span>
                         </Button>
@@ -564,8 +528,8 @@ const ControlesParentales: React.FC = () => {
                         </ul>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Guía PlayStation</span>
                         </Button>
@@ -598,8 +562,8 @@ const ControlesParentales: React.FC = () => {
                         </ul>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Guía Nintendo Switch</span>
                         </Button>
@@ -688,8 +652,8 @@ const ControlesParentales: React.FC = () => {
                         </p>
                       </div>
 
-                      <div className="flex space-x-3">
-                        <Button variant="outline" className="flex items-center space-x-2">
+                      <div className="flex">
+                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
                           <Download className="h-4 w-4" />
                           <span>Guía de configuración</span>
                         </Button>

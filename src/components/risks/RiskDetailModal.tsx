@@ -40,9 +40,9 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-subtle border-brand-mint-200/30">
+      <DialogContent className="bg-gradient-subtle border-brand-mint-200/30 overflow-x-hidden">
         {/* Header con diseño sofisticado */}
-        <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
+        <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8 overflow-hidden">
           {/* Elementos decorativos de fondo */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-4 left-4 w-16 h-16 bg-brand-teal-500/5 rounded-full blur-xl animate-pulse"></div>
@@ -50,21 +50,21 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
           </div>
           
           <div className="relative">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {/* Logo circular con gradiente */}
-              <div className="flex justify-center sm:justify-start">
+              <div className="flex justify-center">
                 <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
                   <div className="text-2xl sm:text-3xl text-primary-foreground">{risk.icon}</div>
                 </div>
               </div>
               
-              <div className="flex-1 min-w-0 text-center sm:text-left">
+              <div className="flex-1 min-w-0 text-center">
                 <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
                   {risk.title}
                 </DialogTitle>
                 
                 {/* Badges con diseño mejorado */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
                   <Badge 
                     variant="outline" 
                     className={cn("text-xs sm:text-sm w-fit px-3 py-1", severityColors[risk.severity])}
@@ -82,7 +82,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                 </div>
                 
                 {/* Descripción con estilo mejorado */}
-                <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed">
+                <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed break-words">
                   {risk.description}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
           </div>
         </DialogHeader>
 
-        <div className="space-y-6 sm:space-y-8">
+        <div className="space-y-6 sm:space-y-8 px-4 sm:px-0 min-w-0">
           {/* Cómo identificarlo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed break-words">
                   {risk.howToIdentify.description}
                 </p>
                 <div className="space-y-4">
@@ -119,7 +119,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                     {risk.howToIdentify.examples.map((example, index) => (
                       <li key={index} className="flex items-start gap-3 text-brand-ink-800">
                         <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                        <span className="font-body text-sm sm:text-base leading-relaxed">{example}</span>
+                        <span className="font-body text-sm sm:text-base leading-relaxed break-words">{example}</span>
                       </li>
                     ))}
                   </ul>
@@ -144,7 +144,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed break-words">
                   {risk.whatToDo.description}
                 </p>
                 <div className="space-y-6">
@@ -157,7 +157,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                       {risk.whatToDo.steps.map((step, index) => (
                         <li key={index} className="flex items-start gap-3 text-brand-ink-800">
                           <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-ink-800 mt-0.5 flex-shrink-0" />
-                          <span className="font-body text-sm sm:text-base leading-relaxed">{step}</span>
+                          <span className="font-body text-sm sm:text-base leading-relaxed break-words">{step}</span>
                         </li>
                       ))}
                     </ul>
@@ -173,7 +173,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                         {risk.whatToDo.phrases.map((phrase, index) => (
                           <div key={index} className="flex items-start gap-3 p-4 bg-gradient-to-r from-brand-mint-200/30 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-lg">
                             <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                            <span className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed">"{phrase}"</span>
+                            <span className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed break-words">"{phrase}"</span>
                           </div>
                         ))}
                       </div>
@@ -200,7 +200,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed break-words">
                   {risk.howToPrevent.description}
                 </p>
                 <div className="space-y-6">
@@ -213,7 +213,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                       {risk.howToPrevent.steps.map((step, index) => (
                         <li key={index} className="flex items-start gap-3 text-brand-ink-800">
                           <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-olive-500 mt-0.5 flex-shrink-0" />
-                          <span className="font-body text-sm sm:text-base leading-relaxed">{step}</span>
+                          <span className="font-body text-sm sm:text-base leading-relaxed break-words">{step}</span>
                         </li>
                       ))}
                     </ul>
@@ -229,7 +229,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                         {risk.howToPrevent.tips.map((tip, index) => (
                           <div key={index} className="flex items-start gap-3 p-4 bg-gradient-to-r from-brand-olive-500/10 to-brand-teal-500/10 border border-brand-olive-500/20 rounded-lg">
                             <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500 mt-0.5 flex-shrink-0" />
-                            <span className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">{tip}</span>
+                            <span className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed break-words">{tip}</span>
                           </div>
                         ))}
                       </div>
@@ -263,7 +263,7 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
                     </Badge>
                   ))}
                 </div>
-                <p className="font-body text-xs sm:text-sm text-brand-olive-500 italic">
+                <p className="font-body text-xs sm:text-sm text-brand-olive-500 italic break-words">
                   Estas son las más comunes; sin embargo, puede ocurrir en cualquier plataforma.
                 </p>
               </CardContent>

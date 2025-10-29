@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { DecorativeBackground } from "@/components/shared/DecorativeBackground";
+import { PhraseHighlightBox } from "@/components/shared/PhraseHighlightBox";
+import { PageHeader } from "@/components/shared/PageHeader";
 
 const TuFamilia = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -54,39 +57,15 @@ const TuFamilia = () => {
       <GlobalHeader />
       <div className="min-h-screen bg-gradient-subtle">
       {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
-      </div>
+      <DecorativeBackground />
 
       {/* Header Section */}
-      <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
-        <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Logo circular con gradiente */}
-            <div className="flex justify-center mb-6">
-              <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                <Users className="h-12 w-12 text-primary-foreground" />
-              </div>
-            </div>
-            
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
-              Tu Familia Digital
-            </h1>
-            <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
-              Conoce los hábitos digitales de tu familia y aprende a crear un hogar digital más seguro
-            </p>
-            
-            {/* Frase destacada mejorada */}
-            <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-              <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
-                "Proteger tu hogar digital es tan importante como cerrar la puerta con llave"
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        icon={Users}
+        title="Tu Familia Digital"
+        subtitle="Conoce los hábitos digitales de tu familia y aprende a crear un hogar digital más seguro"
+        highlightQuote="Proteger tu hogar digital es tan importante como cerrar la puerta con llave"
+      />
 
       {/* Main Content */}
       <div className="relative container mx-auto px-4 py-8 sm:py-12">
