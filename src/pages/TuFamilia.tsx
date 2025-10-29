@@ -15,27 +15,27 @@ const TuFamilia = () => {
   const learnItems = [
     {
       title: "Tu familia y redes sociales",
-      description: "Plataformas populares y cómo ajustar la privacidad básica para empezar seguro."
+      description: "Descubrirás las plataformas más populares y, en cada una, cómo ajustar la privacidad, quién puede contactarlos y qué activar para empezar seguro."
     },
     {
       title: "Videojuegos en casa",
-      description: "Qué juegan y cómo configurar tiempos, chat y filtros para su edad."
+      description: "Conocerás los juegos que más usan y, por título, cómo configurar tiempos, chat, compras y filtros según su edad."
     },
     {
       title: "Riesgos digitales clave",
-      description: "Cómo identificar señales y qué hacer a tiempo si surge un problema."
+      description: "Identificarás los principales riesgos digitales y, ante cada señal, qué pasos dar y a quién acudir."
     },
     {
       title: "Controles parentales",
-      description: "Configurar en apps, dispositivos y consolas para acompañar, no vigilar."
+      description: "Podrás activar controles parentales y, por dispositivo o app, los ajustes clave para acompañar sin invadir."
     },
     {
       title: "Comunicación y apoyo",
-      description: "Acuerdos familiares, diálogo abierto y cómo reaccionar sin regaños."
+      description: "Fortalecerás los acuerdos familiares y, ante situaciones difíciles, frases y acciones para apoyar sin regaños."
     },
     {
       title: "Acciones legales básicas",
-      description: "Pasos iniciales si ya ocurrió algo y cómo resguardar evidencia."
+      description: "Sabrás qué hacer si ya ocurrió algo y, para cada caso común, cómo resguardar evidencia y presentar una denuncia."
     }
   ];
 
@@ -50,7 +50,7 @@ const TuFamilia = () => {
       <PageHeader
         icon={Users}
         title="Tu Familia Digital"
-        subtitle="Conoce los hábitos digitales de tu familia y aprende a crear un hogar digital más seguro"
+         subtitle="Nuestra meta es que al final de este recorrido tengas claridad sobre en qué enfocarte y cómo hacer tu hogar digital más seguro"
         highlightQuote="Proteger tu hogar digital es tan importante como cerrar la puerta con llave"
       />
 
@@ -125,7 +125,15 @@ const TuFamilia = () => {
           </motion.div>
 
           {/* CTA Banner to Quiz */}
-          <QuizCTA delay={0.2} />
+          <QuizCTA 
+            variant="discover"
+            title="¿Ya conoces qué tan seguro es tu hogar en el mundo digital?"
+            description="Al hacer el diagnostico te ayudamos a prioriza en qué enfocarte y navega mejor el sitio con un plan a tu medida."
+            buttonText="Comenzar diagnóstico"
+            badgeText="Espera, hay que saber por donde iniciar"
+            bullets={["Sabrás por dónde empezar","Identifica tus prioridades","Descubre desde donde inicias"]}
+            delay={0.2}
+          />
 
           {/* Qué aprenderás */}
           <motion.div 
@@ -141,9 +149,9 @@ const TuFamilia = () => {
                 </div>
               </div>
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
-                ¿Qué aprenderás en este recorrido?
+                ¿Qué aprenderás a lo largo de este sitio?
               </h3>
-              <p className="font-body text-sm text-brand-olive-500">Temas clave para un hogar digital seguro</p>
+              <p className="font-body text-sm text-brand-olive-500">Temas clave para proteger tu hogar en el mundo digital</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

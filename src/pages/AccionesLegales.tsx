@@ -577,7 +577,15 @@ const AccionesLegales = () => {
             </motion.div>
 
             {/* Quiz CTA - Show only if user hasn't completed quiz */}
-            <QuizCTA delay={0.6} />
+            <QuizCTA 
+              variant="congrats"
+              title="¡Felicidades por llegar hasta aquí!"
+              description="El diagnóstico agrega mucho valor: prioriza acciones, te da pasos claros y un PDF por correo."
+              buttonText="Hacer el diagnóstico"
+              badgeText="Valor extra"
+              bullets={["Prioriza acciones clave","Guía paso a paso","Recibe tu plan en PDF"]}
+              delay={0.6}
+            />
 
             {/* Banner de Ayuda Urgente (unificado con Riesgos) */}
             <motion.div 
