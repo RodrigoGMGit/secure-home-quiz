@@ -1,14 +1,10 @@
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Users, Shield, Gamepad2, ChevronRight, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Users, CheckCircle, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
 import { DecorativeBackground } from "@/components/shared/DecorativeBackground";
-import { PhraseHighlightBox } from "@/components/shared/PhraseHighlightBox";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { QuizCTA } from "@/components/shared/QuizCTA";
 
@@ -16,40 +12,30 @@ const TuFamilia = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
 
-  const sections = [
+  const learnItems = [
     {
-      id: "redes-sociales",
-      title: "Tu Familia y las Redes Sociales",
-      description: "Conoce las plataformas más populares y cómo proteger a tu familia",
-      icon: Shield,
-      href: "/aprende/tu-familia/redes-sociales",
-      features: [
-        "TikTok, Instagram, Snapchat",
-        "YouTube, WhatsApp, Discord",
-        "Controles parentales específicos",
-        "Edades mínimas recomendadas"
-      ],
-      color: "border-brand-mint-200/40 bg-brand-mint-200/20",
-      iconColor: "text-brand-ink-800",
-      iconBg: "bg-brand-mint-200/60",
-      checkmarkColor: "text-brand-ink-800"
+      title: "Tu familia y redes sociales",
+      description: "Plataformas populares y cómo ajustar la privacidad básica para empezar seguro."
     },
     {
-      id: "videojuegos",
-      title: "Tu Familia y los Videojuegos",
-      description: "Aprende sobre los juegos más populares y sus configuraciones de seguridad",
-      icon: Gamepad2,
-      href: "/aprende/tu-familia/videojuegos",
-      features: [
-        "Minecraft, Roblox, Fortnite",
-        "Call of Duty, Free Fire, GTA",
-        "Configuraciones de consolas",
-        "Controles parentales en juegos"
-      ],
-      color: "border-brand-olive-500/30 bg-brand-olive-500/10",
-      iconColor: "text-brand-olive-500",
-      iconBg: "bg-brand-olive-500/20",
-      checkmarkColor: "text-brand-olive-500"
+      title: "Videojuegos en casa",
+      description: "Qué juegan y cómo configurar tiempos, chat y filtros para su edad."
+    },
+    {
+      title: "Riesgos digitales clave",
+      description: "Cómo identificar señales y qué hacer a tiempo si surge un problema."
+    },
+    {
+      title: "Controles parentales",
+      description: "Configurar en apps, dispositivos y consolas para acompañar, no vigilar."
+    },
+    {
+      title: "Comunicación y apoyo",
+      description: "Acuerdos familiares, diálogo abierto y cómo reaccionar sin regaños."
+    },
+    {
+      title: "Acciones legales básicas",
+      description: "Pasos iniciales si ya ocurrió algo y cómo resguardar evidencia."
     }
   ];
 
@@ -141,45 +127,55 @@ const TuFamilia = () => {
           {/* CTA Banner to Quiz */}
           <QuizCTA delay={0.2} />
 
-          {/* Sections Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
-            {sections.map((section, index) => (
-              <motion.div
-                key={section.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className={`${section.color} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
-                  <CardHeader className="text-center p-4 sm:p-6">
-                    <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${section.iconBg} rounded-full w-fit shadow-soft`}>
-                      <section.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${section.iconColor}`} />
+          {/* Qué aprenderás */}
+          <motion.div 
+            className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-2 bg-gradient-to-r from-primary to-brand-teal-500 rounded-full">
+                  <Users className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </div>
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                ¿Qué aprenderás en este recorrido?
+              </h3>
+              <p className="font-body text-sm text-brand-olive-500">Temas clave para un hogar digital seguro</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {learnItems.map((item, index) => {
+                const numberBg = [
+                  "bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10",
+                  "bg-gradient-to-br from-brand-mint-200/60 to-brand-mint-200/40",
+                  "bg-gradient-to-br from-brand-olive-500/20 to-brand-olive-500/10"
+                ][index % 3];
+                const numberColor = [
+                  "text-brand-teal-500",
+                  "text-brand-ink-800",
+                  "text-brand-olive-500"
+                ][index % 3];
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="text-center group"
+                  >
+                    <div className={`${numberBg} rounded-full p-4 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-soft group-hover:scale-110 transition-smooth`}>
+                      <span className={`font-heading text-xl sm:text-2xl font-bold ${numberColor}`}>{index + 1}</span>
                     </div>
-                    <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">{section.title}</CardTitle>
-                    <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
-                      {section.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-4 sm:p-6 pt-0">
-                    <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                      {section.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-xs sm:text-sm text-brand-ink-800">
-                          <CheckCircle className={`w-3 h-3 sm:w-4 sm:h-4 ${section.checkmarkColor} mr-2 sm:mr-3 flex-shrink-0`} />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild variant="primary-brand" className="w-full text-sm sm:text-base shadow-soft">
-                      <Link to={section.href}>
-                        Explorar sección
-                        <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                    <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">{item.title}</h4>
+                    <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 leading-relaxed">{item.description}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
 
           {/* Key Points */}
           <motion.div 
