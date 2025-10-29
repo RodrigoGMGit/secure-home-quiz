@@ -15,42 +15,42 @@ export const learningPathConfig: LearningPathPage[] = [
     title: 'Tu Familia',
     route: '/aprende/tu-familia',
     icon: Users,
-    invitationText: '¿Quieres conocer las plataformas que usan tus hijos?'
+    invitationText: '¿Empezamos por conocer las plataformas que usan tus hijas e hijos?'
   },
   {
     id: 'redes-sociales',
     title: 'Redes Sociales',
     route: '/aprende/tu-familia/redes-sociales',
     icon: Shield,
-    invitationText: 'Ahora que conoces las redes sociales, ¿exploramos los videojuegos?'
+    invitationText: 'Ya conoces las redes sociales, ¿exploramos los videojuegos?'
   },
   {
     id: 'videojuegos',
     title: 'Videojuegos',
     route: '/aprende/tu-familia/videojuegos',
     icon: Gamepad2,
-    invitationText: '¿Sabes cuáles son los riesgos digitales que enfrentan?'
+    invitationText: '¿Qué tanto sabes sobre los riesgos digitales que enfrentan?'
   },
   {
     id: 'riesgos',
     title: 'Riesgos Digitales',
     route: '/aprende/riesgos',
     icon: Shield,
-    invitationText: '¿Listo para aprender a proteger tu hogar digital?'
+    invitationText: '¿Y qué puedes hacer entonces para proteger tu hogar digital?'
   },
   {
     id: 'controles',
     title: 'Controles Parentales',
     route: '/aprende/controles',
     icon: Settings,
-    invitationText: 'Las herramientas están listas, ¿cómo hablamos con nuestros hijos?'
+    invitationText: 'Ya tenemos las herramientas, ¿ahora cómo hablamos con nuestras hijas e hijos?'
   },
   {
     id: 'comunicacion',
     title: 'Comunicación y Apoyo',
     route: '/aprende/comunicacion',
     icon: MessageCircle,
-    invitationText: '¿Conoces qué hacer si ocurre algo grave?'
+    invitationText: 'Pero... ¿Y si ocurre algo grave?'
   },
   {
     id: 'acciones-legales',

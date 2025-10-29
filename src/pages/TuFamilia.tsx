@@ -1,5 +1,5 @@
 import React from "react";
-import { Users, CheckCircle, Shield } from "lucide-react";
+import { Users, CheckCircle, Shield, Info, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
@@ -7,6 +7,7 @@ import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
 import { DecorativeBackground } from "@/components/shared/DecorativeBackground";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { QuizCTA } from "@/components/shared/QuizCTA";
+import TrustLogo from "@/components/TrustLogo";
 
 const TuFamilia = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -185,6 +186,116 @@ const TuFamilia = () => {
             </div>
           </motion.div>
 
+          {/* Cómo usar los botones y navegar */}
+          <motion.div 
+            className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-2 bg-gradient-to-r from-brand-olive-500 to-brand-teal-500 rounded-full">
+                  <Info className="h-8 w-8 text-primary-foreground" />
+                </div>
+              </div>
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
+                ¿Cómo aprovechar más este sitio?
+              </h3>
+              <p className="font-body text-sm text-brand-olive-500">
+                Hemos añadido algunas herramientas que sabemos querras tener a la mano
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-6">
+              {/* Explicación de botones flotantes */}
+              <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-lg p-6 border border-brand-mint-200/30">
+                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 text-center">
+                  Botones de acción
+                </h4>
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 text-center leading-relaxed">
+                  En todo momento verás estos botones flotantes en la esquina inferior derecha:
+                </p>
+                
+                {/* Mini botones demostrativos */}
+                <div className="flex justify-center items-center gap-4 sm:gap-6 mb-6">
+                  {/* Botón de emergencia demo */}
+                  <div className="flex flex-col items-center gap-2">
+                    <button
+                      disabled
+                      aria-label="Botón de emergencia (demostrativo)"
+                      className="relative bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full w-14 h-14 sm:w-16 sm:h-16 shadow-lg border-2 border-white/20 flex items-center justify-center cursor-default opacity-90"
+                    >
+                      <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
+                    </button>
+                    <p className="font-body text-xs sm:text-sm text-brand-ink-800 text-center max-w-[80px]">
+                      Emergencia
+                    </p>
+                  </div>
+
+                  {/* Botón FIN demo */}
+                  <div className="flex flex-col items-center gap-2">
+                    <button
+                      disabled
+                      aria-label="Botón FIN de la Esclavitud (demostrativo)"
+                      className="bg-white border border-brand-mint-200/30 rounded-full w-14 h-14 sm:w-16 sm:h-16 shadow-soft flex items-center justify-center cursor-default"
+                    >
+                      <TrustLogo 
+                        src="LogosFE_Colores 2.png"
+                        alt="FIN de la Esclavitud" 
+                        className="w-[70%] h-[70%] object-contain"
+                        priority={false}
+                      />
+                    </button>
+                    <p className="font-body text-xs sm:text-sm text-brand-ink-800 text-center max-w-[80px]">
+                      FIN
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bullets explicativos */}
+                <ul className="space-y-3 font-body text-sm sm:text-base text-brand-ink-800">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span><span className="font-semibold">Botón de emergencia:</span> Un acceso rápido a los contactos de emergencia; aunque esperamos que no lo necesites, queremos protegerte.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span><span className="font-semibold">Botón de FIN:</span> Estamos para ayudarte. Aqui podras conocernos más y saber como contactarnos.</span>
+                  </li>
+                  {/* <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span><span className="font-semibold">Siempre visibles:</span> Estos botones están disponibles en todas las páginas para acceso rápido cuando los necesites.</span>
+                  </li> */}
+                </ul>
+              </div>
+
+              {/* Explicación de navegación */}
+              <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
+                <h4 className="font-heading text-base sm:text-lg font-semibold text-brand-ink-900 mb-4 text-center">
+                  Como navegar en el sitio
+                </h4>
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-4 text-center leading-relaxed">
+                  Cada página tiene mucho contenido valioso, aunque si solo algo específico te interesa, no te preocupes:
+                </p>
+                <ul className="space-y-2 font-body text-sm sm:text-base text-brand-ink-800">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span>Puedes <span className="font-semibold">leer todo el contenido</span> o solo <span className="font-semibold">lo que más necesites</span> en cada momento.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span>Al final de cada página encontrarás <span className="font-semibold">3 puntos clave para recordar</span> antes de continuar.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-4 h-4 mt-0.5 mr-3 text-brand-teal-500 flex-shrink-0" />
+                    <span>Y justo después, el bloque de <span className="font-semibold">navegación guiada</span> te lleva directamente a la siguiente sección del recorrido.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Key Points */}
           <motion.div 
             className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30"
@@ -199,7 +310,7 @@ const TuFamilia = () => {
                 </div>
               </div>
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
-                Recuerda estos 3 elementos clave:
+                Así que, recuerda estos 3 elementos clave:
               </h3>
               <p className="font-body text-sm text-brand-olive-500">
                 Fundamentos para un hogar digital seguro
@@ -212,11 +323,10 @@ const TuFamilia = () => {
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-teal-500">1</span>
                 </div>
                 <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
-                  Comunicación Familiar
+                  Usa las herramientas del sitio
                 </h4>
                 <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
-                  Aprender sobre seguridad digital no solo protege a niñas, niños y adolescentes: 
-                  también fortalece la comunicación familiar y fomenta el diálogo.
+                  Los botones de <span className="font-semibold">Emergencia</span> y <span className="font-semibold">FIN</span>, y el <span className="font-semibold">diagnóstico</span>, están para acompañarte cuando lo necesites.
                 </p>
               </div>
               
@@ -225,11 +335,10 @@ const TuFamilia = () => {
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-800">2</span>
                 </div>
                 <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
-                  Hábitos Seguros
+                  Navega con foco y sin perderte
                 </h4>
                 <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
-                  Este manual está diseñado para ayudarte a crear hábitos, rutinas y valores que 
-                  hagan de tu hogar un espacio seguro y conectado.
+                  Lee lo que más te sirve ahora y usa la <span className="font-semibold">navegación guiada</span> al final para continuar al siguiente tema.
                 </p>
               </div>
               
@@ -238,11 +347,10 @@ const TuFamilia = () => {
                   <span className="font-heading text-xl sm:text-2xl font-bold text-brand-olive-500">3</span>
                 </div>
                 <h4 className="font-heading text-sm sm:text-base md:text-lg font-semibold text-brand-ink-900 mb-3">
-                  Crecimiento Digital
+                  Sigue el camino guiado
                 </h4>
                 <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
-                  Internet no tiene que dar miedo. Con información, presencia y diálogo, podemos 
-                  convertirlo en un espacio de crecimiento, creatividad y conexión en familia.
+                  Hay mucho que aprender en el camino a proteger a quienes amamos, y aquí te lo enseñaremos paso a paso.
                 </p>
               </div>
             </div>

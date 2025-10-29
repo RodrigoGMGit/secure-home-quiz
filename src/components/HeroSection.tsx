@@ -384,7 +384,7 @@ const HeroSection = () => {
             </div>
 
             <p className="text-xs sm:text-sm text-brand-olive-500 mt-3 sm:mt-4 opacity-80 font-body px-2">
-              100% confidencial • Toma solo 3 minutos
+              100% confidencial • Herramientas gratuitas • Recursos actualizados
             </p>
 
             {/* Trust Badge Section */}

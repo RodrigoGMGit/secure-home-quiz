@@ -32,7 +32,7 @@ const LearningPathNav: React.FC<LearningPathNavProps> = ({ currentRoute }) => {
             {current.invitationText}
           </p>
           <p className="font-body text-sm sm:text-base text-brand-olive-500">
-            Continúa aprendiendo sobre seguridad digital
+            Continuemos el recorrido
           </p>
         </div>
       )}

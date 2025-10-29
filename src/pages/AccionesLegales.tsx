@@ -580,10 +580,10 @@ const AccionesLegales = () => {
             <QuizCTA 
               variant="congrats"
               title="¡Felicidades por llegar hasta aquí!"
-              description="El diagnóstico agrega mucho valor: prioriza acciones, te da pasos claros y un PDF por correo."
+              description="El diagnóstico agrega mucho valor: prioriza acciones, te da pasos claros y un plan a tu medida."
               buttonText="Hacer el diagnóstico"
-              badgeText="Valor extra"
-              bullets={["Prioriza acciones clave","Guía paso a paso","Recibe tu plan en PDF"]}
+              badgeText="Espera, esto no es todo"
+              bullets={["Prioriza acciones clave","Guía paso a paso","Genera un plan personalizado"]}
               delay={0.6}
             />
 

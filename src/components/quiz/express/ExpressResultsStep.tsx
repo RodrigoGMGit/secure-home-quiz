@@ -312,18 +312,25 @@ const ExpressResultsStep = ({ result, onRestart, onTrack }: ExpressResultsStepPr
                </Button>
             </motion.div>
 
-             {/* Botón secundario - Empezar aprendizaje */}
-             <Button
-               asChild
-               variant="outline"
-               size="lg"
-               className="w-full sm:w-auto border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-4 sm:px-6 py-3 text-sm sm:text-base font-heading font-medium"
-               onClick={handleTuFamiliaClick}
-             >
-               <Link to="/aprende/tu-familia">
-                 Empezar aprendizaje
-               </Link>
-             </Button>
+            {/* Botón secundario - Empezar aprendizaje */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="w-full sm:w-auto"
+            >
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-auto border-2 border-brand-teal-500 text-brand-teal-500 hover:bg-brand-mint-200/20 px-4 sm:px-6 py-3 text-sm sm:text-base font-heading font-medium shadow-soft hover:shadow-lg transition-smooth"
+                onClick={handleTuFamiliaClick}
+              >
+                <Link to="/aprende/tu-familia">
+                  Empezar aprendizaje
+                </Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </motion.div>
