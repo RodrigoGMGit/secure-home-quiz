@@ -126,7 +126,7 @@ export const plataformasExternas: PlataformaExterna[] = [
     nombre: "Common Sense Media",
     descripcion: "Reseñas y recomendaciones sobre contenido digital por edad",
     icon: Globe,
-    url: "https://www.commonsensemedia.org/espanol",
+    url: "https://www.commonsensemedia.org/",
     esUrgente: false
   },
   {
