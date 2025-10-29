@@ -662,9 +662,7 @@ const TuFamiliaRedesSociales = () => {
         title="Tu Familia y las Redes Sociales"
         subtitle="Conoce las plataformas más populares y cómo proteger a tu familia"
         highlightQuote="No se trata de tener el control total, sino de acompañarles con presencia y criterio"
-        showBackButton={true}
-        backButtonHref="/aprende/tu-familia"
-        backButtonText="Volver a Tu Familia"
+        showBackButton={false}
       />
 
       <div className="relative container mx-auto px-4 py-8 sm:py-12">

@@ -3,8 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
@@ -364,14 +363,6 @@ const TuFamiliaVideojuegos = () => {
       {/* Header Section */}
       <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
         <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="flex items-center mb-4 sm:mb-6">
-            <Button variant="ghost" asChild className="text-sm sm:text-base">
-              <Link to="/aprende/tu-familia">
-                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Volver a Tu Familia
-              </Link>
-            </Button>
-          </div>
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo circular con gradiente */}
             <div className="flex justify-center mb-6">
