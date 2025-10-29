@@ -161,5 +161,97 @@ export const glossaryTerms: Record<string, GlossaryEntry> = {
         "AO (Adults Only) - Solo para adultos (18+)"
       ]
     }
+  },
+  mods: {
+    term: "Mods",
+    definition: "Modificaciones creadas por la comunidad que alteran o amplían un videojuego (nuevos contenidos, ajustes o funcionalidades).",
+    additionalInfo: {
+      title: "Buenas prácticas:",
+      items: [
+        "Descargar solo de fuentes confiables",
+        "Leer reseñas y verificar permisos",
+        "Supervisión adulta en menores",
+        "Mantener respaldo del juego original",
+        "Evitar mods que habiliten chat o contenido no apto"
+      ]
+    }
+  },
+  fps: {
+    term: "FPS",
+    definition: "First‑Person Shooter (disparos en primera persona). Género de juegos enfocado en combate con perspectiva desde los ojos del personaje.",
+    additionalInfo: {
+      title: "Aspectos a considerar:",
+      items: [
+        "Nivel de violencia y realismo",
+        "Chat de voz y texto con extraños",
+        "Presión por rendimiento competitivo",
+        "Configurar filtros de chat y límites de tiempo"
+      ]
+    }
+  },
+  "battle-royale": {
+    term: "Battle Royale",
+    definition: "Modo de juego donde muchos jugadores compiten en un mismo mapa y gana la última persona o equipo en pie.",
+    additionalInfo: {
+      title: "Riesgos comunes:",
+      items: [
+        "Chat con desconocidos",
+        "Presión social por ganar",
+        "Sesiones largas sin pausas",
+        "Compras dentro del juego (skins, pases)"
+      ]
+    }
+  },
+  robux: {
+    term: "Robux",
+    definition: "Moneda virtual usada en Roblox para comprar accesorios, juegos y beneficios dentro de la plataforma.",
+    additionalInfo: {
+      title: "Precauciones:",
+      items: [
+        "Establecer límites y control parental",
+        "Evitar compartir datos de pago",
+        "Desconfiar de regalos/estafas de Robux",
+        "Hablar sobre presión por apariencia"
+      ]
+    }
+  },
+  streaming: {
+    term: "Streaming",
+    definition: "Transmisión en vivo de video o contenido por internet (por ejemplo, partidas de videojuegos en tiempo real).",
+    additionalInfo: {
+      title: "Qué vigilar:",
+      items: [
+        "Contenido inapropiado en tiempo real",
+        "Chats abiertos con lenguaje ofensivo",
+        "Donaciones y compras impulsivas",
+        "Configuraciones de privacidad y filtros"
+      ]
+    }
+  },
+  streamers: {
+    term: "Streamers",
+    definition: "Personas que transmiten en vivo para una audiencia, interactuando por chat y recibiendo apoyo (seguimientos, suscripciones o donaciones).",
+    additionalInfo: {
+      title: "Conversar en familia:",
+      items: [
+        "Relaciones parasociales y límites",
+        "Conductas adultas no apropiadas",
+        "Solicitudes de donaciones",
+        "Elegir canales adecuados a la edad"
+      ]
+    }
+  },
+  offline: {
+    term: "Offline",
+    definition: "Estado o actividades sin conexión a internet. También se usa para promover equilibrio con actividades fuera de pantalla.",
+    additionalInfo: {
+      title: "Recomendaciones:",
+      items: [
+        "Definir horarios sin pantallas",
+        "Fomentar actividades físicas y sociales",
+        "Evitar juegos nocturnos",
+        "Modelo de equilibrio por parte de adultos"
+      ]
+    }
   }
 };

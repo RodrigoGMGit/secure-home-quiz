@@ -426,14 +426,14 @@ const TuFamiliaRedesSociales = () => {
     {
       id: "twitch",
       name: "Twitch",
-      description: "Plataforma de streaming de videojuegos",
+      description: <>Plataforma de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> de videojuegos</>,
       logo: TwitchIcon,
       age: "13+ años",
       risks: [
-        "Contenido de streaming inapropiado",
+        <>Contenido de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> inapropiado</>,
         "Chat con lenguaje ofensivo",
         "Donaciones con dinero real",
-        "Contacto con streamers desconocidos",
+        <>Contacto con <GlossaryTerm termKey="streamers">streamers</GlossaryTerm> desconocidos</>,
         <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
       controls: [
@@ -594,13 +594,13 @@ const TuFamiliaRedesSociales = () => {
     {
       id: "kick",
       name: "Kick",
-      description: "Plataforma de streaming para transmitir y ver videos en vivo",
+      description: <>Plataforma de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> para transmitir y ver videos en vivo</>,
       logo: KickIcon,
       age: "13+ años",
       risks: [
-        "Contenido de streaming inapropiado",
+        <>Contenido de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> inapropiado</>,
         "Chat con lenguaje ofensivo",
-        "Contacto con streamers desconocidos",
+        <>Contacto con <GlossaryTerm termKey="streamers">streamers</GlossaryTerm> desconocidos</>,
         "Donaciones con dinero real",
         <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
@@ -609,7 +609,7 @@ const TuFamiliaRedesSociales = () => {
         "Revisar configuración de chat",
         "Desactivar notificaciones de contenido adulto",
         "Configurar límites de interacción",
-        "Educar sobre uso responsable de streaming"
+        <>Educar sobre uso responsable de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm></>
       ],
       tutorial: {
         title: "Configuración de Kick para Familias",
