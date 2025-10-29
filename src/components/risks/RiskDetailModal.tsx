@@ -1,13 +1,15 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent } from '../ui/dialog';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Separator } from '../ui/separator';
 import { Search, AlertTriangle, Shield, MessageCircle, CheckCircle, Lightbulb, Eye, Users, Clock } from 'lucide-react';
 import { DigitalRisk } from '../../types/risks';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
+import { ModalHeader } from '../shared/ModalHeader';
+import { ModalContent } from '../shared/ModalContent';
+import { ModalFooter } from '../shared/ModalFooter';
 
 interface RiskDetailModalProps {
   risk: DigitalRisk | null;
@@ -40,57 +42,30 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-subtle border-brand-mint-200/30 overflow-x-hidden">
+      <DialogContent className="bg-gradient-subtle border-brand-mint-200/30">
         {/* Header con diseño sofisticado */}
-        <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8 overflow-hidden">
-          {/* Elementos decorativos de fondo */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-4 left-4 w-16 h-16 bg-brand-teal-500/5 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute bottom-4 right-4 w-20 h-20 bg-brand-mint-200/10 rounded-full blur-xl animate-pulse delay-500"></div>
-          </div>
-          
-          <div className="relative">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              {/* Logo circular con gradiente */}
-              <div className="flex justify-center">
-                <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                  <div className="text-2xl sm:text-3xl text-primary-foreground">{risk.icon}</div>
-                </div>
-              </div>
-              
-              <div className="flex-1 min-w-0 text-center">
-                <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
-                  {risk.title}
-                </DialogTitle>
-                
-                {/* Badges con diseño mejorado */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-                  <Badge 
-                    variant="outline" 
-                    className={cn("text-xs sm:text-sm w-fit px-3 py-1", severityColors[risk.severity])}
-                  >
-                    <SeverityIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                    Riesgo {severityLabels[risk.severity]}
-                  </Badge>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {risk.ageGroups.map((age) => (
-                      <Badge key={age} variant="secondary" className="text-xs px-2 py-1 bg-brand-mint-200/40 text-brand-ink-800 border-brand-mint-200/50">
-                        {age} años
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Descripción con estilo mejorado */}
-                <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed break-words">
-                  {risk.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </DialogHeader>
+        <ModalHeader
+          customIcon={<div className="text-2xl sm:text-3xl text-primary-foreground">{risk.icon}</div>}
+          title={risk.title}
+          description={risk.description}
+          badges={[
+            <Badge 
+              key="severity"
+              variant="outline" 
+              className={cn("text-xs sm:text-sm w-fit px-3 py-1", severityColors[risk.severity])}
+            >
+              <SeverityIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+              Riesgo {severityLabels[risk.severity]}
+            </Badge>,
+            ...risk.ageGroups.map((age) => (
+              <Badge key={age} variant="secondary" className="text-xs px-2 py-1 bg-brand-mint-200/40 text-brand-ink-800 border-brand-mint-200/50">
+                {age} años
+              </Badge>
+            ))
+          ]}
+        />
 
-        <div className="space-y-6 sm:space-y-8 px-4 sm:px-0 min-w-0">
+        <ModalContent>
           {/* Cómo identificarlo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -269,18 +244,16 @@ export const RiskDetailModal: React.FC<RiskDetailModalProps> = ({ risk, isOpen, 
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </ModalContent>
 
-        <Separator className="my-6 sm:my-8 border-brand-mint-200/30" />
-
-        <div className="flex justify-center px-4 sm:px-0">
+        <ModalFooter>
           <Button 
             onClick={onClose} 
             className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
           >
             Cerrar
           </Button>
-        </div>
+        </ModalFooter>
       </DialogContent>
     </Dialog>
   );

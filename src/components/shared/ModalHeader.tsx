@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 
 export interface ModalHeaderProps {
   icon?: React.ComponentType<{ className?: string }>;
+  customIcon?: React.ReactNode; // For custom icon content (e.g., platform icons, emojis)
   title: string;
   description?: string;
   badges?: React.ReactNode[];
@@ -17,12 +18,16 @@ export interface ModalHeaderProps {
  */
 export const ModalHeader: React.FC<ModalHeaderProps> = ({ 
   icon: IconComponent,
+  customIcon,
   title,
   description,
   badges = [],
   showDecorativeElements = true,
   className = ""
 }) => {
+  // Determine which icon to render
+  const hasIcon = IconComponent || customIcon;
+  
   return (
     <div className={`relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 p-6 sm:p-8 mb-6 overflow-hidden ${className}`}>
       {/* Elementos decorativos de fondo */}
@@ -35,10 +40,14 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
       
       <div className="relative">
         {/* Logo circular con gradiente - siempre centrado arriba */}
-        {IconComponent && (
+        {hasIcon && (
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-              <IconComponent className="h-8 w-8 text-primary-foreground" />
+              {IconComponent ? (
+                <IconComponent className="h-8 w-8 text-primary-foreground" />
+              ) : (
+                customIcon
+              )}
             </div>
           </div>
         )}

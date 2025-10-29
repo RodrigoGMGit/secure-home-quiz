@@ -136,10 +136,18 @@ export function useQuizState() {
         return !!state.answers.age_band; // Age is required
       case 'platforms':
         return (state.answers.platforms?.length || 0) > 0 || !!state.answers.unknown_platforms; // At least one platform or unknown
-      case 'security_config':
-        return true; // Optional step
-      case 'emergency_resources':
-        return true; // Optional step
+      case 'security_config': {
+        // All 5 questions must be answered
+        const config = state.answers.securityConfig || {};
+        return !!config.supervision && !!config.communication && 
+               !!config.safesearch && !!config.family_rules && !!config.legal_knowledge;
+      }
+      case 'emergency_resources': {
+        // All 4 questions must be answered
+        const resources = state.answers.emergencyResources || {};
+        return !!resources.emergency_action && !!resources.report_resources && 
+               !!resources.emotional_support && !!resources.preventive_prep;
+      }
       case 'concerns':
         return (state.answers.concerns?.length || 0) > 0; // At least one concern
       default:

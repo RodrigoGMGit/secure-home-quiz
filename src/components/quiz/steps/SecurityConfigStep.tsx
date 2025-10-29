@@ -48,6 +48,10 @@ export function SecurityConfigStep({
     onNext(config);
   };
 
+  // Check if all 5 questions have been answered
+  const canProceed = !!config.supervision && !!config.communication && 
+                     !!config.safesearch && !!config.family_rules && !!config.legal_knowledge;
+
   const questions = [
     {
       id: 'supervision',
@@ -192,7 +196,8 @@ export function SecurityConfigStep({
         <Button
           variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-8"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-8 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>
