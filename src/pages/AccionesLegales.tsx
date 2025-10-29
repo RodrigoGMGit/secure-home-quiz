@@ -283,7 +283,7 @@ const AccionesLegales = () => {
                             <TrustLogo 
                               src="te-protejo-mexico.png"
                               alt="Te Protejo México"
-                              className="h-10 w-10 sm:h-14 sm:w-14 object-contain"
+                              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
                             />
                           ) : (
                             <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />
