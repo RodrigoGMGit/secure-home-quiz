@@ -772,6 +772,13 @@ const TuFamiliaRedesSociales = () => {
                       <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-brand-olive-500" />
                       <span className="font-body text-xs sm:text-sm text-brand-olive-500">{platform.age}</span>
                     </div>
+                    {platform.id === "youtube-kids" && (
+                      <div className="mt-2">
+                        <Badge variant="outline" className="text-[10px] sm:text-xs border-brand-teal-500 text-brand-teal-500">
+                          Para menores de 12 años
+                        </Badge>
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0">
                     <div className="space-y-3 sm:space-y-4">
@@ -846,6 +853,13 @@ const TuFamiliaRedesSociales = () => {
                           <DialogDescription className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 px-2 break-words">
                             {platform.description}
                           </DialogDescription>
+                          {platform.id === "youtube-kids" && (
+                            <div className="mt-3">
+                              <Badge variant="outline" className="text-xs sm:text-sm border-brand-teal-500 text-brand-teal-500">
+                                Para menores de 12 años
+                              </Badge>
+                            </div>
+                          )}
                         </DialogHeader>
                         
                         <div className="space-y-6 sm:space-y-8 px-4 sm:px-0 overflow-hidden">
