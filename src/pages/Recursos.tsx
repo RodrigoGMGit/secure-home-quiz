@@ -32,6 +32,7 @@ import {
   iconColors,
   TerminoGlosario
 } from "@/data/recursos";
+import TrustLogo from "@/components/TrustLogo";
 
 // Componente para términos del glosario
 const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: number }) => {
@@ -298,11 +299,19 @@ const Recursos = () => {
                         <CardHeader className="text-center p-4 sm:p-6">
                           {/* Logo circular */}
                           <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${
-                            plataforma.esUrgente 
+                            plataforma.esUrgente && plataforma.id !== "te-protejo"
                               ? "bg-red-500/20 text-red-500" 
                               : "bg-brand-teal-500/20 text-brand-teal-500"
                           } rounded-full w-fit shadow-soft`}>
-                            <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            {plataforma.id === "te-protejo" ? (
+                              <TrustLogo 
+                                src="te-protejo-mexico.png"
+                                alt="Te Protejo México"
+                                className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                              />
+                            ) : (
+                              <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            )}
                           </div>
                           
                           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
@@ -318,7 +327,7 @@ const Recursos = () => {
                           <Button 
                             asChild 
                             className={`w-full text-sm sm:text-base ${
-                              plataforma.esUrgente 
+                              plataforma.esUrgente && plataforma.id !== "te-protejo"
                                 ? "bg-red-500 hover:bg-red-600" 
                                 : "shadow-soft"
                             }`}

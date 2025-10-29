@@ -57,7 +57,7 @@ const AccionesLegales = () => {
     {
       id: "te-protejo-mexico",
       nombre: "Te Protejo México",
-      descripcion: "Plataforma digital para reportar violencia sexual contra menores",
+      descripcion: "Plataforma digital para reportar violencia sexual contra menores y solicitar la baja de imágenes o videos de tus hijas o hijos publicados sin autorización",
       icon: Users,
       web: "https://teprotejomexico.org/",
       caracteristicas: [
@@ -283,7 +283,7 @@ const AccionesLegales = () => {
                             <TrustLogo 
                               src="te-protejo-mexico.png"
                               alt="Te Protejo México"
-                              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                              className="h-10 w-10 sm:h-14 sm:w-14 object-contain"
                             />
                           ) : (
                             <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />

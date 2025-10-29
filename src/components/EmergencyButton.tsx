@@ -37,7 +37,7 @@ const EmergencyButton = () => {
     {
       id: "teprotejo",
       titulo: "Te Protejo México",
-      descripcion: "Reporte anónimo de violencia sexual",
+      descripcion: "Reporte anónimo de violencia sexual y solicitud para bajar del internet imágenes o videos de tus hijas o hijos publicados sin autorización",
       icon: Shield,
       url: "https://teprotejomexico.org/",
       esUrgente: false
@@ -143,11 +143,11 @@ const EmergencyButton = () => {
                             <TrustLogo 
                               src="te-protejo-mexico.png"
                               alt="Te Protejo México"
-                              className="h-6 w-6 object-contain"
+                              className="h-8 w-8 object-contain"
                               priority={false}
                             />
                           ) : (
-                            <IconComponent className="h-6 w-6" />
+                            <IconComponent className="h-8 w-8" />
                           )}
                         </div>
                         

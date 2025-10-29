@@ -102,7 +102,7 @@ const Ayuda = () => {
     {
       id: "teprotejo",
       titulo: "Te Protejo México",
-      descripcion: "Reporte anónimo de violencia sexual contra menores de edad",
+      descripcion: "Reporte anónimo de violencia sexual contra menores y solicitud para bajar del internet imágenes o videos de tus hijas o hijos publicados sin autorización",
       icon: Shield,
       esUrgente: false,
       url: "https://teprotejomexico.org/",
