@@ -397,6 +397,8 @@ const HeroSection = () => {
                   src="/optimized/logos/Logo_Gob-original.webp"
                   alt="Gobierno de México" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Logo Fundación */}
@@ -404,6 +406,8 @@ const HeroSection = () => {
                   src="/optimized/logos/LogosFE_Colores 2-original.webp"
                   alt="Fundación en Movimiento" 
                   className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

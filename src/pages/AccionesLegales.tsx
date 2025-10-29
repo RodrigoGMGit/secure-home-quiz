@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { QuizCTA } from "@/components/shared/QuizCTA";
 
 const AccionesLegales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -561,6 +562,9 @@ const AccionesLegales = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Quiz CTA - Show only if user hasn't completed quiz */}
+            <QuizCTA delay={0.6} />
 
             {/* Banner de Ayuda Urgente */}
             <motion.div 
