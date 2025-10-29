@@ -550,7 +550,7 @@ const Ayuda = () => {
                       className="w-full bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
                     >
                       <Send className="mr-2 h-4 w-4" />
-                      Solicitar taller
+                      Quiero el taller
                     </Button>
                   </form>
                 </div>

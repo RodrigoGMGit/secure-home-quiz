@@ -33,6 +33,7 @@ import {
   TerminoGlosario
 } from "@/data/recursos";
 import TrustLogo from "@/components/TrustLogo";
+import WorkshopRequestModal from "@/components/help/WorkshopRequestModal";
 
 // Componente para términos del glosario
 const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: number }) => {
@@ -117,6 +118,7 @@ const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: 
 
 const Recursos = () => {
   useScrollToTop();
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
   return (
     <>
@@ -372,16 +374,17 @@ const Recursos = () => {
                 </p>
                 
                 <Button 
-                  asChild 
+                  onClick={() => setWorkshopOpen(true)}
                   className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
                 >
-                  <a href="/ayuda">
-                    Contactar
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
+                  Quiero el taller
+                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </motion.div>
+
+            {/* Modal de solicitud de taller */}
+            <WorkshopRequestModal open={workshopOpen} onOpenChange={setWorkshopOpen} />
 
           </div>
         </div>
