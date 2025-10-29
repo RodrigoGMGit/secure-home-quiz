@@ -142,7 +142,7 @@ export const plataformasExternas: PlataformaExterna[] = [
     nombre: "Te Protejo México",
     descripcion: "Reporta violencia sexual contra menores de manera anónima",
     icon: Shield,
-    url: "https://www.teprotejo.org/",
+    url: "https://teprotejomexico.org/",
     esUrgente: true
   }
 ];

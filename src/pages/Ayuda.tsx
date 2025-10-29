@@ -30,6 +30,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import GlobalHeader from "@/components/GlobalHeader";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { getFAQLinkInfo } from "@/data/faqLinks";
+import TrustLogo from "@/components/TrustLogo";
 
 const Ayuda = () => {
   useScrollToTop();
@@ -104,7 +105,7 @@ const Ayuda = () => {
       descripcion: "Reporte anónimo de violencia sexual contra menores de edad",
       icon: Shield,
       esUrgente: false,
-      url: "https://www.teprotejo.org",
+      url: "https://teprotejomexico.org/",
       colorIndex: 2
     },
     {
@@ -280,7 +281,15 @@ const Ayuda = () => {
                         <CardHeader className="text-center p-4 sm:p-6">
                           {/* Logo circular con icono */}
                           <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
-                            <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            {contacto.id === "teprotejo" ? (
+                              <TrustLogo 
+                                src="te-protejo-mexico.png"
+                                alt="Te Protejo México"
+                                className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                              />
+                            ) : (
+                              <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            )}
                           </div>
                           
                           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">

@@ -8,6 +8,7 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
 import { QuizCTA } from "@/components/shared/QuizCTA";
+import TrustLogo from "@/components/TrustLogo";
 
 const AccionesLegales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -278,7 +279,15 @@ const AccionesLegales = () => {
                     <Card className={`${autoridad.color} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
                       <CardHeader className="text-center p-4 sm:p-6">
                         <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${autoridad.iconBg} rounded-full w-fit shadow-soft`}>
-                          <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />
+                          {autoridad.id === "te-protejo-mexico" ? (
+                            <TrustLogo 
+                              src="te-protejo-mexico.png"
+                              alt="Te Protejo México"
+                              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                            />
+                          ) : (
+                            <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />
+                          )}
                         </div>
                         <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
                           {autoridad.nombre}

@@ -115,7 +115,8 @@ async function main() {
   const logoImages = [
     'src/assets/logos/Logo Hogares Digitales.png',
     'src/assets/logos/LogosFE_Colores 2.png',
-    'src/assets/logos/Logo_Gob.png'
+    'src/assets/logos/Logo_Gob.png',
+    'src/assets/logos/te-protejo-mexico.png'
   ];
 
   for (const imagePath of logoImages) {

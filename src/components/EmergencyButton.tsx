@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, ExternalLink, Shield, Building, Globe } from "lucide-react";
+import TrustLogo from "@/components/TrustLogo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -38,7 +39,7 @@ const EmergencyButton = () => {
       titulo: "Te Protejo México",
       descripcion: "Reporte anónimo de violencia sexual",
       icon: Shield,
-      url: "https://www.teprotejo.org",
+      url: "https://teprotejomexico.org/",
       esUrgente: false
     }
   ];
@@ -138,7 +139,16 @@ const EmergencyButton = () => {
                             ? "bg-red-500/20 text-red-500" 
                             : "bg-brand-teal-500/20 text-brand-teal-500"
                         }`}>
-                          <IconComponent className="h-6 w-6" />
+                          {contacto.id === "teprotejo" ? (
+                            <TrustLogo 
+                              src="te-protejo-mexico.png"
+                              alt="Te Protejo México"
+                              className="h-6 w-6 object-contain"
+                              priority={false}
+                            />
+                          ) : (
+                            <IconComponent className="h-6 w-6" />
+                          )}
                         </div>
                         
                         <div className="flex-1 min-w-0">
