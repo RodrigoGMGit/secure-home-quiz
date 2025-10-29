@@ -31,7 +31,7 @@ const HeroSection = () => {
   };
 
   const handleComencemos = () => {
-    navigateWithLoading('/en-construccion', 'default');
+    navigateWithLoading('/aprende/tu-familia', 'default');
   };
 
   const handleEvaluarSituacion = () => {
