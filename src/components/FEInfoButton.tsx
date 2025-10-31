@@ -8,9 +8,11 @@ import { Separator } from "@/components/ui/separator";
 import { useMobileDetection, useTelephoneCapability } from "@/hooks/useMobileDetection";
 import { initiatePhoneCall } from "@/utils/phoneUtils";
 import TrustLogo from "@/components/TrustLogo";
+import WorkshopRequestModal from "@/components/help/WorkshopRequestModal";
 
 const FEInfoButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openWorkshop, setOpenWorkshop] = useState(false);
   const isMobile = useMobileDetection();
   const canCall = useTelephoneCapability();
 
@@ -74,6 +76,16 @@ const FEInfoButton = () => {
             <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">
               FIN de la Esclavitud
             </DialogTitle>
+            {/* CTA superior: Quiero el taller */}
+            <div className="mt-2 mb-3 flex justify-center">
+              <Button
+                variant="primary-brand"
+                className="px-6 py-2"
+                onClick={() => setOpenWorkshop(true)}
+              >
+                Quiero el taller
+              </Button>
+            </div>
             <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 px-2">
               Organización dedicada a informar, prevenir y capacitar sobre Trata de Personas y las diversas formas de Esclavitud Moderna.
             </p>
@@ -243,6 +255,9 @@ const FEInfoButton = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Modal de solicitud de taller desde FIN */}
+      <WorkshopRequestModal open={openWorkshop} onOpenChange={setOpenWorkshop} />
     </>
   );
 };

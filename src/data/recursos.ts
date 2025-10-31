@@ -16,6 +16,7 @@ export interface TerminoGlosario {
   definicion: string;
   ejemplos?: string[];
   categoria: string;
+  consejos?: string;
 }
 
 export interface PlataformaExterna {
@@ -126,7 +127,7 @@ export const plataformasExternas: PlataformaExterna[] = [
     nombre: "Common Sense Media",
     descripcion: "Reseñas y recomendaciones sobre contenido digital por edad",
     icon: Globe,
-    url: "https://www.commonsensemedia.org/espanol",
+    url: "https://www.commonsensemedia.org/",
     esUrgente: false
   },
   {
@@ -140,9 +141,9 @@ export const plataformasExternas: PlataformaExterna[] = [
   {
     id: "te-protejo",
     nombre: "Te Protejo México",
-    descripcion: "Reporta violencia sexual contra menores de manera anónima",
+    descripcion: "Reporta violencia sexual contra menores de manera anónima y solicita la baja de imágenes o videos de tus hijas o hijos publicados sin autorización",
     icon: Shield,
-    url: "https://www.teprotejo.org/",
+    url: "https://teprotejomexico.org/",
     esUrgente: true
   }
 ];

@@ -47,6 +47,10 @@ export function EmergencyResourcesStep({
     onNext(resources);
   };
 
+  // Check if all 4 questions have been answered
+  const canProceed = !!resources.emergency_action && !!resources.report_resources && 
+                     !!resources.emotional_support && !!resources.preventive_prep;
+
   const questions = [
     {
       id: 'emergency_action',
@@ -175,7 +179,8 @@ export function EmergencyResourcesStep({
         <Button
           variant="primary-brand"
           onClick={handleNext}
-          className="w-full sm:w-auto px-8"
+          disabled={!canProceed}
+          className="w-full sm:w-auto px-8 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continuar
         </Button>

@@ -3,8 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
@@ -30,7 +29,7 @@ const TuFamiliaVideojuegos = () => {
         "Chat con jugadores desconocidos",
         "Servidores con contenido inapropiado",
         "Compartir información personal",
-        "Mods no verificados",
+        <> <GlossaryTerm termKey="mods">mods</GlossaryTerm> no verificados</>,
         "Grooming en servidores multijugador"
       ],
       controls: [
@@ -38,7 +37,7 @@ const TuFamiliaVideojuegos = () => {
         "Configurar chat privado",
         "Revisar servidores antes de unirse",
         "Desactivar chat público",
-        "Supervisar mods instalados"
+        <>Supervisar <GlossaryTerm termKey="mods">mods</GlossaryTerm> instalados</>
       ],
       tutorial: {
         title: "Configuración de Minecraft para Familias",
@@ -61,7 +60,7 @@ const TuFamiliaVideojuegos = () => {
           {
             title: "Revisar Mods",
             description: "Supervisar modificaciones instaladas",
-            details: "Mods > Revisar lista > Solo mods aprobados"
+            details: <><GlossaryTerm termKey="mods">Mods</GlossaryTerm> {">"} Revisar lista {">"} Solo <GlossaryTerm termKey="mods">mods</GlossaryTerm> aprobados</>
           }
         ]
       }
@@ -69,7 +68,7 @@ const TuFamiliaVideojuegos = () => {
     {
       id: "free-fire",
       name: "Free Fire",
-      description: "Battle royale móvil con 50 jugadores en tiempo real",
+      description: <><GlossaryTerm termKey="battle-royale">Battle Royale</GlossaryTerm> móvil con 50 jugadores en tiempo real</>,
       logo: GenericGameIcon,
       age: "13+ años",
       platform: "Móvil",
@@ -116,7 +115,7 @@ const TuFamiliaVideojuegos = () => {
     {
       id: "call-of-duty",
       name: "Call of Duty",
-      description: "FPS militar con multijugador online",
+      description: <><GlossaryTerm termKey="fps">FPS</GlossaryTerm> militar con multijugador online</>,
       logo: GenericGameIcon,
       age: "17+ años",
       platform: "PC, Consolas",
@@ -163,7 +162,7 @@ const TuFamiliaVideojuegos = () => {
     {
       id: "fortnite",
       name: "Fortnite",
-      description: "Battle royale con construcción y elementos creativos",
+      description: <><GlossaryTerm termKey="battle-royale">Battle Royale</GlossaryTerm> con construcción y elementos creativos</>,
       logo: FortniteIcon,
       age: "12+ años",
       platform: "PC, Consolas, Móvil",
@@ -217,7 +216,7 @@ const TuFamiliaVideojuegos = () => {
       risks: [
         "Juegos con contenido inapropiado",
         "Chat con usuarios desconocidos",
-        "Compras de Robux",
+        <>Compras de <GlossaryTerm termKey="robux">Robux</GlossaryTerm></>,
         "Contenido creado por usuarios no moderado",
         "Grooming en juegos sociales"
       ],
@@ -243,7 +242,7 @@ const TuFamiliaVideojuegos = () => {
           },
           {
             title: "Configurar Límites de Compras",
-            description: "Controlar gastos en Robux",
+            description: <>Controlar gastos en <GlossaryTerm termKey="robux">Robux</GlossaryTerm></>,
             details: "Configuración > Compras > Establecer límite"
           },
           {
@@ -304,15 +303,15 @@ const TuFamiliaVideojuegos = () => {
     {
       id: "kick",
       name: "Kick.com",
-      description: "Plataforma de streaming de videojuegos",
+      description: <>Plataforma de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> de videojuegos</>,
       logo: KickIcon,
       age: "13+ años",
       platform: "Web, Móvil",
       risks: [
-        "Contenido de streaming inapropiado",
+        <>Contenido de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> inapropiado</>,
         "Chat con lenguaje ofensivo",
         "Donaciones con dinero real",
-        "Contacto con streamers desconocidos",
+        <>Contacto con <GlossaryTerm termKey="streamers">streamers</GlossaryTerm> desconocidos</>,
         <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
       controls: [
@@ -364,14 +363,6 @@ const TuFamiliaVideojuegos = () => {
       {/* Header Section */}
       <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
         <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="flex items-center mb-4 sm:mb-6">
-            <Button variant="ghost" asChild className="text-sm sm:text-base">
-              <Link to="/aprende/tu-familia">
-                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Volver a Tu Familia
-              </Link>
-            </Button>
-          </div>
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo circular con gradiente */}
             <div className="flex justify-center mb-6">
@@ -722,7 +713,7 @@ const TuFamiliaVideojuegos = () => {
                   Equilibrio Digital
                 </h4>
                 <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
-                  Establece horarios de juego y fomenta actividades offline. 
+                  Establece horarios de juego y fomenta actividades <GlossaryTerm termKey="offline">offline</GlossaryTerm>. 
                   El equilibrio es clave para un desarrollo saludable.
                 </p>
               </div>

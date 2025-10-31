@@ -31,7 +31,7 @@ const HeroSection = () => {
   };
 
   const handleComencemos = () => {
-    navigateWithLoading('/en-construccion', 'default');
+    navigateWithLoading('/aprende/tu-familia', 'default');
   };
 
   const handleEvaluarSituacion = () => {
@@ -384,7 +384,7 @@ const HeroSection = () => {
             </div>
 
             <p className="text-xs sm:text-sm text-brand-olive-500 mt-3 sm:mt-4 opacity-80 font-body px-2">
-              100% confidencial • Toma solo 3 minutos
+              100% confidencial • Herramientas gratuitas • Recursos actualizados
             </p>
 
             {/* Trust Badge Section */}
@@ -396,14 +396,18 @@ const HeroSection = () => {
                 <img 
                   src="/optimized/logos/Logo_Gob-original.webp"
                   alt="Gobierno de México" 
-                  className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Logo Fundación */}
                 <img 
                   src="/optimized/logos/LogosFE_Colores 2-original.webp"
                   alt="Fundación en Movimiento" 
-                  className="h-8 sm:h-10 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

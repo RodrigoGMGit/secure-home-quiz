@@ -21,6 +21,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import GlobalHeader from "@/components/GlobalHeader";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { DecorativeBackground } from "@/components/shared/DecorativeBackground";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { 
   recursosDescargables, 
   terminosGlosario, 
@@ -29,6 +32,8 @@ import {
   iconColors,
   TerminoGlosario
 } from "@/data/recursos";
+import TrustLogo from "@/components/TrustLogo";
+import WorkshopRequestModal from "@/components/help/WorkshopRequestModal";
 
 // Componente para términos del glosario
 const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: number }) => {
@@ -113,6 +118,7 @@ const GlosarioTermino = ({ termino, index }: { termino: TerminoGlosario; index: 
 
 const Recursos = () => {
   useScrollToTop();
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
   return (
     <>
@@ -120,44 +126,15 @@ const Recursos = () => {
       
       <div className="min-h-screen bg-gradient-subtle">
         {/* Elementos decorativos de fondo */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
-        </div>
+        <DecorativeBackground />
 
         {/* Header Principal */}
-        <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
-          <div className="container mx-auto px-4 py-8 sm:py-12">
-            <div className="max-w-4xl mx-auto text-center">
-              
-              {/* Logo circular con gradiente */}
-              <div className="flex justify-center mb-6">
-                <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                  <FileText className="h-12 w-12 text-primary-foreground" />
-                </div>
-              </div>
-              
-              {/* Título principal */}
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
-                Recursos y Materiales de Apoyo
-              </h1>
-              
-              {/* Subtítulo */}
-              <p className="font-body text-lg sm:text-xl md:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
-                Herramientas prácticas para crear un hogar digital seguro
-              </p>
-              
-              {/* Frase destacada */}
-              <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-                <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
-                  "La información es tu primera línea de defensa"
-                </p>
-              </div>
-              
-            </div>
-          </div>
-        </div>
+        <PageHeader
+          icon={FileText}
+          title="Recursos y Materiales de Apoyo"
+          subtitle="Herramientas prácticas para crear un hogar digital seguro"
+          highlightQuote="La información es tu primera línea de defensa"
+        />
 
         {/* Contenido Principal */}
         <div className="relative container mx-auto px-4 py-8 sm:py-12">
@@ -171,19 +148,13 @@ const Recursos = () => {
               transition={{ duration: 0.6 }}
             >
               {/* Header de la sección */}
-              <div className="text-center mb-8">
-                <div className="flex justify-center mb-4">
-                  <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
-                    <Download className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                </div>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-brand-ink-900 mb-2">
-                  Recursos Descargables
-                </h2>
-                <p className="font-body text-sm text-brand-olive-500">
-                  Materiales prácticos para implementar en tu hogar
-                </p>
-              </div>
+              <SectionHeader
+                icon={Download}
+                title="Recursos Descargables"
+                subtitle="Materiales prácticos para implementar en tu hogar"
+                gradientFrom="from-brand-teal-500"
+                gradientTo="to-primary"
+              />
               
               {/* Grid de recursos */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
@@ -330,11 +301,19 @@ const Recursos = () => {
                         <CardHeader className="text-center p-4 sm:p-6">
                           {/* Logo circular */}
                           <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${
-                            plataforma.esUrgente 
+                            plataforma.esUrgente && plataforma.id !== "te-protejo"
                               ? "bg-red-500/20 text-red-500" 
                               : "bg-brand-teal-500/20 text-brand-teal-500"
                           } rounded-full w-fit shadow-soft`}>
-                            <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            {plataforma.id === "te-protejo" ? (
+                              <TrustLogo 
+                                src="te-protejo-mexico.png"
+                                alt="Te Protejo México"
+                                className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                              />
+                            ) : (
+                              <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            )}
                           </div>
                           
                           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
@@ -350,7 +329,7 @@ const Recursos = () => {
                           <Button 
                             asChild 
                             className={`w-full text-sm sm:text-base ${
-                              plataforma.esUrgente 
+                              plataforma.esUrgente && plataforma.id !== "te-protejo"
                                 ? "bg-red-500 hover:bg-red-600" 
                                 : "shadow-soft"
                             }`}
@@ -395,16 +374,17 @@ const Recursos = () => {
                 </p>
                 
                 <Button 
-                  asChild 
+                  onClick={() => setWorkshopOpen(true)}
                   className="bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
                 >
-                  <a href="/ayuda">
-                    Contactar
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
+                  Quiero el taller
+                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </motion.div>
+
+            {/* Modal de solicitud de taller */}
+            <WorkshopRequestModal open={workshopOpen} onOpenChange={setWorkshopOpen} />
 
           </div>
         </div>

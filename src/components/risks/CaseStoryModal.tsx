@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent } from '../ui/dialog';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
@@ -7,6 +7,7 @@ import { Separator } from '../ui/separator';
 import { BookOpen, AlertTriangle, Lightbulb, Shield, CheckCircle } from 'lucide-react';
 import { CaseStory } from '../../data/caseStories';
 import { motion } from 'framer-motion';
+import { ModalHeader } from '../shared/ModalHeader';
 
 interface CaseStoryModalProps {
   caseStory: CaseStory | null;
@@ -19,46 +20,20 @@ export const CaseStoryModal: React.FC<CaseStoryModalProps> = ({ caseStory, isOpe
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft">
+      <DialogContent className="bg-gradient-to-br from-white via-brand-mint-200/5 to-white border-brand-mint-200/30 shadow-soft overflow-x-hidden">
         {/* Header con diseño sofisticado */}
-        <DialogHeader className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b border-brand-mint-200/30 -m-6 mb-6 p-6 sm:p-8">
-          {/* Elementos decorativos de fondo */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-4 left-4 w-16 h-16 bg-brand-teal-500/5 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute bottom-4 right-4 w-20 h-20 bg-brand-mint-200/10 rounded-full blur-xl animate-pulse delay-500"></div>
-          </div>
-          
-          <div className="relative">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-              {/* Logo circular con gradiente */}
-              <div className="flex justify-center sm:justify-start">
-                <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                  <BookOpen className="h-8 w-8 text-primary-foreground" />
-                </div>
-              </div>
-              
-              <div className="flex-1 min-w-0 text-center sm:text-left">
-                <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 leading-tight mb-3">
-                  {caseStory.titulo}
-                </DialogTitle>
-                
-                {/* Badge */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                  <Badge variant="outline" className="text-xs sm:text-sm w-fit px-3 py-1">
-                    Historia Real
-                  </Badge>
-                </div>
-                
-                {/* Descripción */}
-                <p className="font-body text-sm sm:text-base md:text-lg text-brand-olive-500 leading-relaxed">
-                  {caseStory.descripcion}
-                </p>
-              </div>
-            </div>
-          </div>
-        </DialogHeader>
+        <ModalHeader
+          icon={BookOpen}
+          title={caseStory.titulo}
+          description={caseStory.descripcion}
+          badges={[
+            <Badge key="badge" variant="outline" className="text-xs sm:text-sm w-fit px-3 py-1">
+              Historia Real
+            </Badge>
+          ]}
+        />
 
-        <div className="space-y-6 sm:space-y-8">
+        <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
           {/* Qué hacer */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,7 +50,7 @@ export const CaseStoryModal: React.FC<CaseStoryModalProps> = ({ caseStory, isOpe
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
-                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-6 leading-relaxed break-words">
                   {caseStory.whatToDo.description}
                 </p>
                 <div className="space-y-4">
@@ -87,7 +62,7 @@ export const CaseStoryModal: React.FC<CaseStoryModalProps> = ({ caseStory, isOpe
                     {caseStory.whatToDo.steps.map((step, index) => (
                       <li key={index} className="flex items-start gap-3 text-brand-ink-800">
                         <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-brand-ink-800 mt-0.5 flex-shrink-0" />
-                        <span className="font-body text-sm sm:text-base leading-relaxed">{step}</span>
+                        <span className="font-body text-sm sm:text-base leading-relaxed break-words">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -108,7 +83,7 @@ export const CaseStoryModal: React.FC<CaseStoryModalProps> = ({ caseStory, isOpe
                   <Shield className="h-5 w-5 text-brand-teal-500" />
                 </div>
                 <div>
-                  <p className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 italic leading-relaxed break-words">
                     "{caseStory.leccion}"
                   </p>
                 </div>

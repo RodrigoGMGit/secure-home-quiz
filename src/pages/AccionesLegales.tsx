@@ -7,10 +7,16 @@ import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
 import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { QuizCTA } from "@/components/shared/QuizCTA";
+import TrustLogo from "@/components/TrustLogo";
 
 const AccionesLegales = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
+
+  const handleEmergencyCall = (number: string) => {
+    window.location.href = `tel:${number}`;
+  };
 
   // Datos de autoridades y recursos legales
   const autoridades = [
@@ -55,7 +61,7 @@ const AccionesLegales = () => {
     {
       id: "te-protejo-mexico",
       nombre: "Te Protejo México",
-      descripcion: "Plataforma digital para reportar violencia sexual contra menores",
+      descripcion: "Plataforma digital para reportar violencia sexual contra menores y solicitar la baja de imágenes o videos de tus hijas o hijos publicados sin autorización",
       icon: Users,
       web: "https://teprotejomexico.org/",
       caracteristicas: [
@@ -277,7 +283,15 @@ const AccionesLegales = () => {
                     <Card className={`${autoridad.color} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
                       <CardHeader className="text-center p-4 sm:p-6">
                         <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${autoridad.iconBg} rounded-full w-fit shadow-soft`}>
-                          <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />
+                          {autoridad.id === "te-protejo-mexico" ? (
+                            <TrustLogo 
+                              src="te-protejo-mexico.png"
+                              alt="Te Protejo México"
+                              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                            />
+                          ) : (
+                            <autoridad.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${autoridad.iconColor}`} />
+                          )}
                         </div>
                         <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
                           {autoridad.nombre}
@@ -562,7 +576,18 @@ const AccionesLegales = () => {
               </div>
             </motion.div>
 
-            {/* Banner de Ayuda Urgente */}
+            {/* Quiz CTA - Show only if user hasn't completed quiz */}
+            <QuizCTA 
+              variant="congrats"
+              title="¡Felicidades por llegar hasta aquí!"
+              description="El diagnóstico agrega mucho valor: prioriza acciones, te da pasos claros y un plan a tu medida."
+              buttonText="Hacer el diagnóstico"
+              badgeText="Espera, esto no es todo"
+              bullets={["Prioriza acciones clave","Guía paso a paso","Genera un plan personalizado"]}
+              delay={0.6}
+            />
+
+            {/* Banner de Ayuda Urgente (unificado con Riesgos) */}
             <motion.div 
               className="mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 20 }}
@@ -572,25 +597,41 @@ const AccionesLegales = () => {
               <Card className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border-brand-teal-500/20 shadow-soft">
                 <CardContent className="p-4 sm:p-6 text-center">
                   <div className="p-2 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-3">
-                    <AlertTriangle className="h-8 w-8 sm:h-10 sm:w-10 text-brand-ink-800" />
+                    <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-brand-ink-800" />
                   </div>
                   <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                     ¿Necesitas ayuda inmediata?
                   </h3>
-                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-4 max-w-2xl mx-auto leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
                     Si tu hijo está en peligro inmediato o has detectado una situación grave, 
                     no dudes en contactar a las autoridades correspondientes.
                   </p>
-                  <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-                    <Button asChild variant="destructive" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
-                      <a href="tel:088" target="_blank" rel="noopener noreferrer">
-                        Policía Cibernética: 088
-                      </a>
+                  <div className="flex justify-center mb-3">
+                    <Button 
+                      onClick={() => handleEmergencyCall('33 3837 6000')}
+                      variant="destructive" 
+                      className="text-sm sm:text-base px-4 sm:px-6 shadow-soft"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      Policía Cibernética: 33 3837 6000
                     </Button>
+                  </div>
+                  <div className="flex justify-center mb-3">
+                    <img 
+                      src="/optimized/logos/te-protejo-mexico-200w.webp" 
+                      alt="Te Protejo México" 
+                      className="h-12 sm:h-16 w-auto"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
+                    Si deseas reportar de manera anónima material de abuso sexual infantil, ciberacoso u otras situaciones de violencia digital, o solicitar que bajen del internet imágenes o videos de tus hijas o hijos publicados sin autorización, contacta a
+                  </p>
+                  <div className="flex justify-center">
                     <Button asChild variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
                       <a href="https://teprotejomexico.org/" target="_blank" rel="noopener noreferrer">
                         Te Protejo México
-                        <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
                       </a>
                     </Button>
                   </div>

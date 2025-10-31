@@ -30,6 +30,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import GlobalHeader from "@/components/GlobalHeader";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { getFAQLinkInfo } from "@/data/faqLinks";
+import TrustLogo from "@/components/TrustLogo";
 
 const Ayuda = () => {
   useScrollToTop();
@@ -101,10 +102,10 @@ const Ayuda = () => {
     {
       id: "teprotejo",
       titulo: "Te Protejo México",
-      descripcion: "Reporte anónimo de violencia sexual contra menores de edad",
+      descripcion: "Reporte anónimo de violencia sexual contra menores y solicitud para bajar del internet imágenes o videos de tus hijas o hijos publicados sin autorización",
       icon: Shield,
       esUrgente: false,
-      url: "https://www.teprotejo.org",
+      url: "https://teprotejomexico.org/",
       colorIndex: 2
     },
     {
@@ -280,7 +281,15 @@ const Ayuda = () => {
                         <CardHeader className="text-center p-4 sm:p-6">
                           {/* Logo circular con icono */}
                           <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
-                            <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            {contacto.id === "teprotejo" ? (
+                              <TrustLogo 
+                                src="te-protejo-mexico.png"
+                                alt="Te Protejo México"
+                                className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
+                              />
+                            ) : (
+                              <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
+                            )}
                           </div>
                           
                           <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900 mb-2">
@@ -541,7 +550,7 @@ const Ayuda = () => {
                       className="w-full bg-brand-ink-800 hover:bg-brand-ink-900 text-white px-8 py-3 text-sm sm:text-base font-heading font-semibold shadow-soft hover:shadow-lg transition-smooth"
                     >
                       <Send className="mr-2 h-4 w-4" />
-                      Solicitar taller
+                      Quiero el taller
                     </Button>
                   </form>
                 </div>

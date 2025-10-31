@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Home, BookOpen, HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
+import { Menu, X, ChevronDown, Home, /* BookOpen, */ HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import OptimizedLogo from "@/components/OptimizedLogo";
@@ -27,11 +27,11 @@ const GlobalHeader = () => {
       href: "/",
       icon: Home,
     },
-    {
-      title: "Conoce Más",
-      href: "/en-construccion",
-      icon: BookOpen,
-    },
+    // {
+    //   title: "Conoce Más",
+    //   href: "/en-construccion",
+    //   icon: BookOpen,
+    // },
     {
       title: "Quiz",
       href: "/quiz",

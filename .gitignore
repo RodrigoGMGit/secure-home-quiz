@@ -33,3 +33,5 @@ screenshots.zip
 *.jpeg
 *.gif
 *.webp
+
+.cursor/plans

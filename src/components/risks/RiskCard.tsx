@@ -57,6 +57,7 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }
       'Ciberacoso': 'ciberacoso',
       'Grooming': 'grooming',
       'Sexting': 'sexting',
+      'Deepfakes': 'deepfakes',
       'Deep Fakes': 'deepfakes',
       'Suplantación de identidad': 'suplantacion',
       'Discurso de odio': 'discurso-odio',
@@ -90,8 +91,7 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }
       className="h-full"
     >
       <Card 
-        className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full cursor-pointer`}
-        onClick={() => onViewDetails(risk)}
+        className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}
       >
         <CardHeader className="text-center p-4 sm:p-6">
           {/* Logo circular con gradiente */}
@@ -108,13 +108,15 @@ export const RiskCard: React.FC<RiskCardProps> = ({ risk, onViewDetails, index }
           </CardDescription>
           
           {/* Badge de severidad con diseño mejorado */}
-          <Badge 
-            variant="outline" 
-            className={cn("text-xs sm:text-sm w-fit px-3 py-1", severityColors[risk.severity])}
-          >
-            <SeverityIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-            Riesgo {severityLabels[risk.severity]}
-          </Badge>
+          <div className="flex justify-center">
+            <Badge 
+              variant="outline" 
+              className={cn("text-xs sm:text-sm w-fit px-3 py-1", severityColors[risk.severity])}
+            >
+              <SeverityIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+              Riesgo {severityLabels[risk.severity]}
+            </Badge>
+          </div>
         </CardHeader>
         
         <CardContent className="p-4 sm:p-6 pt-0">

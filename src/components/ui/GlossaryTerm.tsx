@@ -26,8 +26,16 @@ export const GlossaryTerm: React.FC<GlossaryTermProps> = ({
   }
 
   return (
-    <TooltipProvider>
-      <Tooltip open={isOpen} onOpenChange={setIsOpen}>
+    <TooltipProvider delayDuration={1000}>
+      <Tooltip 
+        open={isOpen} 
+        onOpenChange={(next) => {
+          // Solo aceptar cierres; ignorar aperturas por hover/focus
+          if (!next) {
+            setIsOpen(false);
+          }
+        }}
+      >
         <TooltipTrigger asChild>
           {asButton ? (
             <button 

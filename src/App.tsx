@@ -108,7 +108,13 @@ const App = () => {
         <a href="#main-content" className="skip-to-content">
           Saltar al contenido principal
         </a>
-        <BrowserRouter basename={routerBase}>
+        <BrowserRouter 
+          basename={routerBase}
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
           <AppContent />
         </BrowserRouter>
       </TooltipProvider>
