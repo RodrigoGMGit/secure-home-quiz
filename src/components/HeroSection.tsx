@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import HeroImage from "@/components/HeroImage";
 import OptimizedLogo from "@/components/OptimizedLogo";
+import liveNowLogo from "@/assets/logos/live-now-logo.svg";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -387,6 +388,10 @@ const HeroSection = () => {
               100% confidencial • Herramientas gratuitas • Recursos actualizados
             </p>
 
+            <p className="text-xs sm:text-sm text-brand-olive-500 mt-2 sm:mt-3 opacity-80 font-body px-2">
+              Un sitio basado en la investigacion y trabajo de Live Now
+            </p>
+
             {/* Trust Badge Section */}
             <div className={`mt-8 sm:mt-10 transition-all duration-1000 transform ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
@@ -406,6 +411,15 @@ const HeroSection = () => {
                   src="/optimized/logos/LogosFE_Colores 2-original.webp"
                   alt="Fundación en Movimiento" 
                   className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  decoding="async"
+                />
+                
+                {/* Logo Live Now */}
+                <img 
+                  src={liveNowLogo}
+                  alt="Live Now" 
+                  className="h-10 sm:h-14 md:h-16 lg:h-20 w-auto filter grayscale hover:grayscale-0 transition-all duration-300 ml-4 sm:ml-6"
                   loading="lazy"
                   decoding="async"
                 />
