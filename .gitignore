@@ -28,13 +28,8 @@ AGENTS.md
 # Screenshots and documentation images
 screenshots/
 screenshots.zip
-# Exclude source images in src/assets (but keep optimized production assets)
-src/assets/**/*.png
-src/assets/**/*.jpg
-src/assets/**/*.jpeg
-src/assets/**/*.gif
-src/assets/**/*.webp
-# Exclude temporary/development images
+# Note: Source images in src/assets/ are tracked in git because they are imported via JavaScript
+# Only exclude temporary/development images
 *.tmp.png
 *.tmp.jpg
 *.tmp.jpeg
