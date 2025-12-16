@@ -28,8 +28,11 @@ AGENTS.md
 # Screenshots and documentation images
 screenshots/
 screenshots.zip
-# Note: Source images in src/assets/ are tracked in git because they are imported via JavaScript
-# Only exclude temporary/development images
+# NOTE:
+# Do NOT ignore images in src/assets/.
+# These files are imported from TS/JS (e.g. pages/components). If they are missing
+# after cloning, Vite/TS builds will fail with "module not found".
+# Exclude temporary/development images
 *.tmp.png
 *.tmp.jpg
 *.tmp.jpeg
