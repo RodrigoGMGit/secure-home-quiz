@@ -3,31 +3,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ExternalLink, Shield, AlertTriangle, Calendar, Settings, Gamepad2, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import GlobalHeader from "@/components/GlobalHeader";
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
+import LearningPathNav from "@/components/learning-navigation/LearningPathNav";
+import { MinecraftIcon, RobloxIcon, FortniteIcon, KickIcon, GenericGameIcon } from "@/components/icons/platforms";
 
 const TuFamiliaVideojuegos = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
 
-  const [selectedGame, setSelectedGame] = useState<any>(null);
+  const [selectedGame, setSelectedGame] = useState<typeof games[0] | null>(null);
 
   const games = [
     {
       id: "minecraft",
       name: "Minecraft",
       description: "Juego de construcción y supervivencia en mundos infinitos",
-      logo: "🧱",
+      logo: MinecraftIcon,
       age: "7+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
         "Chat con jugadores desconocidos",
         "Servidores con contenido inapropiado",
         "Compartir información personal",
-        "Mods no verificados",
+        <> <GlossaryTerm termKey="mods">mods</GlossaryTerm> no verificados</>,
         "Grooming en servidores multijugador"
       ],
       controls: [
@@ -35,7 +37,7 @@ const TuFamiliaVideojuegos = () => {
         "Configurar chat privado",
         "Revisar servidores antes de unirse",
         "Desactivar chat público",
-        "Supervisar mods instalados"
+        <>Supervisar <GlossaryTerm termKey="mods">mods</GlossaryTerm> instalados</>
       ],
       tutorial: {
         title: "Configuración de Minecraft para Familias",
@@ -58,16 +60,22 @@ const TuFamiliaVideojuegos = () => {
           {
             title: "Revisar Mods",
             description: "Supervisar modificaciones instaladas",
-            details: "Mods > Revisar lista > Solo mods aprobados"
+            details: <><GlossaryTerm termKey="mods">Mods</GlossaryTerm> {">"} Revisar lista {">"} Solo <GlossaryTerm termKey="mods">mods</GlossaryTerm> aprobados</>
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía para padres de Minecraft",
+          url: "https://www.minecraft.net/es-mx/article/parents--guide-minecraft"
+        }
+      ]
     },
     {
       id: "free-fire",
       name: "Free Fire",
-      description: "Battle royale móvil con 50 jugadores en tiempo real",
-      logo: "🔫",
+      description: <><GlossaryTerm termKey="battle-royale">Battle Royale</GlossaryTerm> móvil con 50 jugadores en tiempo real</>,
+      logo: GenericGameIcon,
       age: "13+ años",
       platform: "Móvil",
       risks: [
@@ -113,8 +121,8 @@ const TuFamiliaVideojuegos = () => {
     {
       id: "call-of-duty",
       name: "Call of Duty",
-      description: "FPS militar con multijugador online",
-      logo: "🎯",
+      description: <><GlossaryTerm termKey="fps">FPS</GlossaryTerm> militar con multijugador online</>,
+      logo: GenericGameIcon,
       age: "17+ años",
       platform: "PC, Consolas",
       risks: [
@@ -155,13 +163,19 @@ const TuFamiliaVideojuegos = () => {
             details: "Consola > Configuración > Controles parentales > Activar"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía de Call of Duty para padres",
+          url: "https://www.internetmatters.org/es/advice/apps-and-platforms/online-gaming/call-of-duty/"
+        }
+      ]
     },
     {
       id: "fortnite",
       name: "Fortnite",
-      description: "Battle royale con construcción y elementos creativos",
-      logo: "🏗️",
+      description: <><GlossaryTerm termKey="battle-royale">Battle Royale</GlossaryTerm> con construcción y elementos creativos</>,
+      logo: FortniteIcon,
       age: "12+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
@@ -202,19 +216,25 @@ const TuFamiliaVideojuegos = () => {
             details: "Configuración > Privacidad > Solo amigos"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Controles parentales de Fortnite",
+          url: "https://www.epicgames.com/fortnite/es-MX/parental-controls"
+        }
+      ]
     },
     {
       id: "roblox",
       name: "Roblox",
       description: "Plataforma de juegos creados por usuarios",
-      logo: "🎮",
+      logo: RobloxIcon,
       age: "8+ años",
       platform: "PC, Consolas, Móvil",
       risks: [
         "Juegos con contenido inapropiado",
         "Chat con usuarios desconocidos",
-        "Compras de Robux",
+        <>Compras de <GlossaryTerm termKey="robux">Robux</GlossaryTerm></>,
         "Contenido creado por usuarios no moderado",
         "Grooming en juegos sociales"
       ],
@@ -240,7 +260,7 @@ const TuFamiliaVideojuegos = () => {
           },
           {
             title: "Configurar Límites de Compras",
-            description: "Controlar gastos en Robux",
+            description: <>Controlar gastos en <GlossaryTerm termKey="robux">Robux</GlossaryTerm></>,
             details: "Configuración > Compras > Establecer límite"
           },
           {
@@ -255,7 +275,7 @@ const TuFamiliaVideojuegos = () => {
       id: "gta",
       name: "Grand Theft Auto (GTA)",
       description: "Juego de mundo abierto con temática criminal",
-      logo: "🚗",
+      logo: GenericGameIcon,
       age: "18+ años",
       platform: "PC, Consolas",
       risks: [
@@ -278,7 +298,7 @@ const TuFamiliaVideojuegos = () => {
           {
             title: "Evaluar Edad Apropiada",
             description: "GTA es para mayores de 18 años únicamente",
-            details: "Revisar clasificación ESRB: M (Maduro) 17+"
+            details: <>Revisar clasificación <GlossaryTerm termKey="esrb">ESRB</GlossaryTerm>: M (Maduro) 17+</>
           },
           {
             title: "Configurar Controles Parentales",
@@ -297,20 +317,21 @@ const TuFamiliaVideojuegos = () => {
           }
         ]
       }
+      // GTA no tiene recursos externos - el botón no se mostrará
     },
     {
       id: "kick",
       name: "Kick.com",
-      description: "Plataforma de streaming de videojuegos",
-      logo: "👾",
+      description: <>Plataforma de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> de videojuegos</>,
+      logo: KickIcon,
       age: "13+ años",
       platform: "Web, Móvil",
       risks: [
-        "Contenido de streaming inapropiado",
+        <>Contenido de <GlossaryTerm termKey="streaming">streaming</GlossaryTerm> inapropiado</>,
         "Chat con lenguaje ofensivo",
         "Donaciones con dinero real",
-        "Contacto con streamers desconocidos",
-        "Contenido NSFW en algunos canales"
+        <>Contacto con <GlossaryTerm termKey="streamers">streamers</GlossaryTerm> desconocidos</>,
+        <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos canales</>
       ],
       controls: [
         "Configurar filtros de contenido",
@@ -343,7 +364,13 @@ const TuFamiliaVideojuegos = () => {
             details: "Configuración > Pagos > Desactivar donaciones"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía de Kick para padres",
+          url: "https://www.internetmatters.org/es/advice/apps-and-platforms/entertainment/kick-streaming/"
+        }
+      ]
     }
   ];
 
@@ -361,14 +388,6 @@ const TuFamiliaVideojuegos = () => {
       {/* Header Section */}
       <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
         <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="flex items-center mb-4 sm:mb-6">
-            <Button variant="ghost" asChild className="text-sm sm:text-base">
-              <Link to="/aprende/tu-familia">
-                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Volver a Tu Familia
-              </Link>
-            </Button>
-          </div>
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo circular con gradiente */}
             <div className="flex justify-center mb-6">
@@ -377,7 +396,7 @@ const TuFamiliaVideojuegos = () => {
               </div>
             </div>
             
-            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
               Tu Familia y los Videojuegos
             </h1>
             <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
@@ -386,10 +405,6 @@ const TuFamiliaVideojuegos = () => {
             
             {/* Frase destacada mejorada */}
             <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-              <div className="flex items-center justify-center mb-3">
-                <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
-                <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
-              </div>
               <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                 "No se trata solo de bloquear, sino de acompañar. Conozcan a qué juegan niñas, niños y adolescentes"
               </p>
@@ -441,7 +456,7 @@ const TuFamiliaVideojuegos = () => {
                       Clasificación de edad
                     </h3>
                     <p className="font-body text-sm sm:text-base text-brand-ink-800 leading-relaxed">
-                      Siempre revisa la clasificación de edad (ESRB) antes de permitir que tu hijo juegue. 
+                      Siempre revisa la clasificación de edad (<GlossaryTerm termKey="esrb">ESRB</GlossaryTerm>) antes de permitir que tu hijo juegue. 
                       Cada juego tiene una clasificación específica según su contenido.
                     </p>
                   </div>
@@ -493,7 +508,7 @@ const TuFamiliaVideojuegos = () => {
                   <Card className={`${cardColor} border hover:shadow-soft transition-smooth hover:scale-105 h-full`}>
                   <CardHeader className="text-center p-4 sm:p-6">
                     <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${iconColor} rounded-full w-fit shadow-soft`}>
-                      <span className="text-2xl sm:text-3xl">{game.logo}</span>
+                      <game.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                     </div>
                     <CardTitle className="font-heading text-lg sm:text-xl text-brand-ink-900">{game.name}</CardTitle>
                     <CardDescription className="font-body text-sm sm:text-base text-brand-olive-500">
@@ -569,7 +584,7 @@ const TuFamiliaVideojuegos = () => {
                         <DialogHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-0">
                           <div className="flex justify-center mb-3 sm:mb-4">
                             <div className="p-2 sm:p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-                              <span className="text-2xl sm:text-3xl">{game.logo}</span>
+                              <game.logo className="h-6 w-6 sm:h-8 sm:w-8" />
                             </div>
                           </div>
                           <DialogTitle className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink-900 mb-2 px-2">
@@ -629,7 +644,7 @@ const TuFamiliaVideojuegos = () => {
                               {game.tutorial.steps.map((step, index) => (
                                 <div key={index} className="bg-white rounded-lg p-4 sm:p-6 border border-brand-mint-200/20 shadow-soft hover:shadow-md transition-smooth">
                                   <div className="flex items-start space-x-3 sm:space-x-4">
-                                    <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 text-brand-teal-500 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 shadow-soft">
+                                    <div className="bg-gradient-to-br from-brand-teal-500/20 to-brand-teal-500/10 text-brand-ink-800 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 shadow-soft">
                                       {index + 1}
                                     </div>
                                     <div className="flex-1">
@@ -637,7 +652,7 @@ const TuFamiliaVideojuegos = () => {
                                       <p className="font-body text-xs sm:text-sm text-brand-ink-800 mb-3 leading-relaxed">{step.description}</p>
                                       <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-3 sm:p-4">
                                         <p className="font-body text-xs sm:text-sm text-brand-ink-800">
-                                          <span className="font-semibold text-brand-teal-500">Instrucciones:</span> {step.details}
+                                          <span className="font-semibold text-brand-ink-900">Instrucciones:</span> {step.details}
                                         </p>
                                       </div>
                                     </div>
@@ -648,14 +663,23 @@ const TuFamiliaVideojuegos = () => {
                           </div>
 
                           {/* External Links */}
-                          <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0">
-                            <Button variant="primary-brand" className="w-full text-sm sm:text-base shadow-soft hover:shadow-md transition-smooth" asChild>
-                              <a href="#" target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                                Ver Guía Oficial
-                              </a>
-                            </Button>
-                          </div>
+                          {game.externalResources && game.externalResources.length > 0 && (
+                            <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0 space-y-3">
+                              {game.externalResources.map((resource, resourceIndex) => (
+                                <Button
+                                  key={resourceIndex}
+                                  variant="primary-brand"
+                                  className="w-full text-sm sm:text-base shadow-soft hover:shadow-md transition-smooth h-auto py-3 px-4 whitespace-normal break-words"
+                                  asChild
+                                >
+                                  <a href={resource.url} target="_blank" rel="noopener noreferrer" className="flex items-center break-words">
+                                    <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                                    <span className="text-left break-words">{resource.label}</span>
+                                  </a>
+                                </Button>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </DialogContent>
                     </Dialog>
@@ -723,58 +747,15 @@ const TuFamiliaVideojuegos = () => {
                   Equilibrio Digital
                 </h4>
                 <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 leading-relaxed">
-                  Establece horarios de juego y fomenta actividades offline. 
+                  Establece horarios de juego y fomenta actividades <GlossaryTerm termKey="offline">offline</GlossaryTerm>. 
                   El equilibrio es clave para un desarrollo saludable.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Additional Resources */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full">
-                  <ExternalLink className="h-8 w-8 text-primary-foreground" />
-                </div>
-              </div>
-              <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
-                Recursos Adicionales
-              </h2>
-              <p className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500">
-                Herramientas y guías oficiales para proteger a tu familia
-              </p>
-            </div>
-            
-            <Card className="border-brand-teal-500/30 bg-brand-teal-500/10 hover:shadow-soft transition-smooth">
-              <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="font-heading text-lg sm:text-xl md:text-2xl text-brand-ink-900 text-center">Continúa tu Aprendizaje</CardTitle>
-                <CardDescription className="font-body text-xs sm:text-sm md:text-base text-brand-olive-500 text-center">
-                  Explora estas secciones para profundizar en la seguridad digital familiar
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-4 sm:p-6 pt-0">
-                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
-                  <Button asChild variant="secondary-brand" className="h-auto p-3 sm:p-4 hover:scale-105 transition-smooth w-full min-h-[120px] text-left whitespace-normal break-words">
-                    <Link to="/aprende/tu-familia/conectada" className="w-full h-full flex flex-col justify-center">
-                      <div className="font-heading font-semibold text-sm sm:text-base text-brand-ink-900 mb-2">Tu Familia Conectada</div>
-                      <div className="font-body text-xs sm:text-sm text-brand-olive-500 leading-relaxed">Evalúa la seguridad digital de tu hogar con nuestro checklist interactivo</div>
-                    </Link>
-                  </Button>
-                  <Button asChild variant="secondary-brand" className="h-auto p-3 sm:p-4 hover:scale-105 transition-smooth w-full min-h-[120px] text-left whitespace-normal break-words">
-                    <Link to="/aprende/tu-familia/redes-sociales" className="w-full h-full flex flex-col justify-center">
-                      <div className="font-heading font-semibold text-sm sm:text-base text-brand-ink-900 mb-2">Redes Sociales</div>
-                      <div className="font-body text-xs sm:text-sm text-brand-olive-500 leading-relaxed">Aprende sobre las plataformas más populares y sus configuraciones de seguridad</div>
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {/* Learning Path Navigation */}
+          <LearningPathNav currentRoute="/aprende/tu-familia/videojuegos" />
         </div>
       </div>
       </div>

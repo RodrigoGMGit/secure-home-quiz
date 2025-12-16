@@ -14,35 +14,43 @@ interface NoticeProps {
 const noticeConfig = {
   success: {
     icon: CheckCircle,
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
-    iconColor: 'text-green-600',
-    titleColor: 'text-green-800',
-    textColor: 'text-green-700'
+    bgColor: 'bg-brand-mint-200/20',
+    borderColor: 'border-brand-mint-200/40',
+    iconColor: 'text-brand-teal-500',
+    titleColor: 'text-brand-ink-800',
+    textColor: 'text-brand-ink-800',
+    role: 'status' as const,
+    ariaLive: 'polite' as const
   },
   info: {
     icon: Info,
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    iconColor: 'text-blue-600',
-    titleColor: 'text-blue-800',
-    textColor: 'text-blue-700'
+    bgColor: 'bg-brand-mint-200/20',
+    borderColor: 'border-brand-mint-200/40',
+    iconColor: 'text-brand-teal-500',
+    titleColor: 'text-brand-ink-800',
+    textColor: 'text-brand-ink-800',
+    role: 'status' as const,
+    ariaLive: 'polite' as const
   },
   warning: {
     icon: AlertCircle,
-    bgColor: 'bg-amber-50',
-    borderColor: 'border-amber-200',
-    iconColor: 'text-amber-600',
-    titleColor: 'text-amber-800',
-    textColor: 'text-amber-700'
+    bgColor: 'bg-brand-mint-200/20',
+    borderColor: 'border-brand-mint-200/40',
+    iconColor: 'text-brand-teal-500',
+    titleColor: 'text-brand-ink-800',
+    textColor: 'text-brand-ink-800',
+    role: 'alert' as const,
+    ariaLive: 'assertive' as const
   },
   help: {
     icon: Lightbulb,
-    bgColor: 'bg-accent/30',
-    borderColor: 'border-accent',
-    iconColor: 'text-primary',
-    titleColor: 'text-foreground',
-    textColor: 'text-foreground'
+    bgColor: 'bg-brand-mint-200/20',
+    borderColor: 'border-brand-mint-200/40',
+    iconColor: 'text-brand-teal-500',
+    titleColor: 'text-brand-ink-800',
+    textColor: 'text-brand-ink-800',
+    role: 'status' as const,
+    ariaLive: 'polite' as const
   }
 };
 
@@ -58,8 +66,8 @@ export function Notice({ type, title, children, className }: NoticeProps) {
         config.borderColor,
         className
       )}
-      role="alert"
-      aria-live="polite"
+      role={config.role}
+      aria-live={config.ariaLive}
     >
       <div className="flex items-start gap-3">
         <Icon className={cn("w-5 h-5 flex-shrink-0 mt-0.5", config.iconColor)} />

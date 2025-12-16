@@ -5,7 +5,9 @@ const Index = () => {
   return (
     <>
       <GlobalHeader />
-      <HeroSection />
+      <main id="main-content">
+        <HeroSection />
+      </main>
     </>
   );
 };

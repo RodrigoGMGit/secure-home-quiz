@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Home, BookOpen, HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
+import { Menu, X, ChevronDown, Home, /* BookOpen, */ HelpCircle, FileText, Users, Shield, MessageCircle, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import OptimizedLogo from "@/components/OptimizedLogo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,11 +27,11 @@ const GlobalHeader = () => {
       href: "/",
       icon: Home,
     },
-    {
-      title: "Conoce Más",
-      href: "/about",
-      icon: BookOpen,
-    },
+    // {
+    //   title: "Conoce Más",
+    //   href: "/en-construccion",
+    //   icon: BookOpen,
+    // },
     {
       title: "Quiz",
       href: "/quiz",
@@ -98,7 +99,7 @@ const GlobalHeader = () => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="md:hidden hover:bg-brand-mint-200/30 transition-smooth"
+          className="lg:hidden hover:bg-brand-mint-200/30 transition-smooth"
         >
           <Menu className="h-6 w-6 text-brand-ink-800" />
           <span className="sr-only">Abrir menú</span>
@@ -112,7 +113,11 @@ const GlobalHeader = () => {
         <div className="flex-shrink-0 p-6 border-b border-brand-mint-200/30 bg-gradient-to-r from-white to-brand-mint-200/10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
-              <Shield className="h-6 w-6 text-primary-foreground" />
+              <OptimizedLogo 
+                className="h-6 w-6 object-contain"
+                alt="Hogares Digitales Seguros"
+                priority={true}
+              />
             </div>
             <div>
               <div className="text-lg font-heading font-bold text-brand-ink-900">
@@ -139,7 +144,7 @@ const GlobalHeader = () => {
                     <AccordionTrigger className="text-left px-4 py-3 hover:bg-brand-mint-200/20 transition-smooth rounded-lg">
                       <div className="flex items-center space-x-3">
                         <div className="p-1.5 bg-brand-teal-500/20 rounded-lg">
-                          <item.icon className="h-4 w-4 text-brand-teal-500" />
+                          <item.icon className="h-4 w-4 text-brand-ink-800" />
                         </div>
                         <span className="font-heading font-semibold text-brand-ink-800">{item.title}</span>
                       </div>
@@ -154,10 +159,10 @@ const GlobalHeader = () => {
                             className="flex items-start space-x-3 p-3 rounded-lg hover:bg-brand-mint-200/30 transition-smooth group"
                           >
                             <div className="p-1 bg-brand-mint-200/40 rounded-md group-hover:bg-brand-teal-500/20 transition-smooth">
-                              <subItem.icon className="h-3 w-3 text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors" />
+                              <subItem.icon className="h-3 w-3 text-brand-ink-800 group-hover:text-brand-ink-800 transition-colors" />
                             </div>
                             <div className="flex-1">
-                              <div className="font-heading font-medium text-sm text-brand-ink-900 group-hover:text-brand-teal-500 transition-colors">
+                              <div className="font-heading font-medium text-sm text-brand-ink-900 group-hover:text-brand-ink-800 transition-colors">
                                 {subItem.title}
                               </div>
                               <div className="text-xs text-brand-olive-500 font-body leading-relaxed mt-1">
@@ -193,11 +198,11 @@ const GlobalHeader = () => {
                     <item.icon className={cn(
                       "h-4 w-4 transition-colors",
                       isActive(item.href!)
-                        ? "text-brand-teal-500"
-                        : "text-brand-ink-800 group-hover:text-brand-teal-500"
+                        ? "text-brand-ink-800"
+                        : "text-brand-ink-800 group-hover:text-brand-ink-800"
                     )} />
                   </div>
-                  <span className="font-heading font-semibold text-brand-ink-800 group-hover:text-brand-teal-500 transition-colors">
+                  <span className="font-heading font-semibold text-brand-ink-800 group-hover:text-brand-ink-800 transition-colors">
                     {item.title}
                   </span>
                 </Link>
@@ -219,13 +224,13 @@ const GlobalHeader = () => {
   );
 
   const DesktopMenu = () => (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="hidden lg:flex flex-1 justify-center min-w-0">
       <NavigationMenuList>
         {navigationItems.map((item) => {
           if (item.hasSubmenu && item.submenu) {
             return (
               <NavigationMenuItem key={item.title}>
-                <NavigationMenuTrigger className="flex items-center space-x-1">
+                <NavigationMenuTrigger className="flex items-center space-x-1 px-3 py-2 lg:px-3 lg:py-2">
                   <item.icon className="h-4 w-4" />
                   <span>{item.title}</span>
                 </NavigationMenuTrigger>
@@ -261,7 +266,7 @@ const GlobalHeader = () => {
                 <Link
                   to={item.href!}
                   className={cn(
-                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-3 lg:px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                     isActive(item.href!) && "bg-accent text-accent-foreground"
                   )}
                 >
@@ -280,14 +285,18 @@ const GlobalHeader = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Shield className="h-5 w-5 text-primary-foreground" />
+            <div className="h-8 w-8 rounded-lg overflow-hidden flex items-center justify-center">
+              <OptimizedLogo 
+                className="h-full w-full object-contain"
+                alt="Hogares Digitales Seguros"
+                priority={true}
+              />
             </div>
-            <span className="hidden sm:inline-block text-lg font-semibold">
+            <span className="hidden lg:inline-block text-lg font-semibold truncate max-w-[40ch]">
               Hogares Digitales Seguros
             </span>
           </Link>

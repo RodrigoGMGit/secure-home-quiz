@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión - Hogares Seguros</title>
+    <meta name="theme-color" content="#3994B2">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #B0E0D6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #002B36;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(176, 224, 214, 0.3);
+        }
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #3994B2, #003556);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #002B36;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #576D5B;
+        }
+        .retry-btn {
+            background: #003556;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .retry-btn:hover {
+            background: #002B36;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 53, 86, 0.3);
+        }
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+        .offline-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+            padding: 8px 16px;
+            background: rgba(57, 148, 178, 0.1);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #3994B2;
+            font-weight: 500;
+        }
+        .offline-dot {
+            width: 8px;
+            height: 8px;
+            background: #3994B2;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="offline-indicator">
+            <div class="offline-dot"></div>
+            Sin conexión a internet
+        </div>
+        
+        <div class="icon">📱</div>
+        
+        <h1>Estás sin conexión</h1>
+        
+        <p>
+            No hay conexión a internet en este momento. Algunas funciones pueden estar limitadas, 
+            pero puedes seguir navegando por el contenido que ya tienes guardado.
+        </p>
+        
+        <a href="/" class="retry-btn" onclick="window.location.reload()">
+            Reintentar conexión
+        </a>
+    </div>
+
+    <script>
+        // Detectar cuando vuelve la conexión
+        window.addEventListener('online', function() {
+            window.location.reload();
+        });
+        
+        // Mostrar estado de conexión
+        function updateConnectionStatus() {
+            const indicator = document.querySelector('.offline-indicator');
+            if (navigator.onLine) {
+                indicator.style.display = 'none';
+            } else {
+                indicator.style.display = 'inline-flex';
+            }
+        }
+        
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        updateConnectionStatus();
+    </script>
+</body>
+</html>

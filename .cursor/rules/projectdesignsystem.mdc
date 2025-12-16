@@ -8,9 +8,53 @@ alwaysApply: true
 
 ## Estándar de Referencia
 
-**Página de referencia**: `/tu-familia`
+**Sistema de Diseño**: Todas las páginas y componentes del proyecto deben cumplir con los estándares documentados en este sistema de diseño, alcanzando un nivel alto de sofisticación visual, consistencia y atención al detalle.
 
-Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle que la página `/tu-familia`.
+**Objetivo**: Crear una experiencia visual cohesiva y profesional que refleje la identidad de marca "Secure Home Quiz" / "Hogares Seguros".
+
+---
+
+## 0. Arquitectura del Sistema de Diseño
+
+### Componentes Universales vs. Patrones de Página
+
+**Componentes Universales** (Secciones 1-7):
+- **Fundamentos**: Color, Tipografía, Espaciado y Layout
+- **Componentes**: Botones, Cards, Modales
+- **Aplican**: En TODO el proyecto
+- **Objetivo**: Consistencia visual global
+
+**Patrones de Página** (Secciones 8-12):
+- **Patrones específicos** por tipo de página
+- **Aplican**: Solo en páginas del tipo correspondiente
+- **Objetivo**: Estructura apropiada según contexto
+
+### Tipos de Página en el Proyecto
+
+#### 📚 Páginas de Contenido Educativo
+- **Rutas**: `/aprende/*`, `/recursos`, `/ayuda`
+- **Patrones**: Header principal, elementos decorativos, frase destacada, sección de introducción
+- **Ejemplos**: TuFamilia, RiesgosDigitales, ControlesParentales, Recursos, Ayuda
+
+#### 🏠 Páginas Hero
+- **Rutas**: `/` (Index)
+- **Patrones**: HeroSection, elementos decorativos, responsividad
+- **Ejemplos**: Index.tsx
+
+#### 🎮 Páginas Interactivas
+- **Rutas**: `/quiz`
+- **Patrones**: AppShellCard, StepHeader, OptionGrid
+- **Ejemplos**: Quiz.tsx
+
+#### ℹ️ Páginas Especiales
+- **Rutas**: `/about`
+- **Patrones**: Diseño consistente sin GlobalHeader
+- **Ejemplos**: About.tsx
+
+#### ⚠️ Páginas de Error
+- **Rutas**: `/*` (NotFound)
+- **Patrones**: Diseño consistente, mensaje claro
+- **Ejemplos**: NotFound.tsx, EnConstruccion.tsx
 
 ---
 
@@ -28,34 +72,39 @@ Todas las páginas del proyecto deben alcanzar el mismo nivel de sofisticación 
 
 ### Paleta de Colores de Marca
 
-```css
-/* Colores oficiales de la marca Hogares Seguros */
---brand-ink-900: #002B36    /* PMS 547C - Texto principal, títulos */
---brand-ink-800: #003556    /* PMS 302C - Botones primarios, hover */
---brand-teal-500: #3994B2   /* PMS 7459C - Acentos, enlaces */
---brand-olive-500: #576D5B  /* PMS 5615C - Texto secundario */
---brand-mint-200: #B0E0D6   /* PMS 573C - Fondos suaves, acentos */
---neutral-100: #D5D6D5      /* Cool Gray 1C - Bordes, fondos neutros */
---white: #FFFFFF            /* Fondo principal */
-```
+**🔗 Fuente de verdad**: `src/index.css` sección "PALETA DE COLORES DE MARCA"
+
+| Color | Variable CSS | Valor HEX | Código PMS | Uso Recomendado |
+|-------|--------------|-----------|------------|-----------------|
+| Ink 900 | `--brand-ink-900` | #002B36 | PMS 547C | Texto principal, títulos |
+| Ink 800 | `--brand-ink-800` | #003556 | PMS 302C | Botones primarios, hover |
+| Teal 500 | `--brand-teal-500` | #3994B2 | PMS 7459C | Acentos, enlaces |
+| Olive 500 | `--brand-olive-500` | #576D5B | PMS 5615C | Texto secundario |
+| Mint 200 | `--brand-mint-200` | #B0E0D6 | PMS 573C | Fondos suaves, acentos |
+| Neutral 100 | `--neutral-100` | #D5D6D5 | Cool Gray 1C | Bordes, fondos neutros |
+| White | `--white` | #FFFFFF | - | Fondo principal |
+
+**Para modificar valores**: Editar únicamente `src/index.css` sección "PALETA DE COLORES DE MARCA".
+**Formato técnico**: Los valores se almacenan como tripletas HSL (ej: `200 50% 46%`).
 
 ### Mapeo Semántico de Colores
 
-```css
---primary: var(--brand-teal-500)           /* Acentos principales */
---primary-foreground: var(--white)         /* Texto sobre primario */
---primary-hover: var(--brand-ink-800)      /* Hover de primarios */
+**🔗 Fuente de verdad**: `src/index.css` sección "MAPEO SEMÁNTICO DE COLORES"
 
---secondary: var(--neutral-100)            /* Elementos secundarios */
---secondary-foreground: var(--brand-ink-800) /* Texto sobre secundario */
+| Token Semántico | Referencia CSS | Uso |
+|-----------------|----------------|-----|
+| `--primary` | `var(--brand-teal-500)` | Acentos principales |
+| `--primary-foreground` | `var(--white)` | Texto sobre primario |
+| `--primary-hover` | `var(--brand-ink-800)` | Hover de primarios |
+| `--secondary` | `var(--neutral-100)` | Elementos secundarios |
+| `--secondary-foreground` | `var(--brand-ink-800)` | Texto sobre secundario |
+| `--accent` | `var(--brand-mint-200)` | Acentos suaves |
+| `--accent-foreground` | `var(--brand-ink-800)` | Texto sobre acento |
+| `--background` | `var(--white)` | Fondo principal |
+| `--background-subtle` | `var(--brand-mint-200)` | Fondos sutiles |
+| `--foreground` | `var(--brand-ink-900)` | Texto principal |
 
---accent: var(--brand-mint-200)            /* Acentos suaves */
---accent-foreground: var(--brand-ink-800)  /* Texto sobre acento */
-
---background: var(--white)                 /* Fondo principal */
---background-subtle: var(--brand-mint-200) /* Fondos sutiles */
---foreground: var(--brand-ink-900)         /* Texto principal */
-```
+**Para modificar mapeos**: Editar únicamente `src/index.css` sección "MAPEO SEMÁNTICO DE COLORES".
 
 ### Sistema de Colores Rotativos (para Cards)
 
@@ -131,14 +180,20 @@ const iconColors = [
 
 ### Escala de Espaciado
 
-```css
---space-1: 4px    /* Espaciado mínimo */
---space-2: 8px    /* Espaciado pequeño */
---space-3: 12px   /* Espaciado mediano */
---space-4: 16px   /* Espaciado base */
---space-6: 24px   /* Espaciado grande */
---space-8: 32px   /* Espaciado extra grande */
-```
+**🔗 Fuente de verdad**: `src/index.css` sección "TOKENS DE ESPACIADO"
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--space-1` | 4px | Espaciado mínimo |
+| `--space-2` | 8px | Espaciado pequeño |
+| `--space-3` | 12px | Espaciado mediano |
+| `--space-4` | 16px | Espaciado base |
+| `--space-6` | 24px | Espaciado grande |
+| `--space-8` | 32px | Espaciado extra grande |
+
+**Para modificar valores**: Editar únicamente `src/index.css` sección "TOKENS DE ESPACIADO".
+
+**Nota sobre rem**: Usar rem en lugar de px permite que el espaciado escale con el font-size del usuario, mejorando la accesibilidad.
 
 ### Clases de Espaciado Responsivo
 
@@ -396,7 +451,7 @@ className={cn(
 
 ## 8. Patrones de Página: Elementos Decorativos de Fondo
 
-### **OBLIGATORIO** en todas las páginas principales
+### **APLICABLE** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 {/* Colocar después del tag de apertura del contenedor principal */}
@@ -407,18 +462,20 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 9. Patrones de Página: Header Principal
 
-### **OBLIGATORIO** en todas las páginas principales
+### **APLICABLE** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
   <div className="container mx-auto px-4 py-8 sm:py-12">
     <div className="max-w-4xl mx-auto text-center">
       
-      {/* Logo circular con gradiente - OBLIGATORIO */}
+      {/* Logo circular con gradiente - APLICABLE en páginas de contenido educativo */}
       <div className="flex justify-center mb-6">
         <div className="p-3 bg-gradient-to-r from-brand-teal-500 to-primary rounded-full shadow-soft">
           <IconComponent className="h-12 w-12 text-primary-foreground" />
@@ -435,7 +492,7 @@ className={cn(
         Subtítulo descriptivo que explica el contenido
       </p>
       
-      {/* Frase destacada - OBLIGATORIA */}
+      {/* Frase destacada - APLICABLE en páginas de contenido educativo */}
       <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
         <div className="flex items-center justify-center mb-3">
           <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
@@ -453,11 +510,13 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 10. Patrones de Página: Sección de Introducción
 
-### **OBLIGATORIO** después del header principal
+### **APLICABLE** después del header principal en páginas de contenido educativo
 
 ```jsx
 <motion.div 
@@ -530,11 +589,13 @@ className={cn(
 </motion.div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 11. Patrones de Página: Headers de Sección
 
-### Para cada sección principal del contenido
+### Para cada sección principal del contenido en páginas de contenido educativo
 
 ```jsx
 <div className="text-center mb-8">
@@ -552,11 +613,13 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 12. Patrones de Página: Sección de Puntos Clave
 
-### Para secciones con pasos, tips o conceptos numerados
+### Para secciones con pasos, tips o conceptos numerados en páginas de contenido educativo
 
 ```jsx
 <div className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30 mb-12 sm:mb-16">
@@ -615,6 +678,8 @@ className={cn(
 </div>
 ```
 
+**Nota**: Este patrón NO aplica en páginas Hero (/), Quiz (/quiz), About (/about) o páginas de error.
+
 ---
 
 ## 13. Interacción y Animación
@@ -650,12 +715,28 @@ className={cn(
 .delay-1000  /* 1000ms animation delay */
 ```
 
+**⚠️ IMPORTANTE**: Los delays de animación son clases **nativas de Tailwind**, NO tokens custom.
+
+**Clases disponibles por defecto**:
+- `delay-75` (75ms)
+- `delay-100` (100ms)
+- `delay-150` (150ms)
+- `delay-200` (200ms)
+- `delay-300` (300ms)
+- `delay-500` (500ms) ← Usado en elementos decorativos
+- `delay-700` (700ms)
+- `delay-1000` (1000ms) ← Usado en elementos decorativos
+
 **Uso en elementos decorativos**:
 ```jsx
-<div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
-<div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-<div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+// Círculos animados de fondo
+<div className="animate-pulse delay-500">...</div>
+<div className="animate-pulse delay-1000">...</div>
 ```
+
+**❌ NO agregar al tailwind.config.ts** - Ya están disponibles por defecto en Tailwind.
+
+**❌ NO crear custom properties CSS** - Usar clases nativas directamente.
 
 ### Animaciones Escalonadas (Stagger)
 
@@ -787,6 +868,55 @@ className="space-y-4 sm:space-y-6 lg:space-y-8"
 .bg-brand-mint-200/30 /* ⚠️ EVITAR para iconos principales */
 ```
 
+### Tabla de Combinaciones de Color con Contraste AA
+
+**⚠️ IMPORTANTE**: Los ratios de contraste deben calcularse automáticamente desde los valores HSL fuente. Esta tabla es una guía conceptual basada en cálculos verificados.
+
+**Ratios verificados** (calculados desde valores HSL en `src/index.css`):
+- brand-ink-900 sobre white: 15.13:1
+- brand-ink-800 sobre white: 12.89:1  
+- brand-olive-500 sobre white: 5.38:1
+- brand-teal-500 sobre white: 3.90:1
+- brand-mint-200 sobre white: 1.41:1
+- brand-ink-800 sobre brand-mint-200: 9.15:1
+- brand-teal-500 sobre brand-mint-200: 2.76:1
+- brand-olive-500 sobre brand-mint-200: 3.82:1
+
+| Texto | Fondo | ¿Pasa AA? | Condiciones | Uso Recomendado |
+|-------|-------|-----------|-------------|-----------------|
+| `brand-ink-900` (#002B36) | `white` | ✅ SÍ | Cualquier tamaño | Títulos, párrafos principales |
+| `brand-ink-800` (#003556) | `white` | ✅ SÍ | Cualquier tamaño | Botones, CTAs |
+| `brand-olive-500` (#576D5B) | `white` | ✅ SÍ | Cualquier tamaño | Texto secundario |
+| `brand-teal-500` (#3994B2) | `white` | ⚠️ Solo texto grande | Solo ≥18px + bold (3.90:1) | Enlaces grandes, NO texto normal |
+| `brand-mint-200` (#B0E0D6) | `white` | ❌ NO | NUNCA para texto (1.41:1) | Solo fondos |
+| `brand-ink-800` | `brand-mint-200` | ✅ SÍ | Texto normal (9.15:1) | Texto sobre fondos acentuados |
+| `brand-teal-500` | `brand-mint-200` | ❌ NO | NUNCA (2.76:1) | ❌ Evitar |
+| `brand-olive-500` | `brand-mint-200` | ⚠️ Solo texto grande | Solo ≥18px + bold (3.82:1) | ⚠️ Usar con precaución |
+| `white` | `brand-ink-800` | ✅ SÍ | Cualquier tamaño | Botones, CTAs invertidos |
+
+**Para calcular ratios exactos**: Usar WebAIM Contrast Checker con valores HEX derivados de las tripletas HSL en `src/index.css`.
+
+### Excepciones Permitidas
+
+**brand-teal-500 sobre white**:
+- ✅ Títulos grandes (≥24px) con font-semibold
+- ✅ Enlaces con underline visible
+- ❌ Texto de párrafo normal (<18px)
+- ❌ Descripciones o contenido largo
+
+**Regla general**: Para texto normal (<18px), usar `brand-ink-900` o `brand-olive-500` sobre white.
+
+### Combinaciones Prohibidas
+- ❌ `brand-teal-500` sobre `brand-mint-200` (2.76:1 - insuficiente)
+- ❌ `brand-teal-500` en texto normal sobre white (3.90:1 - usar solo en títulos ≥18px bold)
+- ❌ `brand-mint-200` para cualquier texto (1.41:1 - siempre es fondo únicamente)
+- ⚠️ `brand-olive-500` sobre `brand-mint-200` (3.82:1 - usar solo en texto grande)
+
+### Cómo Verificar Contraste
+1. WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
+2. Chrome DevTools: Inspeccionar elemento > Contrast ratio en color picker
+3. Regla mínima: 4.5:1 para texto normal, 3:1 para texto grande (≥18px)
+
 ### Navegación por Teclado
 
 ```jsx
@@ -868,7 +998,249 @@ import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
 
 ---
 
-## 17. Gradientes y Fondos
+## 17. Optimización de Imágenes (Sistema Estandarizado)
+
+### **OBLIGATORIO** para todas las imágenes del proyecto
+
+**Regla de Oro**: TODAS las imágenes deben ser optimizadas antes de usar en producción. No se permite usar imágenes sin optimizar.
+
+### Proceso de Optimización Obligatorio
+
+#### 1. Preparación de Imágenes
+```bash
+# 1. Colocar imagen original en src/assets/
+# 2. Ejecutar script de optimización
+npm run optimize-images
+
+# 3. Usar componentes optimizados en el código
+```
+
+#### 2. Componentes de Imagen Optimizados
+
+**Para imágenes del HeroSection**:
+```jsx
+import HeroImage from "@/components/HeroImage";
+
+<HeroImage
+  src="nombre-imagen.png"
+  alt="Descripción de la imagen"
+  className="w-full h-full object-cover"
+  priority={true} // Solo para imágenes críticas
+/>
+```
+
+**Para logos principales**:
+```jsx
+import OptimizedLogo from "@/components/OptimizedLogo";
+
+<OptimizedLogo
+  className="h-8 w-auto"
+  alt="Nombre del logo"
+  priority={true} // Solo para logos críticos
+/>
+```
+
+**Para logos de confianza/partners**:
+```jsx
+import TrustLogo from "@/components/TrustLogo";
+
+<TrustLogo
+  src="logo-partner.png"
+  alt="Nombre del partner"
+  className="h-8 sm:h-10 w-auto"
+  priority={false} // Lazy loading por defecto
+/>
+```
+
+**Para imágenes genéricas**:
+```jsx
+import OptimizedImage from "@/components/OptimizedImage";
+
+<OptimizedImage
+  src="imagen-generica.png"
+  alt="Descripción"
+  className="w-full h-auto"
+  sizes="(max-width: 768px) 100vw, 50vw"
+  priority={false}
+/>
+```
+
+### Configuración de Optimización por Tipo
+
+#### Favicons e Iconos PWA
+- **Formato**: PNG optimizado
+- **Tamaños**: 16w, 32w, 48w, 64w, 96w, 128w, 192w, 256w, 512w
+- **Calidad**: Máxima compresión (nivel 9)
+- **Ubicación**: `/public/optimized/favicon/`
+
+#### Imágenes del HeroSection
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 400w, 600w, 800w, 1200w
+- **Calidad**: 85%
+- **Ubicación**: `/public/optimized/hero/`
+
+#### Logos y Marcas
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 100w, 200w, 400w
+- **Calidad**: 90%
+- **Ubicación**: `/public/optimized/logos/`
+
+#### Imágenes de Contenido
+- **Formato**: WebP con fallback PNG
+- **Tamaños**: 300w, 600w, 900w, 1200w
+- **Calidad**: 80-85%
+- **Ubicación**: `/public/optimized/content/`
+
+### Características Técnicas Obligatorias
+
+#### Lazy Loading Inteligente
+```jsx
+// ✅ CORRECTO - Solo imágenes críticas con priority
+<HeroImage priority={true} />
+
+// ✅ CORRECTO - Lazy loading por defecto
+<OptimizedImage priority={false} />
+
+// ❌ INCORRECTO - Usar img HTML directamente
+<img src="imagen.png" />
+```
+
+#### Responsive Images
+```jsx
+// ✅ CORRECTO - srcSet automático
+<OptimizedImage 
+  src="imagen.png"
+  sizes="(max-width: 768px) 100vw, 50vw"
+/>
+
+// ❌ INCORRECTO - Sin srcSet
+<img src="imagen.png" />
+```
+
+#### Fallbacks y Manejo de Errores
+```jsx
+// ✅ CORRECTO - Fallback automático
+<OptimizedImage 
+  src="imagen.png"
+  alt="Descripción obligatoria"
+/>
+
+// ❌ INCORRECTO - Sin alt text
+<OptimizedImage src="imagen.png" />
+```
+
+### Preload Hints para Imágenes Críticas
+
+#### En index.html
+```html
+<!-- ✅ CORRECTO - Solo imágenes críticas -->
+<link rel="preload" as="image" href="/optimized/hero/familia1-original.webp">
+<link rel="preload" as="image" href="/optimized/logos/Logo Hogares Digitales-original.webp">
+
+<!-- ❌ INCORRECTO - Preload de todas las imágenes -->
+<link rel="preload" as="image" href="/optimized/hero/*">
+```
+
+### Reglas de Implementación
+
+#### ✅ SIEMPRE Hacer
+
+1. **Optimizar TODAS las imágenes** antes de usar en producción
+2. **Usar componentes optimizados** (HeroImage, OptimizedLogo, TrustLogo, OptimizedImage)
+3. **Incluir alt text descriptivo** en todas las imágenes
+4. **Usar priority={true}** solo para imágenes críticas (hero, logos principales)
+5. **Definir sizes apropiados** para responsive images
+6. **Ejecutar npm run optimize-images** después de agregar nuevas imágenes
+7. **Verificar que se generen todos los tamaños** en `/public/optimized/`
+
+#### ❌ NUNCA Hacer
+
+1. ❌ Usar `<img>` HTML directamente sin optimización
+2. ❌ Importar imágenes grandes desde `src/assets/` sin optimizar
+3. ❌ Usar `priority={true}` en imágenes no críticas
+4. ❌ Omitir alt text en imágenes
+5. ❌ Usar imágenes sin fallback WebP/PNG
+6. ❌ Preload todas las imágenes (solo críticas)
+7. ❌ Usar imágenes sin lazy loading en contenido no crítico
+
+### Checklist de Implementación
+
+#### ✅ Para Nuevas Imágenes:
+
+- [ ] Colocar imagen original en `/src/assets/`
+- [ ] Ejecutar `npm run optimize-images`
+- [ ] Verificar generación en `/public/optimized/`
+- [ ] Usar componente optimizado apropiado
+- [ ] Incluir alt text descriptivo
+- [ ] Definir priority correctamente
+- [ ] Especificar sizes para responsive
+- [ ] Probar en diferentes dispositivos
+- [ ] Verificar lazy loading funciona
+- [ ] Comprobar fallbacks en caso de error
+
+#### ✅ Para Imágenes Existentes:
+
+- [ ] Identificar todas las instancias de `<img>` HTML
+- [ ] Reemplazar con componentes optimizados
+- [ ] Actualizar imports de imágenes
+- [ ] Ejecutar script de optimización
+- [ ] Verificar que no se rompan estilos
+- [ ] Probar funcionalidad completa
+- [ ] Verificar rendimiento mejorado
+
+### Métricas de Rendimiento Esperadas
+
+#### Antes de Optimización:
+- **Favicon**: 1MB+ (inaceptable)
+- **Imagen Hero**: 1.5MB+ (lenta)
+- **Logo**: 1MB+ (pesado)
+
+#### Después de Optimización:
+- **Favicon**: <10KB (instantáneo)
+- **Imagen Hero**: <100KB (rápida)
+- **Logo**: <50KB (ligero)
+
+### Herramientas y Scripts
+
+#### Script Principal
+```bash
+# Optimizar todas las imágenes
+npm run optimize-images
+```
+
+#### Verificación Manual
+```bash
+# Verificar tamaños de archivos optimizados
+ls -la public/optimized/*/
+```
+
+#### Testing de Rendimiento
+```bash
+# Usar Lighthouse para verificar mejoras
+npm run build
+npm run preview
+# Abrir http://localhost:4173 en Chrome DevTools > Lighthouse
+```
+
+### Archivos de Referencia
+
+#### Componentes Optimizados
+- **`src/components/HeroImage.tsx`** - Imágenes del hero
+- **`src/components/OptimizedLogo.tsx`** - Logos principales
+- **`src/components/TrustLogo.tsx`** - Logos de partners
+- **`src/components/OptimizedImage.tsx`** - Imágenes genéricas
+
+#### Scripts de Optimización
+- **`scripts/optimize-images.js`** - Script principal de optimización
+- **`IMAGE_OPTIMIZATION_REPORT.md`** - Documentación completa
+
+#### Configuración
+- **`package.json`** - Script `optimize-images`
+- **`index.html`** - Preload hints para imágenes críticas
+
+---
+
+## 18. Gradientes y Fondos
 
 ### Clase Utility Principal
 
@@ -911,7 +1283,62 @@ import { Shield, CheckCircle, AlertCircle, Info, Target } from 'lucide-react';
 
 ---
 
-## 18. Patrones de React Comunes
+## 19. Sistema de Opacidades Estandarizado
+
+### Escala de Opacidades
+
+| Opacidad | Uso | Ejemplo |
+|----------|-----|---------|
+| `/5` | Fondos decorativos sutiles | `bg-brand-teal-500/5` (círculos animados) |
+| `/10` | Fondos muy sutiles | `bg-brand-teal-500/10` (cards, secciones) |
+| `/20` | Fondos sutiles estándar | `bg-brand-mint-200/20` (backgrounds) |
+| `/30` | Bordes sutiles | `border-brand-teal-500/30` |
+| `/40` | Bordes visibles | `border-brand-mint-200/40` |
+| `/60` | Fondos de iconos | `bg-brand-mint-200/60` (alto contraste) |
+| `/80` | Overlays semi-transparentes | `bg-black/80` (modales) |
+
+**Regla**: Evitar opacidades fuera de esta escala sin justificación de diseño.
+
+### Combinaciones Comunes
+
+```css
+/* Sistema de colores rotativos para cards */
+- Card teal: border-brand-teal-500/30 bg-brand-teal-500/10
+- Card mint: border-brand-mint-200/40 bg-brand-mint-200/20
+- Card olive: border-brand-olive-500/30 bg-brand-olive-500/10
+```
+
+### Uso en Componentes
+
+```jsx
+// Cards con colores rotativos
+const cardColors = [
+  "border-brand-teal-500/30 bg-brand-teal-500/10",
+  "border-brand-mint-200/40 bg-brand-mint-200/20", 
+  "border-brand-olive-500/30 bg-brand-olive-500/10"
+];
+
+// Iconos circulares con contraste mejorado
+const iconColors = [
+  "bg-brand-teal-500/20 text-brand-teal-500",
+  "bg-brand-mint-200/60 text-brand-ink-800",  // /60 para alto contraste
+  "bg-brand-olive-500/20 text-brand-olive-500"
+];
+
+// Elementos decorativos de fondo
+<div className="bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
+```
+
+### Reglas de Contraste
+
+- **Iconos principales**: Usar `/60` para alto contraste (WCAG AA)
+- **Cards y secciones**: Usar `/10` o `/20` para sutileza
+- **Bordes**: Usar `/30` o `/40` para visibilidad sin agresividad
+- **Elementos decorativos**: Usar `/5` para máximo sutil
+
+---
+
+## 20. Patrones de React Comunes
 
 ### Hook: Auto-scroll al inicio de página
 
@@ -993,64 +1420,81 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ---
 
-## 19. Checklist de Implementación
+## 21. Checklist de Implementación
 
-### ✅ Estructura Básica (Obligatorio)
+### ✅ Componentes Universales (Aplican en TODO el proyecto)
 
+#### Fundamentos
+- [ ] Paleta de colores de marca implementada
+- [ ] Tipografía responsiva aplicada
+- [ ] Espaciado consistente utilizado
+- [ ] Border radius y sombras estandarizadas
+
+#### Componentes Base
+- [ ] Botones con variantes primary-brand, outline, asChild
+- [ ] Cards con sistema de colores rotativos
+- [ ] Modales con sistema estandarizado
+- [ ] Contraste WCAG AA en todos los elementos
+- [ ] Imágenes optimizadas con componentes especializados
+- [ ] Lazy loading implementado en imágenes no críticas
+- [ ] Preload hints para imágenes críticas
+
+### ✅ Patrones de Página por Tipo
+
+#### 📚 Páginas de Contenido Educativo (/aprende, /recursos, /ayuda)
 - [ ] Elementos decorativos de fondo animados (3 círculos con blur)
 - [ ] Header con gradiente sutil y logo circular
 - [ ] Frase destacada con icono y etiqueta
 - [ ] Sección de introducción con layout de 2 columnas
 - [ ] Headers de sección con iconos circulares
-
-### ✅ Sistema Visual (Obligatorio)
-
-- [ ] Colores rotativos en cards (teal, mint, olive)
-- [ ] Contraste mejorado en iconos y texto (WCAG AA)
-- [ ] Hover effects en elementos interactivos
-- [ ] Transiciones suaves en todas las interacciones
-- [ ] Sombras sutiles para profundidad
-
-### ✅ Responsividad (Obligatorio)
-
-- [ ] Tipografía escalable por breakpoint
-- [ ] Espaciado responsivo en todos los elementos
-- [ ] Iconos que escalan correctamente
-- [ ] Grids que se adaptan a diferentes pantallas
-- [ ] Padding y márgenes responsivos
-
-### ✅ Contenido (Obligatorio)
-
 - [ ] Sección de puntos clave con números circulares
-- [ ] Cards con sistema de colores rotativos
-- [ ] Datos importantes destacados
-- [ ] Animaciones escalonadas en grids
-- [ ] Consistencia visual entre secciones
 
-### ✅ Accesibilidad (Obligatorio)
+#### 🏠 Páginas Hero (/)
+- [ ] HeroSection con elementos decorativos
+- [ ] Responsividad completa en Hero
+- [ ] Accesibilidad en elementos interactivos
+- [ ] Consistencia visual con sistema de diseño
 
-- [ ] Contraste mínimo 4.5:1 para texto normal
-- [ ] Navegación completa por teclado
-- [ ] ARIA labels en elementos interactivos
-- [ ] Focus visible en todos los elementos
-- [ ] Respeto a `prefers-reduced-motion`
+#### 🎮 Páginas Interactivas (/quiz)
+- [ ] AppShellCard con sistema de diseño
+- [ ] StepHeader consistente
+- [ ] OptionGrid responsivo
+- [ ] Accesibilidad WCAG AA en pasos
+
+#### ℹ️ Páginas Especiales (/about)
+- [ ] Diseño consistente sin GlobalHeader
+- [ ] Responsividad completa
+- [ ] Accesibilidad básica
+- [ ] Consistencia visual con sistema de diseño
+
+#### ⚠️ Páginas de Error (/*)
+- [ ] Diseño consistente
+- [ ] Mensaje claro
+- [ ] Navegación de retorno
+- [ ] Accesibilidad básica
 
 ---
 
-## 20. Reglas de Implementación
+## 22. Reglas de Implementación
 
 ### SIEMPRE Hacer
 
-1. **Usar elementos decorativos de fondo** en páginas principales
-2. **Incluir logo circular con gradiente** en headers
-3. **Implementar frase destacada** con icono y etiqueta
-4. **Usar contraste mejorado** para iconos y números (WCAG AA)
-5. **Aplicar animaciones escalonadas** en grids
-6. **Usar hover effects** en elementos interactivos
-7. **Implementar responsividad completa** con breakpoints
-8. **Mantener consistencia visual** entre secciones
-9. **Rotar colores de cards** para evitar monotonía
-10. **Alcanzar el nivel de `/tu-familia`** en sofisticación
+1. **Usar elementos decorativos de fondo** en páginas de contenido educativo (/aprende, /recursos, /ayuda)
+2. **Incluir logo circular con gradiente** en headers de páginas de contenido educativo
+3. **Implementar frase destacada** con icono y etiqueta en páginas de contenido educativo
+4. **Usar contraste mejorado** para iconos y números (WCAG AA) - UNIVERSAL
+5. **Aplicar animaciones escalonadas** en grids - UNIVERSAL
+6. **Usar hover effects** en elementos interactivos - UNIVERSAL
+7. **Implementar responsividad completa** con breakpoints - UNIVERSAL
+8. **Mantener consistencia visual** entre secciones - UNIVERSAL
+9. **Rotar colores de cards** para evitar monotonía - UNIVERSAL
+10. **Usar HeroSection** en página principal (/)
+11. **Usar AppShellCard** en página de quiz (/quiz)
+12. **Mantener diseño consistente** en páginas especiales (/about) sin GlobalHeader
+13. **Alcanzar el nivel de sofisticación** documentado en este sistema de diseño
+14. **Optimizar TODAS las imágenes** antes de usar en producción - UNIVERSAL
+15. **Usar componentes optimizados** (HeroImage, OptimizedLogo, TrustLogo, OptimizedImage) - UNIVERSAL
+16. **Ejecutar npm run optimize-images** después de agregar nuevas imágenes - UNIVERSAL
 
 ### NUNCA Hacer
 
@@ -1062,26 +1506,34 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 6. ❌ Sobrescribir clases de `DialogContent` base para modales
 7. ❌ Crear tap targets menores a 44px
 8. ❌ Olvidar ARIA labels en iconos sin texto
+9. ❌ Usar `<img>` HTML directamente sin optimización - UNIVERSAL
+10. ❌ Importar imágenes grandes desde `src/assets/` sin optimizar - UNIVERSAL
+11. ❌ Usar `priority={true}` en imágenes no críticas - UNIVERSAL
+12. ❌ Omitir alt text en imágenes - UNIVERSAL
+13. ❌ Usar imágenes sin fallback WebP/PNG - UNIVERSAL
+14. ❌ Preload todas las imágenes (solo críticas) - UNIVERSAL
 
 ---
 
-## 21. Ejemplos Rápidos
+## 23. Ejemplos Rápidos
 
-### Layout de Página Completo
+### Layout de Página Completo por Tipo
+
+#### 📚 Páginas de Contenido Educativo (/aprende, /recursos, /ayuda)
 
 ```jsx
 <>
   <GlobalHeader />
   
   <div className="min-h-screen bg-gradient-subtle">
-    {/* Elementos decorativos de fondo */}
+    {/* Elementos decorativos de fondo - APLICABLE en páginas de contenido educativo */}
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
     </div>
 
-    {/* Header Principal */}
+    {/* Header Principal - APLICABLE en páginas de contenido educativo */}
     <div className="relative bg-gradient-to-br from-white via-brand-mint-200/20 to-white border-b">
       {/* Ver sección 9 para código completo */}
     </div>
@@ -1089,7 +1541,7 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
     {/* Contenido Principal */}
     <div className="relative container mx-auto px-4 py-8 sm:py-12">
       <div className="max-w-6xl mx-auto">
-        {/* Sección de Introducción */}
+        {/* Sección de Introducción - APLICABLE en páginas de contenido educativo */}
         {/* Ver sección 10 para código completo */}
         
         {/* Secciones de Contenido */}
@@ -1099,6 +1551,303 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
   </div>
 </>
 ```
+
+#### 🏠 Páginas Hero (/)
+
+```jsx
+<>
+  <GlobalHeader />
+  <main id="main-content">
+    <HeroSection />
+  </main>
+</>
+```
+
+#### 🎮 Páginas Interactivas (/quiz)
+
+```jsx
+<>
+  <GlobalHeader />
+  <main id="main-content">
+    <AppShellCard>
+      {/* Pasos del quiz */}
+    </AppShellCard>
+  </main>
+</>
+```
+
+---
+
+## 25. Snippets Canónicos
+
+### Configuración Completa del Proyecto
+
+#### tailwind.config.ts (Configuración Canónica)
+
+```typescript
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate"; // ✅ Import directo, NO import()
+
+export default {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}"
+  ],
+  safelist: [
+    {
+      pattern: /^(bg|text|border|ring|fill|stroke)-(brand-(teal|olive|mint|ink)-(200|500|800|900))(\/\d+)?$/,
+      variants: ['hover', 'focus', 'focus-visible', 'active', 'group-hover', 'sm', 'md', 'lg']
+    }
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Brand colors (tripletas HSL)
+        "brand-ink-900": "hsl(var(--brand-ink-900))",
+        "brand-ink-800": "hsl(var(--brand-ink-800))",
+        "brand-teal-500": "hsl(var(--brand-teal-500))",
+        "brand-olive-500": "hsl(var(--brand-olive-500))",
+        "brand-mint-200": "hsl(var(--brand-mint-200))",
+        "neutral-100": "hsl(var(--neutral-100))",
+        
+        // System colors
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+          subtle: "hsl(var(--success-subtle))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          subtle: "hsl(var(--warning-subtle))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          foreground: "hsl(var(--error-foreground))",
+          subtle: "hsl(var(--error-subtle))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+          subtle: "hsl(var(--info-subtle))",
+        },
+        disabled: {
+          bg: "hsl(var(--disabled-bg))",
+          fg: "hsl(var(--disabled-fg))",
+          border: "hsl(var(--disabled-border))",
+        },
+      },
+      borderRadius: {
+        'sm': 'var(--radius-sm)',
+        'md': 'var(--radius-md)', 
+        'lg': 'var(--radius-lg)',
+        'xl': 'var(--radius-xl)',
+        DEFAULT: 'var(--radius)',
+      },
+      spacing: {
+        '1': 'var(--space-1)',
+        '2': 'var(--space-2)', 
+        '3': 'var(--space-3)',
+        '4': 'var(--space-4)',
+        '6': 'var(--space-6)',
+        '8': 'var(--space-8)',
+      },
+      boxShadow: {
+        "soft": "var(--shadow-soft)",
+        "cta": "var(--shadow-cta)",
+      },
+      backgroundImage: {
+        "gradient-subtle": "var(--gradient-subtle)",
+        "gradient-warm": "var(--gradient-warm)",
+      },
+    },
+  },
+  plugins: [animate], // ✅ Referencia directa, NO require()
+} satisfies Config;
+```
+
+#### src/index.css (Tokens Canónicos)
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand colors (tripletas HSL - SIN hsl()) */
+    --brand-ink-900: 195 100% 11%;
+    --brand-ink-800: 204 100% 17%;
+    --brand-teal-500: 200 50% 46%;
+    --brand-olive-500: 145 18% 38%;
+    --brand-mint-200: 162 56% 78%;
+    --neutral-100: 120 2% 84%;
+    --white: 0 0% 100%;
+    
+    /* Semantic tokens */
+    --primary: var(--brand-teal-500);
+    --primary-foreground: var(--white);
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    
+    /* Spacing */
+    --space-1: .25rem; /* 4px */
+    --space-2: .5rem;  /* 8px */
+    --space-4: 1rem;   /* 16px */
+    --space-6: 1.5rem; /* 24px */
+    --space-8: 2rem;   /* 32px */
+    
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius: var(--radius-md);
+    
+    /* Shadows (RGBA - NO hsl(var())) */
+    --shadow-soft: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-cta: 0 8px 30px -8px rgba(57, 148, 178, 0.3);
+    
+    /* Typography */
+    --lh-heading-1: 1.1;
+    --lh-body: 1.6;
+    --ls-tight: -0.02em;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .focus-visible-brand {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal-500 focus-visible:ring-offset-2;
+  }
+  
+  /* sr-only ya está disponible en Tailwind nativo */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+#### Puntos Críticos de la Configuración
+
+1. **Plugin Tailwind**: `import animate from "..."` NO `import("...")`
+2. **Safelist**: Protege colores rotativos dinámicos
+3. **Colors**: `hsl(var(--color))` CON hsl(), tokens SIN hsl()
+4. **Shadows**: RGBA directo, NO `hsl(var(...))`
+5. **Spacing**: Solo 1,2,3,4,6,8 (no 5 ni 10)
+
+---
+
+## 26. Convención de Nombres Estandarizada
+
+### En CSS (Custom Properties)
+```css
+/* ✅ CORRECTO - kebab-case */
+--shadow-soft
+--brand-teal-500
+--transition-smooth
+--lh-heading-1
+
+/* ❌ INCORRECTO - camelCase */
+--shadowSoft
+--brandTeal500
+--transitionSmooth
+```
+
+### En TypeScript/JavaScript (Referencias)
+```typescript
+// ✅ CORRECTO - kebab-case en strings
+const shadow = 'shadow-soft';
+const color = 'brand-teal-500';
+const className = 'bg-brand-teal-500/10';
+
+// ❌ INCORRECTO - intentar camelCase
+const shadow = 'shadowSoft'; // NO existe en CSS
+```
+
+### En Tailwind Config
+```typescript
+// ✅ CORRECTO - Match CSS (kebab-case)
+boxShadow: {
+  "soft": "var(--shadow-soft)",
+  "cta": "var(--shadow-cta)",
+}
+colors: {
+  "brand-teal-500": "hsl(var(--brand-teal-500))",
+}
+
+// ❌ INCORRECTO - camelCase no funciona
+boxShadow: {
+  soft: "var(--shadow-soft)", // Puede funcionar pero inconsistente
+}
+```
+
+### En Componentes JSX
+```tsx
+// ✅ CORRECTO - clases con kebab-case
+<div className="bg-brand-teal-500/10 shadow-soft transition-smooth">
+
+// ❌ INCORRECTO - no existe
+<div className="bg-brandTeal500-10"> // NO funciona
+```
+
+### Regla General
+**Mantener kebab-case en todo el sistema de diseño**:
+- CSS variables
+- Tailwind config
+- Clases en JSX
+- Referencias en código
+
+**Única excepción**: Variables JavaScript que NO son clases CSS pueden usar camelCase.
+
+---
+
+## 27. Arquitectura del Sistema de Diseño
+
+### Flujo de Información
+
+```
+src/index.css (Fuente de Verdad)
+    ↓
+    Valores técnicos: --brand-teal-500: 200 50% 46%
+    ↓
+tailwind.config.ts (Referencias)
+    ↓
+    Exposición: "brand-teal-500": "hsl(var(--brand-teal-500))"
+    ↓
+Componentes (Uso)
+    ↓
+    Clases: className="bg-brand-teal-500"
+```
+
+### Responsabilidades
+
+| Archivo | Rol | Contiene |
+|---------|-----|----------|
+| `src/index.css` | 🎨 Fuente de Verdad | Valores técnicos exactos |
+| `tailwind.config.ts` | ⚙️ Configuración | Solo referencias a CSS vars |
+| `.cursor/rules/projectdesignsystem.mdc` | 📚 Guía | Patrones de uso, ejemplos |
+
+**Regla de Oro**: Para cambiar un valor, editar SOLO `src/index.css`.
 
 ---
 
@@ -1114,15 +1863,253 @@ import { Users, Shield, CheckCircle, ChevronRight, Info } from "lucide-react";
 
 ### Archivos de Referencia en el Proyecto
 
-- **Página estándar**: `src/pages/TuFamilia.tsx`
+#### Páginas por Tipo
+- **Página de contenido educativo**: `src/pages/TuFamilia.tsx`
+- **Página hero**: `src/pages/Index.tsx`
+- **Página interactiva**: `src/pages/Quiz.tsx`
+- **Página especial**: `src/pages/About.tsx`
+
+#### Componentes Universales
 - **Componente modal**: `src/components/ui/dialog.tsx`
 - **Componente card**: `src/components/ui/card.tsx`
+- **Componente botón**: `src/components/ui/button.tsx`
+
+#### Configuración
 - **Estilos globales**: `src/index.css`
 - **Configuración Tailwind**: `tailwind.config.ts`
 
 ---
 
+## 24. Dark Mode
+
+**Estado actual**: ❌ NO SOPORTADO
+
+### Decisión Técnica
+Los tokens dark mode en `index.css` (líneas 101-137) son **herencia de shadcn/ui**.  
+**NO implementar dark mode** sin aprobación del equipo de diseño.
+
+### Razón
+La identidad de marca (colores cálidos, mint, teal) no funciona en dark mode sin un rediseño completo del sistema de color.
+
+### ¿Por qué hay código de dark mode en el CSS?
+- shadcn/ui incluye tokens dark mode por defecto
+- Se conservaron para evitar romper componentes de shadcn
+- `darkMode: ["class"]` en tailwind.config.ts está activo pero NO se usa
+
+### Si en el futuro se requiere Dark Mode
+1. Reunión con equipo de diseño
+2. Definir nuevos colores de marca para dark mode
+3. Crear tabla de contraste AA para dark mode
+4. Implementar toggle en UI
+5. Actualizar todos los componentes
+6. Probar accesibilidad completa en dark mode
+
+---
+
+## 28. Componentes: Tooltips Educativos (Sistema Estandarizado)
+
+### Patrón Base para Tooltips de Términos Técnicos
+
+**Uso**: Para términos técnicos, acrónimos en inglés, o conceptos que requieren explicación adicional.
+
+```jsx
+import { GlossaryTerm } from "@/components/ui/GlossaryTerm";
+
+// Uso básico
+<GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm>
+
+// Con texto personalizado
+<GlossaryTerm termKey="grooming">proceso de grooming</GlossaryTerm>
+
+// En arrays de strings (convertir a JSX)
+risks: [
+  "Contenido gráfico",
+  <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en algunos servidores</>,
+  "Contacto con desconocidos"
+]
+```
+
+### Configuración del Glosario
+
+**Archivo**: `src/data/glossary.ts`
+
+```typescript
+export const glossaryTerms: Record<string, GlossaryEntry> = {
+  nsfw: {
+    term: "NSFW",
+    definition: "Not Safe For Work (No seguro para el trabajo). Contenido que puede ser inadecuado para su visualización en el trabajo, generalmente por ser subido de tono, pornográfico, sangriento, violento u ofensivo.",
+    additionalInfo: {
+      title: "Tipos de contenido NSFW:",
+      items: [
+        "Contenido sexual explícito",
+        "Violencia gráfica o sangrienta",
+        "Lenguaje ofensivo o discriminatorio",
+        "Contenido que promueve actividades ilegales",
+        "Material que puede ser perturbador para menores"
+      ]
+    }
+  }
+};
+```
+
+### Características Visuales del Tooltip
+
+**Estilo del término**:
+- Color: `text-brand-teal-500` (azul de marca)
+- Subrayado: `decoration-dotted` (punteado)
+- Hover: `hover:decoration-solid` (línea sólida)
+- Icono: `<Info className="ml-1 h-3 w-3" />` (ícono de información)
+- Interactivo: Click para abrir/cerrar
+
+**Contenido del tooltip**:
+- Fondo: `bg-white` con `border-brand-mint-200/30`
+- Sombra: `shadow-lg`
+- Padding: `p-4`
+- Ancho máximo: `max-w-xs`
+- Posición: `side="top"` `align="center"`
+
+### Estructura del Contenido del Tooltip
+
+```jsx
+<TooltipContent className="max-w-xs bg-white border border-brand-mint-200/30 shadow-lg p-4">
+  <div className="space-y-3">
+    {/* Título del término */}
+    <h4 className="font-heading font-semibold text-sm text-brand-ink-900">
+      {glossaryEntry.term}
+    </h4>
+    
+    {/* Definición principal */}
+    <p className="font-body text-sm text-brand-ink-800 leading-relaxed">
+      {glossaryEntry.definition}
+    </p>
+    
+    {/* Información adicional (opcional) */}
+    {glossaryEntry.additionalInfo && (
+      <div className="bg-brand-mint-200/20 p-3 rounded-lg border border-brand-mint-200/30">
+        <h5 className="font-heading font-semibold text-xs mb-2 text-brand-ink-900">
+          {glossaryEntry.additionalInfo.title}
+        </h5>
+        <ul className="space-y-1">
+          {glossaryEntry.additionalInfo.items.map((item, index) => (
+            <li key={index} className="font-body text-xs text-brand-ink-800 flex items-start">
+              <span className="w-1 h-1 bg-brand-teal-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</TooltipContent>
+```
+
+### Términos que Requieren Tooltips
+
+**Términos técnicos en inglés**:
+- `nsfw` - Not Safe For Work
+- `grooming` - Proceso de manipulación
+- `sexting` - Envío de contenido sexual
+- `deepfakes` - Videos falsos con IA
+- `ciberacoso` - Acoso digital
+- `suplantacion` - Robo de identidad
+
+**Acrónimos y siglas**:
+- `DMs` - Mensajes directos
+- `NSFW` - Not Safe For Work
+- `ESRB` - Entertainment Software Rating Board
+- `AI` - Inteligencia Artificial
+- `VPN` - Red privada virtual
+
+### Reglas de Implementación
+
+#### ✅ SIEMPRE Usar Tooltips Para:
+
+1. **Términos técnicos en inglés** que aparecen en interfaces de plataformas
+2. **Acrónimos** que pueden no ser familiares para padres
+3. **Conceptos de seguridad digital** que requieren explicación
+4. **Términos de redes sociales** específicos de plataformas
+
+#### ❌ NUNCA Usar Tooltips Para:
+
+1. **Términos comunes** en español (ej: "privacidad", "seguridad")
+2. **Nombres de plataformas** (ej: "TikTok", "Instagram")
+3. **Términos ya explicados** en el contexto inmediato
+4. **Palabras simples** que no requieren aclaración
+
+### Patrones de Uso Común
+
+#### En Arrays de Strings (Riesgos/Controles)
+
+```jsx
+// ❌ INCORRECTO - String con HTML
+risks: [
+  "Contenido <GlossaryTerm termKey=\"nsfw\">NSFW</GlossaryTerm> en servidores"
+]
+
+// ✅ CORRECTO - JSX Element
+risks: [
+  <>Contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> en servidores</>
+]
+```
+
+#### En Texto de Párrafos
+
+```jsx
+// ✅ CORRECTO - Uso directo
+<p>
+  Algunas plataformas permiten contenido <GlossaryTerm termKey="nsfw">NSFW</GlossaryTerm> 
+  que puede ser inapropiado para menores.
+</p>
+```
+
+#### En Títulos y Subtítulos
+
+```jsx
+// ✅ CORRECTO - Uso en títulos
+<h3>
+  Protección contra <GlossaryTerm termKey="grooming">grooming</GlossaryTerm>
+</h3>
+```
+
+### Accesibilidad
+
+**Características de accesibilidad**:
+- `aria-label` descriptivo para lectores de pantalla
+- Navegación por teclado funcional
+- Contraste adecuado en todos los estados
+- Información disponible sin hover (click para abrir)
+
+```jsx
+<button 
+  aria-label={`Ver definición de ${glossaryEntry.term}`}
+  className="inline-flex items-center text-brand-teal-500 underline decoration-dotted hover:decoration-solid active:bg-brand-mint-200/20 px-1 py-0.5 rounded transition-colors cursor-pointer"
+>
+  {children || glossaryEntry.term}
+  <Info className="ml-1 h-3 w-3" />
+</button>
+```
+
+### Checklist de Implementación
+
+#### ✅ Para Nuevos Términos:
+
+- [ ] Agregar entrada al `src/data/glossary.ts`
+- [ ] Definición clara y concisa en español mexicano
+- [ ] Información adicional con ejemplos específicos
+- [ ] Verificar que el término se use consistentemente
+- [ ] Probar tooltip en diferentes contextos
+
+#### ✅ Para Términos Existentes:
+
+- [ ] Identificar todas las instancias del término
+- [ ] Reemplazar strings con `<GlossaryTerm termKey="...">`
+- [ ] Convertir arrays de strings a JSX cuando sea necesario
+- [ ] Verificar imports de `GlossaryTerm` en archivos
+- [ ] Probar funcionalidad del tooltip
+
+---
+
 **Última actualización**: Octubre 2025  
-**Estándar de referencia**: `/tu-familia`  
-**Objetivo**: Todas las páginas deben alcanzar el mismo nivel de sofisticación visual, consistencia y atención al detalle.
+**Sistema de Diseño**: Documentación completa y autosuficiente  
+**Objetivo**: Todas las páginas y componentes deben cumplir con los estándares documentados en este sistema de diseño.
 

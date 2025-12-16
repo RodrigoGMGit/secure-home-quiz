@@ -24,3 +24,27 @@ dist-ssr
 *.sw?
 AGENTS.md
 .vercel
+
+# Screenshots and documentation images
+screenshots/
+screenshots.zip
+# Exclude source images in src/assets (but keep optimized production assets)
+src/assets/**/*.png
+src/assets/**/*.jpg
+src/assets/**/*.jpeg
+src/assets/**/*.gif
+src/assets/**/*.webp
+# Exclude temporary/development images
+*.tmp.png
+*.tmp.jpg
+*.tmp.jpeg
+*.tmp.gif
+*.tmp.webp
+# Keep production optimized images in public/optimized/
+!public/optimized/**/*.png
+!public/optimized/**/*.jpg
+!public/optimized/**/*.jpeg
+!public/optimized/**/*.gif
+!public/optimized/**/*.webp
+
+.cursor/plans

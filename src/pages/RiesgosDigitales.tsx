@@ -1,46 +1,30 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { RiskCard } from '../components/risks/RiskCard';
 import { RiskDetailModal } from '../components/risks/RiskDetailModal';
 import { digitalRisks, riskCategories } from '../data/risks';
 import { DigitalRisk } from '../types/risks';
-import { Search, Filter, AlertTriangle, Shield, Search as SearchIcon, Eye, Users, CheckCircle } from 'lucide-react';
+import { Search, Shield, Eye, CheckCircle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
+import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
+import { useTelephoneCapability } from '@/hooks/useMobileDetection';
+import { initiatePhoneCall } from '@/utils/phoneUtils';
+import TrustLogo from '@/components/TrustLogo';
 
 const RiesgosDigitales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
   useScrollToTop();
+  
+  const canCall = useTelephoneCapability();
 
   const [selectedRisk, setSelectedRisk] = useState<DigitalRisk | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const filteredRisks = useMemo(() => {
-    return digitalRisks.filter(risk => {
-      const matchesSearch = risk.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           risk.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesSeverity = selectedSeverity === 'all' || risk.severity === selectedSeverity;
-      const matchesAgeGroup = selectedAgeGroup === 'all' || risk.ageGroups.includes(selectedAgeGroup);
-      
-      let matchesCategory = true;
-      if (selectedCategory !== 'all') {
-        const category = riskCategories.find(cat => cat.id === selectedCategory);
-        matchesCategory = category ? category.risks.some(r => r.id === risk.id) : false;
-      }
-
-      return matchesSearch && matchesSeverity && matchesAgeGroup && matchesCategory;
-    });
-  }, [searchTerm, selectedSeverity, selectedAgeGroup, selectedCategory]);
+  const filteredRisks = digitalRisks;
 
   const handleViewDetails = (risk: DigitalRisk) => {
     setSelectedRisk(risk);
@@ -52,23 +36,20 @@ const RiesgosDigitales: React.FC = () => {
     setSelectedRisk(null);
   };
 
-  const getSeverityStats = () => {
-    const stats = digitalRisks.reduce((acc, risk) => {
-      acc[risk.severity] = (acc[risk.severity] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-
-    return stats;
+  const handleEmergencyCall = async (telefono: string) => {
+    try {
+      await initiatePhoneCall(telefono, canCall);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : 'Error al intentar hacer la llamada');
+    }
   };
-
-  const severityStats = getSeverityStats();
 
   return (
     <>
       <GlobalHeader />
       <div className="min-h-screen bg-gradient-subtle">
         {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           <div className="absolute top-20 left-10 w-32 h-32 bg-brand-teal-500/5 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-brand-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-brand-olive-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
@@ -85,7 +66,7 @@ const RiesgosDigitales: React.FC = () => {
                 </div>
               </div>
               
-              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
                 Riesgos Digitales
               </h1>
               <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
@@ -94,10 +75,6 @@ const RiesgosDigitales: React.FC = () => {
               
               {/* Frase destacada mejorada */}
               <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-                <div className="flex items-center justify-center mb-3">
-                  <AlertTriangle className="h-6 w-6 text-brand-teal-500 mr-2" />
-                  <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
-                </div>
                 <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                   "Conocer los riesgos es el primer paso para proteger a tu familia en el mundo digital"
                 </p>
@@ -159,7 +136,7 @@ const RiesgosDigitales: React.FC = () => {
                   <div className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border border-brand-teal-500/20 rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       <div className="p-2 bg-brand-teal-500/20 rounded-full flex-shrink-0">
-                        <Shield className="h-5 w-5 text-brand-teal-500" />
+                        <Shield className="h-5 w-5 text-brand-ink-800" />
                       </div>
                       <div>
                         <h4 className="font-heading text-sm sm:text-base font-semibold text-brand-ink-900 mb-2">
@@ -176,133 +153,12 @@ const RiesgosDigitales: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Estadísticas mejoradas */}
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Card className="border-brand-teal-500/30 bg-brand-teal-500/10 hover:shadow-soft transition-smooth hover:scale-105">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-brand-teal-500/20 rounded-full">
-                      <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500 flex-shrink-0" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{severityStats.high || 0}</p>
-                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Altos</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-brand-mint-200/40 bg-brand-mint-200/20 hover:shadow-soft transition-smooth hover:scale-105">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-brand-mint-200/60 rounded-full">
-                      <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800 flex-shrink-0" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{severityStats.medium || 0}</p>
-                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Medios</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-brand-olive-500/30 bg-brand-olive-500/10 hover:shadow-soft transition-smooth hover:scale-105 sm:col-span-2 lg:col-span-1">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-brand-olive-500/20 rounded-full">
-                      <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500 flex-shrink-0" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900">{digitalRisks.length}</p>
-                      <p className="text-xs sm:text-sm md:text-base text-brand-ink-800">Riesgos Identificados</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Filtros mejorados */}
-            <motion.div 
-              className="mb-6 sm:mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <Card className="border-brand-mint-200/30 bg-gradient-to-br from-white via-brand-mint-200/5 to-white shadow-soft">
-                <CardHeader className="pb-3 sm:pb-6">
-                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-brand-ink-900">
-                    <div className="p-1 bg-brand-teal-500/20 rounded-full">
-                      <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-brand-teal-500" />
-                    </div>
-                    Filtrar Riesgos
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="px-4 sm:px-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                    <div className="relative sm:col-span-2 lg:col-span-1">
-                      <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-brand-olive-500" />
-                      <Input
-                        placeholder="Buscar riesgos..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20"
-                      />
-                    </div>
-
-                    <Select value={selectedSeverity} onValueChange={setSelectedSeverity}>
-                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
-                        <SelectValue placeholder="Nivel de riesgo" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Todos los niveles</SelectItem>
-                        <SelectItem value="low">Bajo</SelectItem>
-                        <SelectItem value="medium">Medio</SelectItem>
-                        <SelectItem value="high">Alto</SelectItem>
-                      </SelectContent>
-                    </Select>
-
-                    <Select value={selectedAgeGroup} onValueChange={setSelectedAgeGroup}>
-                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
-                        <SelectValue placeholder="Grupo de edad" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Todas las edades</SelectItem>
-                        <SelectItem value="6-8">6-8 años</SelectItem>
-                        <SelectItem value="9-12">9-12 años</SelectItem>
-                        <SelectItem value="13-15">13-15 años</SelectItem>
-                        <SelectItem value="16-17">16-17 años</SelectItem>
-                      </SelectContent>
-                    </Select>
-
-                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="text-xs sm:text-sm md:text-base border-brand-mint-200/50 focus:border-brand-teal-500 focus:ring-brand-teal-500/20">
-                        <SelectValue placeholder="Categoría" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Todas las categorías</SelectItem>
-                        {riskCategories.map((category) => (
-                          <SelectItem key={category.id} value={category.id}>
-                            {category.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
             {/* Vista por categorías mejorada */}
             <motion.div 
               className="mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Tabs defaultValue="all" className="mb-6 sm:mb-8">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto bg-brand-mint-200/20 border border-brand-mint-200/30">
@@ -327,6 +183,7 @@ const RiesgosDigitales: React.FC = () => {
                         <RiskCard
                           risk={risk}
                           onViewDetails={handleViewDetails}
+                          index={index}
                         />
                       </motion.div>
                     ))}
@@ -354,6 +211,7 @@ const RiesgosDigitales: React.FC = () => {
                             <RiskCard
                               risk={risk}
                               onViewDetails={handleViewDetails}
+                              index={index}
                             />
                           </motion.div>
                         ))}
@@ -379,20 +237,8 @@ const RiesgosDigitales: React.FC = () => {
                       No se encontraron riesgos
                     </h3>
                     <p className="text-sm sm:text-base text-brand-olive-500 mb-4">
-                      Intenta ajustar los filtros para ver más resultados.
+                      No hay riesgos para mostrar.
                     </p>
-                    <Button 
-                      variant="outline" 
-                      className="mt-2 text-sm sm:text-base border-brand-teal-500 text-brand-teal-500 hover:bg-brand-teal-500 hover:text-white"
-                      onClick={() => {
-                        setSearchTerm('');
-                        setSelectedSeverity('all');
-                        setSelectedAgeGroup('all');
-                        setSelectedCategory('all');
-                      }}
-                    >
-                      Limpiar filtros
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -403,7 +249,7 @@ const RiesgosDigitales: React.FC = () => {
               className="bg-gradient-to-br from-white via-brand-mint-200/10 to-white rounded-xl shadow-soft p-6 sm:p-8 lg:p-10 border border-brand-mint-200/30"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-4">
@@ -466,31 +312,54 @@ const RiesgosDigitales: React.FC = () => {
               className="mt-8 sm:mt-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Card className="bg-gradient-to-r from-brand-teal-500/10 to-brand-mint-200/20 border-brand-teal-500/20 shadow-soft">
-                <CardContent className="p-6 sm:p-8 text-center">
-                  <div className="p-3 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-4">
-                    <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-brand-teal-500" />
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <div className="p-2 bg-brand-teal-500/20 rounded-full w-fit mx-auto mb-3">
+                    <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-brand-ink-800" />
                   </div>
-                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-3 sm:mb-4">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-ink-900 mb-2">
                     ¿Necesitas ayuda inmediata?
                   </h3>
-                  <p className="font-body text-xs sm:text-sm md:text-base text-brand-ink-800 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
                     Si tu hijo está en peligro inmediato o has detectado una situación grave, 
                     no dudes en contactar a las autoridades correspondientes.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                    <Button variant="destructive" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
-                      Policía Cibernética: 088
+                  <div className="flex justify-center mb-3">
+                    <Button 
+                      onClick={() => handleEmergencyCall('33 3837 6000')}
+                      variant="destructive" 
+                      className="text-sm sm:text-base px-4 sm:px-6 shadow-soft"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      Policía Cibernética: 33 3837 6000
                     </Button>
-                    <Button variant="secondary-brand" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 shadow-soft">
-                      Te Protejo México
+                  </div>
+                  <div className="flex justify-center mb-3">
+                    <TrustLogo 
+                      src="te-protejo-mexico.png"
+                      alt="Te Protejo México"
+                      className="h-12 sm:h-16 w-auto"
+                      priority={false}
+                    />
+                  </div>
+                  <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
+                    Si deseas reportar de manera anónima material de abuso sexual infantil, ciberacoso u otras situaciones de violencia digital, o solicitar que bajen del internet imágenes o videos de tus hijas o hijos publicados sin autorización, contacta a
+                  </p>
+                  <div className="flex justify-center">
+                    <Button asChild variant="secondary-brand" className="text-sm sm:text-base px-4 sm:px-6 shadow-soft">
+                      <a href="https://teprotejomexico.org/" target="_blank" rel="noopener noreferrer">
+                        Te Protejo México
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
+
+            {/* Learning Path Navigation */}
+            <LearningPathNav currentRoute="/aprende/riesgos" />
           </div>
         </div>
 

@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Heart, MessageCircle, Shield, Users, AlertTriangle, Eye, Clock, BookOpen, Lightbulb, HandHeart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import GlobalHeader from '@/components/GlobalHeader';
+import { GlossaryTerm } from '@/components/ui/GlossaryTerm';
+import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
+import { CaseStoryModal } from '@/components/risks/CaseStoryModal';
+import { caseStories, CaseStory } from '@/data/caseStories';
 
 const ComunicacionYApoyo = () => {
+  // Scroll automático al inicio de la página al cambiar de ruta
+  useScrollToTop();
+
+  // Modal state
+  const [selectedCase, setSelectedCase] = useState<CaseStory | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const señalesAlerta = [
     {
       icon: <AlertTriangle className="h-8 w-8 text-brand-ink-800" />,
@@ -90,6 +103,7 @@ const ComunicacionYApoyo = () => {
 
   const historiasReales = [
     {
+      id: "control-parental",
       titulo: "Caso 1: Cuando el control parental salva vidas",
       descripcion: "Una mamá descubrió gracias a su control parental que su hijo de 9 años estaba usando una app de mensajería donde se comunicaba con personas desconocidas.",
       resultado: "Pudo bloquear la app y hablar con él antes de que pasara algo grave. Desde entonces, revisan juntos cada nueva app que quiere instalar.",
@@ -97,6 +111,7 @@ const ComunicacionYApoyo = () => {
       color: "border-brand-mint-200 bg-brand-mint-200/10"
     },
     {
+      id: "autonomia-soledad",
       titulo: "Caso 2: Cuando soltar demasiado es desconectarse",
       descripcion: "Ana tiene 13 años. Se peleó con su mejor amiga y, en un momento de tristeza, publicó en sus redes un mensaje tipo: 'ojalá desapareciera'.",
       resultado: "Sus papás no supieron nada hasta que una maestra lo reportó. Ana les dijo: 'Ustedes siempre me dicen que resuelva sola mis cosas. Pero esto fue más grande que yo.'",
@@ -104,11 +119,20 @@ const ComunicacionYApoyo = () => {
       color: "border-brand-olive-500/20 bg-brand-olive-500/5"
     },
     {
+      id: "omision-limites",
       titulo: "Caso 3: El ejemplo negativo por omisión",
       descripcion: "Un padre nunca configuró límites, pensando que su hija solo jugaba. Semanas después notó cambios en su conducta y calificaciones.",
       resultado: "Revisando el celular, descubrió que jugaba hasta las 2 a.m. durante semanas. Family Link podría haberlo prevenido desde el primer día.",
       leccion: "El 'que aprenda por las malas' no aplica cuando lo que está en riesgo es su salud emocional o su vida.",
       color: "border-destructive/20 bg-destructive/5"
+    },
+    {
+      id: "contenido-violento-grupo",
+      titulo: "Caso 4: Contenido violento en grupo de WhatsApp",
+      descripcion: "Tu hijo te cuenta que un compañero de la escuela le mandó un video 'gracioso'. Lo abre y resulta ser un clip violento con imágenes perturbadoras. Ya lo vio y se rió con otros en un grupo de WhatsApp.",
+      resultado: "Tú no lo sabías. No había forma de bloquear eso antes de que ocurriera. Pero ahora sí puedes hacer algo para guiarle y prevenir futuras situaciones similares.",
+      leccion: "No todo se puede controlar, pero siempre puedes estar ahí para guiar.",
+      color: "border-brand-teal-500/30 bg-brand-teal-500/10"
     }
   ];
 
@@ -167,7 +191,7 @@ const ComunicacionYApoyo = () => {
                 </div>
               </div>
               
-              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-ink-900 mb-4 sm:mb-6">
                 Comunicación y Apoyo
               </h1>
               <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-brand-olive-500 mb-6 sm:mb-8 px-4">
@@ -177,10 +201,6 @@ const ComunicacionYApoyo = () => {
               
               {/* Frase destacada mejorada */}
               <div className="bg-gradient-to-r from-brand-mint-200/60 to-brand-teal-500/10 border border-brand-mint-200/50 rounded-xl p-6 sm:p-8 mx-4 sm:mx-0 shadow-soft">
-                <div className="flex items-center justify-center mb-3">
-                  <Shield className="h-6 w-6 text-brand-teal-500 mr-2" />
-                  <span className="font-heading text-sm font-semibold text-brand-teal-500 uppercase tracking-wide">Frase clave</span>
-                </div>
                 <p className="font-body text-base sm:text-lg text-brand-ink-800 font-medium italic">
                   "El silencio también educa. Si no hablas tú, otros lo harán por ti: y no todos lo harán con cariño o responsabilidad."
                 </p>
@@ -245,7 +265,7 @@ const ComunicacionYApoyo = () => {
                         </h4>
                         <p className="font-body text-xs sm:text-sm text-brand-ink-800 leading-relaxed">
                           Los niños que tienen conversaciones regulares con sus padres sobre seguridad digital 
-                          tienen 3 veces menos probabilidades de experimentar ciberacoso o grooming.
+                          tienen 3 veces menos probabilidades de experimentar <GlossaryTerm termKey="ciberacoso">ciberacoso</GlossaryTerm> o <GlossaryTerm termKey="grooming">grooming</GlossaryTerm>.
                         </p>
                       </div>
                     </div>
@@ -276,7 +296,7 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${señal.iconBg} rounded-full w-fit shadow-soft`}>
                         {señal.icon}
                       </div>
-                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                         {señal.title}
                       </CardTitle>
                     </CardHeader>
@@ -312,7 +332,7 @@ const ComunicacionYApoyo = () => {
                       <div className={`mx-auto mb-3 sm:mb-4 p-3 sm:p-4 ${categoria.iconBg} rounded-full w-fit shadow-soft`}>
                         <MessageCircle className={`h-6 w-6 sm:h-8 sm:w-8 ${categoria.iconColor}`} />
                       </div>
-                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                      <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                         {categoria.categoria}
                       </CardTitle>
                     </CardHeader>
@@ -382,40 +402,48 @@ const ComunicacionYApoyo = () => {
                   Casos reales que demuestran la importancia de la comunicación
                 </p>
               </div>
-          <Carousel className="w-full max-w-4xl mx-auto">
-            <CarouselContent>
-              {historiasReales.map((historia, index) => (
-                <CarouselItem key={index} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                  <Card className={`${historia.color} border h-full hover:shadow-soft transition-smooth`}>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="font-heading text-sm sm:text-lg text-brand-ink-900 mb-2 leading-tight">
-                        {historia.titulo}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4 pt-0">
-                      <div>
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Situación:</h4>
-                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.descripcion}</p>
-                      </div>
-                      <div>
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Resultado:</h4>
-                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.resultado}</p>
-                      </div>
-                      <div className="p-3 bg-background rounded-lg border border-brand-mint-200/30">
-                        <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Lección:</h4>
-                        <p className="font-body text-brand-olive-500 text-xs sm:text-sm italic leading-relaxed">"{historia.leccion}"</p>
-                      </div>
-                      <Button className="w-full bg-primary hover:bg-primary-hover text-primary-foreground">
-                        Cómo actuar en este caso
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          <div className="relative">
+            <Carousel className="w-full max-w-6xl mx-auto">
+              <CarouselContent>
+                {historiasReales.map((historia, index) => (
+                  <CarouselItem key={index} className="basis-full sm:basis-1/2 lg:basis-1/2 xl:basis-1/3">
+                    <Card className={`${historia.color} border h-full hover:shadow-soft transition-smooth`}>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="font-heading text-sm sm:text-lg text-brand-ink-900 mb-2 leading-tight">
+                          {historia.titulo}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4 pt-0">
+                        <div>
+                          <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Situación:</h4>
+                          <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.descripcion}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-heading font-semibold text-brand-ink-800 mb-2 text-sm sm:text-base">Resultado:</h4>
+                          <p className="font-body text-brand-olive-500 text-xs sm:text-sm leading-relaxed">{historia.resultado}</p>
+                        </div>
+                        <div className="p-3 bg-background rounded-lg border border-brand-mint-200/30">
+                          <p className="font-body text-brand-olive-500 text-xs sm:text-sm italic leading-relaxed">"{historia.leccion}"</p>
+                        </div>
+                        <Button 
+                          onClick={() => {
+                            const caseData = caseStories.find(c => c.id === historia.id);
+                            setSelectedCase(caseData || null);
+                            setIsModalOpen(true);
+                          }}
+                          className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
+                        >
+                          Cómo actuar en este caso
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </section>
 
             {/* Tips para Diálogo en Familia */}
@@ -439,7 +467,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Elige un momento de tranquilidad
                     </CardTitle>
                   </CardHeader>
@@ -456,7 +484,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Users className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Escucha más de lo que hablas
                     </CardTitle>
                   </CardHeader>
@@ -473,7 +501,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-olive-500/20 rounded-full w-fit shadow-soft">
                       <HandHeart className="h-6 w-6 sm:h-8 sm:w-8 text-brand-olive-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Valida sus emociones
                     </CardTitle>
                   </CardHeader>
@@ -490,7 +518,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-teal-500/20 rounded-full w-fit shadow-soft">
                       <Lightbulb className="h-6 w-6 sm:h-8 sm:w-8 text-brand-teal-500" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Comparte tus experiencias
                     </CardTitle>
                   </CardHeader>
@@ -507,7 +535,7 @@ const ComunicacionYApoyo = () => {
                     <div className="mx-auto mb-3 sm:mb-4 p-3 sm:p-4 bg-brand-mint-200/60 rounded-full w-fit shadow-soft">
                       <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-brand-ink-800" />
                     </div>
-                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900">
+                    <CardTitle className="font-heading text-sm sm:text-lg md:text-xl text-brand-ink-900 text-center">
                       Enfócate en el aprendizaje
                     </CardTitle>
                   </CardHeader>
@@ -520,28 +548,23 @@ const ComunicacionYApoyo = () => {
                 </Card>
               </div>
             </section>
-
-            {/* CTA Final */}
-            <section className="text-center bg-gradient-to-r from-primary to-primary-hover rounded-2xl p-8 text-primary-foreground shadow-cta">
-              <h2 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-                Recuerda: La Comunicación es la Mejor Protección
-              </h2>
-              <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl mb-6 opacity-90 leading-relaxed">
-                Acompañar a nuestros hijos e hijas en su vida digital es un acto de amor y una de las 
-                mejores herramientas que podemos otorgarles.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-                <Button size="lg" variant="secondary" className="bg-background text-primary hover:bg-background/90">
-                  Ver Controles Parentales
-                </Button>
-                <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                  Conocer Riesgos Digitales
-                </Button>
-              </div>
-            </section>
-          </div>
         </div>
       </div>
+
+      {/* Learning Path Navigation */}
+      <div className="relative container mx-auto px-4 pb-8 sm:pb-12">
+        <div className="max-w-6xl mx-auto">
+          <LearningPathNav currentRoute="/aprende/comunicacion" />
+        </div>
+      </div>
+    </div>
+
+    {/* Case Story Modal */}
+    <CaseStoryModal 
+      caseStory={selectedCase} 
+      isOpen={isModalOpen} 
+      onClose={() => setIsModalOpen(false)} 
+    />
     </>
   );
 };

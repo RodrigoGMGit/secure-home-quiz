@@ -1,8 +1,20 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  safelist: [
+    // Solo las clases específicas que realmente se usan dinámicamente
+    {
+      pattern: /^(bg|border)-(brand-(teal|olive|mint)-(500|200))(\/(10|20|30|40))?$/,
+      variants: ['hover']
+    },
+    // Clases específicas para iconos circulares
+    {
+      pattern: /^(bg|text)-(brand-(teal|olive|mint)-(500|200))(\/(20|60))?$/,
+    }
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,7 +26,7 @@ export default {
     },
     extend: {
       colors: {
-        // Brand colors from design system
+        // 🔗 Referencia: Ver valores HSL en src/index.css sección "PALETA DE COLORES DE MARCA"
         "brand-ink-900": "hsl(var(--brand-ink-900))",
         "brand-ink-800": "hsl(var(--brand-ink-800))",
         "brand-teal-500": "hsl(var(--brand-teal-500))",
@@ -22,7 +34,7 @@ export default {
         "brand-mint-200": "hsl(var(--brand-mint-200))",
         "neutral-100": "hsl(var(--neutral-100))",
         
-        // System colors
+        // 🔗 Referencia: Mapeos semánticos en src/index.css sección "MAPEO SEMÁNTICO DE COLORES"
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -41,6 +53,31 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+          subtle: "hsl(var(--success-subtle))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          subtle: "hsl(var(--warning-subtle))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          foreground: "hsl(var(--error-foreground))",
+          subtle: "hsl(var(--error-subtle))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+          subtle: "hsl(var(--info-subtle))",
+        },
+        disabled: {
+          bg: "hsl(var(--disabled-bg))",
+          fg: "hsl(var(--disabled-fg))",
+          border: "hsl(var(--disabled-border))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -70,6 +107,7 @@ export default {
         },
       },
       borderRadius: {
+        // 🔗 Referencia: Valores en src/index.css sección "TOKENS DE RADIUS"
         'sm': 'var(--radius-sm)',
         'md': 'var(--radius-md)', 
         'lg': 'var(--radius-lg)',
@@ -77,24 +115,21 @@ export default {
         DEFAULT: 'var(--radius)',
       },
       backgroundImage: {
-        "gradient-hero": "var(--gradient-hero)",
+        // 🔗 Referencia: Valores en src/index.css sección "SOMBRAS Y GRADIENTES"
         "gradient-subtle": "var(--gradient-subtle)",
         "gradient-warm": "var(--gradient-warm)",
       },
       boxShadow: {
+        // 🔗 Referencia: Valores en src/index.css sección "SOMBRAS Y GRADIENTES"
         "soft": "var(--shadow-soft)",
         "cta": "var(--shadow-cta)",
-        "green": "var(--shadow-green)",
-      },
-      transitionTimingFunction: {
-        "smooth": "var(--transition-smooth)",
-        "bounce": "var(--transition-bounce)",
       },
       fontFamily: {
         "heading": ["Brandon Grotesque", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         "body": ["Uniform", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       spacing: {
+        // 🔗 Referencia: Valores en src/index.css sección "TOKENS DE ESPACIADO"
         '1': 'var(--space-1)',
         '2': 'var(--space-2)', 
         '3': 'var(--space-3)',
@@ -126,5 +161,5 @@ export default {
       },
     },
   },
-  plugins: [import("tailwindcss-animate")],
+  plugins: [animate],
 } satisfies Config;
