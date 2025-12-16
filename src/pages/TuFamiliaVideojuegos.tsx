@@ -63,7 +63,13 @@ const TuFamiliaVideojuegos = () => {
             details: <><GlossaryTerm termKey="mods">Mods</GlossaryTerm> {">"} Revisar lista {">"} Solo <GlossaryTerm termKey="mods">mods</GlossaryTerm> aprobados</>
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía para padres de Minecraft",
+          url: "https://www.minecraft.net/es-mx/article/parents--guide-minecraft"
+        }
+      ]
     },
     {
       id: "free-fire",
@@ -157,7 +163,13 @@ const TuFamiliaVideojuegos = () => {
             details: "Consola > Configuración > Controles parentales > Activar"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía de Call of Duty para padres",
+          url: "https://www.internetmatters.org/es/advice/apps-and-platforms/online-gaming/call-of-duty/"
+        }
+      ]
     },
     {
       id: "fortnite",
@@ -204,7 +216,13 @@ const TuFamiliaVideojuegos = () => {
             details: "Configuración > Privacidad > Solo amigos"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Controles parentales de Fortnite",
+          url: "https://www.epicgames.com/fortnite/es-MX/parental-controls"
+        }
+      ]
     },
     {
       id: "roblox",
@@ -299,6 +317,7 @@ const TuFamiliaVideojuegos = () => {
           }
         ]
       }
+      // GTA no tiene recursos externos - el botón no se mostrará
     },
     {
       id: "kick",
@@ -345,7 +364,13 @@ const TuFamiliaVideojuegos = () => {
             details: "Configuración > Pagos > Desactivar donaciones"
           }
         ]
-      }
+      },
+      externalResources: [
+        {
+          label: "Guía de Kick para padres",
+          url: "https://www.internetmatters.org/es/advice/apps-and-platforms/entertainment/kick-streaming/"
+        }
+      ]
     }
   ];
 
@@ -638,14 +663,23 @@ const TuFamiliaVideojuegos = () => {
                           </div>
 
                           {/* External Links */}
-                          <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0">
-                            <Button variant="primary-brand" className="w-full text-sm sm:text-base shadow-soft hover:shadow-md transition-smooth" asChild>
-                              <a href="#" target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                                Ver Guía Oficial
-                              </a>
-                            </Button>
-                          </div>
+                          {game.externalResources && game.externalResources.length > 0 && (
+                            <div className="border-t border-brand-mint-200/30 pt-4 sm:pt-6 px-4 sm:px-0 space-y-3">
+                              {game.externalResources.map((resource, resourceIndex) => (
+                                <Button
+                                  key={resourceIndex}
+                                  variant="primary-brand"
+                                  className="w-full text-sm sm:text-base shadow-soft hover:shadow-md transition-smooth h-auto py-3 px-4 whitespace-normal break-words"
+                                  asChild
+                                >
+                                  <a href={resource.url} target="_blank" rel="noopener noreferrer" className="flex items-center break-words">
+                                    <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                                    <span className="text-left break-words">{resource.label}</span>
+                                  </a>
+                                </Button>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </DialogContent>
                     </Dialog>

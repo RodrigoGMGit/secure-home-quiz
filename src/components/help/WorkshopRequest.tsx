@@ -120,10 +120,8 @@ export default function WorkshopRequest() {
                 <SelectValue placeholder="Selecciona el tipo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="padres">Para padres y madres</SelectItem>
-                <SelectItem value="escuela">Institución educativa</SelectItem>
-                <SelectItem value="empresa">Empresa u organización</SelectItem>
-                <SelectItem value="otro">Otro</SelectItem>
+                <SelectItem value="virtual">Virtual</SelectItem>
+                <SelectItem value="presencial">Presencial</SelectItem>
               </SelectContent>
             </Select>
           </div>

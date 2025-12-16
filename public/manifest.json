@@ -12,25 +12,25 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon-hogares-digitales-optimized.png",
+      "src": "/optimized/favicon/favicon-192w.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/favicon-hogares-digitales-optimized.png",
+      "src": "/optimized/favicon/favicon-512w.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/favicon-hogares-digitales-optimized.png",
+      "src": "/optimized/favicon/favicon-192w.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/favicon-hogares-digitales-optimized.png",
+      "src": "/optimized/favicon/favicon-512w.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

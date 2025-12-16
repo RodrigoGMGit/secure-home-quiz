@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Download, Play, Shield, Clock, Smartphone, Gamepad2, Wifi, Settings, Users, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Shield, Clock, Smartphone, Gamepad2, Wifi, Settings, Users, AlertTriangle, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import GlobalHeader from '@/components/GlobalHeader';
@@ -181,13 +181,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Descargar guía PDF</span>
-                        </Button>
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Play className="h-4 w-4" />
-                          <span>Ver video corto</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://support.google.com/families/answer/7101025?hl=es-419" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -351,13 +357,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Descargar guía PDF</span>
-                        </Button>
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Play className="h-4 w-4" />
-                          <span>Ver video corto</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://support.apple.com/es-mx/HT201304" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -441,13 +453,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Descargar guía PDF</span>
-                        </Button>
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Play className="h-4 w-4" />
-                          <span>Ver video corto</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://help.qustodio.com/hc/en-us" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -495,9 +513,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Guía Xbox</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://www.xbox.com/es-MX/apps/family-settings-app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -529,9 +557,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Guía PlayStation</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://www.playstation.com/es-mx/support/account/ps5-parental-controls-spending-limits/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -563,9 +601,19 @@ const ControlesParentales: React.FC = () => {
                       </div>
 
                       <div className="flex">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Guía Nintendo Switch</span>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center justify-center space-x-2 w-full sm:w-auto"
+                          asChild
+                        >
+                          <a 
+                            href="https://www.nintendo.com/es-mx/mobile-apps/parental-controls/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Consulta guía oficial</span>
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
@@ -650,13 +698,6 @@ const ControlesParentales: React.FC = () => {
                           <strong>Nota:</strong> Los pasos específicos varían según el modelo de router. 
                           Consulta el manual de tu dispositivo o contacta a tu proveedor de internet.
                         </p>
-                      </div>
-
-                      <div className="flex">
-                        <Button variant="outline" className="flex items-center justify-center space-x-2 w-full sm:w-auto">
-                          <Download className="h-4 w-4" />
-                          <span>Guía de configuración</span>
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>

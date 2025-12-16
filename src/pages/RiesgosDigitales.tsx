@@ -13,6 +13,7 @@ import GlobalHeader from '@/components/GlobalHeader';
 import LearningPathNav from '@/components/learning-navigation/LearningPathNav';
 import { useTelephoneCapability } from '@/hooks/useMobileDetection';
 import { initiatePhoneCall } from '@/utils/phoneUtils';
+import TrustLogo from '@/components/TrustLogo';
 
 const RiesgosDigitales: React.FC = () => {
   // Scroll automático al inicio de la página al cambiar de ruta
@@ -336,12 +337,11 @@ const RiesgosDigitales: React.FC = () => {
                     </Button>
                   </div>
                   <div className="flex justify-center mb-3">
-                    <img 
-                      src="/optimized/logos/te-protejo-mexico-200w.webp" 
-                      alt="Te Protejo México" 
+                    <TrustLogo 
+                      src="te-protejo-mexico.png"
+                      alt="Te Protejo México"
                       className="h-12 sm:h-16 w-auto"
-                      loading="lazy"
-                      decoding="async"
+                      priority={false}
                     />
                   </div>
                   <p className="font-body text-sm sm:text-base text-brand-ink-800 mb-3 max-w-2xl mx-auto leading-relaxed">
