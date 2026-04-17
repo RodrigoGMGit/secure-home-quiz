@@ -15,6 +15,8 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.cursor/
+.cursorrules
 .idea
 .DS_Store
 *.suo
@@ -44,5 +46,3 @@ screenshots.zip
 !public/optimized/**/*.jpeg
 !public/optimized/**/*.gif
 !public/optimized/**/*.webp
-
-.cursor/plans

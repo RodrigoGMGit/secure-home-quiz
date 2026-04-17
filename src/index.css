@@ -12,7 +12,7 @@ Based on official brand guidelines and tokens
        🎨 PALETA DE COLORES DE MARCA
        ========================================
        Fuente de verdad para todos los colores del proyecto.
-       Referenciado por: tailwind.config.ts, .cursor/rules/projectdesignsystem.mdc
+       Referenciado por: tailwind.config.ts y documentación de diseño del proyecto
     */
     --brand-ink-900: 195 100% 11%; /* #002B36 */
     --brand-ink-800: 204 100% 17%; /* #003556 */
@@ -25,7 +25,7 @@ Based on official brand guidelines and tokens
     /* ========================================
        🔗 MAPEO SEMÁNTICO DE COLORES
        ========================================
-       Referenciado por: tailwind.config.ts, .cursor/rules/projectdesignsystem.mdc
+       Referenciado por: tailwind.config.ts y documentación de diseño del proyecto
     */
     --primary: var(--brand-teal-500);
     --primary-foreground: var(--white);
