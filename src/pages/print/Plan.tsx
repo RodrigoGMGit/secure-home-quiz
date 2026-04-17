@@ -1,3 +1,13 @@
+/**
+ * Vista de plan para imprimir o exportar.
+ *
+ * - **Ruta:** `/print/plan`
+ * - **Origen del plan:** `location.state.plan`, o reconstrucción desde `loadQuizState` / email vía `src/utils/localStorage.ts`.
+ * - **Reglas de contenido:** `buildPlan` en `src/data/plan/rules.ts`.
+ * - **UI:** componentes `PlanCover`, `PlanPriorities`, `PlanPlatforms`, etc. en `components/plan/`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import GlobalHeader from '@/components/GlobalHeader';
@@ -6,6 +16,7 @@ import { Plan } from '@/types/plan';
 import { buildPlan } from '@/data/plan/rules';
 import { PlanInput } from '@/types/plan';
 import { QuizAnswers } from '@/types/quiz';
+import { loadQuizState, getPlanEmail, clearQuizData } from '@/utils/localStorage';
 import PrintPlanLayout from '@/components/plan/PrintPlanLayout';
 import PlanCover from '@/components/plan/PlanCover';
 import PlanPriorities from '@/components/plan/PlanPriorities';
@@ -14,7 +25,7 @@ import PlanScripts from '@/components/plan/PlanScripts';
 import PlanChecklist from '@/components/plan/PlanChecklist';
 import PlanResources from '@/components/plan/PlanResources';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download, Share2 } from 'lucide-react';
+import { ArrowLeft, Download, RotateCcw } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function PlanPage() {
@@ -27,14 +38,37 @@ export default function PlanPage() {
   useScrollToTop();
 
   useEffect(() => {
-    // Obtener el plan desde el estado de navegación o generar uno de prueba
-    const planFromState = location.state?.plan as Plan;
-    
+    const planFromState = location.state?.plan as Plan | undefined;
+
     if (planFromState) {
       setPlan(planFromState);
       setIsLoading(false);
+      return;
+    }
+
+    const storedEmail = getPlanEmail();
+    const stored = loadQuizState();
+    const hasValidEmail = storedEmail != null && storedEmail.trim().length > 0;
+    const hasEnoughAnswers =
+      stored?.answers?.age_band != null &&
+      Array.isArray(stored.answers.platforms) &&
+      (stored.answers.platforms.length > 0 || stored.answers.unknown_platforms === true);
+
+    if (hasValidEmail && stored != null && hasEnoughAnswers) {
+      const planInputFromStorage: PlanInput = {
+        age_band: stored.answers.age_band!,
+        platforms: stored.answers.platforms ?? [],
+        other_platforms: stored.answers.other_platforms ?? '',
+        unknown_platforms: !!stored.answers.unknown_platforms,
+        inappropriatePlatforms: stored.answers.inappropriatePlatforms,
+        securityConfig: stored.answers.securityConfig ?? {},
+        emergencyResources: stored.answers.emergencyResources ?? {},
+        concerns: stored.answers.concerns ?? [],
+        ab_variant_plan_email: stored.abVariant ?? 'A'
+      };
+      const recoveredPlan = buildPlan(planInputFromStorage);
+      setPlan(recoveredPlan);
     } else {
-      // Si no hay plan en el estado, generar uno de prueba para desarrollo
       const mockAnswers: QuizAnswers = {
         age_band: '13-15',
         platforms: ['youtube', 'tiktok', 'whatsapp'],
@@ -59,13 +93,13 @@ export default function PlanPage() {
         habits: mockAnswers.habits,
         signals: mockAnswers.signals,
         concerns: mockAnswers.concerns,
-        ab_variant_plan_email: 'control'
+        ab_variant_plan_email: 'A'
       };
 
       const generatedPlan = buildPlan(planInput);
       setPlan(generatedPlan);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, [location.state]);
 
   const handleBackToQuiz = () => {
@@ -77,21 +111,9 @@ export default function PlanPage() {
     window.print();
   };
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Mi Plan de Seguridad Digital',
-          text: 'Revisa mi plan personalizado de seguridad digital para mi familia',
-          url: window.location.href
-        });
-      } catch (error) {
-        console.log('Error sharing:', error);
-      }
-    } else {
-      // Fallback: copiar URL al portapapeles
-      navigator.clipboard.writeText(window.location.href);
-    }
+  const handleRedoQuiz = () => {
+    clearQuizData();
+    navigate('/quiz/personalizado');
   };
 
   if (isLoading) {
@@ -181,12 +203,12 @@ export default function PlanPage() {
                   </Button>
                   
                   <Button
-                    onClick={handleShare}
+                    onClick={handleRedoQuiz}
                     variant="outline"
                     className="px-8 py-3 text-sm sm:text-base font-heading font-semibold"
                   >
-                    <Share2 className="mr-2 h-4 w-4" />
-                    Compartir
+                    <RotateCcw className="mr-2 h-4 w-4" />
+                    Rehacer el quiz
                   </Button>
                   
                   <Button

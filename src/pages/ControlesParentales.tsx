@@ -1,3 +1,12 @@
+/**
+ * Guía de controles parentales por plataforma (accordion y secciones).
+ *
+ * - **Ruta:** `/aprende/controles`
+ * - **Datos / hooks:** `useScrollToTop`; contenido principalmente en el TSX.
+ * - **Componentes:** `LearningPathNav`, `DecorativeBackground`, `PageHeader`, `SectionHeader`, iconos `AndroidIcon` / `AppleIcon`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';

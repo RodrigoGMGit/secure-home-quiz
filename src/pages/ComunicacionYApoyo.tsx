@@ -1,3 +1,12 @@
+/**
+ * Comunicación y apoyo: conversaciones familiares y casos ilustrativos.
+ *
+ * - **Ruta:** `/aprende/comunicacion`
+ * - **Datos:** `caseStories` desde `src/data/caseStories.ts` (`CaseStoryModal`).
+ * - **Componentes:** `LearningPathNav`, `GlossaryTerm`, carrusel y cards.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

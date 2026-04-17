@@ -1,3 +1,12 @@
+/**
+ * Ayuda, contacto y enlaces FAQ según contexto.
+ *
+ * - **Ruta:** `/ayuda`
+ * - **Datos:** `getFAQLinkInfo` desde `src/data/faqLinks.ts`.
+ * - **Componentes:** formularios en `ui/`, `TrustLogo`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 

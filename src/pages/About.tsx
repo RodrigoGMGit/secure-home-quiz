@@ -1,3 +1,12 @@
+/**
+ * Página “Acerca de” con narrativa y scroll.
+ *
+ * - **Ruta:** `/about`
+ * - **Datos / hooks:** sin `GlobalHeader` global del resto del sitio; `IntroSection`, `ScrollamaSection`.
+ * - **Nota:** en `App.tsx` se ocultan los botones flotantes de emergencia en esta ruta.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import IntroSection from "@/components/IntroSection";

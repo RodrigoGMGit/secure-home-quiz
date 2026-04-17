@@ -2,23 +2,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { ExpressQuizStep, ExpressQuizAnswers, ExpressQuizResult, ExpressQuizState } from '@/types/quiz';
 import { track, captureAnalyticsData } from '@/utils/analytics';
 import { scrollToTop } from '@/utils/scroll';
+import { getOrCreateVisitorId } from '@/utils/localStorage';
 
 const EXPRESS_QUIZ_STORAGE_KEY = 'express-quiz-state';
-const EXPRESS_ANSWERS_STORAGE_KEY = 'express-quiz-answers';
 
 // Load from localStorage
 const loadExpressQuizState = (): ExpressQuizState | null => {
   try {
     const stored = localStorage.getItem(EXPRESS_QUIZ_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : null;
-  } catch {
-    return null;
-  }
-};
-
-const loadExpressQuizAnswers = (): ExpressQuizAnswers | null => {
-  try {
-    const stored = localStorage.getItem(EXPRESS_ANSWERS_STORAGE_KEY);
     return stored ? JSON.parse(stored) : null;
   } catch {
     return null;
@@ -31,28 +22,6 @@ const saveExpressQuizState = (state: ExpressQuizState) => {
     localStorage.setItem(EXPRESS_QUIZ_STORAGE_KEY, JSON.stringify(state));
   } catch {
     // Ignore localStorage errors
-  }
-};
-
-const saveExpressQuizAnswers = (answers: ExpressQuizAnswers) => {
-  try {
-    localStorage.setItem(EXPRESS_ANSWERS_STORAGE_KEY, JSON.stringify(answers));
-  } catch {
-    // Ignore localStorage errors
-  }
-};
-
-// Generate visitor ID
-const getOrCreateVisitorId = (): string => {
-  try {
-    let visitorId = localStorage.getItem('visitor-id');
-    if (!visitorId) {
-      visitorId = `visitor_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem('visitor-id', visitorId);
-    }
-    return visitorId;
-  } catch {
-    return `visitor_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
 };
 
@@ -92,7 +61,6 @@ export function useExpressQuizState() {
   // Auto-save state on changes
   useEffect(() => {
     saveExpressQuizState(state);
-    saveExpressQuizAnswers(state.answers);
   }, [state]);
 
   // Track session start on mount
@@ -170,6 +138,7 @@ export function useExpressQuizState() {
         q6_report_training: undefined,
         q7_monitoring_tools: undefined,
       },
+      visitorId: getOrCreateVisitorId(),
       startTime: Date.now()
     }));
     track('express_quiz_restarted');

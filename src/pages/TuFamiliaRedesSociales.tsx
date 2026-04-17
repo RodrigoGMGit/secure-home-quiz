@@ -1,3 +1,12 @@
+/**
+ * Contenido educativo: redes sociales y plataformas (detalle por plataforma en arrays locales).
+ *
+ * - **Ruta:** `/aprende/tu-familia/redes-sociales`
+ * - **Datos / hooks:** `useScrollToTop`; listas extensas definidas en este archivo; iconos en `icons/platforms`.
+ * - **Componentes:** `LearningPathNav`, `PageHeader`, `GlossaryTerm`, `DecorativeBackground`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

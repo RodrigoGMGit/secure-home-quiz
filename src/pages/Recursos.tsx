@@ -1,3 +1,12 @@
+/**
+ * Recursos descargables, glosario amplio y enlaces a plataformas.
+ *
+ * - **Ruta:** `/recursos`
+ * - **Datos:** `recursosDescargables`, `terminosGlosario`, `plataformasExternas`, etc. desde `src/data/recursos.ts`.
+ * - **Componentes:** `WorkshopRequestModal`, `TrustLogo`, patrones `shared/` (cabeceras, fondo).
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 

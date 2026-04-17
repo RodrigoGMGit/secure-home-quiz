@@ -1,3 +1,10 @@
+/**
+ * Raíz de rutas y proveedores globales (React Query, tooltips, router).
+ *
+ * - **Rutas:** cada `<Route>` apunta a un archivo en `src/pages/` (ver comentarios por bloque abajo).
+ * - **Mapa URL → archivo:** `docs/NAVEGACION-CODIGO.md`
+ * - **Carga diferida:** los `import()` con `lazy` reducen el JS inicial; al añadir rutas, mantén el catch-all `*` al final.
+ */
 import { useEffect, Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -42,10 +49,13 @@ const AppContent = () => {
     <>
       <Suspense fallback={<LoadingComponent />}>
         <Routes>
+          {/* Inicio y acerca de */}
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          {/* Cuestionarios */}
           <Route path="/quiz" element={<QuizExpress />} />
           <Route path="/quiz/personalizado" element={<QuizPersonalizado />} />
+          {/* Aprende (contenido educativo bajo /aprende/...) */}
           <Route path="/aprende/tu-familia" element={<TuFamilia />} />
           <Route path="/aprende/tu-familia/redes-sociales" element={<TuFamiliaRedesSociales />} />
           <Route path="/aprende/tu-familia/videojuegos" element={<TuFamiliaVideojuegos />} />
@@ -53,9 +63,11 @@ const AppContent = () => {
           <Route path="/aprende/controles" element={<ControlesParentales />} />
           <Route path="/aprende/comunicacion" element={<ComunicacionYApoyo />} />
           <Route path="/aprende/acciones-legales" element={<AccionesLegales />} />
+          {/* Recursos, ayuda y placeholder */}
           <Route path="/recursos" element={<Recursos />} />
           <Route path="/ayuda" element={<Ayuda />} />
           <Route path="/en-construccion" element={<EnConstruccion />} />
+          {/* Plan imprimible (datos desde quiz / estado de navegación) */}
           <Route path="/print/plan" element={<PlanPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

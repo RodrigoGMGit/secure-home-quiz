@@ -1,3 +1,12 @@
+/**
+ * Placeholder “En construcción” para secciones pendientes.
+ *
+ * - **Ruta:** `/en-construccion`
+ * - **Datos / hooks:** `useScrollToTop`; imagen local en `@/assets/illustrations/...`.
+ * - **Componentes:** `GlobalHeader`, CTA de regreso con `Link`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Construction } from "lucide-react";

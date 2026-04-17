@@ -1,3 +1,13 @@
+/**
+ * Catálogo de riesgos digitales con tabs, búsqueda y modales.
+ *
+ * - **Ruta:** `/aprende/riesgos`
+ * - **Datos:** `digitalRisks`, `riskCategories` desde `src/data/risks.ts`.
+ * - **Componentes:** `RiskCard`, `RiskDetailModal`, `LearningPathNav`, `TrustLogo`.
+ * - **Hooks utilidad:** `useTelephoneCapability` (`useMobileDetection`), `initiatePhoneCall`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';

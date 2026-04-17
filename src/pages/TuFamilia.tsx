@@ -1,3 +1,12 @@
+/**
+ * Contenido educativo: familia y pantallas (introducción del eje “Tu familia”).
+ *
+ * - **Ruta:** `/aprende/tu-familia`
+ * - **Datos / hooks:** `useScrollToTop`; copy mayormente en el propio TSX.
+ * - **Componentes:** `LearningPathNav`, `DecorativeBackground`, `PageHeader`, `QuizCTA`, `TrustLogo`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React from "react";
 import { Users, CheckCircle, Shield, Info, Phone } from "lucide-react";
 import { motion } from "framer-motion";

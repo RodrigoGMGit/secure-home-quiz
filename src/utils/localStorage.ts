@@ -1,4 +1,4 @@
-import { QuizState, QuizAnswers, PlanInput, ABVariant } from '@/types/quiz';
+import { QuizState, PlanInput, ABVariant } from '@/types/quiz';
 
 export function generateVisitorId(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -30,19 +30,6 @@ export function loadQuizState(): QuizState | null {
   }
 }
 
-export function saveQuizAnswers(answers: QuizAnswers): void {
-  localStorage.setItem('quiz_answers_v1', JSON.stringify(answers));
-}
-
-export function loadQuizAnswers(): QuizAnswers | null {
-  try {
-    const stored = localStorage.getItem('quiz_answers_v1');
-    return stored ? JSON.parse(stored) : null;
-  } catch {
-    return null;
-  }
-}
-
 export function getOrCreateABVariant(): ABVariant {
   const stored = localStorage.getItem('ab_variant_plan_email');
   if (stored && ['A', 'B', 'C'].includes(stored)) {
@@ -61,6 +48,28 @@ export function savePlanInput(planInput: PlanInput): void {
 
 export function clearQuizData(): void {
   localStorage.removeItem('quiz_state_v1');
-  localStorage.removeItem('quiz_answers_v1');
   // Keep visitor_id and ab_variant for consistency
+}
+
+const PLAN_EMAIL_KEY = 'quiz_plan_email_v1';
+
+export function getPlanEmail(): string | null {
+  try {
+    const stored = localStorage.getItem(PLAN_EMAIL_KEY);
+    if (!stored || typeof stored !== 'string') return null;
+    const trimmed = stored.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  } catch {
+    return null;
+  }
+}
+
+export function savePlanEmail(email: string): void {
+  const trimmed = email.trim();
+  if (trimmed.length === 0) return;
+  try {
+    localStorage.setItem(PLAN_EMAIL_KEY, trimmed);
+  } catch {
+    // ignore quota / private mode
+  }
 }

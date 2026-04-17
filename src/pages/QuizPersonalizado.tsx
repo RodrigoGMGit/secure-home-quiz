@@ -1,3 +1,13 @@
+/**
+ * Quiz personalizado (largo): flujo por pasos (bienvenida, género, edad, plataformas, etc.).
+ *
+ * - **Ruta:** `/quiz/personalizado`
+ * - **Estado:** `useQuizState` (`src/hooks/useQuizState.tsx`, respuestas y `localStorage`).
+ * - **UI:** `AppShellCard` + componentes en `components/quiz/steps/*`.
+ * - **Tipos:** `Platform` y respuestas en `@/types/quiz`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import { useQuizState } from '@/hooks/useQuizState';
 import { AppShellCard } from '@/components/quiz/AppShellCard';
 import { WelcomeStep } from '@/components/quiz/steps/WelcomeStep';

@@ -1,3 +1,12 @@
+/**
+ * Contenido educativo: videojuegos y hábitos saludables.
+ *
+ * - **Ruta:** `/aprende/tu-familia/videojuegos`
+ * - **Datos / hooks:** `useScrollToTop`; términos técnicos con `GlossaryTerm` (`src/data/glossary.ts`).
+ * - **Componentes:** `LearningPathNav`, cards y modales de plataformas de juego.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

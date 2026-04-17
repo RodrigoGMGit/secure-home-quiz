@@ -1,3 +1,12 @@
+/**
+ * Acciones legales y recursos institucionales.
+ *
+ * - **Ruta:** `/aprende/acciones-legales`
+ * - **Datos / hooks:** `useScrollToTop`; contenido en el TSX con enlaces externos.
+ * - **Componentes:** `LearningPathNav`, `QuizCTA`, `TrustLogo`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

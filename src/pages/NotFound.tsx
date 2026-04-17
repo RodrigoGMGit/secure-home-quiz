@@ -1,3 +1,11 @@
+/**
+ * Página 404 (ruta no encontrada).
+ *
+ * - **Ruta:** cualquier path no registrado en `App.tsx` (catch-all `*`).
+ * - **Datos / hooks:** mínimos; suele usarse `useLocation` para depuración o mensaje.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 

@@ -1,3 +1,13 @@
+/**
+ * Quiz express (corto): bienvenida, preguntas fijas y resultado.
+ *
+ * - **Ruta:** `/quiz`
+ * - **Estado:** `useExpressQuizState` (persistencia y pasos en `src/hooks/useExpressQuizState.tsx`).
+ * - **UI:** `AppShellCard`, pasos en `components/quiz/express/*`; las preguntas en texto están definidas en este archivo.
+ * - **Tipos:** `ExpressQuizAnswers` desde `@/types/quiz`.
+ *
+ * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
+ */
 import { useExpressQuizState } from '@/hooks/useExpressQuizState';
 import { AppShellCard } from '@/components/quiz/AppShellCard';
 import ExpressWelcomeStep from '@/components/quiz/express/ExpressWelcomeStep';

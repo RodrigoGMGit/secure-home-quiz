@@ -3,8 +3,6 @@ import { QuizStep, QuizState, QuizAnswers, PlanInput } from '@/types/quiz';
 import { 
   saveQuizState, 
   loadQuizState, 
-  saveQuizAnswers,
-  loadQuizAnswers,
   getOrCreateVisitorId, 
   getOrCreateABVariant,
   savePlanInput,
@@ -37,7 +35,6 @@ export function useQuizState() {
   // Auto-save state on changes
   useEffect(() => {
     saveQuizState(state);
-    saveQuizAnswers(state.answers);
   }, [state]);
 
   // Track session start on mount
