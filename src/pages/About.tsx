@@ -1,46 +1,22 @@
 /**
- * Página “Acerca de” con narrativa y scroll.
+ * Página “Acerca de” con narrativa scrollytelling (6 escenas).
  *
  * - **Ruta:** `/about`
- * - **Datos / hooks:** sin `GlobalHeader` global del resto del sitio; `IntroSection`, `ScrollamaSection`.
+ * - **Datos / hooks:** sin `GlobalHeader`; experiencia en `ScrollyExperience`.
  * - **Nota:** en `App.tsx` se ocultan los botones flotantes de emergencia en esta ruta.
  *
  * Mapa del repo: `docs/NAVEGACION-CODIGO.md`
  */
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import IntroSection from "@/components/IntroSection";
-import ScrollamaSection from "@/components/ScrollamaSection";
+import { ScrollyExperience } from "@/components/scrolly/ScrollyExperience";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const About = () => {
-  const location = useLocation();
-
-  // Scroll to top when component mounts or when location changes
-  useEffect(() => {
-    // Force scroll to top immediately
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Also try with a small delay to handle any async rendering
-    const timeoutId = setTimeout(() => {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, 0);
-    
-    console.log('About page mounted/refreshed - scrolled to top');
-    
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [location.pathname]); // Re-run when pathname changes (including refresh)
+  useScrollToTop();
 
   return (
-    <>
-      <IntroSection />
-      <ScrollamaSection />
-    </>
+    <main id="main-content" className="min-h-screen">
+      <ScrollyExperience />
+    </main>
   );
 };
 

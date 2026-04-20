@@ -12,9 +12,10 @@ Plataforma web educativa en **español (México)** para padres y familias: conte
 6. [Cómo está organizado el proyecto](#cómo-está-organizado-el-proyecto)
 7. [Documentación del código](#documentación-del-código)
 8. [¿Quiero cambiar…?](#quiero-cambiar)
-9. [Comandos útiles](#comandos-útiles)
-10. [Despliegue en Azure Static Web Apps (opcional)](#despliegue-en-azure-static-web-apps-opcional)
-11. [Solución de problemas](#solución-de-problemas)
+9. [Sección `/about` (Scrollytelling)](#sección-about-scrollytelling)
+10. [Comandos útiles](#comandos-útiles)
+11. [Despliegue en Azure Static Web Apps (opcional)](#despliegue-en-azure-static-web-apps-opcional)
+12. [Solución de problemas](#solución-de-problemas)
 
 ---
 
@@ -185,6 +186,60 @@ Si cambias rutas de build (`base` en Vite) o el hosting, verifica que las URLs d
 ### Iconos
 
 Suelen importarse desde `lucide-react` en el mismo archivo `.tsx` donde se muestran.
+
+---
+
+## Sección `/about` (Scrollytelling)
+
+La ruta `/about` usa una experiencia de scrollytelling de 6 escenas optimizada para escritorio y móvil.
+
+### Arquitectura principal
+
+- Página: `src/pages/About.tsx`
+- Orquestador de experiencia: `src/components/scrolly/ScrollyExperience.tsx`
+- Hook de scroll y progreso: `src/components/scrolly/useScrollyController.ts`
+- Wrapper de escena: `src/components/scrolly/ScrollyScene.tsx`
+- Escena visual sticky desktop: `src/components/scrolly/ScrollyStage.tsx`
+- Escenas de contenido: `src/components/scrolly/scenes/Scene01Puerta.tsx` a `Scene06Cierre.tsx`
+- Stages visuales por escena: `src/components/scrolly/stages/*`
+- Datos/copy (fuente de verdad): `src/content/scrolly.ts`
+- Componentes nuevos de navegación/cierre: `src/components/scrolly/ScrollyNav.tsx`, `src/components/scrolly/ScrollyHero.tsx`, `src/components/scrolly/ScrollyClosing.tsx`
+
+### Comportamiento responsive esperado
+
+- **Desktop (`md` en adelante):**
+  - Layout de 2 columnas.
+  - Columna izquierda sticky con visual (`ScrollyStage`).
+  - Columna derecha con el texto de escenas.
+- **Mobile:**
+  - Flujo de una sola columna.
+  - El visual de cada escena va **antes** del bloque de texto (no después).
+  - Sin scroll horizontal; la página debe mantenerse en ancho del viewport.
+  - Navegación de escenas (`ScrollyNav`) posicionada centrada abajo.
+
+### Reglas para futuras integraciones en `/about`
+
+1. Si agregas una escena, actualiza `SCROLLY_SCENE_COUNT` y `scrollyScenes` en `src/content/scrolly.ts`.
+2. Mantén sincronizados:
+   - índices `data-scrolly-scene`
+   - dots de `ScrollyNav`
+   - render condicional de `ScrollyStage`
+3. Evita valores fijos grandes en px para mobile (alto riesgo de overflow y scroll horizontal).
+4. Si un stage necesita animación ligada al scroll, usa `sceneProgresses` desde `useScrollyController`.
+5. Antes de mergear cambios en `/about`, valida en desktop y móvil con captura visual y consola limpia de errores runtime.
+
+### QA recomendado con Chrome DevTools MCP
+
+Para cambios en `/about`, seguir este ciclo rápido:
+
+1. Abrir `/about` en local (`npm run dev`, puerto 8080).
+2. Validar en desktop.
+3. Validar en móvil con viewport `390x844` (iPhone 12 Pro equivalente) y también `320x568`.
+4. Revisar:
+   - `scrollWidth === innerWidth` (sin scroll horizontal)
+   - CTA visibles y tap targets correctos
+   - progreso/animaciones de escenas (especialmente Scene 4 y Scene 5)
+   - consola sin errores de JavaScript
 
 ---
 
