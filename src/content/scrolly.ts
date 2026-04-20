@@ -46,7 +46,8 @@ export const scrollyScenes: ScrollySceneData[] = [
   {
     id: "scene-1-puerta",
     eyebrow: "Bienvenida",
-    title: "La puerta ya no es la calle. Ahora es el Wi-Fi.",
+    title:
+      "Cerrar la puerta con llave ya no es suficiente, el riesgo también está en línea.",
     titleTypewriter: true,
     paragraph:
       "Hoy, quienes quieren aprovecharse de niñas, niños y adolescentes ya no necesitan forzar una puerta: buscan entrar por el Wi-Fi de casa, a través de apps, chats de videojuegos y redes sociales.",
