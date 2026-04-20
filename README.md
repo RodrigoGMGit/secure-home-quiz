@@ -89,15 +89,45 @@ npm run preview
 
 ## Variables de entorno
 
-En la raíz pueden existir archivos como `.env`, `.env.dev` o `.env.prod` (según el entorno). Sirven para cosas como analíticas o tokens de despliegue.
+El repositorio incluye plantillas seguras para que cada developer copie sus variables locales sin subir secretos:
+
+- `.env.example` → base para `.env` (por ejemplo `SWA_TOKEN` para despliegue manual)
+- `.env.dev.example` → base para `.env.dev`
+- `.env.development.example` → base para `.env.development`
+- `.env.prod.example` → base para `.env.prod`
+- `.env.production.example` → base para `.env.production`
+
+### Cómo copiarlas
+
+En PowerShell (Windows):
+
+```powershell
+Copy-Item .env.example .env
+Copy-Item .env.dev.example .env.dev
+Copy-Item .env.development.example .env.development
+Copy-Item .env.prod.example .env.prod
+Copy-Item .env.production.example .env.production
+```
+
+En Bash (macOS/Linux/Git Bash):
+
+```bash
+cp .env.example .env
+cp .env.dev.example .env.dev
+cp .env.development.example .env.development
+cp .env.prod.example .env.prod
+cp .env.production.example .env.production
+```
+
+Después de copiar, reemplaza los valores `YOUR_*` con credenciales reales entregadas por el equipo.
 
 **Importante:**
 
 - **No subas secretos** a Git ni los pegues en chats públicos.
-- **No copies** el contenido real de tu `.env` al README.
-- Para despliegue manual a Azure Static Web Apps, el proyecto puede usar **`SWA_TOKEN`** (token de despliegue desde el portal de Azure). Pide al administrador cómo obtenerlo y dónde colocarlo.
+- **No copies** el contenido real de tus `.env` al README.
+- Para despliegue manual a Azure Static Web Apps, usa **`SWA_TOKEN`** (desde Azure Portal → Static Web App → Manage deployment token).
 
-Si no tienes esos archivos, el sitio puede arrancar igual en local; algunas funciones opcionales podrían no activarse hasta que configures las variables.
+Si no tienes todas las variables, el sitio puede arrancar en local; algunas funciones opcionales (por ejemplo telemetría) podrían no activarse hasta configurarlas.
 
 ---
 
@@ -264,7 +294,7 @@ El repositorio incluye:
 - **`scripts/deploy-dev.ps1`**: instala dependencias, construye en modo desarrollo y despliega al entorno **staging** de Azure SWA.
 - **`scripts/deploy-prod.ps1`**: similar para **producción**.
 
-En general necesitarás un archivo **`.env`** en la raíz con `SWA_TOKEN=...` (token de despliegue desde Azure Portal: Static Web App → **Manage deployment token**). No compartas ese token.
+En general necesitarás un archivo **`.env`** en la raíz con `SWA_TOKEN=...`. Recomendado: copiar primero `.env.example` a `.env` y luego completar el token real (Azure Portal: Static Web App → **Manage deployment token**). No compartas ese token.
 
 Los scripts copian `staticwebapp.config.json` dentro de `dist/` antes de desplegar, porque Vite no lo copia solo.
 
